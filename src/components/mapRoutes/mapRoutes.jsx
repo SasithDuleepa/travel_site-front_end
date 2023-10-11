@@ -1,45 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer, DirectionsService } from '@react-google-maps/api';
 import googleMapsApiKey from '../../google-maps-api-key';
 
 export default function MapRoutes() {
   const [directions, setDirections] = useState(null);
-
+  const [origin, setOrigin] = React.useState('colombo');
+  const [destination, setDestination] = React.useState('polonnaruwa');
+  const [response, setResponse] = React.useState(null)
+  let count = React.useRef(0);
+  const directionsCallback = res => {
+    console.log(res)
+    if (res !== null && count.current < 2) {
+      if (res.status === 'OK') {
+        count.current += 1;
+        setResponse(res);
+      } else {
+        count.current = 0;
+        console.log('res: ', res);
+      }
+    }
+  };
   const { isLoaded } = useLoadScript({
     googleMapsApiKey,
-    libraries: ['places'],
-    onLoad: () => {
-      // The Google Maps API is loaded and available here.
-      // You can safely use the google object.
-      initializeDirections();
-    },
   });
+  if (!isLoaded) return (
+    <p>Loading...</p>
+    )
 
-  const initializeDirections = () => {
-    const directionsService = new window.google.maps.DirectionsService();
-    const directionsRequest = {
-      origin: { lat: 6.93665, lng: 79.84505 },
-      destination: { lat: 6.91829, lng: 79.88346 },
-      travelMode: 'DRIVING',
-    };
-
-    directionsService.route(directionsRequest, (result, status) => {
-        console.log(status)
-        console.log(result)
-      if (status === window.google.maps.DirectionsStatus.OK) {
-        setDirections(result);
-      } else {
-        console.error(status);
-      }
-    });
-  };
-
-  useEffect(() => {
-    // Check if the Google Maps API is already loaded
-    if (isLoaded) {
-      initializeDirections();
-    }
-  }, [isLoaded]);
 
   return (
     <div>
@@ -49,10 +36,20 @@ export default function MapRoutes() {
         zoom={11}
       >
         <MarkerF position={{ lat: 6.93665, lng: 79.84505 }} />
+        <DirectionsService
+            options={{
+              destination: destination,
+              waypoints: [{ location: 'Kandy' },{ location: 'Naula' },{ location: 'Angamedilla' }],
+              origin: origin,
+              travelMode: 'DRIVING'
+            }}
+            callback={directionsCallback}
+          />
+          <DirectionsRenderer directions={response} />
 
-        {directions && (
+        {/* {directions && (
           <DirectionsRenderer directions={directions} />
-        )}
+        )} */}
       </GoogleMap>
     </div>
   );
