@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './addplace.css';
+import axios from 'axios';
 
 import { GoogleMap, useLoadScript, MarkerF  } from '@react-google-maps/api';
+
 
 export default function Addplace() {
   const[data , setData] = useState({
@@ -31,8 +33,11 @@ export default function Addplace() {
       })
     }
 
-    const AddData = () =>{
+    const AddData =async () =>{
       console.log(data)
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/places/addplace`,data)
+      console.log(res)
+    
     }
     
   return (
