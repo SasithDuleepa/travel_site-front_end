@@ -1,0 +1,74 @@
+.header-Add_place{
+    text-align: center;
+}
+.parent-Add_place {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 85vh;
+    }
+    
+.div1-Add_place { 
+        grid-area: 1 / 1 / 2 / 2;
+        /* background-color: yellowgreen; */
+        height: 70vh;
+        padding-top: 90px;
+        padding-left: 10px;
+     }
+.div2-Add_place { grid-area: 1 / 2 / 2 / 3;
+
+                padding-top: 0px; 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+
+.form-div-Add_place{
+    /* background-color: aliceblue; */
+    width: 70%;
+    height: auto;
+    margin-left: 50px;
+}
+.Add_place-form-sub-div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 20px;
+}
+.Add_place-form-location-div{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+}
+
+.add_place_input{
+    height: 30px;
+    background-color: rgba(216, 216, 216, 0.959);
+    border: none;
+}
+.add_place_input-location{
+    height: 30px;
+    background-color: rgba(216, 216, 216, 0.959);
+    border: none;
+}
+.Add_place-form-sub-div-button{
+    width: 100px;
+    height: 30px;
+    border: none;
+    background-color: rgba(163, 163, 163, 0.959);
+    margin-top: 20px;
+}
+
+
+
+
+.Add_place-map-div{
+    background-color: rgb(116, 116, 116);
+    width: 60%;
+    height: 70%;
+    margin-right: 50px;
+}

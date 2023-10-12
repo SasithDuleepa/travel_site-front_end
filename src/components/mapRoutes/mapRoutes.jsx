@@ -38,8 +38,12 @@ export default function MapRoutes() {
         <MarkerF position={{ lat: 6.93665, lng: 79.84505 }} />
         <DirectionsService
             options={{
-              destination: destination,
-              waypoints: [{ location: 'Kandy' },{ location: 'Naula' },{ location: 'Angamedilla' }],
+              destination: origin,
+              waypoints: [{ 
+                location: 'Naula'},
+                { location: 'kandy' },
+                { location: 'Angamedilla' }
+            ],
               origin: origin,
               travelMode: 'DRIVING'
             }}
