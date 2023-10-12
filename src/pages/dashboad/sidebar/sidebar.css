@@ -22,11 +22,28 @@
     flex-direction: column;
     margin-top: 50px;
 }
+
 .sidebar-links{
     font-size: 24px;
     font-weight: 400;
     color: azure;
     background-color:rgba(126, 148, 195, 1);
+    padding: 15px 20px;
+    margin: 10px 5px;
+    text-align: center;
+    transition: .4s;
+}
+.sidebar-links:hover{
+
+    color: azure;
+    background-color:rgb(58, 74, 107);
+
+}
+.sidebar-links-active{
+    font-size: 24px;
+    font-weight: 400;
+    color: azure;
+    background-color:rgb(7, 42, 116);
     padding: 15px 20px;
     margin: 10px 5px;
     text-align: center;

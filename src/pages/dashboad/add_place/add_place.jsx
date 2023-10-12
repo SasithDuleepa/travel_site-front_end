@@ -70,7 +70,8 @@ export default function Add_place() {
         }
   return (
     <div>
-        <h1 className='header-Add_place'>Add Place</h1>
+        <h1 className='header-Add_place'>ADD PLACE</h1>
+        <div className='Add_place-line'></div>
         <div className="parent-Add_place">
             <div className="div1-Add_place">
                 <div className='form-div-Add_place'>

@@ -1,6 +1,11 @@
 .header-Add_place{
     text-align: center;
 }
+.Add_place-line{
+    border-bottom: 2px solid black;
+    margin: 0px 20px;
+    margin-top: 50px;
+}
 .parent-Add_place {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -15,7 +20,7 @@
         grid-area: 1 / 1 / 2 / 2;
         /* background-color: yellowgreen; */
         height: 70vh;
-        padding-top: 90px;
+        padding-top: 60px;
         padding-left: 100px;
      }
 .div2-Add_place { grid-area: 1 / 2 / 2 / 3;
