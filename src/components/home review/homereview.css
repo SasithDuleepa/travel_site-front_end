@@ -1,0 +1,32 @@
+.homereview{
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px 10px;
+
+   
+    -webkit-box-shadow: 1px 3px 13px -7px rgba(0,0,0,1);
+-moz-box-shadow: 1px 3px 13px -7px rgba(0,0,0,1);
+box-shadow: 1px 3px 13px -7px rgba(0,0,0,1);
+    
+}
+
+.homereview-img-container{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: rgb(83, 83, 83);
+    margin: 5px;
+}
+.homereview-text-container{
+    margin-left: 20px;
+}
+.homereview-text-name{
+    line-height: 10px;
+    font-size: 16px;
+}
+.homereview-text-comment{
+    line-height: 10px;
+    font-size: 12px;
+}
