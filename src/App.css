@@ -1,9 +1,21 @@
 .App {
-
+  
 }
 
 
 
 .Add-sub-div{
-  margin-left: 250px;
+  margin-left: 17%;
+
+}
+
+
+:root{
+  --color_1:  rgba(26, 56, 90, 1);
+  --color_2:   rgba(118, 154, 190, 1);
+  --color_3:  rgba(228, 111, 68, 1);
+  --color_4: rgba(232, 170, 155, 1);
+  --color_5:  rgba(220, 213, 220, 1);
+
+
 }
