@@ -29,3 +29,35 @@
     width: 500px;
     height: 400px;
 } */
+
+
+
+/* Mobile Portrait */
+@media screen and (max-width: 480px) {
+    /* Styles for screens up to 480px wide */
+    .carousel-1-img{
+        width: 450px;
+        height: 200px;
+    }
+
+
+}
+/* Mobile Landscape */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    /* Styles for screens up to 480px wide */
+    .carousel-1-img{
+        width: 350px;
+        height: 200px;
+    }
+
+
+}
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .carousel-1-img{
+        width: 450px;
+        height: 300px;
+    }
+
+
+}

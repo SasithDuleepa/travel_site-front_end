@@ -31,7 +31,8 @@ export default function Homeheader() {
                 <Carousel1/>
                 </div>
                 <div className="div4-home-header"> 
-                    <img className='div4-home-header-img' src={Gall} alt="" /></div>
+                    <img className='div4-home-header-img' src={Gall} alt="" />
+                    </div>
                 <div className="div5-home-header"> 
                         <Homereview name='Andrew John' comment='Very Good'/> 
                         <Homereview name='Andrew John' comment='Superb'/> 

@@ -19,6 +19,7 @@ export default function Carousel1() {
    
    <Carousel
         containerProps={{
+          
           style: {
             width: "100%",
             justifyContent: "space-between",
@@ -36,6 +37,7 @@ export default function Carousel1() {
         onRequestChange={setActiveSlide}
         forwardBtnProps={{
           children: ">",
+          
           style: {
             width: 60,
             height: 60,
@@ -55,7 +57,7 @@ export default function Carousel1() {
           }
         }}
         dotsNav={{
-          show: true,
+          show: false,
           itemBtnProps: {
             style: {
               height: 16,
@@ -100,10 +102,10 @@ export default function Carousel1() {
         ))} */}
 
         <div><img className="carousel-1-img" src={sigiriya} alt="sigiriya" /></div>
-        <div><img src={sinharaja} alt="sinharaja" /></div>
-        <div><img src={gall} alt="gall" /></div>
-        <div><img src={hikkaduwa} alt="hikkaduwa" /></div>
-        <div><img src={kandy} alt="kandy" /></div>
+        <div><img className="carousel-1-img"  src={sinharaja} alt="sinharaja" /></div>
+        <div><img className="carousel-1-img"  src={gall} alt="gall" /></div>
+        <div><img className="carousel-1-img"  src={hikkaduwa} alt="hikkaduwa" /></div>
+        <div><img className="carousel-1-img"  src={kandy} alt="kandy" /></div>
       </Carousel>
 
     </div>
