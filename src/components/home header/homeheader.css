@@ -1,3 +1,8 @@
+.home-header-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .home-header{
     margin: 100px 150px 10px 150px;
 }
@@ -18,16 +23,20 @@ grid-template-rows: repeat(8, 1fr);
         justify-content: center;
         align-items: center; }
     .div2-home-header { grid-area: 1 / 2 / 4 / 3;
-        background-color: rgb(255, 155, 127);
+        /* background-color: rgb(255, 155, 127); */
         overflow: hidden;
         border-radius: 15px;
 
     }
-    .div3-home-header { grid-area: 4 / 1 / 8 / 3;
-        background-color: rgb(247, 239, 17);
+
+ 
+    .div3-home-header { grid-area: 4 / 1 / 9 / 3;
+        /* background-color: rgb(247, 239, 17); */
     overflow: hidden;
     border-radius: 15px; }
-    .div4-home-header { grid-area: 3 / 3 / 8 / 4;
+
+
+    .div4-home-header { grid-area: 3 / 3 / 9 / 4;
         background-color: rgb(21, 72, 224);
         overflow: hidden;
         border-radius: 15px;
@@ -88,9 +97,9 @@ grid-template-rows: repeat(8, 1fr);
 
 /* div4-home-header */
 .div4-home-header-img{
-    width: 100%;
-    height: auto;
-    margin-top: -50px;
+    width: auto;
+    height: 100%;
+    margin-top: 0px;
 }
 
 
@@ -98,5 +107,66 @@ grid-template-rows: repeat(8, 1fr);
 .div3-home-header-img{
     width: 100%;
     height: auto;
-    margin-top: -50px;
+    margin-top: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Mobile Portrait */
+@media screen and (max-width: 480px) {
+    /* Styles for screens up to 480px wide */
+}
+
+/* Mobile Landscape */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    /* Styles for screens between 481px and 767px wide */
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    /* Styles for screens between 768px and 1023px wide */
+}
+
+/* Small Desktop */
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    .home-header{
+        width: 1200px;
+        height: 400px;
+        background-color: rgb(69, 171, 79);
+    }
+    .parent-home-header{
+        height: 900px;
+    }
+    /* div4-home-header */
+.div4-home-header-img{
+    width: auto;
+    height: 50%;
+    margin-top: 0px;
+}
+}
+
+/* Medium Desktop */
+@media screen and (min-width: 1280px) and (max-width: 1439px) {
+    .home-header{
+        width: 1100px;
+        background-color: rgb(48, 48, 60);
+    }
+}
+
+/* Large Desktop */
+@media screen and (min-width: 1440px) {
+    .home-header{
+        width: 1100px;
+        /* background-color: blue; */
+    }
 }

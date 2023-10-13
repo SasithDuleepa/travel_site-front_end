@@ -9,6 +9,8 @@ import MapRoutes from "./components/mapRoutes/mapRoutes";
 import Add_place from './pages/dashboad/add_place/add_place';
 import Sidebar from './pages/dashboad/sidebar/sidebar';
 
+import Carousel1 from './components/carousel/carousel1';
+
 
 //user components
 import Navbar from './components/navbar/navbar';
@@ -37,6 +39,7 @@ function App() {
         </Switch>
       </Router>
 
+    {/* <Carousel1/> */}
       </div>
 
       
