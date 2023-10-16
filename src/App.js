@@ -16,6 +16,7 @@ import Carousel1 from './components/carousel/carousel1';
 import Navbar from './components/navbar/navbar';
 import Home from './pages/user/home/home';
 import Cart from './pages/user/cart/cart';
+import Footer from './components/footer/footer';
 
 
 
@@ -48,6 +49,8 @@ function App() {
       
       {/* <Addplace /> */}
       {/* <MapRoutes /> */}
+
+      <Footer/>
     </div>
   );
 }

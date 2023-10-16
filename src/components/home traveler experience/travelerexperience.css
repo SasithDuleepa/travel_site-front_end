@@ -1,0 +1,33 @@
+.travelerexperience-title{
+    text-align: center;
+}
+
+.travelerexperience-container{
+    /* background-color: yellowgreen; */
+    width: 900px;
+    height: 300px;
+    display: flex;
+}
+.travelerexperience-container-left{
+    width: 1900px;
+    height: 300px;
+    /* background-color: blanchedalmond; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.travelerexperience-container-right{
+/* 
+
+    background-color: rgb(155, 100, 18); */
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+.travelerexperience-container-right-title{
+    font-size: 20px;
+    line-height: 10px;
+}
+.travelerexperience-container-right-text{
+    font-size: 15px;
+}
