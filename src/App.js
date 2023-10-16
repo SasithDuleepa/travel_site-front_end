@@ -15,6 +15,7 @@ import Carousel1 from './components/carousel/carousel1';
 //user components
 import Navbar from './components/navbar/navbar';
 import Home from './pages/user/home/home';
+import Cart from './pages/user/cart/cart';
 
 
 
@@ -31,6 +32,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home}/>
+
+          <Route exact path="/cart" component={Cart} />
 
 
 
