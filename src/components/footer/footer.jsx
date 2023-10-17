@@ -9,11 +9,11 @@ export default function Footer() {
         <div className='footer-left'>
           <p>Help</p>
           <div className='footer-left-links-div'>
-            <a>Home</a>
-            <a>Tour</a>
-            <a>Popular Destinations</a>
-            <a>About us</a>
-            <a>Contact</a>
+            <a href='/'>Home</a>
+            <a href='/tours'>Tours</a>
+            <a  href='/popular_destination'>Popular Destinations</a>
+            <a  href='about'>About Us</a>
+            <a  href='contactus'>Contact</a>
           </div>
         </div>
         <div className='footer-center'>

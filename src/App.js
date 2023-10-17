@@ -8,6 +8,8 @@ import MapRoutes from "./components/mapRoutes/mapRoutes";
 //admin components
 import Add_place from './pages/dashboad/add_place/add_place';
 import Sidebar from './pages/dashboad/sidebar/sidebar';
+import Contactus from './pages/user/contactUs/contactus';
+import Tours from './pages/user/tours/tours';
 
 import Carousel1 from './components/carousel/carousel1';
 
@@ -17,6 +19,9 @@ import Navbar from './components/navbar/navbar';
 import Home from './pages/user/home/home';
 import Cart from './pages/user/cart/cart';
 import Footer from './components/footer/footer';
+import About from './pages/user/about/about';
+import Popular_destination from './pages/popular_destination/popular_destination';
+import Profile from './pages/profile/profile';
 
 
 
@@ -35,10 +40,14 @@ function App() {
           <Route exact path="/" component={Home}/>
 
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/contactus" component={Contactus} />
+          <Route exact path="/tours" component={Tours} />
+          <Route exact path="/popular_destination" component={Popular_destination} />
+          <Route exact path="/profile" component={Profile} />
 
 
 
-          {/* admin routes */}
           <Route exact path="/dashboad/addplace" component={Add_place}/>
         </Switch>
       </Router>
@@ -50,7 +59,8 @@ function App() {
       {/* <Addplace /> */}
       {/* <MapRoutes /> */}
 
-      <Footer/>
+     
+      {currentPath.startsWith('/dashboad') ? null: <Footer/>}
     </div>
   );
 }

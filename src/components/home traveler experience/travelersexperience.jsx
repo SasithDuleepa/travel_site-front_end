@@ -102,6 +102,8 @@ export default function Travelersexperience() {
 
 <Travelerexperience/>
 <Travelerexperience/>
+<Travelerexperience/>
+<Travelerexperience/>
       </Carousel>
     </div>
   )

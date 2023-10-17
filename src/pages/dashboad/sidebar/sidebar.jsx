@@ -9,7 +9,7 @@ export default function Sidebar() {
       </div>
       <div className='sidebar-links-div'>
         <a className='sidebar-links-active'>Add Place</a>
-        <a className='sidebar-links'>Add Place</a>
+        <a className='sidebar-links'>Add Packages</a>
         <a className='sidebar-links'>Add Place</a>
         <a className='sidebar-links'>Add Place</a>
       </div>
