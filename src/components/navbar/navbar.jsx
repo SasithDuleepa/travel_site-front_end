@@ -57,8 +57,8 @@ export default function Navbar() {
             
             {login ? 
             <div className='nav-bar-login-div'>
-            <a href='/cart'><img src={Road} alt="Road" className='nav-bar-road-img'/></a>
-            <a href='/profile'><img src={User} alt="User" className='nav-bar-user-img'/></a>
+            <a href='/cart/1'><img src={Road} alt="Road" className='nav-bar-road-img'/></a>
+            <a href='/profile/1'><img src={User} alt="User" className='nav-bar-user-img'/></a>
         </div>
         :
         <a className='nav-bar-login-btn'>Login</a>}

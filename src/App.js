@@ -22,6 +22,7 @@ import Footer from './components/footer/footer';
 import About from './pages/user/about/about';
 import Popular_destination from './pages/popular_destination/popular_destination';
 import Profile from './pages/profile/profile';
+import PlaceReview from './pages/user/placeReview/placeReview';
 
 
 
@@ -39,12 +40,13 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home}/>
 
-          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/cart/:id" component={Cart} />
           <Route exact path="/about" component={About} />
           <Route exact path="/contactus" component={Contactus} />
           <Route exact path="/tours" component={Tours} />
           <Route exact path="/popular_destination" component={Popular_destination} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/profile/:id" component={Profile} />
+          <Route exact path="/placeReview/:id" component={PlaceReview} />
 
 
 

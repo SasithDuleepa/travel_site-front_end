@@ -1,0 +1,41 @@
+
+.tour-cart{
+    display: flex;
+}
+.tour-cart-tours-div{
+    background-color: aquamarine;
+    height: 800px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.tour-cart-tours-link{
+    margin: 5px 5px;
+    background-color: antiquewhite;
+    padding: 10px 20px;
+
+    &:hover{
+        background-color: rgb(115, 167, 211);
+    }
+}
+
+
+
+
+.tour-cart-tour-places-div{
+    background-color: rgb(127, 255, 153);
+    height: max-content;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0px;
+}
+.tour-cart-tour-places-link{
+    margin: 5px 5px;
+    background-color: rgb(155, 231, 227);
+    padding: 10px 20px;
+
+    &:hover{
+        background-color: rgb(115, 167, 211);
+    }
+}

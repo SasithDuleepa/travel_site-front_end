@@ -357,6 +357,18 @@
         font-weight: 400;
         
     }
+    .nav-bar-login-div{
+        display: flex;
+        justify-content: space-between;
+    }
+    .nav-bar-road-img{
+        width: 30px;
+        height: 30px;
+    }
+    .nav-bar-user-img{
+        width: 30px;
+        height: 30px;
+    }
 }
 
 /* Large Desktop */
