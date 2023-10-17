@@ -1,0 +1,75 @@
+.placeReview__container-main{
+    /* background-color: yellowgreen; */
+    width: 100vw;
+    display: flex;
+    
+    justify-content: center;
+    
+}
+.placeReview{
+    width: 1500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.placeReview__img{
+    width: 1530px;
+}
+.placeReview__title-div{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 300px;
+    
+    width: 1500px;
+}
+.placeReview__title{
+    font-size: 100px;
+    line-height: 1px;
+    font-family: Lato;
+    color: azure;
+    font-weight: 700;
+}
+
+.placeReview-title-2{
+    text-align: center;
+    font-size: 40px;
+}
+.placeReview-text-2{
+    text-align: center;
+}
+
+.placeReview-title-3{
+    text-align: center;
+    font-size: 40px;
+}
+.placeReview-text-3{
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 10px;
+}
+
+
+.placeReview-title-4{
+    text-align: center;
+    font-size: 40px;
+}
+
+
+
+.placeReview-map-div{
+    display: flex;
+    justify-content: center;
+}
+.map-container{
+    width: 1400px;
+    height: 800px;
+}
+
+.placeReview-title-5{
+    text-align: center;
+    font-size: 40px;
+}
