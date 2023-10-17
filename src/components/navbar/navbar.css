@@ -384,8 +384,9 @@
         width: 500px;
     }
     .Nav-bar-links-div-right{
-        /* background-color: azure; */
-        width: 100px;
+        /* background-color: rgb(8, 45, 45); */
+        width: 200px;
+        
     }
     
     .nav-bar-img{
@@ -398,5 +399,17 @@
         border-radius: 20px;
         font-weight: 400;
         
+    }
+    .nav-bar-login-div{
+        display: flex;
+        justify-content: space-between;
+    }
+    .nav-bar-road-img{
+        width: 40px;
+        height: 40px;
+    }
+    .nav-bar-user-img{
+        width: 40px;
+        height: 40px;
     }
 }

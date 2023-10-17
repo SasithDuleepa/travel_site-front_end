@@ -4,8 +4,13 @@ import Icon from './../../assets/sidebar_logo.png';
 import Menu from './../../assets/menu.png';
 import Close from './../../assets/close.png';
 
+import Road from './../../assets/road.png';
+import User from './../../assets/user.png';
+
 export default function Navbar() {
     const[menuClass, setMenuClass] = useState('Nav-bar-active')
+
+    const login = true;
     
 
 
@@ -41,14 +46,22 @@ export default function Navbar() {
             <img src={Icon} alt="Logo" className='nav-bar-img'/>
         </div>
         <div className='Nav-bar-links-div-center'>
-            <a className='nav-links'>Home</a>
-            <a className='nav-links'>Tours</a>
-            <a className='nav-links'>Popular Destinations</a>
-            <a className='nav-links'>About Us</a>
-            <a className='nav-links'>Contact</a>
+            <a className='nav-links' href='/'>Home</a>
+            <a className='nav-links' href='/tours'>Tours</a>
+            <a className='nav-links' href='/popular_destination'>Popular Destinations</a>
+            <a className='nav-links' href='about'>About Us</a>
+            <a className='nav-links' href='contactus'>Contact</a>
         </div>
         <div className='Nav-bar-links-div-right'>
-            <a className='nav-bar-login-btn'>Login</a>
+            
+            
+            {login ? 
+            <div className='nav-bar-login-div'>
+            <a href='/cart'><img src={Road} alt="Road" className='nav-bar-road-img'/></a>
+            <a href='/profile'><img src={User} alt="User" className='nav-bar-user-img'/></a>
+        </div>
+        :
+        <a className='nav-bar-login-btn'>Login</a>}
         </div>
 
 
