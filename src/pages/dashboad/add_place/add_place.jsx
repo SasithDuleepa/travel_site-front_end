@@ -3,6 +3,8 @@ import './add_place.css';
 import axios from 'axios';
 import { GoogleMap, useLoadScript, MarkerF  } from '@react-google-maps/api';
 
+import Delete from './../../../assets/icons/delete.png'
+
     
 
 export default function Add_place() {
@@ -12,13 +14,25 @@ export default function Add_place() {
         time:'',
         lat:6.947248052781988,
         lng:79.873046875,
-        file:null
+        file:[]
       })
       const Filehandler = (e) => {
+        
         const selectedFile = e.target.files[0];
-        setData({ ...data, file: selectedFile });
+        setData({ ...data, file: [...data.file, selectedFile] });
     
       };
+
+      // You can also create a function to remove a file from the array if needed
+const removeFile =(index)=> (e) => {
+
+  const updatedFiles = [...data.file];
+
+  updatedFiles.splice(index, 1);
+  // console.log(updatedFiles)
+  setData({ ...data, file: updatedFiles });
+  
+};
     // map
     const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7qsYXATZC1Wj57plqEUhy_U7yHJjmNLM"});
     if (!isLoaded) return (
@@ -41,35 +55,45 @@ export default function Add_place() {
           })
         }
     
-        const AddData =async () =>{
-            const formData = new FormData()
-            formData.append('name', data.name);
-            formData.append('description', data.description);
-            formData.append('time', data.time);
-            formData.append('lat', data.lat);
-            formData.append('lng', data.lng);
-            formData.append('file', data.file);
-            try {
-                const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/places/addplace`, formData, {
-                  headers: {
-                    'Content-Type': 'multipart/form-data',
-                  },
-                });
-                console.log(res.data);
-                if(res.status === 200){alert("Category added successfully")}
-                
-            
-              } catch (error) {
-                // Handle Error 
-                if(error.response.status === 500){alert("Internal Server Error")}      
-                else if(error.response.status === 400){ alert("please fill catergory name")}
-              }
-            
-         
+        const AddData = async () => {
+          const formData = new FormData();
+          formData.append('name', data.name);
+          formData.append('description', data.description);
+          formData.append('time', data.time);
+          formData.append('lat', data.lat);
+          formData.append('lng', data.lng);
+          
+          // Loop through the files and append them to the formData
+          data.file.forEach((file, index) => {
+            formData.append('file', file);
+          });
         
-        }
+          console.log(data);
+        
+          try {
+            const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/places/addplace`, formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            });
+        
+            console.log(res.data);
+            if (res.status === 200) {
+              alert("Place added successfully");
+            }
+          } catch (error) {
+            // Handle Error
+            if (error.response.status === 500) {
+              alert("Internal Server Error");
+            } else if (error.response.status === 400) {
+              alert("Please fill in the required fields");
+            }
+          }
+        };
+        
   return (
-    <div>
+    <div className='add-place'>
+      <div className='add-place-sub'>
         <h1 className='header-Add_place'>ADD PLACE</h1>
         <div className='Add_place-line'></div>
         <div className="parent-Add_place">
@@ -99,8 +123,17 @@ export default function Add_place() {
                     </div>
                     <div className='Add_place-form-sub-div'>
                         <label className='Add_place-form-sub-div-label'>Images:</label>
-                        <input type='file' placeholder='Upload' onChange={(e) => Filehandler(e)}  className='add_place_input'/>
-                    </div>
+                        <input type='file' placeholder='Upload' multiple={true} onChange={(e) => Filehandler(e)} className='add_place_input' />
+
+                        {data.file.length > 0 ?
+                            data.file.map((file, index) => (
+                                <div className='Add_place-img-list-div' key={index}>
+                                    <p>{file.name}</p>
+                                    <a onClick={removeFile(index)}><img className='Add_place-img-list-delete-img' src={Delete} alt="" /></a>
+
+                               </div>
+                            )):null}
+                           </div>
                     <div className='Add_place-form-sub-div'>
                         <button className='Add_place-form-sub-div-button' onClick={AddData}>Add Place</button>
                     </div>
@@ -110,7 +143,7 @@ export default function Add_place() {
             <div className="div2-Add_place">
                 <div className='Add_place-map-div'>
                 <GoogleMap
-        mapContainerClassName='map-container'
+        mapContainerClassName='map-container1'
         center={{lat: data.lat, lng: data.lng}}
         zoom={7}
        >
@@ -123,6 +156,7 @@ export default function Add_place() {
 
                 </div>
             </div>
+        </div>
         </div>
     </div>
   )
