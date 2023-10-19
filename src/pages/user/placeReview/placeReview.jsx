@@ -1,60 +1,112 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './placeReview.css';
 import { GoogleMap, useLoadScript, MarkerF  } from '@react-google-maps/api';
-
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import Gall from '../../../assets/homeimg/mirisssa.png'
 
 export default function PlaceReview() {
+  let { id } = useParams();
+
+
+
     const[visiteTime, setVisiteTime] = useState(1)
     const[ticketPrice, setTicketPrice] = useState(1)
+    const [DATA, setDATA]= useState({
+      place_description:"aaaaa",
+      place_id: "a43f2a89-b933-4949-99ba-1f2981278490",
+      place_lat: 6.02583,
+      place_lng: 80.2175,
+      place_name:"all fort",
+      visit_time: "2h",
+      visiting_fee: "1000"
+    })
 
-    const[data , setData] = useState({
-        name:"",
-        description:"",
-        lat:6.947248052781988,
-        lng:79.873046875
-      })
+
 
       // map
     const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7qsYXATZC1Wj57plqEUhy_U7yHJjmNLM"});
-    if (!isLoaded) return (
-        <p>Loading...</p>
-        )
    
+   
+
+
+        
+const[imgs, setImgs] = useState([])
+const[landimg,setLandimg] = useState()
+useEffect(() => {
+  const GetImg = async() =>{
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/getplaceimgnames/${id}`)
+    console.log(res.data);
+    if(res.data){
+        setImgs(res.data)
+        setLandimg(res.data[0].img_name)
+    }
+  }
+  
+  const GetPlace = async() =>{
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/getplace/${id}`)
+      console.log(res.data);
+      if(res.data){
+        let Data = res.data[0];
+        
+        setDATA({
+          place_description:Data.place_description,
+          place_id: Data.place_id,
+          place_lat: Data.place_lat,
+          place_lng: Data.place_lng,
+          place_name:Data.place_name,
+          visit_time: Data.visit_time,
+          visiting_fee: Data.visiting_fee
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  if (!isLoaded) {
+    return; // Don't fetch data until the Google Maps script is loaded
+  }
+  GetPlace();
+  GetImg();
+}
+, [id, isLoaded])
+           
+if (!isLoaded) return (
+  <p>Loading...</p>
+  )
 
   return (
     <div className='placeReview__container-main'>
         <div className='placeReview'>
-        <div>
-            <img src={Gall} className='placeReview__img'/>
+        <div className='plecereview-img-div'>
+            <img src={
+              imgs.length > 0 ? 
+              
+              `http://localhost:8080/places/placeimg?file=${landimg}`: 
+              Gall
+             } className='placeReview__img'/>
             <div className='placeReview__title-div'>
-            <p className='placeReview__title'>Mirissa</p>
+            <p className='placeReview__title'>{DATA.place_name}</p>
             </div>
            
         </div>
 
         <p className='placeReview-title-2'>about destination</p>
-        <p className='placeReview-text-2'>Lorem ipsum dolor sit amet consectetur. Interdum eget maecenas
-             faucibus eu blandit nibh eu egestas. Risus elementum turpis
-              adipiscing ultricies quam. Sed egestas a iaculis massa nunc.
-               Mi aliquet duis a tellus nunc ultricies. Sagittis duis in 
-               condimentum enim et odio sed. Eleifend pretium massa quam 
-               fringilla elit et dolor risus ipsum. Vitae sed ultrices
-                commodo vulputate duis ultrices. In enim orci morbi
-                 faucibus amet. Cras risus amet erat bibendum ridiculus.
-             Justo sed amet et tincidunt mattis ac sagittis sem. Eget arcu eget nibh eget.</p>
+        <p className='placeReview-text-2'>{DATA.place_description}</p>
         
         <p className='placeReview-title-3'>Additional details</p>
-        <p  className='placeReview-text-3'> Visit time : 2 hours</p>
-        <p className='placeReview-text-3'> Ticket price : 2 $</p>
+        <p  className='placeReview-text-3'> Visit time : {DATA.visit_time}</p>
+        <p className='placeReview-text-3'> Ticket price : {DATA.visiting_fee} $</p>
         <p className='placeReview-title-4'>Location</p>
         <div className='placeReview-map-div'>
             <GoogleMap
             mapContainerClassName='map-container'
-            center={{lat: data.lat, lng: data.lng}}
-            zoom={11}
+            center={{lat: DATA.place_lat, lng: DATA.place_lng}}
+            zoom={10}
            >
-           <MarkerF position={{lat: data.lat, lng: data.lng}}/>
+           <MarkerF position={{lat: DATA.place_lat, lng: DATA.place_lng}}/>
            </GoogleMap>
 
         </div>

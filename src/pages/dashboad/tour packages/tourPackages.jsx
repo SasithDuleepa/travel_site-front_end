@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './tourpackages.css';
 
 export default function TourPackages() {
   return (

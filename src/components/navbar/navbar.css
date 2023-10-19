@@ -377,12 +377,15 @@
         display: none;
     }
     .Nav-bar{
-        /* background-color: aqua; */
+        background-color: rgba(255, 255, 255, 0.229);
+        
         width: 100%;
         height: 80px;
         display: flex;
         justify-content: space-around;
         align-items: center;
+        position: absolute;
+        z-index: 1;
     }
     .Nav-bar-links-div-left{
         /* background-color: azure; */

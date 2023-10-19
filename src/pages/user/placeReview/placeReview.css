@@ -13,24 +13,46 @@
     justify-content: center;
     
 }
-
+.plecereview-img-div{
+    background-color: black;
+    &:hover .placeReview__title {
+        inset: auto auto -200px 500px;
+        transition: inset .4s ease-out;
+        color: black;
+    
+      }
+}
 .placeReview__img{
     width: 1530px;
-}
-.placeReview__title-div{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    top: 300px;
+    opacity: .5;
+    transition: 0.4s;
+
+    &:hover{
+        opacity: 1;
+
+        
+    }
     
-    width: 1500px;
+   
+    
+
 }
+
+
 .placeReview__title{
-    font-size: 100px;
+    /* font-size: 100px;
     line-height: 1px;
     font-family: Lato;
     color: azure;
-    font-weight: 700;
+    font-weight: 700; */
+    position: absolute;
+    inset: auto auto 60px 500px;
+    color: aliceblue;
+    font-size: 100px;
+    line-height: 1px;
+    font-family: Lato;
+    text-transform: uppercase;
+    
 }
 
 .placeReview-title-2{
