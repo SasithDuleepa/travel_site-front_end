@@ -12,6 +12,7 @@ export default function Add_place() {
         name:"",
         description:"",
         time:'',
+        fee:'',
         lat:6.947248052781988,
         lng:79.873046875,
         file:[]
@@ -60,6 +61,7 @@ const removeFile =(index)=> (e) => {
           formData.append('name', data.name);
           formData.append('description', data.description);
           formData.append('time', data.time);
+          formData.append('fee', data.fee);
           formData.append('lat', data.lat);
           formData.append('lng', data.lng);
           
@@ -68,7 +70,7 @@ const removeFile =(index)=> (e) => {
             formData.append('file', file);
           });
         
-          console.log(data);
+          // console.log(data);
         
           try {
             const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/places/addplace`, formData, {
@@ -80,6 +82,15 @@ const removeFile =(index)=> (e) => {
             console.log(res.data);
             if (res.status === 200) {
               alert("Place added successfully");
+              setData({
+                name:"",
+                description:"",
+                time:'',
+                fee:'',
+                lat:6.947248052781988,
+                lng:79.873046875,
+                file:[]
+              })
             }
           } catch (error) {
             // Handle Error
@@ -113,9 +124,16 @@ const removeFile =(index)=> (e) => {
                         <input type='text' className='add_place_input-location' id='lng' onChange={changeNumValues} value={data.lng}  />
                     </div>
                     </div>
-                    <div className='Add_place-form-sub-div'>
+                    <div >
+                      <div className='Add_place-form-sub-div'>
                         <label className='Add_place-form-sub-div-label'>Place visit time Duration:</label>
                         <input type='text'  className='add_place_input' id='time' onChange={changeHandler} value={data.time} />
+                      </div>
+                      <div className='Add_place-form-sub-div'>
+                        <label className='Add_place-form-sub-div-label'>Place visiting fee:</label>
+                        <input type='text'  className='add_place_input' id='fee' onChange={changeHandler} value={data.fee} />
+                      </div>
+                        
                     </div>
                     <div className='Add_place-form-sub-div'>
                         <label className='Add_place-form-sub-div-label'>Description:</label>
