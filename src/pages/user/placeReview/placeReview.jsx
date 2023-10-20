@@ -111,6 +111,11 @@ if (!isLoaded) return (
 
         </div>
         <p className='placeReview-title-5'>Images</p>
+        <div className='placeReview-img-all-div'>
+          {imgs ? imgs.map((img, index) => (
+            <img key={index} src={`http://localhost:8080/places/placeimg?file=${img.img_name}`} className='placeReview-all-img'/>
+          )):null}
+        </div>
 
     </div>
 
