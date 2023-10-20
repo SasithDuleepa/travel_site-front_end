@@ -28,7 +28,24 @@ export default function Navbar() {
     }
 
      
+
+
+    const { y, x, scrollDirection } = useScroll();  
+
+  const styles = {
+    active: {
+      visibility: "visible",
+      transition: "all 0.5s",
+      
+    },
+    hidden: {
+      visibility: "hidden",
+      transition: "all 0.5s",
+      transform: "translateY(-100%)"
+    }
+  }
   return (
+    <nav className= {!scrollDirection || scrollDirection === "down" ? 'active': 'hidden'}    >
     <div className={menuClass}>
         <div className='Nav-bar-menu-div'>
             <img src={icon} alt="Menu" className='nav-bar-menu-img' onClick={iconHandler}/>
@@ -46,7 +63,7 @@ export default function Navbar() {
             <img src={Icon} alt="Logo" className='nav-bar-img'/>
         </div>
         <div className='Nav-bar-links-div-center'>
-            <a className='nav-links' href='/'>Home</a>
+            <a className='nav-links-active' href='/'>Home</a>
             <a className='nav-links' href='/tours'>Tours</a>
             <a className='nav-links' href='/popular_destination'>Popular Destinations</a>
             <a className='nav-links' href='about'>About Us</a>
@@ -69,5 +86,44 @@ export default function Navbar() {
         </div>
 
     </div>
+    </nav>
   )
 }
+
+
+export function useScroll() {
+    // storing this to get the scroll direction
+   const [lastScrollTop, setLastScrollTop] = useState(0);
+    // the offset of the document.body
+   const [bodyOffset, setBodyOffset] = useState(
+     document.body.getBoundingClientRect()
+   );
+    // the vertical direction
+   const [scrollY, setScrollY] = useState(bodyOffset.top);
+    // the horizontal direction
+   const [scrollX, setScrollX] = useState(bodyOffset.left);
+    // scroll direction would be either up or down
+   const [scrollDirection, setScrollDirection] = useState();
+
+   const listener = e => {
+     setBodyOffset(document.body.getBoundingClientRect());
+     setScrollY(-bodyOffset.top);
+     setScrollX(bodyOffset.left);
+     setScrollDirection(lastScrollTop > -bodyOffset.top ? "down" : "up");
+     setLastScrollTop(-bodyOffset.top);
+   };
+
+   useEffect(() => {
+     window.addEventListener("scroll", listener);
+     return () => {
+       window.removeEventListener("scroll", listener);
+    //    console.log(scrollDirection)
+     };
+   });
+
+   return {
+     scrollY,
+     scrollX,
+     scrollDirection
+   };
+ }
