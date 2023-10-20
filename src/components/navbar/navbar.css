@@ -373,6 +373,24 @@
 
 /* Large Desktop */
 @media screen and (min-width: 1440px) {
+
+    .active {
+        background-color: rgba(255, 255, 255, 0.822);
+        visibility: visible;
+        transition: all .5s;
+        position: fixed;
+        z-index: 1;
+        width: 100%;
+        
+      }
+      .hidden {
+        position: fixed;
+        visibility: hidden;
+        transition: all 0.9s;
+        transform: translateY(-100%);
+        z-index: 1;
+        width: 100%;
+      }
     .Nav-bar-menu-div{
         display: none;
     }
@@ -384,8 +402,8 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        position: absolute;
-        z-index: 1;
+        
+       
     }
     .Nav-bar-links-div-left{
         /* background-color: azure; */
@@ -396,7 +414,25 @@
         justify-content: space-between;
         align-items: center;
         /* background-color: azure; */
-        width: 500px;
+        width: 600px;
+    }
+    .nav-links{
+        color: black;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 400;
+        padding:3px 0px;
+
+    }
+    .nav-links-active{
+        color: black;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 400;
+        padding:3px 0px;
+        border-bottom: 3px groove rgba(0, 0, 0, 0.872);
+       
+        
     }
     .Nav-bar-links-div-right{
         /* background-color: rgb(8, 45, 45); */
@@ -420,11 +456,11 @@
         justify-content: space-between;
     }
     .nav-bar-road-img{
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
     }
     .nav-bar-user-img{
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
     }
 }
