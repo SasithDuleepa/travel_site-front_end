@@ -1,13 +1,13 @@
 .placeReview__container-main{
     /* background-color: yellowgreen; */
-    width: 100vw;
+    width: 100%;
     display: flex;
     
     justify-content: center;
     
 }
 .placeReview{
-    width: 1500px;
+    width: 1540px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,43 +15,39 @@
 }
 .plecereview-img-div{
     background-color: black;
+    width: 1520px;
     &:hover .placeReview__title {
-        inset: auto auto -200px 500px;
-        transition: inset .4s ease-out;
-        color: black;
-    
+        /* inset: 50px auto  auto auto;
+        transition: inset 1s ; */
+        color: rgb(246, 246, 246);
+      
+        text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.89);
+     
       }
 }
 .placeReview__img{
-    width: 1530px;
+    width: 100%;
+    height: 700px;
     opacity: .5;
-    transition: 0.4s;
+    transition: 1s;
 
     &:hover{
         opacity: 1;
-
-        
     }
-    
-   
-    
-
 }
 
 
 .placeReview__title{
-    /* font-size: 100px;
-    line-height: 1px;
-    font-family: Lato;
-    color: azure;
-    font-weight: 700; */
-    position: absolute;
-    inset: auto auto 60px 500px;
+   position: relative;
+    inset: auto auto  300px auto;
     color: aliceblue;
     font-size: 100px;
     line-height: 1px;
     font-family: Lato;
     text-transform: uppercase;
+    text-align: center;
+    margin-top: -106px;
+    transition: 1s ease-out;
     
 }
 
@@ -87,11 +83,24 @@
     justify-content: center;
 }
 .map-container{
-    width: 1400px;
+    width: 1300px;
     height: 800px;
 }
 
 .placeReview-title-5{
     text-align: center;
     font-size: 40px;
+}
+
+.placeReview-img-all-div{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: rgba(173, 195, 195, 0.078);
+    padding: 50px 10px;
+}
+.placeReview-all-img{
+    margin: 10px;
+    height: 350px;
+    
 }
