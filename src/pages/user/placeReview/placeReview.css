@@ -52,24 +52,35 @@
 }
 
 .placeReview-title-2{
-    text-align: center;
+    
     font-size: 40px;
 }
 .placeReview-text-2{
-    text-align: center;
+    
 }
 
 .placeReview-title-3{
-    text-align: center;
+
     font-size: 40px;
 }
 .placeReview-text-3{
-    text-align: center;
+
     font-size: 26px;
     font-weight: 600;
     line-height: 10px;
 }
-
+.placceReview-sub-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+.placceReview-sub-div-1{
+    width: 800px;
+    padding-left: 50px;
+}
+.placceReview-sub-div-2{
+    width: 500px;
+}
 
 .placeReview-title-4{
     text-align: center;
