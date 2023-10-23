@@ -46,19 +46,24 @@
 
 /* Mobile Portrait */
 @media screen and (max-width: 480px) {
+    
     .Nav-bar-menu-div{
         display: flex;
         justify-content: flex-end;
         height: max-content;
+       
+       
     }
     .nav-bar-menu-img{
         width: 20px;
         height: 20px;
         margin: 5px;
         transition: all 1s;
+        position: fixed;
+
     }
     .Nav-bar{
-        background-color: rgb(219, 219, 219);
+        background-color: rgb(200, 52, 52);
         width: 130px;
         height: auto;
         display: flex;
@@ -68,9 +73,10 @@
         z-index: 1;
         padding-bottom: 0px;
         transition: all .5s;
+        position: fixed;
     }
     .Nav-bar-active{
-        background-color: rgb(241, 241, 241);
+        background-color: rgb(230, 15, 15);
         width: 150px;
         height: auto;
         display: flex;
@@ -94,6 +100,7 @@
         .Nav-bar-links-div-center{
             display: none;
             transition: all .5s;
+            position: fixed;
         }
         .nav-bar-img{
             display: none;
@@ -150,6 +157,7 @@
         height: 20px;
         margin-top: 5px;
         transition: all 1s;
+        position: fixed;
     }
     .Nav-bar{
         background-color: rgb(219, 219, 219);
@@ -162,6 +170,7 @@
         z-index: 1;
         padding-bottom: 0px;
         transition: all .5s;
+        position: fixed;
     }
     .Nav-bar-active{
         background-color: rgb(241, 241, 241);
@@ -247,6 +256,7 @@
         height: 20px;
         margin-top: 5px;
         transition: all 1s;
+        position: fixed;
     }
     .Nav-bar{
         background-color: rgb(219, 219, 219);
@@ -259,6 +269,7 @@
         z-index: 1;
         padding-bottom: 0px;
         transition: all .5s;
+        position: fixed;
     }
     .Nav-bar-active{
         background-color: rgb(241, 241, 241);
