@@ -47,9 +47,9 @@ export default function Navbar() {
   return (
     <nav className= {!scrollDirection || scrollDirection === "down" ? 'active': 'hidden'}    >
     <div className={menuClass}>
-        <div className='Nav-bar-menu-div'>
+        {/* <div className='Nav-bar-menu-div'>
             <img src={icon} alt="Menu" className='nav-bar-menu-img' onClick={iconHandler}/>
-        </div>
+        </div> */}
         <div className='Nav-bar'>
         <div className='Nav-bar-menu-div'>
             <img src={icon} alt="Menu" className='nav-bar-menu-img' onClick={iconHandler}/>
