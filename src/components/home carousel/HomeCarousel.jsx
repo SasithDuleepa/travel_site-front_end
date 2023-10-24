@@ -86,7 +86,7 @@ export default function HomeCarousel() {
         
         autoplay={true}
         delay={1000}
-        itemsToShow={18}
+        itemsToShow={11}
         speed={1600}
         itemsToScroll={1}
         // autoplayDirection="backward"

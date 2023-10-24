@@ -3,28 +3,32 @@
     background-size: cover;
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
-    padding-top: 100px;
+    align-items: center;
+
+    padding: 70px 0px;
+    margin: 50px 1px;
+
+
    
 }
 .homecarousel{
-    width: 99.9vw;
-    margin-bottom: 50px;
+
+
+    padding: 0px 0px;
     display: flex;
     justify-content: center;
+    width: 100%;
+    /* background-color: yellowgreen; */
 
 }
 .homecarousel-main{
-    
-    width: 1200px;
-    /* width: 100%; */
-    height: 820px;
-    
-
+    /* background-color: blanchedalmond; */
     display: flex;
     align-items: end;
-    margin-left: -200px;
-    
+    width: 1550px;
+
+    overflow: hidden;
+    position: relative;
 }
 
 .containerProps{
@@ -33,30 +37,32 @@
 
 .active-div{
     background-color: rgb(255, 255, 255);
-    height: 800px;
+    height: 650px;
 
 
     position: relative;
-    top: -20px;
-    margin-right: -630px;
+    top: 0px;
+    margin-right: -830px;
     
     /* margin-left: 10%;
     margin-top: 0%; */
 
 
     z-index: 1;
-    left: 10%;
+    left: 0%;
 
 }
 .carousel-div{
     
-    width: 1130px;
+    width: 100%;
     
-    margin-bottom: 150px;
-    margin-left: -120px;
+    margin-bottom: 50px;
+    margin-left: -00px;
+    position: absolute;
+
     
 }
 
 .homecarousel-p1{
-    width:870px ;
+    width:1075px ;
 }
