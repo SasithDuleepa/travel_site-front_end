@@ -12,6 +12,7 @@ import Gall from '../../../assets/galle fort 1.png';
 
 
 import Homereview from '../../../components/home review/homereview';
+import HomeCarousel from '../../../components/home carousel/HomeCarousel';
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <Homeheader/>
         <HeaderText/>
         <TravelPackage/>
+        <HomeCarousel/>
 
         <PlaceImgs/>
         <Travelersexperience/>
