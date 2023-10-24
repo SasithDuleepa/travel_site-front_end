@@ -1,0 +1,62 @@
+.homecarousel-main-div{
+    background-image:url("./textur_1.png");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    padding-top: 100px;
+   
+}
+.homecarousel{
+    width: 99.9vw;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+
+}
+.homecarousel-main{
+    
+    width: 1200px;
+    /* width: 100%; */
+    height: 820px;
+    
+
+    display: flex;
+    align-items: end;
+    margin-left: -200px;
+    
+}
+
+.containerProps{
+    width: 40%;
+}
+
+.active-div{
+    background-color: rgb(255, 255, 255);
+    height: 800px;
+
+
+    position: relative;
+    top: -20px;
+    margin-right: -630px;
+    
+    /* margin-left: 10%;
+    margin-top: 0%; */
+
+
+    z-index: 1;
+    left: 10%;
+
+}
+.carousel-div{
+    
+    width: 1130px;
+    
+    margin-bottom: 150px;
+    margin-left: -120px;
+    
+}
+
+.homecarousel-p1{
+    width:870px ;
+}
