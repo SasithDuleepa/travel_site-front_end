@@ -92,13 +92,21 @@ if (!isLoaded) return (
             </div>
            
         </div>
-
-        <p className='placeReview-title-2'>about destination</p>
-        <p className='placeReview-text-2'>{DATA.place_description}</p>
+        <div className='placceReview-sub-div'>
+            <div className='placceReview-sub-div-1'>
+              <p className='placeReview-title-2'>About Destination</p>
+              <p className='placeReview-text-2'>{DATA.place_description}</p>
+            </div>
+            <div className='placceReview-sub-div-2'>
+              <p className='placeReview-title-3'>Additional Details</p>
+              <p  className='placeReview-text-3'> Visit time : {DATA.visit_time}</p>
+              <p className='placeReview-text-3'> Ticket price : {DATA.visiting_fee} $</p>
+            </div>
+        </div>
+            
         
-        <p className='placeReview-title-3'>Additional details</p>
-        <p  className='placeReview-text-3'> Visit time : {DATA.visit_time}</p>
-        <p className='placeReview-text-3'> Ticket price : {DATA.visiting_fee} $</p>
+        
+        
         <p className='placeReview-title-4'>Location</p>
         <div className='placeReview-map-div'>
             <GoogleMap

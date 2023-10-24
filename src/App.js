@@ -30,6 +30,8 @@ import Popular_destination from './pages/popular_destination/popular_destination
 import Profile from './pages/user/profile/profile';
 import PlaceReview from './pages/user/placeReview/placeReview';
 
+import HomeCarousel from './components/home carousel/HomeCarousel';
+
 
 
 function App() {
@@ -45,6 +47,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Home}/>
+
+          <Route exact path="/carousel" component={HomeCarousel}/>
 
           <Route exact path="/cart/:id" component={Cart} />
           <Route exact path="/about" component={About} />
