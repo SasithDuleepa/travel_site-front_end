@@ -7,21 +7,21 @@ export default function Footer() {
       <div>
       <div className='footer-container'>
         <div className='footer-left'>
-          <p>Help</p>
+          <p className='footer-help'>Help</p>
           <div className='footer-left-links-div'>
-            <a href='/'>Home</a>
-            <a href='/tours'>Tours</a>
-            <a  href='/popular_destination'>Popular Destinations</a>
-            <a  href='about'>About Us</a>
-            <a  href='contactus'>Contact</a>
+            <a className='footer-link' href='/'>Home</a>
+            <a className='footer-link' href='/tours'>Tours</a>
+            <a  className='footer-link' href='/popular_destination'>Popular Destinations</a>
+            <a  className='footer-link' href='about'>About Us</a>
+            <a className='footer-link'  href='contactus'>Contact</a>
           </div>
         </div>
         <div className='footer-center'>
-          <p>Contact Us</p>
+          <p className='footer-contact'>Contact Us</p>
           <div>
-            <p>40C, Hospital Road, Nagoda, Kalutara, Sri Lanka</p>
-            <p>+94 7777 17615 (Direct Line)<br/> +94 11279 8800 (Whatsapp)</p>
-            <p>info@srilankatravelexpert.com</p>
+            <p className='footer-center-p'>40C, Hospital Road, Nagoda, Kalutara, Sri Lanka</p>
+            <p className='footer-center-p'>+94 7777 17615 (Direct Line)<br/> +94 11279 8800 (Whatsapp)</p>
+            <p className='footer-center-p'>info@srilankatravelexpert.com</p>
           </div>
         </div>
         <div className='footer-right'>
@@ -30,7 +30,7 @@ export default function Footer() {
             <p className='right-p-2'>Sri Lanka Travel Expert</p>
           </div>
           <div>
-            <p>News letter</p>
+            <p className='footer-right-p'>News letter</p>
           </div>
           <div>
             <input/>
