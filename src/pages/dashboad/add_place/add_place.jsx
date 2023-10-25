@@ -80,7 +80,7 @@ const removeFile =(index)=> (e) => {
             });
         
             console.log(res.data);
-            if (res.status === 200) {
+            if (res.data.status === 200) {
               alert("Place added successfully");
               setData({
                 name:"",
@@ -91,12 +91,16 @@ const removeFile =(index)=> (e) => {
                 lng:79.873046875,
                 file:[]
               })
+            }else if (res.data.status === 500) {
+              alert("Internal Server Error");
+            } else if (res.data.status === 400) {
+              alert("Please fill in the required fields");
             }
           } catch (error) {
             // Handle Error
-            if (error.response.status === 500) {
+            if (error.status === 500) {
               alert("Internal Server Error");
-            } else if (error.response.status === 400) {
+            } else if (error.status === 400) {
               alert("Please fill in the required fields");
             }
           }

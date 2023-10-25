@@ -17,8 +17,14 @@ import HomeCarousel from '../../../components/home carousel/HomeCarousel';
 export default function Home() {
   return (
     <div className='home'>
-        <Homeheader/>
-        <HeaderText/>
+
+      <Homeheader/>
+
+
+      <HeaderText/>
+
+        
+        
         <TravelPackage/>
         <HomeCarousel/>
 

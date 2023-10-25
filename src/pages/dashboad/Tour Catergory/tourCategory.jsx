@@ -88,7 +88,7 @@ const Add = async() =>{
   });
   console.log(res)
   if (res.data.status === 200) {
-    alert("Place added successfully");
+    alert("category added successfully");
     setDescription('')
     setImage('')
     setName('')

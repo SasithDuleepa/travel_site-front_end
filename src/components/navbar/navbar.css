@@ -511,11 +511,11 @@
 @media screen and (min-width: 1440px) {
 
     .active {
-        background-color: rgba(255, 255, 255, 0.822);
+        background-color: rgba(255, 255, 255, 0.116);
         visibility: visible;
         transition: all .5s;
         position: fixed;
-        z-index: 1;
+        z-index: 2;
         width: 100%;
         
       }
@@ -524,14 +524,14 @@
         visibility: hidden;
         transition: all 0.9s;
         transform: translateY(-100%);
-        z-index: 1;
+        z-index: 2;
         width: 100%;
       }
     .Nav-bar-menu-div{
         display: none;
     }
     .Nav-bar{
-        background-color: rgba(238, 238, 238, 0.229);
+        background-color: rgba(255, 255, 255, 0.079);
         
         width: 100%;
         height: 80px;
