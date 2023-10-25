@@ -1,5 +1,19 @@
+.traveler_experience{
+    background-color: rgb(0,0,0);
+    background:  linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0, 0, 0, 0.912) 49%, rgba(40, 40, 40, 0.994) 100%);
+}
+.traveler-experience{
+
+    background-image: url('./../../assets//homeimg/travelerExperience.png');
+    background-size: cover;
+    opacity: .9;
+    padding: 50px 10px 150px 10px;
+}
 .travelerexperience-title{
     text-align: center;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    
 }
 
 .travelerexperience-container{
@@ -23,11 +37,15 @@
     display: flex;
     flex-direction: column;
     padding: 10px 20px;
+
 }
 .travelerexperience-container-right-title{
-    font-size: 20px;
+    font-size: 28px;
     line-height: 10px;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
 }
 .travelerexperience-container-right-text{
     font-size: 15px;
+    color: rgb(255, 255, 255);
 }
