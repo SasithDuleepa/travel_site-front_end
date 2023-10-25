@@ -1,6 +1,11 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Carousel from "react-simply-carousel";
 import './HomeCarousel.css';
+import axios from "axios";
+
+import HomeCaouselCard from "../home carousel card/homeCaouselCard";
+
+import Sinharaja from './../../assets/Sinharaja.png'
 
 export default function HomeCarousel() {
     const [activeSlide, setActiveSlide] = useState(0);
@@ -8,14 +13,42 @@ export default function HomeCarousel() {
             console.log(e);
             setActiveSlide(e);
     }
+
+    const[categories, setCategories] = useState([{category_img:"",category_nam:"",category_description:""}])
+    //get allcategories
+    const Categories = async () => {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/categories/allcategories`);
+      console.log(res.data);
+      setCategories(res.data);
+    }
+    useEffect(() => {
+      Categories();
+    },[])
   return (
     <div className="homecarousel-main-div">
             <div className='homecarousel'>
         
         <div className="homecarousel-main">
             <div className="active-div">
-                <h1>{activeSlide}</h1>
-                <p className="homecarousel-p1">Discover the world and enjoy your trip</p>
+            <img
+                className="active-img" 
+                src={categories[activeSlide].category_img ? 
+                  `http://localhost:8080/categories/categoryimg?file=${categories[activeSlide].category_img}`:
+                  Sinharaja
+                } 
+                alt="" />
+                {/* <img
+                className="active-img" 
+                src={         Sinharaja
+                } 
+                alt="" /> */}
+                <div className="active-over-div">
+                  <h1 className="homecarousel-h1">{categories[activeSlide].category_name}</h1>
+                  <p className="homecarousel-p1">{categories[activeSlide].category_description}</p>
+                </div>
+            
+                
+               
             </div>
             <div className="carousel-div">
             <Carousel
@@ -33,14 +66,7 @@ export default function HomeCarousel() {
         preventScrollOnSwipe
         swipeTreshold={1000}
         activeSlideIndex={activeSlide}
-        activeSlideProps={{
-          style: {
-            background: "blue",
-            
-            
-            
-          }
-        }}
+
         onRequestChange={setActiveSlide}
         forwardBtnProps={{
           children: ">",
@@ -93,23 +119,15 @@ export default function HomeCarousel() {
         easing="ease-in-out"
         centerMode
       >
-        {Array.from({ length: 20 }).map((item, index) => (
-          <div
-            style={{
-              background: "yellow",
-              width: 200,
-              height: 308,
-              border: "10px solid white",
-              textAlign: "center",
-              lineHeight: "240px",
-              boxSizing: "border-box"
-            }}
-            key={index}
-          >
-            {index}
-          </div>
+        {categories.length > 0 && categories.map((category, index) => (
+          <HomeCaouselCard title={category.category_name} img={category.category_img}/>
         ))}
-
+        {/* {categories.length > 0 && categories.map((category, index) => (
+          <HomeCaouselCard title={category.category_name} img={category.category_img}/>
+        ))}
+           */}
+ 
+        
         
       </Carousel>
             </div>
@@ -117,7 +135,17 @@ export default function HomeCarousel() {
 
         </div>
     </div>
+
+
+
     </div>
     
   )
-}
+
+
+
+
+
+          }
+
+
