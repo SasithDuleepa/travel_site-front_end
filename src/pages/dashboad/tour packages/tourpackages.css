@@ -1,0 +1,28 @@
+
+
+.tour-package-main-2{
+    background-color: aqua;
+    
+    height: 500px;
+    display: flex;
+    margin: 50px;
+}
+.tour-package-days-div{
+    width: 250px;
+    height: 100%;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tour-package-place-div{
+    width:79%;
+    height: 100%;
+    background-color: rgb(117, 71, 12);
+}
+.day{
+    margin: 5px auto;
+    padding: 10px 80px;
+    border: 2px solid black;
+    font-size: 20px;
+}
