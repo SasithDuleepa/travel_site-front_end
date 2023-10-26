@@ -3,13 +3,22 @@
     display: flex;
     justify-content: center;
     background-color: rgb(0, 0, 0);
+    width: 100vw;
+}
+.footer-main{
+    margin: 0px 50px;
+    /* background-color: yellow; */
+    width: 100%;
+    padding: 50px 10px;
 }
 .footer-container{
-    width: 1100px;
-    height: 200px;
-    /* background-color: antiquewhite; */
+    /* width: 1400px; */
+    width: 100%;
+   
+   
     display: flex;
     justify-content: space-between;
+    
 }
 
 .footer-left{
@@ -74,5 +83,7 @@
 .footer-p{
     text-align: center;
     color: aliceblue;
+    position: relative;
+    bottom: -50px;
 }
 
