@@ -1,23 +1,29 @@
 import React from 'react';
 import './headerText.css';
+import World from './../../assets/world tour 02 1.png'
 
 export default function HeaderText() {
   return (
     <div className='header-text'>
-        <h1 className='header-text-header'>Travel in Sri Lanka</h1>
-        <p className='header-text-p'>Lorem ipsum dolor sit amet consectetur.
-             Quisque sed lectus molestie in praesent mi lacus etiam.
-              Cras vitae integer nunc facilisi. Id libero vivamus consectetur facilisis
-               quisque quam varius pretium. Faucibus vulputate netus libero tempor leo
-                aliquet est nec. Neque bibendum neque nisl aliquet posuere est semper
-                 aliquet. Mauris faucibus adipiscing sed eget aliquam eget ac. 
-                 Sed scelerisque viverra lacus duis massa mattis pellentesque.
-                  Accumsan nisl sit risus enim dignissim sagittis accumsan ut 
-                  faucibus. Tellus ut id eget facilisis risus pellentesque.
-                   Nam aliquet aliquam duis neque arcu.
-             Nascetur purus eget cursus elementum. Ultricies mauris sit at 
-             pellentesque. Rutrum dictum lectus erat imperdiet faucibus orci 
-             vestibulum consectetur.</p>
+      <div className='header-text-child1'>
+        <p className='header-text-sub-p'>Travel with</p>
+        <h1 className='header-text-h1'>Sri Lanka Travel Experts</h1>
+        <p className='header-text-p'>Lorem ipsum dolor sit amet consectetur. Pharetra lectus nisi lacus non ut turpis.
+           Senectus elit lobortis morbi amet. Commodo nullam accumsan fames sed sapien gravida           
+            nec gravida id. Netus at proin tristique pharetra eget feugiat tempor amet non.
+             Enim vel sodales tellus sem in sit at sodales pharetra. Dictum quis varius
+              lacus cursus nullam consectetur amet quis. Orci ligula ac lacus vestibulum 
+              blandit at turpis pharetra neque. Mi id non dui velit malesuada sollicitudin
+               suspendisse odio rhoncus. Viverra pharetra at pellentesque gravida dictum.
+                Sit nec blandit sed enim a commodo quam suspendisse. Sed consectetur
+                 molestie non elit porttitor ac auctor. Urna et sed risus sagittis elementum ut.
+           Aenean commodo nullam rutrum enim suspendisse blandit ullamcorper nibh.</p>
+        
+
+      </div>
+      <div className='header-text-child2'>
+          <img className='header-text-child2-img' src={World} alt="" />
+      </div>
     </div>
   )
 }
