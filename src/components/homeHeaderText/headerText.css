@@ -35,3 +35,18 @@
 .header-text-p{
     width: 700px;
 }
+
+
+
+
+
+.reveal{
+    position: relative;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: 2s all ease;
+  }
+  .reveal.active{
+    transform: translateY(0);
+    opacity: 1;
+  }  

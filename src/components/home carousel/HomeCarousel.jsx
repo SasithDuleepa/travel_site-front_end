@@ -56,15 +56,13 @@ export default function HomeCarousel() {
           
           style: {
             width: "100%",
-           
-            
-            userSelect: "none",
-            marginLeft:"00px",
-          
+            justifyContent: "space-between",
+            userSelect: "none"
+
           }
         }}
-        preventScrollOnSwipe
-        swipeTreshold={1000}
+        // preventScrollOnSwipe
+        swipeTreshold={10}
         activeSlideIndex={activeSlide}
 
         onRequestChange={setActiveSlide}
@@ -112,11 +110,11 @@ export default function HomeCarousel() {
         
         autoplay={true}
         delay={1000}
-        itemsToShow={11}
+        itemsToShow={10}
         speed={1600}
         itemsToScroll={1}
         // autoplayDirection="backward"
-        easing="ease-in-out"
+        // easing="ease-in-out"
         centerMode
       >
         {categories.length > 0 && categories.map((category, index) => (

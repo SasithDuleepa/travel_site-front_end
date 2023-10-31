@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router,Route} from "react-router-dom";
 import {Switch} from "react-router-dom";
-import Addplace from "./pages/addplace/addplace";
+
 import MapRoutes from "./components/mapRoutes/mapRoutes";
 
 
@@ -26,7 +26,9 @@ import Home from './pages/user/home/home';
 import Cart from './pages/user/cart/cart';
 import Footer from './components/footer/footer';
 import About from './pages/user/about/about';
-import Popular_destination from './pages/popular_destination/popular_destination';
+import Register from './pages/user/register/register';
+import Login from './pages/user/login/login';
+
 import Profile from './pages/user/profile/profile';
 import PlaceReview from './pages/user/placeReview/placeReview';
 
@@ -40,13 +42,19 @@ function App() {
   
   return (
     <div className="App">
-      {currentPath.startsWith('/dashboad') ? <Sidebar/>:<Navbar/>}
+
+      {currentPath.startsWith('/dashboad') ? <Sidebar /> : (currentPath !== '/register' && currentPath !== '/login' ? <Navbar /> : null)}
+
+      
+     
       
       
       <div className={currentPath.startsWith('/dashboad') ? "Add-sub-div":null}>
       <Router>
         <Switch>
           <Route exact path="/" component={Home}/>
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/register" component={Register}/>
 
           <Route exact path="/carousel" component={HomeCarousel}/>
 
@@ -54,7 +62,7 @@ function App() {
           <Route exact path="/about" component={About} />
           <Route exact path="/contactus" component={Contactus} />
           <Route exact path="/tours" component={Tours} />
-          <Route exact path="/popular_destination" component={Popular_destination} />
+
           <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/placeReview/:id" component={PlaceReview} />
 
@@ -77,7 +85,8 @@ function App() {
       {/* <MapRoutes /> */}
 
      
-      {currentPath.startsWith('/dashboad') ? null: <Footer/>}
+      {/* {currentPath.startsWith('/dashboad') ? null: <Footer/>} */}
+      {currentPath.startsWith('/dashboad') ? null : (currentPath !== '/register' && currentPath !== '/login' ? <Footer /> : null)}
     </div>
   );
 }

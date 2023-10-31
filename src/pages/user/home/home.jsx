@@ -6,6 +6,7 @@ import HeaderText from '../../../components/homeHeaderText/headerText';
 import TravelPackage from '../../../components/travelPackage/travelPackage';
 import PlaceImgs from '../../../components/home places img/placeImgs';
 import Travelersexperience from '../../../components/home traveler experience/travelersexperience';
+import HomeDayTour from '../../../components/home day tour/homeDayTour';
 //images
 import ninearch from '../../../assets/9 arch 1.png';
 import Gall from '../../../assets/galle fort 1.png';
@@ -27,6 +28,7 @@ export default function Home() {
         
         {/* <TravelPackage/> */}
         <HomeCarousel/>
+        <HomeDayTour/>
 
         <PlaceImgs/>
         <Travelersexperience/>
