@@ -35,6 +35,9 @@
 .header-text-p{
     width: 700px;
 }
+.header-text-p.active_{
+    width: 700px;
+}
 
 
 
@@ -44,9 +47,11 @@
     position: relative;
     transform: translateY(10px);
     opacity: 0;
-    transition: 2s all ease;
+    transition: .2s all ease;
+
   }
-  .reveal.active{
+  .reveal.active_{
     transform: translateY(0);
     opacity: 1;
+    transition: 2s all ease;
   }  

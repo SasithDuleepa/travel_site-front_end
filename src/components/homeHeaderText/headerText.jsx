@@ -6,9 +6,9 @@ export default function HeaderText() {
   return (
     <div className='header-text'>
       <div className='header-text-child1'>
-        <p className='header-text-sub-p'>Travel with</p>
-        <h1 className='header-text-h1'>Sri Lanka Travel Experts</h1>
-        <p className='header-text-p'>Lorem ipsum dolor sit amet consectetur. Pharetra lectus nisi lacus non ut turpis.
+        <p className='header-text-sub-p reveal'>Travel with</p>
+        <h1 className='header-text-h1 reveal'>Sri Lanka Travel Experts</h1>
+        <p className='header-text-p reveal'>Lorem ipsum dolor sit amet consectetur. Pharetra lectus nisi lacus non ut turpis.
            Senectus elit lobortis morbi amet. Commodo nullam accumsan fames sed sapien gravida           
             nec gravida id. Netus at proin tristique pharetra eget feugiat tempor amet non.
              Enim vel sodales tellus sem in sit at sodales pharetra. Dictum quis varius
@@ -22,9 +22,9 @@ export default function HeaderText() {
 
       </div>
 
-      <h1 className='reveal'>ouyoglkj</h1>
+
       <div className='header-text-child2'>
-          <img className='header-text-child2-img' src={World} alt="" />
+          <img className='header-text-child2-img reveal' src={World} alt="" />
       </div>
     </div>
   )
@@ -37,12 +37,15 @@ function reveal() {
   for (var i = 0; i < reveals.length; i++) {
     var windowHeight = window.innerHeight;
     var elementTop = reveals[i].getBoundingClientRect().top;
-    var elementVisible = 150;
+    var elementVisible = 100;
+
+    console.log(windowHeight);
+    console.log(elementTop);
 
     if (elementTop < windowHeight - elementVisible) {
-      reveals[i].classList.add("active");
+      reveals[i].classList.add("active_");
     } else {
-      reveals[i].classList.remove("active");
+      reveals[i].classList.remove("active_");
     }
   }
 }
