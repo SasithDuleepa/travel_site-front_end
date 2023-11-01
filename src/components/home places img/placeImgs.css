@@ -1,6 +1,9 @@
 
 .place-Imgs{
     display: flex;
+    justify-content: center;
+    /* background-color: aqua; */
+    margin: 100px auto;
 }
 .placeimg-div-left{
     /* background-color: yellowgreen; */
@@ -16,6 +19,7 @@
     /* background-color: rgb(205, 50, 94); */
     width: 700px;
     height: 400px;
+    margin: 10px;
 }
 .placeimg-div-left-bottom{
     /* background-color: rgb(205, 50, 151); */
@@ -27,44 +31,58 @@
     width: 350px;
     height: 300px;
     display: flex;
+    margin: 10px;
 }
 .placeimg-div-left-bottom-right{
     /* background-color: rgb(50, 138, 205); */
     width: 350px;
     height: 400px;
     display: flex;
+    margin: 10px;
 }
 .placeimg-div-right-top{
     /* background-color: rgb(50, 205, 73); */
     width: 400px;
     height: 300px;
+    margin: 10px;
 }
 .placeimg-div-right-bottom{
     /* background-color: rgb(205, 200, 50); */
     width: 400px;
     height: 450px;
+    margin: 10px;
 }
 
 .placeimg-div-left-top-img{
-    width: 100%;
+    width: 102%;
     height: 100%;
+    border-radius: 20px;
+
     
 }
 .placeimg-div-left-bottom-left-img{
     width: 100%;
     height: auto;
+    border-radius: 20px;
+
 }
 .placeimg-div-left-bottom-right-img{
     width: 100%;
     height: auto;
+    border-radius: 20px;
+
 }
 .placeimg-div-right-top-img{
     width: 100%;
-    height: auto;
+    height: 220px;
+    border-radius: 20px;
+    margin: 10px;
 }
 .placeimg-div-right-bottom-img{
     width: 100%;
     height: auto;
+    border-radius: 20px;
+
 
     /* border: 2px solid black; */
 }

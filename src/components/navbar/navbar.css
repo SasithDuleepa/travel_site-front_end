@@ -428,7 +428,7 @@
 /* Medium Desktop */
 @media screen and (min-width: 1280px) and (max-width: 1439px) {
     .active {
-        background-color: rgba(255, 255, 255, 0.822);
+        background-color: rgba(0, 0, 0, 0.192);
         visibility: visible;
         transition: all .5s;
         position: fixed;
@@ -511,7 +511,7 @@
 @media screen and (min-width: 1440px) {
 
     .active {
-        background-color: rgba(255, 255, 255, 0.116);
+        background-color: rgba(0, 0, 0, 0.179);
         visibility: visible;
         transition: all .5s;
         position: fixed;

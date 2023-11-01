@@ -14,7 +14,7 @@ export default function Sidebar() {
         <a className={window.location.pathname==='/dashboad/vehicals' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/vehicals"}>Vehicals</a>
         <a className={window.location.pathname==='/dashboad/agents' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/agents"}>Agents</a>
         <a className={window.location.pathname==='/dashboad/tourPackages' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/tourPackages"}>Tour Packages</a>
-        <a className={window.location.pathname==='/dashboad/tourPackages' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/tourPackages"}>Day tour</a>
+        <a className={window.location.pathname==='/dashboad/daytour' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/daytour"}>Day tour</a>
       </div>
     </div>
   )

@@ -1,0 +1,29 @@
+.daytour{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.daytour-header{
+    text-align: center;
+}
+.daytour-line{
+    border-bottom: 2px solid black;
+    width: 1000px;
+
+    
+}
+
+.daytour-form-main-div{
+    width: 500px;
+}
+.daytour-form-div{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 10px;
+}
+
+.daytour-input{
+    height: 30px;
+    
+}
