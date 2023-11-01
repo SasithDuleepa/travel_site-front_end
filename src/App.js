@@ -16,6 +16,7 @@ import Hotels from './pages/dashboad/Hotel/hotels';
 import Vehicals from './pages/dashboad/vehicals/vehicals';
 import Agents from './pages/dashboad/agents/agents';
 import TourPackages from './pages/dashboad/tour packages/tourPackages';
+import DayTour from './pages/dashboad/day tour/dayTour';
 
 import Carousel1 from './components/carousel/carousel1';
 
@@ -74,6 +75,7 @@ function App() {
           <Route exact path="/dashboad/vehicals" component={Vehicals}/>
           <Route exact path="/dashboad/agents" component={Agents}/>
           <Route exact path="/dashboad/tourPackages" component={TourPackages}/>
+          <Route exact path="/dashboad/daytour" component={DayTour}/>
         </Switch>
       </Router>
 
