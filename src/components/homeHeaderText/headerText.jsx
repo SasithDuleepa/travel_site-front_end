@@ -32,15 +32,15 @@ export default function HeaderText() {
 
 function reveal() {
   var reveals = document.querySelectorAll(".reveal");
-  console.log(reveals);
+  // console.log(reveals);
 
   for (var i = 0; i < reveals.length; i++) {
     var windowHeight = window.innerHeight;
     var elementTop = reveals[i].getBoundingClientRect().top;
     var elementVisible = 100;
 
-    console.log(windowHeight);
-    console.log(elementTop);
+    // console.log(windowHeight);
+    // console.log(elementTop);
 
     if (elementTop < windowHeight - elementVisible) {
       reveals[i].classList.add("active_");

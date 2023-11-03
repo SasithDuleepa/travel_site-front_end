@@ -4,16 +4,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     padding: 70px 0px;
     margin: 50px 1px;
-
-
-   
 }
 .homecarousel{
-
-
     padding: 0px 0px;
     display: flex;
     justify-content: center;
@@ -25,46 +19,39 @@
     /* background-color: blanchedalmond; */
     display: flex;
     align-items: end;
-    width: 1550px;
-
-    overflow: hidden;
+    width: 1850px;
+    /* overflow: hidden; */
     position: relative;
     
 }
 
-.containerProps{
+/* .containerProps{
     width: 40%;
-}
+    background-color: wheat;
+} */
 
 .active-div{
     background-color: rgb(255, 255, 255);
     height: 650px;
-
-
+    width: 57.2%;
     position: relative;
     top: 0px;
-    margin-right: -830px;
-    
-    /* margin-left: 10%;
-    margin-top: 0%; */
-
-
     z-index: 1;
     left: 0%;
-    
-    
 
 }
 .active-img{
-    width: 1075px;
+    /* width: 890px; */
+    width: 100%;
     height: 100%;
     /* display: none; */
-    
+
 }
+
 .active-over-div{
-    width: 1005px;
+    width: 90%;
     height: 300px;
-    background-color: rgba(68, 68, 68, 0.401);
+    background-color: rgba(0, 0, 0, 0.589);
     margin-top: -300px;
     position: absolute;
     display: flex;
@@ -80,7 +67,7 @@
     color: aliceblue;
 }
 .homecarousel-p1{
-    width:950px ;
+    width:780px ;
     color: aliceblue;
 }
 .carousel-div{
@@ -88,7 +75,7 @@
     width: 100%;
     
     margin-bottom: 50px;
-    margin-left: 150px;
+    /* margin-left: 150px; */
     position: absolute;
 
     
@@ -96,6 +83,26 @@
 
 
 
+
+.forward-btn{
+    margin-left: 1300px;
+    margin-top: 20px;
+}
+.arrow-right{
+    width: 50px;
+    color: transparent;
+}
+.arrow-left{
+    rotate: 180deg;
+    width: 50px;
+}
+.backward-btn{
+    position: absolute;
+    margin-left: 1200px;
+    z-index: 1;
+    top: 350px;
+   
+}
 
 
 

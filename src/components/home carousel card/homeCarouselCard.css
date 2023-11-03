@@ -1,15 +1,16 @@
 
 .homeCarouselCard{
-    width: 200px;
-    height: 290px;
+    width: 250px;
+    height: 320px;
     background-color: aquamarine;
     overflow: hidden;
     margin: 5px;
 
 }
 .homeCarouselCard__img{
-    width: 300px;
-    height: 290px;
+    /* width: 300px; */
+    width: auto;
+    height: 340px;
 }
 .homeCarouselCard__content{
     background-color: rgba(18, 18, 18, 0.579);

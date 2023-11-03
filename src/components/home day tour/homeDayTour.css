@@ -1,3 +1,105 @@
 .HomeDayTour{
-    margin: 50px auto;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    padding: 100px 1px;
+
+}
+.HomeDayTour-main{
+    /* width: 1500px; */
+    /* background-color: yellow; */
+    height: 794px;
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-end;
+   
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.HomeDayTour-carousel-info{
+    background-color: rgb(255, 255, 255);
+    width: 565px;
+    height: 794px;
+    box-shadow: -7px -9px 16px 0px rgba(29, 29, 31, 0.1);
+    padding: 20px 50px 20px 100px;
+
+}
+.HomeDayTour-carousel-info-h1{
+    font-size: 45px;
+    font-weight: 600;
+    margin-top: 80px;
+    
+
+    
+}
+@keyframes slide-up {
+    0% {
+        transform: translateY(500px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+.HomeDayTour-carousel-info-p1{
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 100px;
+    animation: slide-up 1s ease-in-out;
+
+}
+.HomeDayTour-carousel-info-p2{
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 400;
+    animation: slide-up 1s ease-in-out;
+}
+.HomeDayTour-carousel-info-price-div{
+    display: flex;
+    animation: slide-up 1s ease-in-out;
+}
+.HomeDayTour-carousel-price-p, .HomeDayTour-carousel-price{
+    font-size: 26px;
+    font-weight: 600;
+}
+.HomeDayTour-carousel-readmore{
+    font-size: 26px;
+    font-weight: 600;
+    color: rgb(218, 121, 56);
+}
+
+
+.HomeDayTour-carousel-forward-btn{
+    display: none;
+}
+.HomeDayTour-carousel-backward-btn{
+    display: none;
+}
+
+
+.DayTourCarousel-img{
+    width: 849px;
+    height: 749px;
 }
