@@ -101,9 +101,9 @@ const Add = async() =>{
       alert("internal server error");
     }
   }
-  return (
+  return (  
     <div className='daytour'>
-        <h1 className='daytour-header'>ADD PLACE</h1>
+        <h1 className='daytour-header'>DAY TOUR</h1>
         <div className='daytour-line'></div>
         
         <div className='daytour-form-main-div'>

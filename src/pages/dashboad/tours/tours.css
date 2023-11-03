@@ -1,3 +1,33 @@
+.dashboard-tour{
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.dashboard-tour-underline{
+    border-bottom: 2px solid black;
+    width: 800px;
+}
+.dashboard-tour-sub{
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+    align-items: center;
+}
+.tour-package-main-1{
+    background-color: antiquewhite;
+    margin-top: 50px;
+    width: max-content;
+
+}
+.dashboard-tour-form{
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+}
+
+
 
 
 .tour-package-main-2{

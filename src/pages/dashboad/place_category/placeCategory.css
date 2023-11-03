@@ -1,0 +1,78 @@
+
+.placecategory{
+    width: 83vw;
+    display: flex;
+    justify-content: center;
+    /* background-color: aquamarine; */
+}
+.placecategory__container{
+width: 1210px;
+/* background-color: yellowgreen; */
+/* display: flex;
+justify-content: center; */
+padding-bottom: 50px;
+}
+
+.placecategory__container-form-main-div-title{
+    text-align: center;
+}
+
+.placecategory__container-line{
+    border-bottom: 2px solid black;
+}
+.placecategory__container-form-main-div{
+    /* background-color: violet; */
+    
+    display: flex;
+    justify-content: center;
+    
+}
+.placecategory__container-form-div{
+    /* background-color: blue; */
+    margin:10px 5px;
+    width: 400px;
+    padding: 5px 0px;
+    display: flex;
+    flex-direction: column;
+}
+.placecategory__container-form-label{
+    font-size: 26px;
+    margin: 5px 0px;
+}
+.placecategory-input{
+    height: 30px;
+}
+
+
+.placecategory-add-place-search-result-div{
+    background-color: rgba(64, 224, 208, 0.453);
+    width: fit-content;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    position:absolute;
+    margin-top: 80px;
+}
+.placecategory-add-place-list-div{
+    background-color: rgba(255, 228, 196, 0.357);
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px 5px;
+}
+.detete-img-addcatergory{
+    width: 30px;
+}
+.placecategory-add-place-list-div-sub{
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+}
+
+
+.placecategory__container-form-add-button{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
