@@ -15,8 +15,10 @@ import TourCategory from './pages/dashboad/Tour Catergory/tourCategory';
 import Hotels from './pages/dashboad/Hotel/hotels';
 import Vehicals from './pages/dashboad/vehicals/vehicals';
 import Agents from './pages/dashboad/agents/agents';
-import TourPackages from './pages/dashboad/tour packages/tourPackages';
+
 import DayTour from './pages/dashboad/day tour/dayTour';
+import Tour from './pages/dashboad/tours/tours';
+import PlaceCategory from './pages/dashboad/place_category/placeCategory';
 
 import Carousel1 from './components/carousel/carousel1';
 
@@ -71,11 +73,15 @@ function App() {
 
           <Route exact path="/dashboad/addplace" component={Add_place}/>
           <Route exact path="/dashboad/tourCategory" component={TourCategory}/>
-          <Route exact path="/dashboad/hotels" component={Hotels}/>
+          {/* <Route exact path="/dashboad/hotels" component={Hotels}/>
           <Route exact path="/dashboad/vehicals" component={Vehicals}/>
-          <Route exact path="/dashboad/agents" component={Agents}/>
-          <Route exact path="/dashboad/tourPackages" component={TourPackages}/>
+          <Route exact path="/dashboad/agents" component={Agents}/> */}
+          <Route exact path="/dashboad/tour" component={Tour}/>
           <Route exact path="/dashboad/daytour" component={DayTour}/>
+
+          <Route exact path="/dashboad/placeCategory" component={PlaceCategory}/>
+          
+          
         </Switch>
       </Router>
 
