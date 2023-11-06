@@ -1,19 +1,19 @@
 .HomeDayTour{
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(248, 73, 73); */
     display: flex;
     justify-content: center;
-    padding: 100px 1px;
+    padding: 100px 100px;
 
 }
 .HomeDayTour-main{
     /* width: 1500px; */
-    /* background-color: yellow; */
-    height: 794px;
+    background-color: yellow;
+    padding: 0px 100px;
+    margin: auto 500px;
+    height: 620px;
     display: flex;
     justify-content: space-between;
     align-items:flex-end;
-   
-    
 }
 
 
@@ -35,20 +35,36 @@
 
 .HomeDayTour-carousel-info{
     background-color: rgb(255, 255, 255);
-    width: 565px;
-    height: 794px;
+    width: 365px;
+    height: 554px;
     box-shadow: -7px -9px 16px 0px rgba(29, 29, 31, 0.1);
     padding: 20px 50px 20px 100px;
 
 }
 .HomeDayTour-carousel-info-h1{
-    font-size: 45px;
+    font-size: 35px;
     font-weight: 600;
-    margin-top: 80px;
-    
-
-    
+    margin-top: 10px;
 }
+
+
+.HomeDayTour-carousel-info-p1{
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 40px;
+    transition: 1s;
+    /* background-color: aqua; */
+    max-width: 340px;
+    overflow: hidden;
+}
+
+
+
+
+.start-animation {
+    animation: slide-up 1s ease-in-out;
+  }
+  
 @keyframes slide-up {
     0% {
         transform: translateY(500px);
@@ -63,22 +79,19 @@
 
 
 
-.HomeDayTour-carousel-info-p1{
-    font-size: 30px;
-    font-weight: 500;
-    margin-top: 100px;
-    animation: slide-up 1s ease-in-out;
 
-}
 .HomeDayTour-carousel-info-p2{
     font-size: 16px;
     line-height: 28px;
     font-weight: 400;
-    animation: slide-up 1s ease-in-out;
+    transition: 1s;
+    /* background-color: aqua; */
+    height: 240px;
+    overflow: hidden;
 }
 .HomeDayTour-carousel-info-price-div{
     display: flex;
-    animation: slide-up 1s ease-in-out;
+
 }
 .HomeDayTour-carousel-price-p, .HomeDayTour-carousel-price{
     font-size: 26px;
@@ -100,6 +113,6 @@
 
 
 .DayTourCarousel-img{
-    width: 849px;
-    height: 749px;
+    width: 609px;
+    height: 549px;
 }
