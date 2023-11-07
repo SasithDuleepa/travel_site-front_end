@@ -14,10 +14,11 @@ import Gall from '../../../assets/galle fort 1.png';
 
 import Homereview from '../../../components/home review/homereview';
 import HomeCarousel from '../../../components/home carousel/HomeCarousel';
+import TourPlan from '../../../components/home tour plan/tourPlan';
 
 export default function Home() {
   return (
-    <div className='home'>
+    <div>
 
       <Homeheader/>
 
@@ -29,7 +30,7 @@ export default function Home() {
         {/* <TravelPackage/> */}
         <HomeCarousel/>
         <HomeDayTour/>
-
+        <TourPlan/>
         <PlaceImgs/>
         <Travelersexperience/>
     </div>

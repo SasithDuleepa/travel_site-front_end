@@ -1,0 +1,123 @@
+.Dashboad-Images{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+}
+
+.Dashboad-Images-div{
+    display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+
+}
+
+.Dashboad-img-header{
+
+}
+.Dashboad-img-line{
+
+ border-bottom: 3px solid black;
+ width: 1000px;
+
+ 
+}
+
+
+
+.dashboad-homeimages{
+    border: 1px solid black;
+    margin: 50px;
+    padding: 10px 50px 1px 50px; 
+    border-radius: 10px;
+}
+.dashboad-home-hero-img-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.dashboad-home-hero-header{
+
+}
+.dashboad-home-hero-line{
+    border-bottom: 1px solid black;
+    width: 1000px;
+    margin-bottom: 20px;
+}
+
+
+.img-input-div{
+    width: 200px;
+    height: 100px;
+    background-color: antiquewhite;
+}
+.dashboad-home-hero-img1-main{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+
+
+
+
+
+
+.dashboad-tourimages{
+    border: 1px solid black;
+    margin: 50px;
+    padding: 10px 50px 1px 50px; 
+    border-radius: 10px;
+    width: 80%;
+}
+.dashboad-tour-hero-img-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+.dashboad-tour-hero-header{
+
+}
+.dashboad-tour-hero-line{
+    border-bottom: 1px solid black;
+    width: 1000px;
+    margin-bottom: 20px;
+}
+.dashboad-tour-hero-img1-div{
+    background-image: url('http://localhost:8080/images/Tour/heroimg');
+    background-size: cover;
+    width: 800px;
+    height: 300px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.Images-add-btn{
+    background-color: rgb(3, 3, 48);
+    color: aliceblue;
+    padding: 10px 20px;
+    border: 1px solid rgb(3, 3, 48);
+    border-radius: 20px;
+    margin: 15px 10px;
+    right:-90%;
+    position: relative;
+    &:hover{
+        background-color: aliceblue;
+        color:rgb(3, 3, 48);
+        border: 1px solid rgb(3, 3, 48);
+        transition: .3s;
+    }
+}

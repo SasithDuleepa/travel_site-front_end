@@ -55,6 +55,7 @@ const SelectPlace =(place_name,placeId)=>()=>{
   newDayData[dayDataIndex].places.push({placeName:place_name,placeId:placeId})
   setDayData(newDayData)
   // console.log(newDayData[dayDataIndex].places)
+  setSearchData([])
 
 }
 
@@ -132,20 +133,37 @@ return (
         </a>
       </div>
       <div className='tour-package-place-div'>
-        <div>
+      <h2 className='tour-places-header2'>about day</h2>
+      <div className='tour-places-day-description-div'>
+          <label>day description</label>
+          <input type="text" onChange={(e)=>DayDescription(e)} value={dayData[dayDataIndex].description}/>
+        </div>
+        <h2 className='tour-places-header2'>search places</h2>
+        <div className='tour-package-search-div'>
+
+        <div className='tour-package-place-search-div'>
           <label>place:</label>
           <input type="text" onChange={(e)=>SearchHandler(e)}/>
-        </div>
-        {searchData.map((place,index)=>{
+          <div className='tour-package-place-results'>
+          {searchData.map((place,index)=>{
           return(
-            <div>
-              <a key={index} onClick={SelectPlace(place.place_name,place.place_id)}>{place.place_name}</a>
-            </div>
+              <a className='tour-package-place-result' key={index} onClick={SelectPlace(place.place_name,place.place_id)}>{place.place_name}</a>
           )
-        
-        })}
+          })}
+          </div>
+        </div>
 
-        <h1>selected places</h1>
+        <div className='tour-package-place-search-div'>
+          <label>category:</label>
+          <input type="text" />
+          
+        </div>
+
+        </div>
+        
+        
+
+        <h2  className='tour-places-header2'>selected places</h2>
         {dayData[dayDataIndex].places.map((item,index)=>{
           return(
             <div className='day-tour-place-div'>
@@ -153,13 +171,10 @@ return (
             </div>
         )}
         )}
-        <div>
-          <label>day description</label>
-          <input type="text" onChange={(e)=>DayDescription(e)} value={dayData[dayDataIndex].description}/>
-        </div>
+        
       </div>
     </div>
-    <a onClick={Submit}>click</a>
+    <a className='tour-btn' onClick={Submit}>Add Tour</a>
   </div>
 
   </div>

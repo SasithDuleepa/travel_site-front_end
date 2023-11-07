@@ -1,0 +1,45 @@
+
+
+.Tours{
+
+}
+.wrapper{
+    width: 100vw;
+    height: 528px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Tour-head{
+    background-image: url("http://localhost:8080/images/Tour/heroimg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.Tour-over-layer{
+    font-size: 70px;
+    color: aliceblue;
+    font-weight: 600;
+}
+
+.Tour-description{
+    text-align: center;
+    margin: 100px 150px ;
+}
+
+.button-div{
+    border-top: 1px solid rgb(60, 60, 60);
+    border-bottom: 1px solid rgb(60, 60, 60);
+    height: 50px;
+    margin: 20px 100px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+}
+.Tour_button{
+    background-color: rgb(0, 0, 73);
+    padding: 9px 20px;
+    border-radius: 25px;
+    color: aliceblue;
+    font-weight: 500;
+}

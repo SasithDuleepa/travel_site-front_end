@@ -1,5 +1,5 @@
 .dashboard-tour{
-    background-color: aqua;
+    /* background-color: aqua; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,61 +7,109 @@
 }
 .dashboard-tour-underline{
     border-bottom: 2px solid black;
-    width: 800px;
+    width: 1000px;
 }
 .dashboard-tour-sub{
     display: flex;
     flex-direction: column;
-    background-color: blue;
+    /* background-color: blue; */
     align-items: center;
+    width: 1200px;
+    border: 1px solid black;
+    margin: 20px 1px;
 }
 .tour-package-main-1{
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
     margin-top: 50px;
     width: max-content;
+    border: 1px solid black;
+    padding: 10px 20px;
 
 }
 .dashboard-tour-form{
     display: flex;
     justify-content: space-between;
-    width: 400px;
+    width: 600px;
+    margin: 10px 5px;
+    
 }
 
 
 
 
 .tour-package-main-2{
-    background-color: aqua;
+    /* background-color: aqua; */
+    border: 1px solid black;
+    padding: 10px 20px;
     
     height: 500px;
     display: flex;
     margin: 50px;
 }
 .tour-package-days-div{
-    width: 250px;
+    width: 200px;
     height: 100%;
-    background-color: antiquewhite;
+    background-color: rgb(186, 186, 186);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .tour-package-place-div{
-    width:79%;
+    width:900px;
     height: 100%;
-    background-color: rgb(117, 71, 12);
+    /* background-color: rgb(91, 78, 78); */
 }
+.tour-places-day-description-div{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.tour-places-header2{
+    text-align: center;
+}
+.tour-package-search-div{
+    display: flex;
+    justify-content: space-around;
+}
+.tour-package-place-search-div{
+    display: flex;
+    gap: 10px;
+    /* flex-direction: column; */
+    margin: 10px 5px;
+}
+.tour-package-place-results{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 50px;
+    background-color: rgba(240, 248, 255, 0.327)
+}
+.tour-package-place-result{
+    color: rgb(20, 43, 43);
+}
+
+
+
+
+
 .day-active{
-    margin: 5px auto;
-    padding: 10px 80px;
-    border: 2px solid rgb(255, 6, 6);
+
+    padding: 10px 0px;
+
     font-size: 20px;
-    background-color: rgb(196, 115, 9);
+    background-color: rgb(115, 115, 115);
+    width: 98%;
+    margin: 1px 10px;
+    text-align: center;
 }
 .day{
     margin: 5px auto;
-    padding: 10px 80px;
-    border: 2px solid black;
+    padding: 10px 0px;
+
     font-size: 20px;
+    width: 100%;
+    text-align: center;
 }
 
 .day-tour-place-div{
@@ -71,4 +119,16 @@
 }
 .place-delete-img{
     width: 25px;
+}
+
+
+.tour-btn{
+    background-color: rgb(0, 0, 81);
+    padding: 10px 30px;
+    border-radius: 20px;
+    color: aliceblue;
+    position: relative;
+    left: 40%;
+    margin: -20px 20px 20px 20px;
+    
 }

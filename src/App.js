@@ -15,6 +15,7 @@ import TourCategory from './pages/dashboad/Tour Catergory/tourCategory';
 import Hotels from './pages/dashboad/Hotel/hotels';
 import Vehicals from './pages/dashboad/vehicals/vehicals';
 import Agents from './pages/dashboad/agents/agents';
+import Images from './pages/dashboad/Images/images';
 
 import DayTour from './pages/dashboad/day tour/dayTour';
 import Tour from './pages/dashboad/tours/tours';
@@ -80,6 +81,7 @@ function App() {
           <Route exact path="/dashboad/daytour" component={DayTour}/>
 
           <Route exact path="/dashboad/placeCategory" component={PlaceCategory}/>
+          <Route exact path="/dashboad/images" component={Images}/>
           
           
         </Switch>

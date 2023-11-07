@@ -18,6 +18,8 @@ export default function Sidebar() {
        
         
         <a className={window.location.pathname==='/dashboad/tourCategory' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/tourCategory"}>Tour category</a>
+
+        <a className={window.location.pathname==='/dashboad/images' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/images"}>Images</a>
       </div>
     </div>
   )
