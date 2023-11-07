@@ -1,23 +1,26 @@
 .header-text{
+    position: relative;
+    width: 100%;
     
-    /* background-color: aqua; */
+    background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
+    gap: 100px;
     padding: 50px 10px 10px 10px;
 }
 .header-text-child1{
     /* background-color: yellowgreen; */
     
-    padding: 100px 100px 50px 100px;
+    /* padding: 100px 100px 50px 100px; */
 }
 .header-text-child2-img{
     width: 400px;
-    margin-left: 100px;
+
 }
 .header-text-child2{
     /* background-color: violet; */
     width: 30%;
-    margin-right: 200px;
+
 }
 
 
@@ -45,7 +48,7 @@
 
 .reveal{
     position: relative;
-    transform: translateY(10px);
+    transform: translateY(20px);
     opacity: 0;
     transition: .2s all ease;
 
@@ -53,5 +56,5 @@
   .reveal.active_{
     transform: translateY(0);
     opacity: 1;
-    transition: 2s all ease;
+    transition: 1s all ease;
   }  

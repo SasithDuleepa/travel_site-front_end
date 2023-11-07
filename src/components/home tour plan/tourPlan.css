@@ -1,0 +1,52 @@
+
+.home-tour-plan{
+    width: 100vw;
+
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    background-image: url('./../../assets/homeimg/520966-seashore\ 1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.home-tour-plan-div{
+    width: 1000px;
+    height: 600px;
+    /* background-color: rgb(47, 0, 255); */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.home-tour-plan-div-left{
+    display: flex;
+    flex-direction: column;
+}
+.home-tour-plan-div-left-1{
+    font-size: 45px;
+    font-weight: 500;
+    font-family: Playfair Display;
+    font-style: italic;
+    width: 605px;
+    color: aliceblue;
+}
+.home-tour-plan-div-left-2{
+    font-size: 18px;
+    font-weight: 300;
+    width: 553px;
+    margin-top: -30px;
+    color: aliceblue;
+}
+.home-tour-plan-div-right{
+    
+}
+.home-tour-plan-div-right-btn{
+    background-color: rgb(194, 110, 0);
+    padding: 10px 50px;
+    border-radius: 20px;
+    color: aliceblue;
+    font-family: Playfair Display;
+    font-style: italic;
+    font-size: 22px;
+}

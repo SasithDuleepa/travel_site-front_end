@@ -1,28 +1,26 @@
 import React from 'react';
 import './homeheader.css';
-import VideoPlayer from "react-background-video-player";
 
 
 
 
-//images
-import video1 from '../../assets/homeimg/aa83c2c7-43a9-4dcd-8bec-5ba6fcaf1e33.mp4';
+
 
 export default function Homeheader() {
   return (
     <div className='home-header-main'>
+      <div class="pic-wrapper">
+        <div className='home-header-sub'>
+          <p className='home-header-main-text'>Plan your Best tour with</p>
+          <p className='home-header-sub-text'>Sri Lanka Travel Experts</p>
+        </div>
+  <div className='figure  pic-1 layer' ></div>
+  <div className='figure  pic-2 layer' ></div>
+  <div className='figure  pic-3 layer' ></div>
+  <div className='figure  pic-4 layer' ></div>
+</div>
         
-        <video className="background-video" autoPlay loop muted>
-          <source src = {video1} type = 'video/mp4' />
-          </video>
-
-          <div className='header-over-div'>
-                <h1 className='header-h1-1'>Plan your Best tour with</h1>
-                <h1 className='header-h1-2'>Sri Lanka Travel Experts</h1>
-                <div className='header-sub-div'>
-                    <a className='header-sub-div-btn'>Plan Your Tour <a className='header-sub-div-icon'>^</a></a>
-                </div>
-          </div>
+      
     </div>
   )
 }
