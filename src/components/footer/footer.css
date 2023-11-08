@@ -2,7 +2,9 @@
 .footer{
     display: flex;
     justify-content: center;
-    background-color:  rgba(29, 29, 31, 1);
+    background-image: url('./../../assets/footer Image.png');
+    background-repeat: no-repeat;
+    background-size: cover;
   
 
     width: 100vw;
