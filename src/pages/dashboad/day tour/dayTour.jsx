@@ -8,6 +8,7 @@ export default function DayTour() {
   const[description,setDescription] = useState('')
   const[price,setPrice] = useState('')
   const[image,setImage] = useState('')
+  const[startDescription,setStartDescription] = useState('')
 
   //place input 
   const[placeInput, setPlaceInput] = useState('')
@@ -45,16 +46,19 @@ const SelectPlace = (placeId, placeName) => {
       {
         placeid: placeId,
         placename: placeName,
+        placeDescription:""
       },
     ]);
   }else{
     setSelectedPlaces({
       placeid: placeId,
       placename: placeName,
+      placeDescription:""
     });
   }
   
   console.log(selectedPlaces);
+  setPlaces([])
 };
 
 ///delete
@@ -73,10 +77,12 @@ const Add = async() =>{
     formData.append('description', description);
     formData.append('price', price);
     formData.append('file', image);
+    formData.append('startDescription', startDescription);
     // formData.append('places', selectedPlaces);
     // Loop through the files and append them to the formData
     selectedPlaces.forEach((place, index) => {
-      formData.append('places[]', place.placeid);
+      formData.append(`places[${index}][place]`, place.placeid);
+      formData.append(`places[${index}][placeDescription]`, place.placeDescription);
     // formData.append('places[]', place.placename);
     });
   
@@ -114,7 +120,7 @@ const Add = async() =>{
             </div>
             <div className='daytour-form-div'>
                 <label>description</label>
-                <input type='text'    className='daytour-input' value={description} onChange={(e)=>setDescription(e.target.value)}/>
+                <textarea type='text'    className='daytour-input' value={description} onChange={(e)=>setDescription(e.target.value)}/>
             </div>
             <div className='daytour-form-div'>
                 <label>price</label>
@@ -127,23 +133,52 @@ const Add = async() =>{
             <div className='daytour-form-div'>
                 <label>places</label>
                 <input type='text' className='daytour-input' value={placeInput} onChange={(e)=>{setPlaceInput(e.target.value)}}/>
-                <div>
-                {places.map((item, index) => (
-              <a key={index} onClick={(e)=>SelectPlace(item.place_id,item.place_name)}>{item.place_name}</a>
-            )
-            )}
+                <div className='day-tour-search-result-div'>
+                  {places.length>0 ?
+                  <>
+                  {places.map((item, index) => (
+                                    <a className='day-tour-search-result' key={index} onClick={(e)=>SelectPlace(item.place_id,item.place_name)}>{item.place_name}</a>
+                                  )
+                                  )}
+                  </>
+                                  
+                                  :
+                                  <p className='day-tour-search-result-not' >no results to show</p>
+                  }
+
                 </div>
                 <div>
+
+                  <label>day start description</label>
+                  <textarea type='text'  className='daytour-input-daystart' placeholder='day start description' onChange={(e)=>setStartDescription(e.target.value)}/>
+
                 {selectedPlaces.length > 0?(
             selectedPlaces.map((item, index) => (
-              <div className='tourcategory-add-place-list-div-sub'><a key={index}>{item.placename}</a><a><img className='detete-img-addcatergory' src={Delete} onClick={deletehandler(index)} /></a></div>
+              <div className='tourcategory-add-place-list-div-sub'>
+              <a key={index}>{item.placename}</a>
+              <div className='tourcategory-add-place-list-bottom-div'>
+                
+                <textarea className='dat-tour-day-description' value={item.placeDescription}onChange={(e) => {
+                                      const updatedSelectedPlaces = [...selectedPlaces];
+                                      updatedSelectedPlaces[index] = {
+                                      ...updatedSelectedPlaces[index],
+                                      placeDescription: e.target.value,
+                                                                     };
+                                      setSelectedPlaces(updatedSelectedPlaces);
+                                                   }}
+                />
+                <a><img className='detete-img-addcatergory' src={Delete} onClick={deletehandler(index)} /></a>
+              </div>
+              
+
+              </div>
                 
             ))
           ) : <p>no place</p>
           }
                 </div>
             </div>
-            <button onClick={Add}>add</button>
+            <button className='day-tour-add-btn' onClick={Add}>ADD</button>
         </div>
         
     </div>

@@ -16,14 +16,73 @@
 
 .daytour-form-main-div{
     width: 500px;
+
+    margin: 50px 100px;
+    padding: 50px 100px;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 .daytour-form-div{
     display: flex;
     flex-direction: column;
     margin: 20px 10px;
 }
+.day-tour-search-result-div{
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.day-tour-search-result{
+    background-color: rgba(0, 0, 0, 0.135);
+    &:hover{
+        background-color: rgb(142, 142, 142);
+    }
+}
+.day-tour-search-result-not{
+    text-align: center;
+    margin: 5px auto;
+}
 
 .daytour-input{
     height: 30px;
     
+}
+.daytour-input-daystart{
+    height: 30px;
+    margin: 0px 0px 40px 0px;
+    width: 98%;
+}
+
+
+.tourcategory-add-place-list-div-sub{
+
+}
+.tourcategory-add-place-list-bottom-div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.dat-tour-day-description{
+    height: 50px;
+    font-size: 12px;
+    width: 100%;
+    
+}
+.detete-img-addcatergory{
+    width: 30px;
+    margin: 5px;
+}
+.day-tour-add-btn{
+    background-color: rgb(1, 1, 84);
+    padding: 10px 30px;
+    font-size: 22px;
+    color: aliceblue;
+    border: none;
+    border-radius: 25px;
+    right: -90%;
+    position: relative;
 }

@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import './travelerexperience.css';
 import Carousel from "react-simply-carousel";
 import review from './../../assets/review.png';
+import award from './../../assets/homeimg/isq-award 1.png'
 
 export default function Travelersexperience() {
     const [activeSlide, setActiveSlide] = useState(0);
   return (
     <div className='traveler_experience'>
       <div className='traveler-experience'>
-      
-      <h1 className='travelerexperience-title'>Traveler Experience</h1>
-
-     
-     <Carousel
+        <div className='traveler-experience-left'>
+          <h1 className='travelerexperience-title'>Traveler Experience</h1>
+          <div>
+            <Carousel
       containerProps={{
         
         style: {
@@ -31,35 +31,15 @@ export default function Travelersexperience() {
       // }}
       onRequestChange={setActiveSlide}
       forwardBtnProps={{
-        children: ">",
+        children: '>',
+        className: "travelerexperience-backward-btn",
         
-        style: {
-          width: 60,
-          height: 60,
-          minWidth: 60,
-          alignSelf: "center",
-          borderRadius:"100px",
-          border:"none",
-          background:"rgba(97, 97, 97, 0.214",
-         
-        
-         
-        }
+       
       }}
       backwardBtnProps={{
         children: "<",
-        style: {
-          width: 60,
-          height: 60,
-          minWidth: 60,
-          alignSelf: "center",
-          borderRadius:"100px",
-          border:"none",
-          marginRight:"00px",
-          
-          background:"rgba(97, 97, 97, 0.214"
-          
-        }
+        className: "travelerexperience-forward-btn",
+        
       }}
       dotsNav={{
         show: false,
@@ -111,7 +91,16 @@ export default function Travelersexperience() {
 <Travelerexperience/>
 <Travelerexperience/>
 <Travelerexperience/>
-    </Carousel>
+            </Carousel>
+          </div>
+        </div>
+        <div className='traveler-experience-right'>
+          <img className='traveler-experience-right-img' src={award}/>
+          <p className='traveler-experience-right-p'>Lorem ipsum dolor sit amet consectetur.
+             Nisl urna luctus urna massa. Quis sed
+              metus sagittis eu pellentesque fringilla. In senectus vitae</p>
+        </div>
+
   </div>
     </div>
     
@@ -120,10 +109,7 @@ export default function Travelersexperience() {
 function Travelerexperience(){
     return(
         <div className='travelerexperience-container'>
-        <div className='travelerexperience-container-left'>
-            <img src={review}/>
-        </div>
-        <div className='travelerexperience-container-right'>
+          <div className='travelerexperience-container-right'>
             <h1 className='travelerexperience-container-right-title'>james</h1>
             <p className='travelerexperience-container-right-text'>Lorem ipsum dolor sit amet consectetur. 
                 Nisl urna luctus urna massa. Quis sed metus 
@@ -138,6 +124,10 @@ function Travelerexperience(){
                  Nunc libero viverra natoque diam at.</p>
                  <p className='travelerexperience-container-right-text'>Date </p>
         </div>
+        <div className='travelerexperience-container-left'>
+            <img className='travelerexperience-img' src={review}/>
+        </div>
+        
     </div>
     )
 }
