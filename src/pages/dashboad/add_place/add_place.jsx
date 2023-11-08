@@ -11,6 +11,7 @@ export default function Add_place() {
     const[data , setData] = useState({
         name:"",
         description:"",
+        short:"",
         time:'',
         fee:'',
         lat:6.947248052781988,
@@ -60,6 +61,7 @@ const removeFile =(index)=> (e) => {
           const formData = new FormData();
           formData.append('name', data.name);
           formData.append('description', data.description);
+          formData.append('shortDescription', data.short);
           formData.append('time', data.time);
           formData.append('fee', data.fee);
           formData.append('lat', data.lat);
@@ -141,7 +143,11 @@ const removeFile =(index)=> (e) => {
                     </div>
                     <div className='Add_place-form-sub-div'>
                         <label className='Add_place-form-sub-div-label'>Description:</label>
-                        <input type='text' className='add_place_input-description' id='description' onChange={changeHandler} value={data.description} />
+                        <textarea type='text' className='add_place_input-description' id='description' onChange={changeHandler} value={data.description} />
+                    </div>
+                    <div className='Add_place-form-sub-div'>
+                        <label className='Add_place-form-sub-div-label'>Short Description:</label>
+                        <textarea type='text' className='add_place_input-description' id='short' onChange={changeHandler} value={data.short} />
                     </div>
                     <div className='Add_place-form-sub-div'>
                         <label className='Add_place-form-sub-div-label'>Images:</label>
