@@ -116,7 +116,7 @@ export default function PlaceCategory() {
           </div>
           <div className='placecategory__container-form-div'>
             <label className='placecategory__container-form-label'>Description :</label>
-            <input type="text"  className='placecategory-input' value={description} onChange={(e)=>setDescription(e.target.value)}/>
+            <textarea type="text"  className='placecategory-input' value={description} onChange={(e)=>setDescription(e.target.value)}/>
           </div>
           <div className='placecategory__container-form-div'>
             <label className='placecategory__container-form-label'>Image :</label>
@@ -128,7 +128,7 @@ export default function PlaceCategory() {
             <input  placeholder='search place'className='placecategory-input' value={placeInput} onChange={(e)=>{setPlaceInput(e.target.value)}}/>
             <div className='placecategory-add-place-search-result-div'>
               {places.map((item, index) => (
-                <a key={index} onClick={(e)=>SelectPlace(item.place_id,item.place_name)}>{item.place_name}</a>
+                <a className='place-catergory-result' key={index} onClick={(e)=>SelectPlace(item.place_id,item.place_name)}>{item.place_name}</a>
               )
               )}
             </div>
@@ -145,14 +145,15 @@ export default function PlaceCategory() {
             
            
           </div>
+          
               
             </div>
           
-          
+            
   
   
           </div>
-        <button className='placecategory__container-form-add-button' onClick={Add}>Add</button>
+          <button className='placecategory__container-form-add-button' onClick={Add}>ADD</button>
         </div>
       </div>
     )
