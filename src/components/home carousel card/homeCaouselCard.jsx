@@ -6,7 +6,7 @@ export default function HomeCaouselCard(props) {
     <div className='homeCarouselCard'>
         <img className='homeCarouselCard__img'
          
-         src={props.img ? `http://localhost:8080/categories/categoryimg?file=${props.img}`:
+         src={props.img ? `http://localhost:8080/tourcategory/img?file=${props.img}`:
          "http://localhost:8080/categories/categoryimg?file=file-1698209731958-wildlife_tour 1.png"}
          alt="" />
          

@@ -9,7 +9,7 @@
 }
 .homeCarouselCard__img{
     /* width: 300px; */
-    width: auto;
+    width: 100%;
     height: 340px;
 }
 .homeCarouselCard__content{

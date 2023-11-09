@@ -16,9 +16,9 @@ export default function HomeCarousel() {
     }
 
     const[categories, setCategories] = useState([{category_img:"",category_nam:"",category_description:""}])
-    //get allcategories
+    //get all tour categories
     const Categories = async () => {
-      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/categories/allcategories`);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tourcategory/getall`);
       // console.log(res.data);
       setCategories(res.data);
     }
@@ -38,28 +38,28 @@ export default function HomeCarousel() {
               <>
               <img
                 className="active-img" 
-                src={categories[activeSlide].category_img ? 
-                  `http://localhost:8080/categories/categoryimg?file=${categories[categories.length - 1].category_img}`:
+                src={categories[activeSlide].tourcategory_img ? 
+                  `http://localhost:8080/tourcategory/img?file=${categories[categories.length - 1].tourcategory_img}`:
                   Sinharaja
                 } 
                 alt="" />
                 <div className="active-over-div">
-                  <h1 className="homecarousel-h1">{categories[categories.length - 1].category_name}</h1>
-                  <p className="homecarousel-p1">{categories[categories.length - 1].category_description}</p>
+                  <h1 className="homecarousel-h1">{categories[categories.length - 1].tourcategory_name}</h1>
+                  <p className="homecarousel-p1">{categories[categories.length - 1].tourcategory_description}</p>
                 </div>
               </>
               :
               <>
               <img
               className="active-img" 
-              src={categories[activeSlide].category_img ? 
-                `http://localhost:8080/categories/categoryimg?file=${categories[activeSlide-1].category_img}`:
+              src={categories[activeSlide].tourcategory_img ? 
+                `http://localhost:8080/tourcategory/img?file=${categories[activeSlide-1].tourcategory_img}`:
                 Sinharaja
               } 
               alt="" />
               <div className="active-over-div">
-                  <h1 className="homecarousel-h1">{categories[activeSlide-1].category_name}</h1>
-                  <p className="homecarousel-p1">{categories[activeSlide-1].category_description}</p>
+                  <h1 className="homecarousel-h1">{categories[activeSlide-1].tourcategory_name}</h1>
+                  <p className="homecarousel-p1">{categories[activeSlide-1].tourcategory_description}</p>
                 </div>
               </>
                  }
@@ -134,7 +134,7 @@ export default function HomeCarousel() {
         centerMode
       >
         {categories.length > 0 && categories.map((category, index) => (
-          <HomeCaouselCard title={category.category_name} img={category.category_img}/>
+          <HomeCaouselCard title={category.tourcategory_name} img={category.tourcategory_img}/>
         ))}
         {/* {categories.length > 0 && categories.map((category, index) => (
           <HomeCaouselCard title={category.category_name} img={category.category_img}/>

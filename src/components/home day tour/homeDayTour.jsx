@@ -26,7 +26,7 @@ export default function HomeDayTour() {
     const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/daytours`);
     // console.log(res.data);
     setDaytours(res.data);
-    // console.log(daytours)
+    console.log(daytours)
     
   }
   useEffect(()=>{GetDayTours()
@@ -63,7 +63,7 @@ export default function HomeDayTour() {
               <p className={`HomeDayTour-carousel-price ${isLoaded ? 'start-animation' : ''}`}>${daytours[activeSlide_].price}</p>
 
              </div>
-             <a className={`HomeDayTour-carousel-readmore ${isLoaded ? 'start-animation' : ''}`}>Read more...</a>
+             <a className={`HomeDayTour-carousel-readmore ${isLoaded ? 'start-animation' : ''}`} href='/tours/daytour'>Read more...</a>
             
           </div>
           :null
@@ -168,7 +168,7 @@ export default function HomeDayTour() {
         centerMode
       >
         {daytours.length > 0 && daytours.map((daytour, index) => (
-          <img key={index} src={Sinharaja} alt="" className='DayTourCarousel-img'/>
+          <img key={index} src={`http://localhost:8080/daytour/daytourimg?file=${daytour.img}`} alt="" className='DayTourCarousel-img'/>
           // <div className='DayTourCarousel-img'>{daytour._id}</div>
         ))
           }
