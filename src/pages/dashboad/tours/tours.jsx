@@ -76,7 +76,7 @@ const DeletePlace =(index)=>()=>{
 }
 
 const Submit =async()=>{
-  console.log(dayData)
+ 
   const formData = new FormData();
   formData.append('packageName', name);
   formData.append('description', description);
@@ -89,7 +89,7 @@ const Submit =async()=>{
       'Content-Type': 'multipart/form-data',
     },
   });
-  console.log(res)
+  console.log(res.data)
 }
 
 
@@ -108,7 +108,7 @@ return (
       </div>
       <div className='dashboard-tour-form'>
         <label>description:</label>
-        <input type="text" value={description} onChange={(e)=>setDescription(e.target.value)}/> 
+        <textarea type="text" value={description} onChange={(e)=>setDescription(e.target.value)}/> 
       </div>
       <div className='dashboard-tour-form'>
         <label>image:</label>
@@ -136,7 +136,7 @@ return (
       <h2 className='tour-places-header2'>about day</h2>
       <div className='tour-places-day-description-div'>
           <label>day description</label>
-          <input type="text" onChange={(e)=>DayDescription(e)} value={dayData[dayDataIndex].description}/>
+          <textarea type="text" onChange={(e)=>DayDescription(e)} value={dayData[dayDataIndex].description}/>
         </div>
         <h2 className='tour-places-header2'>search places</h2>
         <div className='tour-package-search-div'>

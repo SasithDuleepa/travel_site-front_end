@@ -1,0 +1,43 @@
+
+.Tour-card{
+    background-color: beige;
+        width: 280px;
+        height: 360px;
+
+}
+.Tour-card-img{
+    width: 100%;
+    height: 100%;
+}
+.Tour-card-info{
+    background-color: rgba(0, 0, 255, 0.348);
+    width: 100%;
+    height: 207px;
+    position:relative;
+    bottom: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Tour-card-info-header{
+    font-size: 22px;
+    font-weight: 700;
+    font-family: Playfair Display;
+    color: aliceblue;
+}
+.Tour-card-info-price{
+    font-size: 16px;
+    font-weight: 300;
+    color: aliceblue;
+}
+.Tour-card-info-info{
+    font-size: 11px;
+    font-weight: 400;
+    color: aliceblue;
+    text-align: center;
+}
+.Tour-card-info-more{
+    font-size: 20px;
+    font-weight: 500;
+    color: aliceblue;
+}

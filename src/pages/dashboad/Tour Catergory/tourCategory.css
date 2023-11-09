@@ -1,14 +1,21 @@
 
 
 .tourCategory{
-    background-color: aqua;
+    /* background-color: aqua; */
     display: flex;
-    justify-content: center
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
 }
 .tourcategory-sub{
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 1px solid black;
+    margin: 50px auto;
+    padding: 50px;
+    border-radius: 10px;
 }
 
 .tourcategory-line{
@@ -18,6 +25,63 @@
 .tourcategory-form{
     width: 400px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     margin: 20px 10px;
+}
+.tourcategory-p1{
+    text-align: center;
+    padding: 10px 1px;
+}
+.tourcategory-p2{
+    text-align: center;
+    padding: 10px 1px;
+}
+
+.tourcategory-result-div{
+    /* background-color: aquamarine; */
+    margin: 10px;
+}
+
+.tourcategory-tour-div{
+    background-color: antiquewhite;
+    margin: 10px;
+
+}
+.tourcategory-search-result{
+    display: flex;
+    align-items: center;
+    background-color: antiquewhite;
+    margin: 2px auto;
+    padding: 2px ;
+    width: 100%;
+    &:hover{
+        background-color: rgb(146, 146, 146);
+    }
+}
+.tourcategory-select-result{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: rgb(222, 190, 147);
+    margin: 2px auto;
+    padding: 2px ;
+    width: 100%;
+    &:hover{
+        background-color: rgb(146, 146, 146);
+    }
+}
+.tourcategory-delete-img{
+    width: 20px;
+}
+
+.tourcategory-add-button{
+    background-color: rgb(0, 0, 97);
+    padding: 10px 30px;
+    border: none;
+    border-radius: 25px;
+    color: aliceblue;
+    font-size: 20px;
+    position: relative;
+    right: -200px;
 }

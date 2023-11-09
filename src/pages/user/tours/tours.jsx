@@ -1,7 +1,70 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams,useHistory } from 'react-router-dom';
 import './tours.css';
+import axios from 'axios';
+
+import TourCard from './card/tourCard';
 
 export default function Tours() {
+  const history = useHistory();
+
+  let { page } = useParams();
+  const[Page,SetPage] = useState('')
+  const [dayTour, setDayTour] = useState([]);
+  const [tourCategory, setTourCategory] = useState([])
+
+  const GetTourCategory = async() =>{
+    const res = await axios.get('http://localhost:8080/tourcategory/getall')
+    // console.log(res.data)
+    setTourCategory(res.data)
+    SetPage("tourcategory")
+    console.log(tourCategory)
+  }
+  const GetDayTours = async() =>{
+    const res = await axios.get('http://localhost:8080/daytour/daytours')
+    console.log(res.data)
+    setDayTour(res.data)
+    console.log(dayTour)
+    SetPage('daytour')
+  }
+
+
+  useEffect(()=>{
+    if(page==='tourcategory'){
+      GetTourCategory()
+      setTourcatergoryBTN('Tour_button-active')
+      setDaytourBTN('Tour_button')
+
+    }else if(page === 'daytour'){
+      GetDayTours()
+      setDaytourBTN('Tour_button-active')
+      setTourcatergoryBTN('Tour_button')
+    }else{
+      SetPage('nopage')
+    }
+    
+  },[])
+
+
+
+  console.log(page)
+
+  //button handle
+  const[tourcatergoryBTN, setTourcatergoryBTN] = useState('Tour_button');
+  const[daytourBTN,setDaytourBTN] =useState('Tour_button')
+
+  const tourcatergoryBTNHandler=()=>{
+    setTourcatergoryBTN('Tour_button-active')
+    setDaytourBTN('Tour_button')
+    history.push('/tours/tourcategory');
+  }
+  const daytourBTNHandler=()=>{
+    setDaytourBTN('Tour_button-active')
+    setTourcatergoryBTN('Tour_button')
+    history.push('/tours/daytour');
+  }
+
+
   return (
     <div className='Tours'>
       <div className='Tour-head wrapper'><p className='Tour-over-layer'>Travel in Sri Lanka</p></div>
@@ -17,8 +80,34 @@ export default function Tours() {
        Tincidunt massa augue non ultrices urna etiam. Risus tincidunt aliquam ut nisl nec.</p>
 
        <div className='button-div'>
-        <a className='Tour_button'>Tour category</a>
-        <a className='Tour_button'>Day Tour Package</a>
+        <a className={tourcatergoryBTN} onClick={tourcatergoryBTNHandler}>Tour category</a>
+        <a className={daytourBTN} onClick={daytourBTNHandler}>Day Tour Package</a>
+       </div>
+       <div className='tours-card-container-div'>
+        <div className='tours-card-container-div-sub'>
+          {dayTour.length>0 ? dayTour.map((tour,index)=>{
+          return(
+            <div>
+                <TourCard title={tour.day_tour} key={index}/>
+            </div>
+
+                )
+            }
+            ):null
+          }
+
+          {tourCategory.length>0 ? tourCategory.map((tour,index)=>{
+            return(
+              <div>
+                <TourCard  title={tour.tourcategory_name} key={index}/>
+              </div>
+            )
+          }):null}
+        
+       
+
+        </div>
+
        </div>
     </div>
     

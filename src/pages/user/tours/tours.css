@@ -43,3 +43,25 @@
     color: aliceblue;
     font-weight: 500;
 }
+.Tour_button-active{
+    background-color: rgb(2, 73, 0);
+    padding: 9px 20px;
+    border-radius: 25px;
+    color: aliceblue;
+    font-weight: 500;
+}
+
+
+.tours-card-container-div{
+    background-color: aquamarine;
+    width: 100%;
+    height: 1000px;
+
+}
+.tours-card-container-div-sub{
+    background-color: aquamarine;
+    width: 100%;
+    height: 1000px;
+    display:flex ;
+    flex-wrap: wrap;
+}
