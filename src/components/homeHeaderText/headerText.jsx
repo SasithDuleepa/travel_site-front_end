@@ -4,7 +4,8 @@ import World from './../../assets/world tour 02 1.png'
 
 export default function HeaderText() {
   return (
-    <div className='header-text'>
+    <div className='header-text-main'>
+      <div className='header-text'>
       <div className='header-text-child1'>
         <p className='header-text-sub-p reveal'>Travel with</p>
         <h1 className='header-text-h1 reveal'>Sri Lanka Travel Experts</h1>
@@ -27,6 +28,9 @@ export default function HeaderText() {
           <img className='header-text-child2-img reveal' src={World} alt="" />
       </div>
     </div>
+
+    </div>
+    
   )
 }
 

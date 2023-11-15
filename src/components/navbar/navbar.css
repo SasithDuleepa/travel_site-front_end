@@ -1,591 +1,103 @@
 
-/* 
-.Nav-bar{
-    background-color: aqua;
-    width: 100%;
-    height: 80px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.Nav-bar-links-div-left{
- 
-    width: 300px;
-}
 
-.Nav-bar-links-div-center{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-   
-    width: 500px;
-}
-.Nav-bar-links-div-right{
-
-    width: 300px;
-}
-
-.nav-bar-img{
-    width: auto;
-    height: 70px;
-}
-.nav-bar-login-btn{
-    border: 2px solid black;
-    padding: 8px 25px;
-    border-radius: 20px;
-    font-weight: 400;
-    
-} */
-
-
-
-
-
-
-
-
-/* Mobile Portrait */
-@media screen and (max-width: 480px) {
-    
-    .Nav-bar-menu-div{
-        display: flex;
-        justify-content: flex-end;
-        height: max-content;
-       
-       
-    }
-    .nav-bar-menu-img{
-        width: 20px;
-        height: 20px;
-        margin: 5px;
-        transition: all 1s;
-        position: fixed;
-
-    }
-    .Nav-bar{
-        background-color: rgb(200, 52, 52);
-        width: 130px;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        margin-top: 0px;
-        z-index: 1;
-        padding-bottom: 0px;
-        transition: all .5s;
-        position: fixed;
-    }
-    .Nav-bar-active{
-        background-color: rgb(230, 15, 15);
-        width: 150px;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        z-index: 1;
-        position: absolute;
-    }
-    .Nav-bar-hidden{
-        background-color: rgb(38, 36, 34);
-        width: 150px;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        z-index: 1;     
-        .Nav-bar{
-            margin-left: -100px;
-            transition: all .5s;
-            background-color: transparent;
-        }
-        .Nav-bar-links-div-center{
-            display: none;
-            transition: all .5s;
-            position: fixed;
-        }
-        .nav-bar-img{
-            display: none;
-            transition: all .5s;
-        }
-    }
-    .Nav-bar-links-div-left{
-        /* background-color: aqua; */
+    .nav-main{
+        width: 100%;
         display: flex;
         justify-content: center;
-        align-items: center;
-        margin-top: 5px;
     }
-    .nav-bar-img{
-        width: 50px;
-        height: auto;
-    }
-    .Nav-bar-links-div-center{
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .nav-links{
-        margin: 10px 5px;
-        font-size: 10px;
-        text-decoration: none;
-    }
-    .nav-links-active{
-        margin: 10px 5px;
-        font-size: 10px;
-        color: rgb(0, 106, 255);
-        text-decoration: none;
-   }
-    .nav-bar-login-btn{
-        border-radius: 20px;
-        font-weight: 400;
-        margin-left: 50px;
-        padding-top: 50px;
-    }
-    .nav-bar-login-div{
-        display: none;
-    }
-}
-
-/* Mobile Landscape */
-@media screen and (min-width: 481px) and (max-width: 767px) {
-    .Nav-bar-menu-div{
-        display: flex;
-        justify-content: flex-end;
-        height: max-content;
-    }
-    .nav-bar-menu-img{
-        width: 20px;
-        height: 20px;
-        margin-top: 5px;
-        transition: all 1s;
-        position: fixed;
-    }
-    .Nav-bar{
-        background-color: rgb(219, 219, 219);
-        width: 130px;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        margin-top: 0px;
-        z-index: 1;
-        padding-bottom: 0px;
-        transition: all .5s;
-        position: fixed;
-    }
-    .Nav-bar-active{
-        background-color: rgb(241, 241, 241);
-        width: 150px;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        z-index: 1;
-        position: absolute;
-    }
-    .Nav-bar-hidden{
-        background-color: rgb(38, 36, 34);
-        width: 150px;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        z-index: 1;     
-        .Nav-bar{
-            margin-left: -100px;
-            transition: all .5s;
-            background-color: transparent;
-        }
-        .Nav-bar-links-div-center{
-            display: none;
-            transition: all .5s;
-        }
-        .nav-bar-img{
-            display: none;
-            transition: all .5s;
-        }
-    }
-    .Nav-bar-links-div-left{
-        /* background-color: aqua; */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 5px;
-    }
-    .nav-bar-img{
-        width: 60px;
-        height: auto;
-    }
-    .Nav-bar-links-div-center{
-        /* background-color: yellowgreen; */
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .nav-links{
-        margin: 10px 5px;
-        font-size: 12px;
-        text-decoration: none;
-    }
-    .nav-links-active{
-        margin: 10px 5px;
-        font-size: 12px;
-        color: rgb(0, 106, 255);
-        text-decoration: none;
-   }
-    .nav-bar-login-btn{
-        border-radius: 20px;
-        font-weight: 400;
-        margin-left: 50px;
-        padding-top: 50px;
-       
-    }
-    .nav-bar-login-div{
-        display: none;
-    }
-}
-
-/* Tablet */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    .Nav-bar-menu-div{
-        display: flex;
-        justify-content: flex-end;
-        height: max-content;
-       
-    }
-    .nav-bar-menu-img{
-        width: 20px;
-        height: 20px;
-        margin-top: 5px;
-        transition: all 1s;
-        position: fixed;
-    }
-    .Nav-bar{
-        background-color: rgb(219, 219, 219);
-        width: 130px;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        margin-top: 0px;
-        z-index: 1;
-        padding-bottom: 0px;
-        transition: all .5s;
-        position: fixed;
-    }
-    .Nav-bar-active{
-        background-color: rgb(241, 241, 241);
-        width: 150px;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        z-index: 1;
-        position: absolute;
-    }
-    .Nav-bar-hidden{
-        background-color: rgb(38, 36, 34);
-        width: 150px;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        z-index: 1;     
-        .Nav-bar{
-            margin-left: -100px;
-            transition: all .5s;
-            background-color: transparent;
-        }
-        .Nav-bar-links-div-center{
-            display: none;
-            transition: all .5s;
-        }
-        .nav-bar-img{
-            display: none;
-            transition: all .5s;
-        }
-    }
-    .Nav-bar-links-div-left{
-        /* background-color: aqua; */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 5px;
-    }
-    .nav-bar-img{
-        width: 80px;
-        height: auto;
-    }
-    .Nav-bar-links-div-center{
-        /* background-color: yellowgreen; */
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .nav-links{
-        margin: 10px 5px;
-        font-size: 12px;
-        text-decoration: none;
-    }
-    .nav-links-active{
-        margin: 10px 5px;
-        font-size: 12px;
-        color: rgb(0, 106, 255);
-        text-decoration: none;
-   }
-    .nav-bar-login-btn{
-        border-radius: 20px;
-        font-weight: 400;
-        margin-left: 50px;
-        padding-top: 50px;
-    }
-
-    .nav-bar-login-div{
-        display: none;
-       
-    }
-}
-
-/* Small Desktop */
-@media screen and (min-width: 1024px) and (max-width: 1279px) {
     .active {
-        background-color: rgba(255, 255, 255, 0.403);
-        visibility: visible;
-        transition: all .5s;
-        position: fixed;
-        z-index: 1;
-        width: 100%;
-        
-      }
-      .hidden {
-        position: fixed;
-        visibility: hidden;
-        transition: all 0.9s;
-        transform: translateY(-100%);
-        z-index: 1;
-        width: 100%;
-      }
-    .Nav-bar-menu-div{
-        display: none;
-    }
-    .Nav-bar{
-        background-color: rgba(238, 238, 238, 0.479);
-        width: 100%;
-        height: 65px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-    .Nav-bar-links-div-left{
-        /* background-color: azure; */
-        width: 200px;
-    }
-    .Nav-bar-links-div-center{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        /* background-color: azure; */
-        width: 500px;
-    }
-    .Nav-bar-links-div-right{
-        /* background-color: azure; */
-        width: 100px;
-    }
-    
-    .nav-bar-img{
-        width: auto;
-        height: 50px;
-    }
-    .nav-links{
-        margin: 10px 1px;
-        font-size: 14px;
-        text-decoration: none;
-    }
-    .nav-links-active{
-        margin: 10px 1px;
-        font-size: 14px;
-        color: rgb(0, 106, 255);
-        text-decoration: none;
-   }
-    .nav-bar-login-btn{
-        border: 2px solid black;
-        padding: 8px 25px;
-        border-radius: 20px;
-        font-weight: 400;
-        
-    }
-    .nav-bar-login-div{
-        display: flex;
-        justify-content: space-between;
-    }
-    .nav-bar-road-img{
-        width: 25px;
-        height: 25px;
-    }
-    .nav-bar-user-img{
-        width: 25px;
-        height: 25px;
-    }
-}
-
-/* Medium Desktop */
-@media screen and (min-width: 1280px) and (max-width: 1439px) {
-    .active {
-        background-color: rgba(0, 0, 0, 0.192);
-        visibility: visible;
-        transition: all .5s;
-        position: fixed;
-        z-index: 1;
-        width: 100%;
-        
-      }
-      .hidden {
-        position: fixed;
-        visibility: hidden;
-        transition: all 0.9s;
-        transform: translateY(-100%);
-        z-index: 1;
-        width: 100%;
-      }
-    .Nav-bar-menu-div{
-        display: none;
-    }
-    .Nav-bar{
-        background-color: rgba(255, 255, 255, 0.403);
-        width: 100%;
-        height: 80px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-    }
-    .Nav-bar-links-div-left{
-        /* background-color: azure; */
-        width: 200px;
-    }
-    .Nav-bar-links-div-center{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        /* background-color: azure; */
-        width: 500px;
-    }
-    .Nav-bar-links-div-right{
-        /* background-color: azure; */
-        width: 100px;
-    }
-    
-    .nav-bar-img{
-        width: auto;
-        height: 70px;
-    }
-    .nav-links{
-        margin: 10px 1px;
-        font-size: 18px;
-        text-decoration: none;
-    }
-    .nav-links-active{
-        margin: 10px 1px;
-        font-size: 18px;
-        color: rgb(0, 106, 255);
-        text-decoration: none;
-   }
-    .nav-bar-login-btn{
-        border: 2px solid black;
-        padding: 8px 25px;
-        border-radius: 20px;
-        font-weight: 400;
-        
-    }
-    .nav-bar-login-div{
-        display: flex;
-        justify-content: space-between;
-    }
-    .nav-bar-road-img{
-        width: 30px;
-        height: 30px;
-    }
-    .nav-bar-user-img{
-        width: 30px;
-        height: 30px;
-    }
-}
-
-/* Large Desktop */
-@media screen and (min-width: 1440px) {
-
-    .active {
-        background-color: rgba(0, 0, 0, 0.179);
+        background-color: rgb(37, 223, 16);
         visibility: visible;
         transition: all .5s;
         position: fixed;
         z-index: 2;
+      
         width: 100%;
+        /* top: 1px; */
         
       }
       .hidden {
         position: fixed;
-        visibility: hidden;
+        /* visibility: hidden; */
         transition: all 0.9s;
-        transform: translateY(-100%);
+        transform: translateY(-25%);
         z-index: 2;
+       
         width: 100%;
       }
-    .Nav-bar-menu-div{
-        display: none;
-    }
+
     .Nav-bar{
-        background-color: rgba(255, 255, 255, 0.079);
+        background-color: rgb(255, 255, 255);
         
         width: 100%;
-        height: 80px;
+        /* height: 80px; */
         display: flex;
         justify-content: space-around;
         align-items: center;
+        z-index: 2;
         
-       
     }
+    .nav-bar-upper-div{
+        width: 100%;
+        height: 30px;
+        background-color: blueviolet;
+    }
+
+
     .Nav-bar-links-div-left{
         /* background-color: azure; */
         width: 300px;
     }
+    .nav-bar-img{
+        width: auto;
+        height: 70px;
+    }
+
+
+
+
     .Nav-bar-links-div-center{
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
-        /* background-color: azure; */
+        /* background-color: rgb(34, 98, 98); */
         width: 600px;
+        height: 90px;
     }
     .nav-links{
         color: black;
         text-decoration: none;
         font-size: 20px;
         font-weight: 400;
-        padding:3px 0px;
+        padding:31px 5px;
+        font-family: var(--font_1);
+        /* background-color: antiquewhite; */
+
+        &:hover{
+            background-color: orange;
+        }
 
     }
     .nav-links-active{
         color: black;
+        background-color: orange;
+        padding:31px 5px;
         text-decoration: none;
         font-size: 20px;
+        font-family: var(--font_1);
         font-weight: 400;
-        padding:3px 0px;
-        border-bottom: 3px groove rgba(0, 0, 0, 0.872);
+        
+       
     }
+
+
+
+
     .Nav-bar-links-div-right{
         /* background-color: rgb(8, 45, 45); */
         width: 200px;
         
     }
-    
-    .nav-bar-img{
-        width: auto;
-        height: 70px;
-    }
-
-    .nav-bar-login-btn{
-        border: 2px solid black;
-        padding: 8px 25px;
-        border-radius: 20px;
-        font-weight: 400;
-        
-    }
     .nav-bar-login-div{
         display: flex;
         justify-content: space-between;
@@ -598,4 +110,13 @@
         width: 30px;
         height: 30px;
     }
-}
+    .nav-bar-login-btn{
+        border: 2px solid black;
+        padding: 8px 25px;
+        border-radius: 20px;
+        font-weight: 400;
+        
+    }
+    
+    
+

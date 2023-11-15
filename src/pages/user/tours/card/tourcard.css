@@ -1,8 +1,9 @@
 
 .Tour-card{
     background-color: beige;
-        width: 280px;
-        height: 360px;
+        width: 278px;
+        height: 357px;
+        margin: 20px;
 
 }
 .Tour-card-img{
@@ -10,34 +11,43 @@
     height: 100%;
 }
 .Tour-card-info{
-    background-color: rgba(0, 0, 255, 0.348);
+    background-color: rgba(0, 0, 0, 0.348);
     width: 100%;
-    height: 207px;
+    height: 161px;
     position:relative;
-    bottom: 210px;
+    bottom: 165px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .Tour-card-info-header{
     font-size: 22px;
-    font-weight: 700;
-    font-family: Playfair Display;
+    font-weight: 500;
+    font-family: poppins;
     color: aliceblue;
+    width: 90%;
+    text-align: center;
+    height: 45px;
+    overflow: hidden;
 }
-.Tour-card-info-price{
-    font-size: 16px;
-    font-weight: 300;
-    color: aliceblue;
-}
+
 .Tour-card-info-info{
     font-size: 11px;
     font-weight: 400;
     color: aliceblue;
     text-align: center;
+    margin-top: -10px;
+    height: 50px;
+    width: 90%;
+    overflow: hidden;
 }
 .Tour-card-info-more{
-    font-size: 20px;
-    font-weight: 500;
-    color: aliceblue;
+    background-color: orange;
+  padding: 8px 22px;
+  border-radius: 25px;
+  margin: 5px;
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+  font-weight: 500;
 }

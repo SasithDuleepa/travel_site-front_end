@@ -1,12 +1,20 @@
-.header-text{
-    position: relative;
+.header-text-main{
     width: 100%;
     
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
+    margin-top: 50px;
+}
+.header-text{
+    position: relative;
+    width: 1200px;
+    
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
     gap: 100px;
-    padding: 50px 10px 10px 10px;
+  
 }
 .header-text-child1{
     /* background-color: yellowgreen; */

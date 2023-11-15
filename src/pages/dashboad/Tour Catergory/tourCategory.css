@@ -76,7 +76,7 @@
 }
 
 .tourcategory-add-button{
-    background-color: rgb(0, 0, 97);
+    background-color:var(--color_1);
     padding: 10px 30px;
     border: none;
     border-radius: 25px;

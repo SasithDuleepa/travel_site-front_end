@@ -1,0 +1,27 @@
+
+.placecard{
+    background-color: aqua;
+    width:299px;
+    height: 392px;
+    display: flex;
+    flex-direction: column-reverse;
+   
+}
+.placecard-bottom-div{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.194);
+    height: 144px;
+    width: 299px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.placecard-header{
+    font-size: 25px;
+    font-weight: 500;
+    color: aliceblue;
+}
+.place_img{
+    /* width: auto; */
+    height: 100%;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './tours.css';
 import axios from 'axios';
 import Delete from '../../../assets/icons/delete.png'
@@ -9,11 +9,16 @@ export default function Tours()  {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
   const [price, setPrice] = useState('');
+  const[distance, setDistance] =useState('');
+  const[luxury, setLuxury] = useState('')
+  const [semiluxury, setSemiluxury] = useState('')
 
   
 const [dayData, setDayData] =useState([
   {day:1 ,
     description:null,
+    luxury:null,
+    semiluxury:null,
    places:[]
   }
 ])
@@ -82,9 +87,10 @@ const Submit =async()=>{
   formData.append('description', description);
   formData.append('file', image);
   formData.append('price', price);
+  formData.append('distance', distance);
   formData.append('dayData', JSON.stringify(dayData));
 
-  const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/tourpackage/addTourCategory`, formData, {
+  const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/tour/addTourCategory`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
@@ -94,6 +100,40 @@ const Submit =async()=>{
 
 
 
+//get hotels
+const[luxaryHotels,setLuxuryHotels] = useState([])
+const GetLuxuryHotels = async()=>{
+  const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/luxury`)
+  console.log(res.data)
+  setLuxuryHotels(res.data)
+
+}
+const[semiluxuryHotels,setSemiluxuryHotels]  =useState([])
+const GetSemiluxuryHotels = async() =>{
+  const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/semi`)
+  console.log(res.data)
+  setSemiluxuryHotels(res.data)
+}
+useEffect(()=>{
+  GetLuxuryHotels()
+  GetSemiluxuryHotels()
+},[])
+
+//set hotels
+const LuxuryHandler =(e) =>{
+  console.log(e.target.value);
+  const newdata = [...dayData]
+  newdata[dayDataIndex].luxury = e.target.value
+  setDayData(newdata)
+}
+
+const SemiluxuryHandler = (e) =>{
+  console.log(e);
+  const newdata = [...dayData]
+  newdata[dayDataIndex].semiluxury = e.target.value
+  setDayData(newdata)
+
+}
 
 
 return (
@@ -114,9 +154,14 @@ return (
         <label>image:</label>
         <input type="file" onChange={(e)=>setImage(e.target.files[0])} />
       </div>
+      
       <div className='dashboard-tour-form'>
-        <label>price:</label>
+        <label>price without hire and hotel:</label>
         <input type="text" value={price} onChange={(e)=>setPrice(e.target.value)} />
+      </div>
+      <div className='dashboard-tour-form'>
+        <label>distance:</label>
+        <input type="number" value={distance} onChange={(e)=>setDistance(e.target.value)} />
       </div>
     </div>
 
@@ -133,11 +178,49 @@ return (
         </a>
       </div>
       <div className='tour-package-place-div'>
-      <h2 className='tour-places-header2'>about day</h2>
-      <div className='tour-places-day-description-div'>
+        <h2 className='tour-places-header2'>about day</h2>
+        <div className='tour-places-day-description-div'>
           <label>day description</label>
           <textarea type="text" onChange={(e)=>DayDescription(e)} value={dayData[dayDataIndex].description}/>
         </div>
+
+
+        <h2 className='tour-places-header2'>add hotels</h2>
+        <div>
+          <div>
+            <label>luxary</label>
+            <select onChange={(e)=>LuxuryHandler(e)}>
+            <option>select hotel</option>
+              {luxaryHotels.map((hotel,index)=>{
+                return(
+                  
+                  <option key={index} value={hotel.hotel_id}>{hotel.hotel_name}</option>
+                )
+              
+              })}
+
+            </select>
+
+          </div>
+          <div>
+            <label>semi luxary</label>
+            <select onChange={(e)=>SemiluxuryHandler(e)}>
+            <option>select hotel</option>
+              {semiluxuryHotels.map((hotel,index)=>{
+                return(
+                  
+                  <option key={index} value={hotel.hotel_id}>{hotel.hotel_name}</option>
+                )
+              
+              })}
+
+            </select>
+          </div>
+        </div>
+
+
+
+
         <h2 className='tour-places-header2'>search places</h2>
         <div className='tour-package-search-div'>
 

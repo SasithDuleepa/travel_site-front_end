@@ -1,0 +1,145 @@
+.TourPreview{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.TourPreview-hero{
+    background-image: url("http://localhost:8080/images/Tour/heroimg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 424px;
+}
+.TourPreview-header{
+    display: flex;
+
+    width: 1195px;
+    justify-content: center;
+}
+.TourPreview-header-left{
+    background-color: aqua;
+    width: 40%;
+    padding: 20px 30px;
+    height: max-content;
+}
+.TourPreview-header-left-1{
+    display: flex;
+    gap: 20px;
+}
+
+.TourPreview-header-left-coupen{
+    display: flex;
+    align-items: center;
+    
+}
+.couponcode-p{
+    color: orange;
+}
+.TourPreview-header-left-input{
+    height: 30px;
+    border: 3px solid orange;
+    border-radius: 10px;
+}
+.TourPreview-header-left-btn{
+    background-color: orange;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: aliceblue;
+    font-size: 16px;
+    margin: 10px
+}
+.TourPreview-header-left-line{
+    border-bottom: 2px solid black;
+    width: 90%;
+    margin: 2px auto;
+}
+.TourPreview-header-left-2{
+    display: flex;
+}
+.TourPreview-header-left-p{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+
+
+.TourPreview-header-right{
+    background-color: bisque;
+    width: 66%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.TourPreview-center-line{
+    border-bottom: 2px solid black;
+    width: 90%;
+    margin: 50px auto;
+}
+.TourPreview-center-description{
+    text-align: center;
+    margin: 10px 50px;
+}
+
+
+
+
+
+.TourPreview-center{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    height: 400px;
+}
+.TourPreview-center-left{
+    width: 40%;
+    background-color: aqua;
+}
+.TourPreview-center-right{
+    width: 40%;
+    background-color: rgb(175, 226, 226);
+    height: 400px;
+    overflow-y: scroll;
+}
+
+
+.TourPreview-center-right-day{
+    border-bottom: 2px solid black;
+    
+
+}
+.TourPreview-center-right-day-main{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.TourPreview-center-right-expand-div{
+    width: 100%;
+    background-color: yellow;
+    /* height: 100px; */
+}
+.close{
+    display: none;
+}
+
+.TourPreview-expand-p1{
+    font-size: 16px;
+
+}
+.TourPreview-expand-place-p1{
+
+}

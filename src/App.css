@@ -14,9 +14,36 @@
 :root{
   --color_1:  rgba(26, 56, 90, 1);
   --color_2:   rgba(118, 154, 190, 1);
-  --color_3:  rgba(228, 111, 68, 1);
+  --color_3:  rgb(188, 58, 11);
   --color_4: rgba(232, 170, 155, 1);
   --color_5:  rgba(220, 213, 220, 1);
 
+  --color_link:rgb(221, 114, 20);
+
+  --font_1:'popins';
+  --font_2:'';
+
+
+
+
+}
+
+
+.dashboad-add-btn{
+  background-color: var(--color_1);
+  padding: 10px 30px;
+  border: none;
+  border-radius: 25px;
+  font-size: 22px;
+  color: aliceblue;
+  text-transform: uppercase;
+}
+.readme-btn{
+  background-color: orange;
+  padding: 20px 30px;
+  border-radius: 25px;
+  margin: 5px;
+  color: aliceblue;
+  text-decoration: none;
 
 }

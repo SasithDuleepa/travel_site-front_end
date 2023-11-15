@@ -4,6 +4,7 @@
     height: 100vh;
     position: fixed;
     margin-top: -22px;
+    overflow-y: scroll;
 
 }
 .sidebar_logo_container{

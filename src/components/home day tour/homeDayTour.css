@@ -1,16 +1,15 @@
 .HomeDayTour{
-    /* background-color: rgb(248, 73, 73); */
+    width: 100%;
     display: flex;
     justify-content: center;
-    padding: 100px 100px;
-
+    margin-top: 100px;
 }
 .HomeDayTour-main{
-    /* width: 1500px; */
-    background-color: yellow;
-    padding: 0px 100px;
-    margin: auto 500px;
-    height: 620px;
+    width: 1276px;
+    height: 662;
+    /* background-color: yellow; */
+
+
     display: flex;
     justify-content: space-between;
     align-items:flex-end;
@@ -35,8 +34,8 @@
 
 .HomeDayTour-carousel-info{
     background-color: rgb(255, 255, 255);
-    width: 365px;
-    height: 554px;
+    width: 618px;
+    height: 662px;
     box-shadow: -7px -9px 16px 0px rgba(29, 29, 31, 0.1);
     padding: 20px 50px 20px 100px;
 
@@ -59,7 +58,18 @@
 }
 
 
-
+.home-daytour-reacd-more{
+    position: absolute;
+    margin-top: 140px;
+    margin-left: -15px;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: orange;
+    padding: 10px 40px;
+    border-radius: 25px;
+    color: black;
+    text-decoration: none;
+}
 
 .start-animation {
     animation: slide-up 1s ease-in-out;
@@ -67,7 +77,7 @@
   
 @keyframes slide-up {
     0% {
-        transform: translateY(500px);
+        transform: translateY(200px);
         opacity: 0;
     }
     100% {
@@ -86,7 +96,7 @@
     font-weight: 400;
     transition: 1s;
     /* background-color: aqua; */
-    height: 240px;
+    height: 200px;
     overflow: hidden;
 }
 .HomeDayTour-carousel-info-price-div{
@@ -98,21 +108,44 @@
     font-weight: 600;
 }
 .HomeDayTour-carousel-readmore{
-    font-size: 26px;
-    font-weight: 600;
-    color: rgb(218, 121, 56);
+    font-size: 15px;
+    font-weight: 500;
+    background-color: orange;
+    padding: 10px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: black;
+    transition: 1s;
+   
 }
 
+.HomeDayTour-arrow-right{
 
+
+}
 .HomeDayTour-carousel-forward-btn{
-    display: none;
+    position: absolute;
+    margin-top: 470px;
+    margin-left: -1220px;
+    background-color: transparent;
+    border: none;
+
+}
+.HomeDayTour-arrow-left{
+
 }
 .HomeDayTour-carousel-backward-btn{
-    display: none;
+    position: absolute;
+    /* z-index: 1; */
+    margin-left: -1380px;
+    margin-top: 470px;
+    background-color: transparent;
+    border: none;
+    
 }
 
 
 .DayTourCarousel-img{
-    width: 609px;
-    height: 549px;
+    width: 658px;
+    height: 602px;
 }

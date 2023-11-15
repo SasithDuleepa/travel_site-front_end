@@ -80,15 +80,15 @@ export default function Tours() {
        Tincidunt massa augue non ultrices urna etiam. Risus tincidunt aliquam ut nisl nec.</p>
 
        <div className='button-div'>
-        <a className={tourcatergoryBTN} onClick={tourcatergoryBTNHandler}>Tour category</a>
-        <a className={daytourBTN} onClick={daytourBTNHandler}>Day Tour Package</a>
+        <a className={tourcatergoryBTN} href='/tours/tourcategory' onClick={tourcatergoryBTNHandler}>Tour category</a>
+        <a className={daytourBTN}  href='/tours/daytour'  onClick={daytourBTNHandler}>Day Tour Package</a>
        </div>
        <div className='tours-card-container-div'>
         <div className='tours-card-container-div-sub'>
           {dayTour.length>0 ? dayTour.map((tour,index)=>{
           return(
             <div>
-                <TourCard title={tour.day_tour} key={index}/>
+                <TourCard title={tour.day_tour} link={`/daytour/${tour.day_tour}`}  img={`http://localhost:8080/daytour/daytourimg?file=${tour.img}`}  key={index}/>
             </div>
 
                 )
@@ -99,12 +99,12 @@ export default function Tours() {
           {tourCategory.length>0 ? tourCategory.map((tour,index)=>{
             return(
               <div>
-                <TourCard  title={tour.tourcategory_name} key={index}/>
+                <TourCard  title={tour.tourcategory_name} link={`/tourcategory/${tour.tourcategory_id}`} img={`http://localhost:8080/tourcategory/img?file=${tour.tourcategory_img}`} key={index}/>
               </div>
             )
           }):null}
         
-       
+
 
         </div>
 

@@ -20,7 +20,7 @@ import Images from './pages/dashboad/Images/images';
 import DayTour from './pages/dashboad/day tour/dayTour';
 import Tour from './pages/dashboad/tours/tours';
 import PlaceCategory from './pages/dashboad/place_category/placeCategory';
-
+import PopularDestinations from './pages/dashboad/popular destinations/popularDestinations';
 import Carousel1 from './components/carousel/carousel1';
 
 
@@ -37,6 +37,10 @@ import Profile from './pages/user/profile/profile';
 import PlaceReview from './pages/user/placeReview/placeReview';
 
 import HomeCarousel from './components/home carousel/HomeCarousel';
+import TourPreview from './pages/user/tour preview/tourPreview';
+import Daytour_preview from './pages/user/daytour preview/daytour_preview';
+import TCPriview from './pages/user/tour category preview/tcPriview';
+
 
 
 
@@ -59,29 +63,31 @@ function App() {
           <Route exact path="/" component={Home}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/register" component={Register}/>
-
           <Route exact path="/carousel" component={HomeCarousel}/>
-
           <Route exact path="/cart/:id" component={Cart} />
           <Route exact path="/about" component={About} />
           <Route exact path="/contactus" component={Contactus} />
           <Route exact path="/tours/:page" component={Tours} />
+          <Route exact path="/tour/:tour" component={TourPreview} />
+          <Route exact path="/tourcategory/:tour" component={TCPriview} />
 
           <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/placeReview/:id" component={PlaceReview} />
+          <Route exact path="/daytour/:id" component={Daytour_preview}/>
 
 
 
           <Route exact path="/dashboad/addplace" component={Add_place}/>
           <Route exact path="/dashboad/tourCategory" component={TourCategory}/>
-          {/* <Route exact path="/dashboad/hotels" component={Hotels}/>
+          <Route exact path="/dashboad/hotels" component={Hotels}/>
           <Route exact path="/dashboad/vehicals" component={Vehicals}/>
-          <Route exact path="/dashboad/agents" component={Agents}/> */}
+          <Route exact path="/dashboad/agents" component={Agents}/>
           <Route exact path="/dashboad/tour" component={Tour}/>
           <Route exact path="/dashboad/daytour" component={DayTour}/>
 
           <Route exact path="/dashboad/placeCategory" component={PlaceCategory}/>
           <Route exact path="/dashboad/images" component={Images}/>
+          <Route exact path="/dashboad/popular_destinations" component={PopularDestinations}/>
           
           
         </Switch>

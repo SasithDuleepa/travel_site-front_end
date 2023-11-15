@@ -1,0 +1,16 @@
+.PopularDestinations{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.PopularDestinations-header{
+
+}
+.PopularDestinations-line{
+    border: 1px solid black;
+    width: 80%;
+}
+.PopularDestinations-form-div{
+    border: 1px solid black;
+}

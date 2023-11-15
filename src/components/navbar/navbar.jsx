@@ -32,28 +32,24 @@ export default function Navbar() {
 
     const { y, x, scrollDirection } = useScroll();  
 
-  const styles = {
-    active: {
-      visibility: "visible",
-      transition: "all 0.5s",
-      
-    },
-    hidden: {
-      visibility: "hidden",
-      transition: "all 0.5s",
-      transform: "translateY(-100%)"
-    }
-  }
+  const currentPath = window.location.pathname;
   return (
-    <nav className= {!scrollDirection || scrollDirection === "down" ? 'active': 'hidden'}    >
-    <div className={menuClass}>
-        {/* <div className='Nav-bar-menu-div'>
-            <img src={icon} alt="Menu" className='nav-bar-menu-img' onClick={iconHandler}/>
-        </div> */}
+    
+    <div
+     className='nav-main'
+     >
+      
+
+
+
+        
+        <nav className= {!scrollDirection || scrollDirection === "down" ? 'active': 'hidden'}    >
+        <div className='nav-bar-upper-div'></div>
+        
+      
         <div className='Nav-bar'>
-        <div className='Nav-bar-menu-div'>
-            <img src={icon} alt="Menu" className='nav-bar-menu-img' onClick={iconHandler}/>
-        </div>
+          
+
 
 
 
@@ -63,30 +59,29 @@ export default function Navbar() {
             <img src={Icon} alt="Logo" className='nav-bar-img'/>
         </div>
         <div className='Nav-bar-links-div-center'>
-            <a className='nav-links-active' href='/'>Home</a>
-            <a className='nav-links' href='/tours'>Tours</a>
-            <a className='nav-links' href='/popular_destination'>Popular Destinations</a>
-            <a className='nav-links' href='about'>About Us</a>
-            <a className='nav-links' href='contactus'>Contact</a>
+            <a className={currentPath==='/'?'nav-links-active': 'nav-links'}  href='/'>Home</a>
+            <a className={currentPath==='/tours/tourcategory'?'nav-links-active': 'nav-links'} href='/tours/tourcategory'>Tours</a>
+            <a className={currentPath==='/popular_destination'?'nav-links-active': 'nav-links'}  href='/popular_destination'>Popular Destinations</a>
+            <a className={currentPath==='/about'?'nav-links-active': 'nav-links'}  href='/about'>About Us</a>
+            <a className={currentPath==='/contactus'?'nav-links-active': 'nav-links'}  href='/contactus'>Contact</a>
         </div>
         <div className='Nav-bar-links-div-right'>
-            
-            
             {login ? 
             <div className='nav-bar-login-div'>
             <a href='/cart/1'><img src={Road} alt="Road" className='nav-bar-road-img'/></a>
             <a href='/profile/1'><img src={User} alt="User" className='nav-bar-user-img'/></a>
-        </div>
-        :
-        <a className='nav-bar-login-btn'>Login</a>}
+            </div>
+          :
+            <a className='nav-bar-login-btn'>Login</a>}
         </div>
 
 
 
         </div>
+        </nav>
 
     </div>
-    </nav>
+   
   )
 }
 

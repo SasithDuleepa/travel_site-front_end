@@ -6,6 +6,9 @@ import Carousel from "react-simply-carousel";
 import Arrow from './../../assets/icons/arrow-right.png';
 import Sinharaja from './../../assets/Sinharaja.png'
 
+import LeftArrow from './../../assets/icons/Left Arrow.png';
+import RightArrow from './../../assets/icons/Right Arrow.png';
+
 export default function HomeDayTour() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeSlide_, setActiveSlide_] = useState(0);
@@ -63,56 +66,16 @@ export default function HomeDayTour() {
               <p className={`HomeDayTour-carousel-price ${isLoaded ? 'start-animation' : ''}`}>${daytours[activeSlide_].price}</p>
 
              </div>
-             <a className={`HomeDayTour-carousel-readmore ${isLoaded ? 'start-animation' : ''}`} href='/tours/daytour'>Read more...</a>
+             <a className={`HomeDayTour-carousel-readmore ${isLoaded ? 'start-animation' : ''}`}  href={`/daytour/${daytours[activeSlide_].day_tour_id}`}>Read more</a>
             
+             <a className='home-daytour-reacd-more' href='/tours/daytour'>Read More</a>
           </div>
+
           :null
           }
+
           
-
-             
-
-        
-
-
-
-
-
-
-
-        {/* <div className='HomeDayTour-carousel-info'>
-
-          <h1 className='HomeDayTour-carousel-info-h1'>Day Tour Packages</h1>
-          {daytours.length > 0 ?
-          <p className={`HomeDayTour-carousel-info-p1 ${isLoaded ? 'start-animation' : ''}`}>{daytours[activeSlide].day_tour}</p>
-          :null
-          }
           
-          <p className='HomeDayTour-carousel-info-p2'>Lorem ipsum dolor sit amet consectetur. 
-            Pellentesque enim vestibulum sapien pellentesque
-             sagittis ac massa felis. Nisi pharetra ultricies vel sollicitudin.
-              Convallis netus facilisi phasellus purus laoreet eu.
-               Hac sit ultricies in sed enim tortor eros commodo.
-                Dolor elit magna sem blandit purus a pretium. 
-                Tincidunt vitae in mi nibh ut arcu sodales nunc vitae. Ultricies sollicitudin id orci pellentesque morbi tempor.
-             Odio tellus enim velit tellus massa etiam aenean pellentesque. Tortor.</p>
-             <div className='HomeDayTour-carousel-info-price-div'>
-              <p className='HomeDayTour-carousel-price-p'>price :</p>
-              <p className='HomeDayTour-carousel-price'>$77</p>
-             </div>
-             <a className='HomeDayTour-carousel-readmore'>Read more...</a>
-
-        </div> */}
-
-
-
-
-
-
-
-
-
-
 
 
         <div>
@@ -129,11 +92,11 @@ export default function HomeDayTour() {
 
         onRequestChange={activeslideHandler}
         forwardBtnProps={{
-          children: <img className="arrow-right" src={Arrow} />,
+          children: <img className="HomeDayTour-arrow-right" src={LeftArrow} />,
           className: "HomeDayTour-carousel-forward-btn",
         }}
         backwardBtnProps={{
-          children: <img className="arrow-left" src={Arrow} />,
+          children: <img className="HomeDayTour-arrow-left" src={RightArrow} />,
           className: "HomeDayTour-carousel-backward-btn",
         }}
         dotsNav={{
