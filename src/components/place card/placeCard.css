@@ -1,0 +1,51 @@
+.placecard{
+    width: 280px;
+    height: 358px;
+    background-color: antiquewhite;
+    margin:5px;
+}
+.placecard-img{
+
+}
+.placecard_info{
+    background-color: rgba(0, 0, 0, 0.36);
+    height: 156px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.placecard-info-title{
+    font-size: 22px;
+    font-weight: 500;
+    color: aliceblue;
+    font-family: Poppins;
+    margin-top: 10px;
+    width: 250px;
+    height: 30px;
+    overflow: hidden;
+    text-align: center;
+}
+.placecard-info-info{
+    font-size: 11px;
+    font-weight: 300;
+    color: aliceblue;
+    font-family: Poppins;
+    text-align: center;
+    margin-top: -15px;
+    width: 95%;
+    height: 50px;
+    overflow: hidden;
+
+}
+.placecard-info-more{
+    background-color: orange;
+    padding: 8px 15px;
+    border-radius: 25px;
+
+}
+
+
+
+

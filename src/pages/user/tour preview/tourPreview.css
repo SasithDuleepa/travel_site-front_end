@@ -116,6 +116,8 @@
 }
 
 
+
+
 .TourPreview-center-right-day{
     border-bottom: 2px solid black;
     
@@ -142,4 +144,94 @@
 }
 .TourPreview-expand-place-p1{
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.TourPreview_bottom-div{
+
+}
+.TourPreview_bottom-btn-div{
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    width: 1000px;
+    margin: 50px auto 20px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.TourPreview_bottom-btn{
+    background-color: rgb(0, 0, 102);
+    padding: 7px 15px;
+    border-radius: 25px;
+    border: none;
+    margin: 10px auto;
+    color: aliceblue;
+}
+.TourPreview_bottom-info-div{
+    width: 100%;
+    background-color: aqua;
+
+}
+
+
+
+.TourPreview-bottom-1{
+    display: flex;
+}
+.TourPreview-bottom-1-left{
+    background-color: aquamarine;
+
+    width: 50%;
+}
+.TourPreview-bottom-1-right{
+    background-color: rgb(68, 238, 181);
+
+    width: 50%;
+}
+
+
+.TourPreview-bottom-2{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.TourPreview-bottom-2-map{
+    width: 90%;
+    height: 400px;
+    background-color: yellowgreen;
+}
+
+
+
+
+.TourPreview-bottom-3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+
+
+
+
+.deactive{
+    background-color: rgb(255, 255, 255);
+    padding: 7px 15px;
+    border-radius: 25px;
+    border: none;
+    margin: 10px auto;
+    color: rgb(0, 0, 0);
 }

@@ -3,42 +3,73 @@ import './tourPreview.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Calander from './../../../assets/icons/calendar.png'
+import PlaceCard from '../../../components/place card/placeCard';
 
 export default function TourPreview() {
-  const {tour}= useParams();
-  // console.log(tour)
+  const[btn1,setBtn1]=useState('deactive')
+  const[btn2,setBtn2]=useState('deactive')
+  const[btn3,setBtn3]=useState('TourPreview_bottom-btn')
 
-  const[Tour,setTour]= useState([])
-  //get tour
-  const GetTour = async() =>{
-    const res = await axios.get(`http://localhost:8080/tour/tour/${tour}`)
-    // console.log(res.data)
-    setTour(res.data[0]);
+  const buttonHandler =(index)=>()=>{
+    if(index===1){
+      setBtn1('TourPreview_bottom-btn')
+      setBtn2('deactive')
+      setBtn3('deactive')
 
+    }
+    if(index===2){
+      setBtn1('deactive')
+      setBtn2('TourPreview_bottom-btn')
+      setBtn3('deactive')
+
+    }
+    if(index===3){
+      setBtn1('deactive')
+      setBtn2('deactive')
+      setBtn3('TourPreview_bottom-btn')
+ 
+    }
+   
   }
+
+
+
+  const [expandclass,setExpandClass] = useState('TourPreview-center-right-expand-div')
+  const {tour}= useParams();
+  const [expandedDay, setExpandedDay] = useState(null);
+
+
+  const[TourData,setTourData]= useState([])
+  const[placesData, setPlacesData]= useState([])
+
+  //get tour and tour dates
+  const GetTour = async() => {
+    try {
+      const res = await axios.get(`http://localhost:8080/tour/tour/${tour}`);
+      setTourData(res.data)
+      // console.log(res_data)
+    } catch (error) {
+      console.error('Error fetching tour:', error);
+    }
+  };
+  
   useEffect(()=>{
     GetTour()
     
   },[tour])
 
-  useEffect(() => {
-    console.log(Tour);
-  }, [Tour]);
 
-  //get tour days
-  const GetTourdays = async() =>{
-    const res = await axios.get(`http://localhost:8080/tourdays/${Tour[0].tour_id}`)
-    console.log(res.data)
-  }
-  // useEffect(()=>{
-  //   GetTourdays()
-  // },[Tour])
 
-  const [expandclass,setexpandclass] = useState('TourPreview-center-right-expand-div')
-
-  const expandhandler = () =>{
-    {expandclass === 'TourPreview-center-right-expand-div' ? setexpandclass('close') : setexpandclass('TourPreview-center-right-expand-div')}
-   
+  const expandhandler = (tourDateId)=>async() =>{
+    setExpandClass(expandclass === 'TourPreview-center-right-expand-div' ? 'close' : 'TourPreview-center-right-expand-div');
+    setExpandedDay(tourDateId);
+    try {
+      const res =await axios.get(`http://localhost:8080/tour/tourplaces/${tourDateId}`)
+      console.log(res.data)
+      setPlacesData(res.data)
+    } catch (error) {
+      console.log(error)
+    }
   }
     return (
     <div className='TourPreview'>
@@ -94,20 +125,30 @@ export default function TourPreview() {
       <div className='TourPreview-center' >
         <div className='TourPreview-center-left' ></div>
         <div className='TourPreview-center-right' >
-          <div className='TourPreview-center-right-day'>
-            <div className='TourPreview-center-right-day-main'><p>Day</p>  <a onClick={expandhandler}>+</a></div>
-            <div className={expandclass}>
+
+          {TourData.length>0 ? TourData.map((tourDate,index)=>{
+            return(
+            <div key={index} className='TourPreview-center-right-day'>
+            <div className='TourPreview-center-right-day-main'><p>Day {tourDate.tour_date}</p>  <a key={index} onClick={expandhandler(tourDate.tour_date_id)}>+</a></div>
+            <div className={expandedDay === tourDate.tour_date_id ? expandclass : 'close'}>
+                  {/* ... (rest of the expanded content) */}
 
               <p className='TourPreview-expand-p1'>Lorem ipsum dolor sit amet consectetur.
                Velit quisque scelerisque vel faucibus ornare.
                Luctus sapien integer dolor egestas gravida ut eleifend quis. At massa mi
               </p>
 
+              {placesData.map((place,Index)=>{
+                return(
+                  <div>
+                    <p className='TourPreview-expand-place-p1'><b>{place.place_name}</b>{place.place_description}</p>
 
-              <p className='TourPreview-expand-place-p1'>
-                <b>place</b>Lorem ipsum dolor sit amet consectetur. Velit quisque scelerisque
-                vel faucibus ornare. Luctus sapien integer dolor egestas gravida ut eleifend quis. At massa mi
-              </p>
+                  </div>
+                  
+
+                )
+                  
+              })}
 
               <p className='TourPreview-expand-p1'>
                 Lorem ipsum dolor sit amet consectetur. Velit quisque scelerisque
@@ -118,8 +159,66 @@ export default function TourPreview() {
 
             </div>
             
-          </div>
+            </div>)
+          }) : <p>no days</p> }
+
+
+
           
+        </div>
+      </div>
+
+      <div className='TourPreview_bottom-div'>
+        <div className='TourPreview_bottom-btn-div'>
+          <a className={btn1} onClick={buttonHandler(1)}>Inclusions & Exclusions</a>
+          <a className={btn2} onClick={buttonHandler(2)}>Route Map</a>
+          <a className={btn3} onClick={buttonHandler(3)}>Travel Places</a>
+
+        </div>
+        <div className='TourPreview_bottom-info-div'>
+          {btn1==='TourPreview_bottom-btn'?
+           <div className='TourPreview-bottom-1'>
+            <div className='TourPreview-bottom-1-left'>
+              <p>Inclusions</p>
+              <ui>
+                <li>Private English Speaking driver for the entire Journey</li>
+                <li>Fuel & local insurance for the vehicle</li>
+                <li>All government taxes</li>
+              </ui>
+            </div>
+            <div className='TourPreview-bottom-1-right'>
+            <p>Exclusions</p>
+              <ui>
+                <li>Private English Speaking driver for the entire Journey</li>
+                <li>Fuel & local insurance for the vehicle</li>
+                <li>All government taxes</li>
+              </ui>
+            </div>
+          </div> 
+          :null}
+          {btn2==='TourPreview_bottom-btn'?
+          <div className='TourPreview-bottom-2'>
+             <div className='TourPreview-bottom-2'>
+            <div className='TourPreview-bottom-2-map'>
+
+            </div>
+          </div> 
+          </div>
+          :null}
+          {btn3==='TourPreview_bottom-btn'?
+          <div className='TourPreview-bottom-3'>
+          <PlaceCard/>
+          <PlaceCard/>
+          <PlaceCard/>
+          <PlaceCard/>
+          <PlaceCard/>
+        </div>:
+        null
+          }
+          
+          
+          
+
         </div>
       </div>
         

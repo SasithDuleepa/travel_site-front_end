@@ -21,7 +21,7 @@ export default function HomeCarousel() {
     //get all tour categories
     const Categories = async () => {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tourcategory/getall`);
-      // console.log(res.data);
+      console.log(res.data);
       setCategories(res.data);
     }
     useEffect(() => {
