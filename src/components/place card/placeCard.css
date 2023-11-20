@@ -1,22 +1,29 @@
-.placecard{
+.place-card{
     width: 280px;
     height: 358px;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
     margin:5px;
+    overflow: hidden;
 }
-.placecard-img{
+.place-card-img{
+    width: auto;
+    align-items: center;
+    justify-content: center;
+    height: 358px;
 
 }
-.placecard_info{
-    background-color: rgba(0, 0, 0, 0.36);
+.place-card_info{
+    background-color: rgba(0, 0, 0, 0.496);
     height: 156px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: -160px;
+    position: relative;
 
 }
-.placecard-info-title{
+.place-card-info-title{
     font-size: 22px;
     font-weight: 500;
     color: aliceblue;
@@ -27,7 +34,7 @@
     overflow: hidden;
     text-align: center;
 }
-.placecard-info-info{
+.place-card-info-info{
     font-size: 11px;
     font-weight: 300;
     color: aliceblue;
@@ -39,10 +46,12 @@
     overflow: hidden;
 
 }
-.placecard-info-more{
+.place-card-info-more{
     background-color: orange;
     padding: 8px 15px;
     border-radius: 25px;
+    text-decoration: none;
+    color: black;
 
 }
 

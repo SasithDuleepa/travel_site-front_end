@@ -95,15 +95,16 @@ if (!isLoaded) return (
         <div className='placceReview-sub-div'>
             <div className='placceReview-sub-div-1'>
               <p className='placeReview-title-2'>About Destination</p>
-              <p className='placeReview-text-2'>{DATA.place_description}</p>
-            </div>
-            <div className='placceReview-sub-div-2'>
-              <p className='placeReview-title-3'>Additional Details</p>
               <p  className='placeReview-text-3'> Visit time : {DATA.visit_time}</p>
               <p className='placeReview-text-3'> Ticket price : {DATA.visiting_fee} $</p>
+              
+            </div>
+            <div className='placceReview-sub-div-2'>
+              <a className='placceReview-sub-div-2-more'>Add to cart</a>
+              
             </div>
         </div>
-            
+        <p className='placeReview-text-2'>{DATA.place_description}</p>
         
         
         
@@ -118,7 +119,7 @@ if (!isLoaded) return (
            </GoogleMap>
 
         </div>
-        <p className='placeReview-title-5'>Images</p>
+        <p className='placeReview-title-5'>Gallery</p>
         <div className='placeReview-img-all-div'>
           {imgs ? imgs.map((img, index) => (
             <img key={index} src={`http://localhost:8080/places/placeimg?file=${img.img_name}`} className='placeReview-all-img'/>

@@ -2,8 +2,10 @@
     /* background-color: yellowgreen; */
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     
-    justify-content: center;
+
     
 }
 .placeReview{
@@ -11,6 +13,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     
 }
 .plecereview-img-div{
@@ -53,22 +56,29 @@
 
 .placeReview-title-2{
     
-    font-size: 40px;
+    font-size: 45px;
+    font-weight: 500;
+    font-family: Poppins;
 }
 .placeReview-text-2{
-    
+    text-align: center;
+    width: 1196px;
+    font-size: 16px;
+    font-weight: 300;
+    font-family: Poppins;
 }
 
-.placeReview-title-3{
 
-    font-size: 40px;
-}
 .placeReview-text-3{
 
-    font-size: 26px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 400;
     line-height: 10px;
+    font-family: Poppins;
 }
+
+
+
 .placceReview-sub-div{
     display: flex;
     justify-content: space-between;
@@ -80,11 +90,22 @@
 }
 .placceReview-sub-div-2{
     width: 500px;
+    height: 100%;
+    margin-top: 50px;
+    /* background-color: aqua; */
+}
+.placceReview-sub-div-2-more{
+    background-color: orange;
+    padding: 10px 30px;
+    position: relative;
+    right: -300px;
 }
 
 .placeReview-title-4{
     text-align: center;
-    font-size: 40px;
+    font-size: 45px;
+    font-weight: 500;
+    font-family: poppins;
 }
 
 
@@ -94,13 +115,15 @@
     justify-content: center;
 }
 .map-container{
-    width: 1300px;
-    height: 800px;
+    width: 1196px;
+    height: 717px;
 }
 
 .placeReview-title-5{
     text-align: center;
-    font-size: 40px;
+    font-size: 45px;
+    font-weight: 500;
+    font-family: poppins;
 }
 
 .placeReview-img-all-div{

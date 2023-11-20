@@ -88,7 +88,7 @@ export default function Tours() {
           {dayTour.length>0 ? dayTour.map((tour,index)=>{
           return(
             <div>
-                <TourCard title={tour.day_tour} link={`/daytour/${tour.day_tour}`}  img={`http://localhost:8080/daytour/daytourimg?file=${tour.img}`}  key={index}/>
+                <TourCard title={tour.day_tour} link={`/daytour/${tour.day_tour_id}`}  img={`http://localhost:8080/daytour/daytourimg?file=${tour.img}`}  key={index}/>
             </div>
 
                 )

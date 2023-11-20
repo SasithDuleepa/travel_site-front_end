@@ -15,20 +15,24 @@
 .TourPreview-header{
     display: flex;
 
-    width: 1195px;
+    width: 1200px;
     justify-content: center;
+    margin: 30px auto;
 }
 .TourPreview-header-left{
-    background-color: aqua;
-    width: 40%;
-    padding: 20px 30px;
-    height: max-content;
+    /* background-color: aqua; */
+    
+    padding: 20px 20px;
+   
 }
 .TourPreview-header-left-1{
     display: flex;
     gap: 20px;
 }
-
+.TourPreview-header-left-p{
+    font-size: 20px;
+    font-weight: 400;
+}
 .TourPreview-header-left-coupen{
     display: flex;
     align-items: center;
@@ -47,29 +51,53 @@
     border: none;
     padding: 10px 20px;
     border-radius: 25px;
-    color: aliceblue;
+    color: rgb(0, 0, 0);
     font-size: 16px;
     margin: 10px
 }
 .TourPreview-header-left-line{
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.245);
     width: 90%;
-    margin: 2px auto;
+    margin: 5px auto;
+    margin-bottom: 25px;
 }
-.TourPreview-header-left-2{
-    display: flex;
-}
-.TourPreview-header-left-p{
-    font-size: 20px;
-    font-weight: 400;
+.TourPreview-header-book-btn{
+    background-color: orange;
+    padding: 10px 30px;
+    border-radius: 10px;
+    position: absolute;
+    margin: 5px auto;
+    
 }
 
+
+
+.TourPreview-header-info{
+    display: flex;
+    gap: 20px;
+    height: 10px;
+    align-items: center;
+}
+.TourPreview-header-info-p{
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(106, 106, 106);
+}
 
 
 
 .TourPreview-header-right{
-    background-color: bisque;
-    width: 66%;
+    /* background-color: bisque; */
+    height: 320px;
+    width: 792px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.TourPreview-header-right-carousel{
+    width: 776px;
+    height: 100%;
+    
 }
 
 
@@ -84,13 +112,13 @@
 
 
 .TourPreview-center-line{
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid rgba(99, 99, 99, 0.834);
     width: 90%;
     margin: 50px auto;
 }
 .TourPreview-center-description{
     text-align: center;
-    margin: 10px 50px;
+    margin: 10px 50px 50px 50px;
 }
 
 
@@ -105,11 +133,13 @@
     height: 400px;
 }
 .TourPreview-center-left{
-    width: 40%;
+    width: 550px;
+    height: 409px;
     background-color: aqua;
 }
 .TourPreview-center-right{
-    width: 40%;
+    width: 606px;
+    height: 411px;
     background-color: rgb(175, 226, 226);
     height: 400px;
     overflow-y: scroll;
@@ -179,7 +209,8 @@
 }
 .TourPreview_bottom-info-div{
     width: 100%;
-    background-color: aqua;
+    /* background-color: aqua; */
+    margin-bottom: 30px;
 
 }
 

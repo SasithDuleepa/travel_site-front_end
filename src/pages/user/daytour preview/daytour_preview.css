@@ -1,0 +1,194 @@
+.daytour-preview{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.daytour-preview-hero{
+    background-image: url("http://localhost:8080/images/Tour/heroimg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 424px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.daytour-preview-hero-title{
+    font-size: 70px;
+    color: aliceblue;
+    
+}
+
+
+.daytour-preview-top{
+    display: flex;
+    justify-content: center;
+    width: 1195px;
+    margin: 50px auto;
+}
+.daytour-preview-top-left{
+    /* background-color: aquamarine; */
+    width: 403px;
+
+}
+.daytour-preview-top-left-p1{
+    font-size: 20px;
+    font-weight: 400;
+    font-family: poppins;
+}
+.daytour-preview-top-left-info{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.daytour-preview-top-left-code{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.daytour-preview-top-left-code-p1{
+    font-size: 20px;
+    font-weight: 400;
+    color: orange;
+    font-family: poppins;
+}
+.daytour-preview-top-left-code-input{
+    width: 125px;
+    height: 25px;
+    border: 3px solid orange;
+    border-radius: 5px;
+}
+.daytour-preview-top-left-code-btn{
+    background-color: orange;
+    padding: 5px 28px;
+    border-radius: 25px;
+    
+}
+.daytour-preview-top-left-line{
+    border-bottom: 2px solid black;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 40px;
+}
+.daytour-preview-top-left-book{
+    background-color: orange;
+    padding: 10px 25px;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 10px;
+   
+}
+.daytour-preview-top-right{
+    background-color: blue;
+    width: 792px;
+    height: 320px;
+}
+
+
+
+
+
+
+.daytour-center-line{
+    border-bottom: 2px solid black;
+    width: 90%;
+}
+.daytour-center-info{
+    width: 80%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+
+
+
+
+
+.daytour-preview-center{
+    display: flex;
+    justify-content: center;
+    width: 1195px;
+    margin: 50px auto;
+}
+.daytour-preview-center-left{
+    width: 550px;
+    height: 409px;
+    background-color: aqua;
+}
+.daytour-preview-center-map-container{
+    width: 550px;
+    height: 409px;
+}
+.daytour-preview-center-right{
+    width: 606px;
+    height: 411px;
+    /* background-color: yellowgreen; */
+    overflow-y: scroll;
+    padding: 0px 50px;
+
+    
+
+}
+.daytour-preview-center-right-place-div{
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+
+
+
+
+
+
+
+
+.daytour-preview-bottom{
+
+}
+.daytour-preview-bottom-btn-div{
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    width: 1000px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-around
+}
+.daytour-preview-bottom-btn-active{
+    background-color: blue;
+    padding: 10px 30px;
+    border-radius: 25px;
+}
+.daytour-preview-bottom-info-div{
+    background-color: aqua;
+    height: 500px;
+}
+
+
+
+.daytour-preview-bottom-info-1{
+    display: flex;
+}
+.daytour-preview-bottom-info-1-left{
+    width: 50%;
+}
+.daytour-preview-bottom-info-1-right{
+
+}
+
+
+
+.daytour-preview-bottom-info-2{
+
+}
+.daytour-preview-bottom-info-3{
+
+}
