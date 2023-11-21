@@ -6,6 +6,7 @@ import Delete from './../../../assets/icons/delete.png'
 export default function DayTour() {
     const[name,setName] = useState('')
   const[description,setDescription] = useState('')
+  const[distance,setDistance]= useState(0)
   const[price,setPrice] = useState('')
   const[image,setImage] = useState('')
   const[startDescription,setStartDescription] = useState('')
@@ -75,6 +76,7 @@ const Add = async() =>{
     const formData = new FormData();
     formData.append('daytour', name);
     formData.append('description', description);
+    formData.append('distance', distance);
     formData.append('price', price);
     formData.append('file', image);
     formData.append('startDescription', startDescription);
@@ -83,6 +85,7 @@ const Add = async() =>{
     selectedPlaces.forEach((place, index) => {
       formData.append(`places[${index}][place]`, place.placeid);
       formData.append(`places[${index}][placeDescription]`, place.placeDescription);
+
     // formData.append('places[]', place.placename);
     });
   
@@ -95,6 +98,7 @@ const Add = async() =>{
     if (res.data.status === 200) {
       alert("category added successfully");
       setDescription('')
+      setDistance('')
       setImage('')
       setName('')
       setPrice('')
@@ -121,6 +125,10 @@ const Add = async() =>{
             <div className='daytour-form-div'>
                 <label>description</label>
                 <textarea type='text'    className='daytour-input' value={description} onChange={(e)=>setDescription(e.target.value)}/>
+            </div>
+            <div className='daytour-form-div'>
+                <label>distance</label>
+                <input type='number'    className='daytour-input' value={distance} onChange={(e)=>setDistance(e.target.value)}/>
             </div>
             <div className='daytour-form-div'>
                 <label>price</label>

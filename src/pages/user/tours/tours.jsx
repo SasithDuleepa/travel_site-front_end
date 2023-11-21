@@ -67,7 +67,8 @@ export default function Tours() {
 
   return (
     <div className='Tours'>
-      <div className='Tour-head wrapper'><p className='Tour-over-layer'>Travel in Sri Lanka</p></div>
+      <div className='Tour-head wrapper'>
+        <p className='Tour-over-layer'>Travel in Sri Lanka</p></div>
       <p className='Tour-description'>Lorem ipsum dolor sit amet consectetur.
        Leo vitae quam feugiat integer. Ac in scelerisque fames eu tempus diam in
         eleifend. Ac id urna ullamcorper suspendisse. Libero dictum vitae duis

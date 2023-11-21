@@ -8,9 +8,37 @@ import Carousel from "react-simply-carousel";
 import { GoogleMap, useLoadScript, MarkerF ,DirectionsRenderer, DirectionsService } from '@react-google-maps/api';
 import Icon from '../../../assets/icons/icons8-location-48.png';
 import Carousel_tp from './carousel/carousel_tp';
+import Edite from '../../../assets/icons/edit.png';
+
+import Fb from './../../../assets/icons/facebook.png'
+import Insta from './../../../assets/icons/instagram.png'
+import Twitter from './../../../assets/icons/twitter.png'
+
+import Plus from './../../../assets/icons/plus.png'
 
 export default function TourPreview() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const today = 
+  new Date().toISOString().slice(0, 10);
+  //pop up
+  const[pophotel,setPopHotel] = useState('Luxury')
+  const[poppassenger,setPopPassneger] = useState(0)
+  const[popup,setPopup] = useState('hide')
+  const[popDate , setPopDate] = useState(today)
+
+  const[total,setTotal] = useState(0)
+  const[hotel,setHotel] = useState('Luxury')
+  const[passenger,setPassenger] = useState(1)
+  const[Price,setPrice] = useState(0)
+  const[vehicle,setVehicle] = useState([])
+  const[distance,setDistance] = useState(0)
+  const[hotelPrice,setHotelPrice] = useState(0)
+
+
+  const[TourData,setTourData]= useState([])
+  const[placesData, setPlacesData]= useState([])
+  const[places,setPlaces] = useState([])
+  
 
   const[btn1,setBtn1]=useState('deactive')
   const[btn2,setBtn2]=useState('deactive')
@@ -45,13 +73,117 @@ export default function TourPreview() {
   const [expandedDay, setExpandedDay] = useState(null);
 
 
-  const[TourData,setTourData]= useState([])
-  const[placesData, setPlacesData]= useState([])
 
-  const[places,setPlaces] = useState([])
+ 
 
 
-  const[dayPlaces,setDayPlaces] =useState([])
+
+  //pop up
+  const PopUpHandler =() =>{
+    setPopup('tourpreview-popup')
+  
+  }
+  const EnterHandler = () =>{
+    setPassenger(poppassenger)
+    setHotel(pophotel)
+    setPopup('hide')
+  }
+  const CancelHandler = () =>{
+    setPopup('hide')
+  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8080/vehicles/${passenger}`);
+        console.log(res.data);
+        setVehicle(res.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData(); 
+  
+  }, [passenger]);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (TourData.length > 0) {
+        // Create an array to store all promises
+        const hotelPricePromises = TourData.map(async (tour) => {
+          let hotelprice = 0;
+  
+          if (hotel === 'Luxury') {
+            try {
+              const res = await axios.get(`http://localhost:8080/hotels/price/${tour.luxary_hotel}/${popDate}`);
+              hotelprice += res.data[0].price;
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          } else if (hotel === 'semi-luxury') {
+            try {
+              const res = await axios.get(`http://localhost:8080/hotels/price/${tour.semi_hotel}/${popDate}`);
+              hotelprice += res.data[0].price;
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          }
+  
+          return hotelprice;
+        });
+  
+        // Wait for all promises to resolve
+        const hotelPricesArray = await Promise.all(hotelPricePromises);
+  
+        // Calculate the total price
+        const totalHotelPrice = hotelPricesArray.reduce((total, price) => total + price, 0);
+  
+        // Now you can use totalHotelPrice as needed
+        console.log('Total Hotel Price:', totalHotelPrice);
+        setHotelPrice(totalHotelPrice);
+      
+      }
+    };
+  
+    fetchData();
+  }, [hotel, popDate, TourData]);
+  
+
+
+
+
+
+  useEffect(() => {
+    if (TourData.length > 0) {
+      setPrice(TourData[0].tour_price);
+      setDistance(TourData[0].distance);
+    }
+  }, [TourData]);
+  useEffect(() => {
+    if (vehicle.length > 0) {
+      let rate = vehicle[0].rate;
+      let distance_rate = distance * rate;
+      // console.log(distance_rate);
+      setTotal(distance_rate + Price +hotelPrice);
+    }
+  }, [vehicle, passenger, distance, Price,hotelPrice]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   //get tour and tour dates
   const GetTour = async() => {
@@ -69,11 +201,19 @@ export default function TourPreview() {
     setPlaces(res.data)
   }
   
-  useEffect(()=>{
-    GetTour()
-    GetPlaces()
-    
-  },[tour])
+  useEffect(() => {
+    const fetchData = async () => {
+      await GetTour();
+      await GetPlaces();
+    };
+
+    fetchData();
+
+    // Move setTotal here if necessary
+    // setTotal(defaultValue);
+
+  }, [tour]);
+
 
 
 
@@ -100,7 +240,7 @@ export default function TourPreview() {
       )
 
       const directionsCallback = res => {
-        console.log(res)
+        // console.log(res)
         if (res !== null && count.current < 2) {
           if (res.status === 'OK') {
             count.current += 1;
@@ -113,18 +253,68 @@ export default function TourPreview() {
       };
     return (
     <div className='TourPreview'>
-      <div className='TourPreview-hero'></div>
+      <div className={popup}>
+        <div  className='tourpreview-popup-main'>
+          <p className='tourpreview-popup-title'>Please select the hotel type and passenger count for tour tour.</p>
+          <div className='tourpreview-popup-form'>
+            <label className='tourpreview-popup-form-label'>Select the Hotel Type:</label>
+
+            <select className='tourpreview-popup-form-input' onChange={(e)=>setPopHotel(e.target.value)}>
+              <option value=''>Select</option>
+              <option value='Luxury'>Luxury</option>
+              <option value='semi-luxury' >Semi Luxury</option>
+            </select>
+          </div>
+          <div className='tourpreview-popup-form'>
+            <label className='tourpreview-popup-form-label'>Enter Passenger Count:</label>
+            <input className='tourpreview-popup-form-input' onChange={(e)=>setPopPassneger(e.target.value)}/>
+          </div>
+          <div className='tourpreview-popup-form'>
+            <label className='tourpreview-popup-form-label'>Enter Tour Date:</label>
+            <input type='date' className='tourpreview-popup-form-input' onChange={(e)=>setPopDate(e.target.value)}/>
+          </div>
+          <div className='tourpreview-popup-btn-div'>
+            <a className='tourpreview-popup-enter-btn' onClick={EnterHandler}>Enter</a>
+            <a className='tourpreview-popup-cancel-btn' onClick={CancelHandler}>Cancel</a>
+          </div>
+        </div>
+      </div>
+      <div className='TourPreview-hero'>
+        <p className='TourPreview-hero-title'>{TourData.length>0 ?TourData[0].tour_name:null}</p>
+        <div className='TourPreview-hero-route-div'>
+          <a className='TourPreview-hero-route' href='/'>Home/</a>
+          <a className='TourPreview-hero-route' href='/tours/tourcategory'>Day Tours/</a>
+          <a className='TourPreview-hero_route'>{TourData.length>0 ?TourData[0].tour_name:null}</a>
+        </div>
+        <div className='TourPreview-hero-media-div'>
+          <div className='TourPreview-hero-media'>
+            <img src={Fb}/>
+            <a className='TourPreview-hero-media-link'>facebook</a>
+          </div>
+          <div className='TourPreview-hero-media'>
+            <img src={Insta}/>
+            <a className='TourPreview-hero-media-link'>instergrame</a>
+          </div>
+          <div className='TourPreview-hero-media'>
+            <img src={Twitter}/>
+            <a className='TourPreview-hero-media-link'>twitter</a>
+          </div>
+          
+          
+          
+        </div>
+      </div>
 
       <div className='TourPreview-header'>
         <div className='TourPreview-header-left'>
           <div className='TourPreview-header-left-1'>
             <p className='TourPreview-header-left-p'>Package Price:</p>
-            <p className='TourPreview-header-left-p' >$150</p>
-            <p className='TourPreview-header-left-p'>$150</p>
+            <p className='TourPreview-header-left-p' >{total}</p>
           </div>
           <div className='TourPreview-header-info'>
-            <p  className='TourPreview-header-info-p'>Hotel Type : 3 star</p>
+            <p  className='TourPreview-header-info-p'>Hotel Type :{hotel}</p>
             <p className='TourPreview-header-info-p'>Passenger Count :2</p>
+            <a onClick={PopUpHandler}><img src={Edite}/></a>
           </div>
           <div className='TourPreview-header-left-coupen'>
             <p className='TourPreview-header-left-p couponcode-p'>Coupon Code : </p>
@@ -272,7 +462,7 @@ export default function TourPreview() {
           {TourData.length>0 ? TourData.map((tourDate,index)=>{
             return(
             <div key={index} className='TourPreview-center-right-day'>
-            <div className='TourPreview-center-right-day-main'><p>Day {tourDate.tour_date}</p>  <a key={index} onClick={expandhandler(tourDate.tour_date_id)}>+</a></div>
+            <div className='TourPreview-center-right-day-main'><p  className='TourPreview-center-right-day-main-p'>Day {tourDate.tour_date}</p>  <img  key={index} onClick={expandhandler(tourDate.tour_date_id)} src={Plus}/></div>
             <div className={expandedDay === tourDate.tour_date_id ? expandclass : 'close'}>
                   {/* ... (rest of the expanded content) */}
 
