@@ -55,16 +55,17 @@
 
 
 .tours-card-container-div{
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     width: 100%;
     
 
 }
 .tours-card-container-div-sub{
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     width: 100%;
     
     display:flex ;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 50px;
 }

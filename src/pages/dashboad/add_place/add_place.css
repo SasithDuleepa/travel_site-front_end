@@ -1,8 +1,9 @@
 .add-place{
     margin-left: 1px;
-    width: 83vw;
+    width: 100%;
     display: flex;
     justify-content: center;
+    height:1000pxt;
 }
 .add-place-sub{
     width: 1210px;
@@ -23,8 +24,9 @@
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    height: 85vh;
+
     margin-bottom: 50px;
+    padding-bottom: 200px;
     /* background-color: aqua; */
     }
     

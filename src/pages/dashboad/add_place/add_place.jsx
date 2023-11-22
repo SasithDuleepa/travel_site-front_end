@@ -5,6 +5,8 @@ import { GoogleMap, useLoadScript, MarkerF  } from '@react-google-maps/api';
 
 import Delete from './../../../assets/icons/delete.png'
 
+import EditePlace from '../edite place/editePlace';
+
     
 
 export default function Add_place() {
@@ -18,6 +20,8 @@ export default function Add_place() {
         lng:79.873046875,
         file:[]
       })
+      const [cardImg, setCardImg] = useState([]);
+      const [coverImgs, setCoverImgs] = useState([]);
       const Filehandler = (e) => {
         
         const selectedFile = e.target.files[0];
@@ -66,15 +70,19 @@ const removeFile =(index)=> (e) => {
           formData.append('fee', data.fee);
           formData.append('lat', data.lat);
           formData.append('lng', data.lng);
+          formData.append('cardImg', cardImg); 
+          formData.append('coverImgs', coverImgs);
           
           // Loop through the files and append them to the formData
           data.file.forEach((file, index) => {
-            formData.append('file', file);
+            formData.append('files', file);
           });
         
           // console.log(data);
         
           try {
+            console.log([...formData]); // Spread the FormData to convert it to an array for easier inspection
+
             const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/places/addplace`, formData, {
               headers: {
                 'Content-Type': 'multipart/form-data',
@@ -109,6 +117,7 @@ const removeFile =(index)=> (e) => {
         };
         
   return (
+    <>
     <div className='add-place'>
       <div className='add-place-sub'>
         <h1 className='header-Add_place'>ADD PLACE</h1>
@@ -150,6 +159,14 @@ const removeFile =(index)=> (e) => {
                         <textarea type='text' className='add_place_input-description' id='short' onChange={changeHandler} value={data.short} />
                     </div>
                     <div className='Add_place-form-sub-div'>
+                        <label className='Add_place-form-sub-div-label'>Card Image:</label>
+                        <input type='file' className='add_place_input'  onChange={(e)=>setCardImg(e.target.files[0])}  />
+                    </div>
+                    <div className='Add_place-form-sub-div'>
+                        <label className='Add_place-form-sub-div-label'>Cover Image:</label>
+                        <input type='file' className='add_place_input'  onChange={(e)=>setCoverImgs(e.target.files[0])}  />
+                    </div>
+                    <div className='Add_place-form-sub-div'>
                         <label className='Add_place-form-sub-div-label'>Images:</label>
                         <input type='file' placeholder='Upload' multiple={true} onChange={(e) => Filehandler(e)} className='add_place_input' />
 
@@ -186,6 +203,12 @@ const removeFile =(index)=> (e) => {
             </div>
         </div>
         </div>
+
+       
+    
     </div>
+     <EditePlace />
+    </>
+    
   )
 }

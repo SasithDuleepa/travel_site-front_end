@@ -66,10 +66,15 @@ export default function HomeDayTour() {
               <p className={`HomeDayTour-carousel-price ${isLoaded ? 'start-animation' : ''}`}>${daytours[activeSlide_].price}</p>
 
              </div>
-             <a className={`HomeDayTour-carousel-readmore ${isLoaded ? 'start-animation' : ''}`}  href={`/daytour/${daytours[activeSlide_].day_tour_id}`}>Read more</a>
-            
-             <a className='home-daytour-reacd-more' href='/tours/daytour'>Read More</a>
-          </div>
+             <div className={`HomeDayTour-carousel- ${isLoaded ? 'start-animation' : ''}`}>
+                <a className='HomeDayTour-carousel-readmore'   href={`/daytour/${daytours[activeSlide_].day_tour_id}`}>Read more</a>
+             </div>
+             
+            <div className='home-daytour-reacd-more-div'>
+              <a className='home-daytour-reacd-more' href='/tours/daytour'>Read More</a>
+            </div>
+            </div>
+             
 
           :null
           }

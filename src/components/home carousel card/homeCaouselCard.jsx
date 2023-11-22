@@ -14,7 +14,7 @@ export default function HomeCaouselCard(props) {
             <div className='homeCarouselCard__content-sub'>
             <p className='homeCarousel_title'>{props.title}</p>
             <p className='homeCarousel-description'>{props.description} </p>
-            <a className='homeCarousel-see_more' href={props.link}>see more</a>
+            <a className='homeCarousel-see_more' href={props.link}>Read More</a>
             </div>
             
         </div>

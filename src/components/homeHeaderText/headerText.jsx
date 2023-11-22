@@ -19,6 +19,8 @@ export default function HeaderText() {
                 Sit nec blandit sed enim a commodo quam suspendisse. Sed consectetur
                  molestie non elit porttitor ac auctor. Urna et sed risus sagittis elementum ut.
            Aenean commodo nullam rutrum enim suspendisse blandit ullamcorper nibh.</p>
+           <div className='reveal'><a className='headertext-more-btn'>Read More</a></div>
+           
         
 
       </div>
@@ -41,7 +43,7 @@ function reveal() {
   for (var i = 0; i < reveals.length; i++) {
     var windowHeight = window.innerHeight;
     var elementTop = reveals[i].getBoundingClientRect().top;
-    var elementVisible = 100;
+    var elementVisible = 110;
 
     // console.log(windowHeight);
     // console.log(elementTop);

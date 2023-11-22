@@ -110,6 +110,46 @@ figurecaption {
     color: aliceblue;
 }
 
+
+
+.home-header-main-sub2{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.507);
+    padding: 20px 10px;
+    z-index: 2;
+    bottom: 1px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.homeheader-input-div{
+    background-color: rgb(255, 255, 255);
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+.homeheader-input-1{
+    width: 180px;
+    height: 36px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    text-align: center;
+    
+}
+.homeheader-input-btn{
+    background-color: orange;
+    padding: 14px 50px;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: poppins;
+}
+.homeheader-input-center{
+    border-left: 2px solid rgb(110, 110, 110);
+    
+
+}
+
 /* keyframes*/
 @keyframes slideShow {
     0% {

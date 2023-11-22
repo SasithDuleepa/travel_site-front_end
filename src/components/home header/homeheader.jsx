@@ -14,6 +14,17 @@ export default function Homeheader() {
           <p className='home-header-main-text'>Plan your Best tour with</p>
           <p className='home-header-sub-text'>Sri Lanka Travel Experts</p>
         </div>
+
+        <div className='home-header-main-sub2'>
+          <div className='homeheader-input-div'>
+          <input className='homeheader-input-1' placeholder='Your Name'/>
+          <input className='homeheader-input-1 homeheader-input-center' placeholder='Your Mail'/>
+          <input className='homeheader-input-1 homeheader-input-center' placeholder='Contact Number'/>
+          <input className='homeheader-input-1 homeheader-input-center' placeholder='Your Country'/>
+          </div>
+          
+          <a className='homeheader-input-btn'>Plan Your Tour</a>
+        </div>
   <div className='figure  pic-1 layer' ></div>
   <div className='figure  pic-2 layer' ></div>
   <div className='figure  pic-3 layer' ></div>

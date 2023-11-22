@@ -107,6 +107,11 @@
     font-size: 26px;
     font-weight: 600;
 }
+.home-daytour-reacd-more-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .HomeDayTour-carousel-readmore{
     font-size: 15px;
     font-weight: 500;
@@ -126,7 +131,7 @@
 .HomeDayTour-carousel-forward-btn{
     position: absolute;
     margin-top: 470px;
-    margin-left: -1220px;
+    margin-left: -1150px;
     background-color: transparent;
     border: none;
 
@@ -137,7 +142,7 @@
 .HomeDayTour-carousel-backward-btn{
     position: absolute;
     /* z-index: 1; */
-    margin-left: -1380px;
+    margin-left: -1335px;
     margin-top: 470px;
     background-color: transparent;
     border: none;

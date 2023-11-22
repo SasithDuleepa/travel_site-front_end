@@ -32,6 +32,7 @@ import Footer from './components/footer/footer';
 import About from './pages/user/about/about';
 import Register from './pages/user/register/register';
 import Login from './pages/user/login/login';
+import Popular from './pages/user/popular  destinations/popular';
 
 import Profile from './pages/user/profile/profile';
 import PlaceReview from './pages/user/placeReview/placeReview';
@@ -40,6 +41,7 @@ import HomeCarousel from './components/home carousel/HomeCarousel';
 import TourPreview from './pages/user/tour preview/tourPreview';
 import Daytour_preview from './pages/user/daytour preview/daytour_preview';
 import TCPriview from './pages/user/tour category preview/tcPriview';
+import Places from './pages/user/all places/places';
 
 
 
@@ -74,6 +76,21 @@ function App() {
           <Route exact path="/profile/:id" component={Profile} />
           <Route exact path="/placeReview/:id" component={PlaceReview} />
           <Route exact path="/daytour/:id" component={Daytour_preview}/>
+
+          <Route exact path="/popular_destination" component={Popular} />
+          <Route exact path="/places" component={Places}/>
+
+
+
+          
+
+
+
+            
+
+
+
+          
 
 
 

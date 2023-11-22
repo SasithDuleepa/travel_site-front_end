@@ -1,0 +1,39 @@
+
+
+.editeplace{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px auto;
+}
+.editeplace-line{
+    border-bottom: 2px solid black;
+    width: 90%;
+}
+.editeplace-search-div{
+    background-color: aqua;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.editeplace-search-result-div{
+    background-color: yellowgreen;
+    height: 200px;
+    width: 800px;
+    overflow-y:scroll;
+}
+.editeplace-search-result{
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+}
+
+.editeplace-form-div{
+    background-color: violet;
+}
+.editeplace-form-img_div{
+
+}
+.editeplace-form-img{
+    width: 300px;
+}
