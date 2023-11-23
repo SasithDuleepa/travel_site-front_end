@@ -26,15 +26,15 @@ export default function Footer() {
         </div>
         <div className='footer-right'>
           <div className='footer-right-div1'>
-            <p className='right-p-1'>Subscribes to</p>
+            <p className='right-p-1'>Subscribes To</p>
             <p className='right-p-2'>Sri Lanka Travel Expert</p>
           </div>
           <div>
             <p className='footer-right-p'>News letter</p>
           </div>
-          <div>
-            <input/>
-            <button>Subscribe</button>
+          <div className='footer-right-subs'>
+            <input className='footer-right-subs-input' placeholder='Enter you email here'/>
+            <button className='footer-right-subs-btn'>Subscribe</button>
           </div>
         </div>
       </div>

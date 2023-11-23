@@ -227,12 +227,13 @@
 
 .TourPreview-center-line{
     border-bottom: 2px solid rgba(99, 99, 99, 0.834);
-    width: 90%;
+    width: 1200px;
     margin: 50px auto;
 }
 .TourPreview-center-description{
     text-align: center;
     margin: 10px 50px 50px 50px;
+    width: 1200px;
 }
 
 
@@ -314,7 +315,7 @@
 .TourPreview_bottom-btn-div{
     border-bottom: 1px solid black;
     border-top: 1px solid black;
-    width: 1000px;
+    width: 1200px;
     margin: 50px auto 20px auto;
     display: flex;
     justify-content: space-around;
@@ -369,9 +370,10 @@
 .TourPreview-bottom-3{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     flex-wrap: wrap;
     gap: 10px;
+    width: 1200px;
 }
 
 

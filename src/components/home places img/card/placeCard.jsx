@@ -30,12 +30,16 @@ export default function PlaceCard(props) {
     }
     useEffect(()=>{GetImg()},[props.placeId])
   return (
-    <div className='placecard' style={props.direction === 'style_css_up' ? style_css_up : style_css_down}>
+    <a href={`/placeReview/${props.placeId}`}>
+      <div className='placecard' style={props.direction === 'style_css_up' ? style_css_up : style_css_down}>
         <div className='placecard-bottom-div'>
             <p className='placecard-header'>{props.title}</p>
         </div>
         <img className='place_img' src={`http://localhost:8080/places/placeimg?file=${img}`} alt="" />
 
     </div>
+    </a>
+    
   )
+    
 }

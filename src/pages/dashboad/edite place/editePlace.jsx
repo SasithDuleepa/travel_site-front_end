@@ -8,6 +8,7 @@ export default function EditePlace() {
     const [imgs, setImgs] = useState([]);
 
     // Input values
+    const[id,setId] = useState('')
     const [name, setName] = useState('');
     const [lat, setLat] = useState('');
     const [lng, setLng] = useState('');
@@ -16,7 +17,7 @@ export default function EditePlace() {
     const [description, setDescription] = useState('');
     const [short, setShort] = useState('');
     const [cardImg, setCardImg] = useState('');
-    const [coverImgs, setCoverImgs] = useState([]);
+    const [coverImgs, setCoverImgs] = useState('');
 
     const[newImgs,setNewImgs] = useState([])
     const[newCardImg,setNewCardImg] = useState(null)
@@ -32,6 +33,7 @@ export default function EditePlace() {
         console.log(id);
         const res = await Axios.get(`http://localhost:8080/places/getplace/${id}`);
         console.log(res.data[0]);
+        setId(res.data[0].place_id);
         setPlaceInfo(res.data[0]);
         setName(res.data[0].place_name);
         setLat(res.data[0].place_lat);
@@ -41,7 +43,10 @@ export default function EditePlace() {
         setDescription(res.data[0].place_description);
         setShort(res.data[0].short_description);
         setCardImg(res.data[0].card_img);
-        setCoverImgs(res.data[0].cover_imgs);
+        setCoverImgs(res.data[0].cover_img);
+        setNewCardImg(null)
+        setNewCoverImgs(null)
+        setNewImgs([])
     };
 
     const GetImgs = async() =>{
@@ -51,6 +56,7 @@ export default function EditePlace() {
     }
     useEffect(() => {
         GetImgs();
+        setDeletedImgs([])
     }, [placeInfo]);
 
     useEffect(() => {
@@ -72,7 +78,11 @@ export default function EditePlace() {
     }
     const Filehandler = (e) => {
         const selectedFile = e.target.files[0];
-        setNewImgs([...newImgs, { file: selectedFile }]);
+        console.log(selectedFile)
+        const new_file = [...newImgs];
+        new_file.push({file:selectedFile});
+        setNewImgs(new_file);
+        
     };
 
     //delete new images
@@ -85,15 +95,52 @@ export default function EditePlace() {
     
 
     //Update
-    const UpdateHandler = async() => {
+    const UpdateHandler =async()=> {
         
-        console.log(cardImg)
-        console.log(coverImgs)
-        console.log(newImgs)
-        console.log(newCardImg)
-        console.log(newCoverImgs)
-        console.log(deletedImgs)
+
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('lat', lat);
+        formData.append('lng', lng);
+        formData.append('time', time);
+        formData.append('fee', fee);
+        formData.append('description', description);
+        formData.append('short', short);
+        formData.append('cardImg', cardImg);
+        formData.append('newCardImg', newCardImg);
+        formData.append('coverImgs', coverImgs);
+        formData.append('newCoverImg', newCoverImgs);
+        // formData.append('newImgs',newImgs)
+
+
+
+        deletedImgs.forEach((file, index) => {
+            formData.append('deletedImgs', [file]);
+          });
+
         
+
+        
+        newImgs.forEach((file, index) => {
+            formData.append('newImgs', file.file );
+          });
+
+        
+
+        try {
+            console.log([...formData])
+            console.log(newImgs)
+            const res = await Axios.put(`${process.env.REACT_APP_BACKEND_URL}/places/updateplace/${id}`, formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                },
+              });
+          
+              console.log(res.data);
+        } catch (error) {
+            
+        }
 
     }
   return (
@@ -103,16 +150,16 @@ export default function EditePlace() {
 
         <div className='editeplace-div1'>
             <div className='editeplace-search-div'>
-                <input type="text" placeholder='Name'/>
+                <input  className='editeplace-search-input' type="text" placeholder='search place'/>
             </div>
 
             <div className='editeplace-search-result-div'>
                 {places.length>0 && places.map((place,index)=>{
                     return(
                         <div className='editeplace-search-result' key={index}>
-                            <p>{place.place_id}</p>
-                            <p>{place.place_name}</p>
-                            <a onClick={SelectHandler(place.place_id)}>Select</a>
+                            {/* <p  className='editeplace-search-result-pl'>{place.place_id}</p> */}
+                            {/* <p>{place.place_name}</p> */}
+                            <a onClick={SelectHandler(place.place_id)}>{place.place_name}</a>
                         </div>
                     )
                 }    )}
@@ -120,49 +167,49 @@ export default function EditePlace() {
 
 
             <div className='editeplace-form-div'>
-                <div>
-                    <label>Name:</label>
-                    <input type='text'  value={name}  onChange={(e)=>setName(e.target.value)}/>
+                <div className='editeplace-form'>
+                    <label className='editeplace-form-label'>Name:</label>
+                    <input className='editeplace-form-input' type='text'  value={name}  onChange={(e)=>setName(e.target.value)}/>
                 </div>
-                <div>
-                    <div>
-                        <label>Lat</label>
-                        <input type='number' value={lat} onChange={(e)=>setLat(e.target.value)}/>
+                <div className='editeplace-form-location'>
+                    <div className='editeplace-form'>
+                        <label className='editeplace-form-label'>Lat</label>
+                        <input className='editeplace-form-input'  type='number' value={lat} onChange={(e)=>setLat(e.target.value)}/>
                     </div>
-                    <div>
-                        <label>Lng</label>
-                        <input type='number' value={lng} onChange={(e)=>setLng(e.target.value)}/>
+                    <div className='editeplace-form'>
+                        <label className='editeplace-form-label'>Lng</label>
+                        <input className='editeplace-form-input'  type='number' value={lng} onChange={(e)=>setLng(e.target.value)}/>
                     </div>
                 </div>
-                <div>
-                    <label>time duration</label>
-                    <input  value={time} onChange={(e)=>setTime(e.target.value)}/>
+                <div className='editeplace-form'>
+                    <label className='editeplace-form-label'>time duration</label>
+                    <input  className='editeplace-form-input'  value={time} onChange={(e)=>setTime(e.target.value)}/>
                 </div>
-                <div>
-                    <label>visiting fee</label>
-                    <input type='number'  value={fee} onChange={(e)=>setFee(e.target.value)}/>
+                <div className='editeplace-form'>
+                    <label className='editeplace-form-label'>visiting fee</label>
+                    <input className='editeplace-form-input'  type='number'  value={fee} onChange={(e)=>setFee(e.target.value)}/>
                 </div>
-                <div>
-                    <label>description</label>
+                <div className='editeplace-form'>
+                    <label className='editeplace-form-label'>description</label>
                     <textarea  value={description} onChange={(e)=>setDescription(e.target.value)}/>
                 </div>
-                <div>
-                    <label>short description</label>
+                <div className='editeplace-form'>
+                    <label className='editeplace-form-label'>short description</label>
                     <textarea value={short} onChange={(e)=>setShort(e.target.value)}/>
                 </div>
-                <div>
-                    <label>card image:</label>
+                <div className='editeplace-form'>
+                    <label className='editeplace-form-label'>card image:</label>
                     <input type='file' onChange={(e)=>setNewCardImg(e.target.files[0])}/>
                     {newCardImg ?
                         <img className='editeplace-form-img' src={URL.createObjectURL(newCardImg)} alt="" />
                         :
-                        <img   src={`http://localhost:8080/places/placeimg/?file=${cardImg}`}/>
+                        <img className='editeplace-form-img'   src={`http://localhost:8080/places/placeimg/?file=${cardImg}`}/>
                     }
                     
                     
                 </div>
-                <div>
-                    <label>cover image:</label>
+                <div className='editeplace-form'>
+                    <label className='editeplace-form-label'>cover image:</label>
                     <input type='file' onChange={(e)=>setNewCoverImgs(e.target.files[0])}/>
                     {newCoverImgs ?
                         <img className='editeplace-form-img' src={URL.createObjectURL(newCoverImgs)} alt="" />
@@ -176,32 +223,36 @@ export default function EditePlace() {
             </div>
 
             <div className='editeplace-form-img-div'>
+                <p className='editeplace-form-img-div-title'>Available images</p>
+                <div  className='editeplace-form-placeimg-div'>
                 {imgs.length>0 && imgs.map((img,index)=>{
                     return(
-                        <div className='editeplace-form-img_div' key={index}>
+                        <div  className='editeplace-form-placeimg-div-sub1' key={index}>
                             <img className='editeplace-form-img' src={`http://localhost:8080/places/placeimg/?file=${img.img_name}`} alt="" />
-                            <a onClick={ImgDeleteHandler(index,img.img_name)}>DeLETE</a>
+                            <a className='editeplace-form-placeimg-div-sub1-edite' onClick={ImgDeleteHandler(index,img.img_name)}>DELETE</a>
                         </div>
                     )
                 
                 }
                 )}
+                </div>
 
                 
 
-                <div>
-                    <label>Add Image</label>
-                    <input type='file' placeholder='Upload' multiple={true} onChange={(e) => Filehandler(e)} className='add_place_input' />
+                <div className='editeplace-form'>
+                    <label className='editeplace-form-label'>Add Image</label>
+                    <input  className='editeplace-form-ims-input' type='file' placeholder='Upload' multiple={true} onChange={(e) => Filehandler(e)}  />
                 
                 </div>
+                <div className='editeplace-form-addedimages'>
                 {newImgs.length > 0 && newImgs.map((img, index) => (
     <div className='editeplace-form-img_div' key={index}>
-        <img className='editeplace-form-img' src={URL.createObjectURL(img.file)} alt="" />
+        <img className='editeplace-form-addedimg' src={URL.createObjectURL(img.file)} alt="" />
         <a onClick={newImgDeleteHandler(index)}>DELETE</a>
     </div>
 ))}
 
-
+</div>
 
             </div>
 

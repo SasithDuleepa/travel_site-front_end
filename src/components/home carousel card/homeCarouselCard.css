@@ -1,10 +1,13 @@
-
+.homeCarouselCard-main{
+    width: 256px;
+    height: 354px;
+}
 .homeCarouselCard{
     width: 251px;
     height: 350px;
     background-color: aquamarine;
     overflow: hidden;
-    margin: 5px 5px;
+    /* margin: 5px 5px; */
     border-radius: 20px;
     overflow: hidden;
 

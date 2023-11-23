@@ -57,8 +57,9 @@ export default function HomeCarousel() {
           }
         }}
     preventScrollOnSwipe
-    swipeTreshold={90}
+    swipeTreshold={60}
     activeSlideIndex={activeSlide}
+    
 
 
     onRequestChange={setActiveSlide}
@@ -94,13 +95,11 @@ export default function HomeCarousel() {
     }}
     
     autoplay={true}
-    delay={1000}
-    itemsToShow={4}
-    speed={1600}
-    itemsToScroll={1}
-    // autoplayDirection="backward"
-    // easing="ease-in-out"
-    // centerMode
+            delay={1000}
+            itemsToShow={5}
+            speed={2000}
+            easing="ease-in-out"
+            centerMode
   >
     {categories.length > 0 && categories.map((category, index) => (
       <HomeCaouselCard title={category.tourcategory_name} img={category.tourcategory_img} description={category.tourcategory_description} link={`/tourcategory/${category.tourcategory_id}`}/>

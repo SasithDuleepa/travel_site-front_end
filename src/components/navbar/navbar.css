@@ -7,10 +7,11 @@
     }
     .active {
         background-color: rgb(37, 223, 16);
+
         visibility: visible;
         transition: all .5s;
         position: fixed;
-        z-index: 2;
+        z-index: 8;
       
         width: 100%;
         /* top: 1px; */
@@ -21,9 +22,10 @@
         /* visibility: hidden; */
         transition: all 0.9s;
         transform: translateY(-25%);
-        z-index: 2;
+        z-index: 8;
        
         width: 100%;
+  
       }
 
     .Nav-bar{
@@ -39,8 +41,38 @@
     }
     .nav-bar-upper-div{
         width: 100%;
-        height: 30px;
-        background-color: blueviolet;
+        height: 25px;
+        /* margin-top: -16px; */
+        background-color: rgb(3, 14, 110);
+        display: flex;
+        align-items: center;
+    }
+    .nav-bar-upper-div-left{
+        width: 30%;
+        height: 25px;
+        background-color: rgb(39, 73, 74);
+        display: flex;
+        align-items: center;
+        justify-content: right;
+    }
+    .nav-bar-upper-div-left-p{
+        color: white;
+        text-align: right;
+        margin-right: 10px;
+    }
+    .nav-bar-upper-div-right{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 70%;
+        height: 25px;
+        position: relative;
+    }
+    .nav-bar-upper-div-right-1{
+        color: white;
+        font-family: poppins;
+        font-size: 14px;
     }
 
 
@@ -50,7 +82,7 @@
     }
     .nav-bar-img{
         width: auto;
-        height: 70px;
+        height: 75px;
     }
 
 
@@ -62,30 +94,45 @@
         align-items: center;
         /* background-color: rgb(34, 98, 98); */
         width: 600px;
-        height: 90px;
+        height: 80px;
     }
     .nav-links{
         color: black;
+        text-align: center;
         text-decoration: none;
-        font-size: 20px;
-        font-weight: 400;
-        padding:31px 5px;
-        font-family: var(--font_1);
+        font-size: 16px;
+        font-weight: 800;
+        /* padding:31px 15px; */
+        width: 100%;
+        height: 100%;
+        font-family: poppins;
         /* background-color: antiquewhite; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:hover{
             background-color: orange;
+            color: white;
+            transition: .4s;
         }
 
     }
     .nav-links-active{
         color: black;
         background-color: orange;
-        padding:31px 5px;
+        color: white;
         text-decoration: none;
-        font-size: 20px;
-        font-family: var(--font_1);
-        font-weight: 400;
+        font-size: 16px;
+        font-family: poppins;
+        font-weight: 800;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
         
        
     }
@@ -112,9 +159,13 @@
     }
     .nav-bar-login-btn{
         border: 2px solid black;
-        padding: 8px 25px;
+        padding: 6px 27px;
         border-radius: 20px;
         font-weight: 400;
+        font-size: 18px;
+        font-family: poppins;
+        background-color: orange;
+        border: none;
         
     }
     

@@ -4,36 +4,129 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 100px auto;
+    margin: 200px auto;
 }
 .editeplace-line{
     border-bottom: 2px solid black;
     width: 90%;
 }
+
+
+
+.editeplace-div1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    margin: 5px;
+}
 .editeplace-search-div{
-    background-color: aqua;
+    /* background-color: aqua; */
     width: 100%;
     display: flex;
     justify-content: center;
+    margin: 50px auto;
 }
+.editeplace-search-input{
+    text-align: center;
+    height: 30px;
+    border-radius: 10px;
+}
+
+
+
 .editeplace-search-result-div{
-    background-color: yellowgreen;
-    height: 200px;
-    width: 800px;
+    background-color: rgb(179, 179, 179);
+    max-height: 200px;
+    width: 400px;
     overflow-y:scroll;
+    
 }
 .editeplace-search-result{
     display: flex;
-    gap: 50px;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(240, 248, 255, 0.326);
+    margin: 5px 20px 5px 20px;
+
 }
 
 .editeplace-form-div{
-    background-color: violet;
+    /* background-color: violet; */
+    border: 1px solid black;
+    width: 500px;
+    margin-top: 20px;
+    padding: 10px 15px;
+    
 }
-.editeplace-form-img_div{
+
+.editeplace-form{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 5px;
+}
+.editeplace-form-location{
+    display: flex;
+    justify-content: space-between;
+}
+.editeplace-form-label{
+    font-size: 24px;
+}
+.editeplace-form-input{
+    height: 32px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.editeplace-form-img{
+    width: 200px;
+}
+
+
+.editeplace-form-ims-input{
+    width: 300px;
+
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.editeplace-form-addedimages{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: antiquewhite;
+}
+
+.editeplace-form-addedimg{
+    width: 200px;
+}
+
+
+
+
+
+.editeplace-form-img-div{
+    width: 900px;
+    /* background-color: aqua; */
+    padding: 20px;
+    margin-top: 20px;
 
 }
-.editeplace-form-img{
-    width: 300px;
+.editeplace-form-img-div-title{
+    font-size: 40px;
+    text-align: center;
+}
+.editeplace-form-placeimg-div{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: antiquewhite;
+}
+
+.editeplace-form-placeimg-div-sub1{
+    background-color: yellowgreen;
+    margin: 5px;
+}
+.editeplace-form-placeimg-div-sub1-edite{
+    position: relative;
 }

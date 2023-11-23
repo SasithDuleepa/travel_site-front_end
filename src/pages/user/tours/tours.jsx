@@ -5,6 +5,10 @@ import axios from 'axios';
 
 import TourCard from './card/tourCard';
 
+import Fb from './../../../assets/icons/facebook.png';
+import Insta from './../../../assets/icons/instagram.png';
+import Twitter from './../../../assets/icons/twitter.png';
+
 export default function Tours() {
   const history = useHistory();
 
@@ -68,7 +72,28 @@ export default function Tours() {
   return (
     <div className='Tours'>
       <div className='Tour-head wrapper'>
-        <p className='Tour-over-layer'>Travel in Sri Lanka</p></div>
+        <p className='Tour-over-layer-p'>Travel in Sri Lanka</p>
+        <div className='Tour-over-layer-route-div'>
+          <a  className='Tour-over-layer-route' href='/'>Home</a>
+          <p className='Tour-over-layer-route'>/</p>
+          <a  className='Tour-over-layer_route'>Tours</a>
+        </div>
+        <div className='Tour-over-layer-media-div'>
+            <div  className='Tour-over-layer-media-div-sub'>
+              <img src={Fb} />
+              <a className='Tour-over-layer-media-link'>Facebook</a>
+            </div>
+            <div  className='Tour-over-layer-media-div-sub'>
+              <img src={Insta} />
+              <a className='Tour-over-layer-media-link'>Instagram</a>
+            </div>
+            <div  className='Tour-over-layer-media-div-sub'>
+              <img src={Twitter} />
+              <a className='Tour-over-layer-media-link'>Twitter</a>
+            </div>
+        </div>
+        
+      </div>
       <p className='Tour-description'>Lorem ipsum dolor sit amet consectetur.
        Leo vitae quam feugiat integer. Ac in scelerisque fames eu tempus diam in
         eleifend. Ac id urna ullamcorper suspendisse. Libero dictum vitae duis

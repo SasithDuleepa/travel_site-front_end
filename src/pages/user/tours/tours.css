@@ -14,16 +14,60 @@
     background-image: url("http://localhost:8080/images/Tour/heroimg");
     background-size: cover;
     background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    height: 424px;
 }
-.Tour-over-layer{
-    font-size: 70px;
+.Tour-over-layer-p{
+    font-size: 60px;
     color: aliceblue;
-    font-weight: 600;
+    font-weight: 500;
+    font-family: Playfair Display;
+    margin-top: 150px;
 }
+.Tour-over-layer-route-div{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: -55px;
+}
+.Tour-over-layer-route{
+    font-size: 18px;
+    font-weight: 500;
+    font-family: poppins;
+    color: white;
+    text-decoration: none;
+}
+.Tour-over-layer_route{
+    font-size: 18px;
+    font-weight: 500;
+    font-family: poppins;
+    color: orange;
+}
+.Tour-over-layer-media-div{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+.Tour-over-layer-media-div-sub{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.Tour-over-layer-media-link{
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: poppins;
+}
+
+
+
 
 .Tour-description{
     text-align: center;
-    margin: 100px 150px ;
+    margin: 70px 150px ;
 }
 
 .button-div{

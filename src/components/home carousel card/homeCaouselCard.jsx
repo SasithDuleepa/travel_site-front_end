@@ -3,7 +3,8 @@ import './homeCarouselCard.css';
 
 export default function HomeCaouselCard(props) {
   return (
-    <div className='homeCarouselCard'>
+    <div className='homeCarouselCard-main'>
+      <div className='homeCarouselCard'>
         <img className='homeCarouselCard__img'
          
          src={props.img ? `http://localhost:8080/tourcategory/img?file=${props.img}`:
@@ -20,5 +21,7 @@ export default function HomeCaouselCard(props) {
         </div>
         
     </div>
+    </div>
+    
   )
 }
