@@ -1,0 +1,32 @@
+.daytouredite{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.daytouredite-result{
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    overflow-y: scroll;
+}
+.daytouredite-form-div{
+    background-color: bisque;
+}
+.daytouredite-form{
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 5px;
+    width: 500px;
+}
+.daytouredite-form-label{
+
+}
+.daytouredite-form-input{
+    height: 32px;
+}

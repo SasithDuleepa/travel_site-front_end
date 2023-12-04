@@ -14,7 +14,7 @@ export default function HomeDayTour() {
   const [activeSlide_, setActiveSlide_] = useState(0);
   const activeslideHandler = (val) =>{
     setActiveSlide(val)
-      console.log('active val',val);
+      // console.log('active val',val);
       setTimeout(() => {
         setActiveSlide(val)
       },0);
@@ -29,7 +29,7 @@ export default function HomeDayTour() {
     const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/daytours`);
     // console.log(res.data);
     setDaytours(res.data);
-    console.log(daytours)
+    // console.log(daytours)
     
   }
   useEffect(()=>{GetDayTours()
@@ -37,8 +37,8 @@ export default function HomeDayTour() {
 },[])
 
   useEffect(() => {
-    console.log(daytours, activeSlide);
-    console.log(daytours[activeSlide])
+    // console.log(daytours, activeSlide);
+    // console.log(daytours[activeSlide])
     setIsLoaded(false);
     setTimeout(() => {
       setIsLoaded(true);

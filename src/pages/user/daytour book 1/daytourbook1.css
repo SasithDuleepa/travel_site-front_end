@@ -1,0 +1,109 @@
+
+.daytour-book-1{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.daytour-book-1-hero{
+    background-image: url("http://localhost:8080/images/Tour/heroimg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 424px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.daytour-book-1-hero-title{
+    margin-top: 100px;
+    font-size: 70px;
+    color: aliceblue;
+    font-family: Playfair Display;
+}
+.daytour-book-1-hero-route-div{
+    display: flex;
+    margin-top: -50px;
+    gap: 5px;
+}
+.daytour-book-1-hero-route-1{
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    font-family: poppins;
+    text-decoration: none;
+}
+.active-route{
+    color: orange;
+    }
+
+.daytour-book-1-hero-social{
+    margin-top: 10px;
+}
+
+.daytour-book-1-sub{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 70px auto;
+}
+.daytour-book-1-sub-title{
+    font-size: 24px;
+    font-weight: 400;
+    font-family: poppins;
+}
+.daytour-book-1-form{
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+}
+.daytour-book-1-form-label{
+    font-size: 20px;
+    font-weight: 400;
+    font-family: poppins;
+}
+.daytour-book-1-form-input{
+    width: 475px;
+    height: 35px;
+    border: 2px solid rgb(144, 144, 144);
+    border-radius: 10px;
+    
+}
+
+.daytour-book-1-btn-div{
+    display: flex;
+    justify-content:center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.daytour-book-1-btn-1{
+    background-color: blue;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: poppins;
+    color: white;
+    width: 166px;
+    height: 40px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.daytour-book-1-btn-2{
+    background-color: orange;
+
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: poppins;
+    width: 166px;
+    height: 40px;
+    text-decoration: none;
+}

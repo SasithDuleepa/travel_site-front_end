@@ -42,9 +42,13 @@ const[class3,setClass3] = useState('daytour-preview-bottom-info-3 hide');
   const [data, setData] = useState([]);
   //data about day tour
   const GetData =async ()=>{
-    const res = await axios.get(`http://localhost:8080/daytour/daytour/${id}`);
-    console.log(res.data);
-    setData(res.data);
+    try {
+          const res = await axios.get(`http://localhost:8080/daytour/daytour/${id}`);
+          // console.log(res.data);
+          setData(res.data);
+    } catch (error) {
+      console.log(error)
+    }
   }
   useEffect(()=>{
     GetData();
@@ -63,10 +67,10 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       const res = await axios.get(`http://localhost:8080/vehicles/${passenger}`);
-      console.log(res.data);
+      // console.log(res.data);
       setVehicle(res.data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error(error);
     }
   };
 
@@ -103,7 +107,7 @@ useEffect(()=>{
     try {
       if(data.length>0){
         const res = await axios.get(`http://localhost:8080/daytour/places/${data[0].day_tour_id}`);
-      // console.log(res.data)
+      console.log(res.data)
       setplaces(res.data)
       }
       
@@ -261,7 +265,7 @@ const ButtonHandler = (btn)=>() =>{
           </div>
           
           <div className='daytour-preview-top-left-line'></div>
-          <a className='daytour-preview-top-left-book'>Book Now</a>
+          <a className='daytour-preview-top-left-book' href={`/daytourbook1/${id}`}>Book Now</a>
         </div>
         <div className='daytour-preview-top-right'>
         <Carousel
@@ -376,7 +380,7 @@ const ButtonHandler = (btn)=>() =>{
             {places.length>0?places.map((place,index)=>{
               return(
                 <div key={index} className='daytour-preview-center-right-place-div-place'>
-                <p><b>{place.place_name} </b> {place.place_description}</p>
+                <p><b>{place.place_name} </b> {place.description}</p>
 
                 <p>{place.description}</p>
 

@@ -21,7 +21,7 @@ export default function PlaceCard(props) {
     const GetImg = async() => {
       try {
         const res = await axios.get(`http://localhost:8080/places/getplaceimgnames/${props.placeId}`);
-        console.log(res.data[0])
+        // console.log(res.data[0])
         setimg(res.data[1].img_name)
 
       } catch (error) {

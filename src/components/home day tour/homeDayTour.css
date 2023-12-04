@@ -125,26 +125,41 @@
 }
 
 .HomeDayTour-arrow-right{
-
+    width: 48px;
+    height: 48px;
 
 }
 .HomeDayTour-carousel-forward-btn{
+    width: 48px;
+    height: 48px;
+    background-color:transparent;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    margin-top: 470px;
-    margin-left: -1150px;
-    background-color: transparent;
+    margin-top: 300px;
+    margin-left: 650px;
     border: none;
 
 }
 .HomeDayTour-arrow-left{
+    width: 48px;
+    height: 48px;
 
 }
 .HomeDayTour-carousel-backward-btn{
-    position: absolute;
-    /* z-index: 1; */
-    margin-left: -1335px;
-    margin-top: 470px;
+    width: 48px;
+    height: 48px;
     background-color: transparent;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    margin-left: -650px;
+    margin-top:300px;
     border: none;
     
 }

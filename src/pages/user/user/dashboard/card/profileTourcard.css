@@ -1,0 +1,48 @@
+
+.profileTourCard{
+    width: 280px;
+    height: 360px;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column-reverse;
+
+}
+.profileTourCard-layer{
+    background-color: rgb(207, 207, 207);
+    width: 100%;
+    height: 218px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+}
+.profileTourCard-layer-p1{
+    font-size: 22px;
+    font-weight: 500;
+    font-family: poppins;
+    margin: 10px auto 5px auto;
+}
+.profileTourCard-layer-p2{
+    font-size:16px ;
+    font-weight: 400;
+    font-family: poppins;
+    margin: 5px auto 5px auto;
+}
+.profileTourCard-layer-p3{
+    font-size:16px ;
+    font-weight: 400;
+    font-family: poppins;
+    margin: 5px auto 5px auto;
+}
+.profileTourCard-layer-p4{
+    font-size:16px ;
+    font-weight: 500;
+    font-family: poppins;
+    margin: 5px auto 5px auto;
+}
+.profileTourCard-layer-more{
+    background-color: orange;
+    padding: 5px 20px;
+    border-radius: 25px;
+}

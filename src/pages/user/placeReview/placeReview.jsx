@@ -4,12 +4,18 @@ import { GoogleMap, useLoadScript, MarkerF  } from '@react-google-maps/api';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Gall from '../../../assets/homeimg/mirisssa.png'
+import Cart from '../../../assets/icons/shopping-cart.png'
+import Socialmedia from '../../../components/social media/socialmedia';
 
+import RightArrow from './../../../assets/icons/Right Arrow-blue.png';
+import LeftArrow from './../../../assets/icons/Left Arrow-blue.png';
+import Carousel from "react-simply-carousel";
 export default function PlaceReview() {
   let { id } = useParams();
 
 
 
+  const [activeSlide, setActiveSlide] = useState(0);
     const[visiteTime, setVisiteTime] = useState(1)
     const[ticketPrice, setTicketPrice] = useState(1)
     const [DATA, setDATA]= useState({
@@ -19,7 +25,8 @@ export default function PlaceReview() {
       place_lng: 80.2175,
       place_name:"all fort",
       visit_time: "2h",
-      visiting_fee: "1000"
+      visiting_fee: "1000",
+      cover_img:''
     })
 
 
@@ -57,7 +64,8 @@ useEffect(() => {
           place_lng: Data.place_lng,
           place_name:Data.place_name,
           visit_time: Data.visit_time,
-          visiting_fee: Data.visiting_fee
+          visiting_fee: Data.visiting_fee,
+          cover_img:Data.cover_img
         });
       }
     } catch (error) {
@@ -81,26 +89,30 @@ if (!isLoaded) return (
     <div className='placeReview__container-main'>
         <div className='placeReview'>
         <div className='plecereview-img-div'>
-            <img src={
-              imgs.length > 0 ? 
-              
-              `http://localhost:8080/places/placeimg?file=${landimg}`: 
-              Gall
-             } className='placeReview__img'/>
+            <img src={`http://localhost:8080/places/placeimg?file=${DATA.cover_img}`} className='placeReview__img'/>
             <div className='placeReview__title-div'>
-            <p className='placeReview__title'>{DATA.place_name}</p>
+              <p className='placeReview__title'>{DATA.place_name}</p>
+              <div className='placeReview__routes-div'>
+                <a className='placeReview__routes'>Home</a>
+                <a className='placeReview__routes'>/</a>
+                <a className='placeReview__routes'>Popular Destinations</a>
+                <a className='placeReview__routes'>/</a>
+                <a className='placeReview__routes-active'>{DATA.place_name}</a>
+              </div>
+              <div className='placeReview__socialmedia'><Socialmedia/></div>
+            
             </div>
            
         </div>
         <div className='placceReview-sub-div'>
             <div className='placceReview-sub-div-1'>
-              <p className='placeReview-title-2'>About Destination</p>
+              {/* <p className='placeReview-title-2'>About Destination</p>
               <p  className='placeReview-text-3'> Visit time : {DATA.visit_time}</p>
-              <p className='placeReview-text-3'> Ticket price : {DATA.visiting_fee} $</p>
+              <p className='placeReview-text-3'> Ticket price : {DATA.visiting_fee} $</p> */}
               
             </div>
             <div className='placceReview-sub-div-2'>
-              <a className='placceReview-sub-div-2-more'>Add to cart</a>
+              <a className='placceReview-sub-div-2-more'>Add to cart<img src={Cart}/></a>
               
             </div>
         </div>
@@ -120,11 +132,80 @@ if (!isLoaded) return (
 
         </div>
         <p className='placeReview-title-5'>Gallery</p>
-        <div className='placeReview-img-all-div'>
-          {imgs ? imgs.map((img, index) => (
-            <img key={index} src={`http://localhost:8080/places/placeimg?file=${img.img_name}`} className='placeReview-all-img'/>
+        
+
+        <div className='placeReview-crousel-div'>
+          <Carousel
+        containerProps={{
+          
+          style: {
+            width: "100%",
+            justifyContent: "space-between",
+            userSelect: "none"
+          }
+        }}
+        preventScrollOnSwipe
+        swipeTreshold={60}
+        activeSlideIndex={activeSlide}
+        // activeSlideProps={{
+        //   style: {
+        //     background: "blue"
+        //   }
+        // }}
+        onRequestChange={setActiveSlide}
+        forwardBtnProps={{
+          children: <img src={LeftArrow} className="place-review-carousel-forward-img"/>,
+          className:"place-review-carousel-forward-btn",
+          
+        }}
+        backwardBtnProps={{
+          children: <img src={RightArrow} className="place-review-carousel-backward-img"/>,
+          className:"place-review-carousel-backward-btn",
+          
+        }}
+        dotsNav={{
+          show: false,
+          itemBtnProps: {
+            style: {
+              height: 16,
+              width: 16,
+              borderRadius: "50%",
+              border: 0
+            }
+          },
+          activeItemBtnProps: {
+            style: {
+              height: 16,
+              width: 16,
+              borderRadius: "50%",
+              border: 0,
+              background: "black"
+            }
+          }
+        }}
+        
+        autoplay={true}
+        delay={1000}
+        itemsToShow={4}
+        speed={1600}
+        easing="ease-in-out"
+        // centerMode
+      >
+ 
+
+         {imgs ? imgs.map((img, index) => (
+         
+            <img className={index%2 !==0 ? 'place-review-carousel-img-up':'place-review-carousel-img-down'} key={index} src={`http://localhost:8080/places/placeimg?file=${img.img_name}`}/>
+          
+            
           )):null}
+
+        
+          </Carousel>
+          
         </div>
+
+        
 
     </div>
 

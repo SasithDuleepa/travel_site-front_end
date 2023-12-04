@@ -50,6 +50,8 @@
 }
 .popular-destinations-media-main{
     display: flex;
+    align-items: center;
+    gap: 5px;
 }
 .popular-destinations-media-main-icon{
     width: 24px;

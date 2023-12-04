@@ -10,7 +10,20 @@ import User from './../../assets/user.png';
 export default function Navbar() {
     const[menuClass, setMenuClass] = useState('Nav-bar-active')
 
-    const login = false;
+    const [login,setLogin] = useState(false)
+    const [user_id,setUser_id] = useState('')
+    useEffect(() => {
+      const loginStatus = sessionStorage.getItem('login');
+      const user_id = sessionStorage.getItem('id');
+      
+      if (loginStatus) {
+        setLogin(loginStatus);
+        setUser_id(user_id);
+      } else {
+        setLogin(false);
+        setUser_id('');
+      }
+    }, []);
     
 
 
@@ -35,14 +48,7 @@ export default function Navbar() {
   const currentPath = window.location.pathname;
   return (
     
-    <div
-     className='nav-main'
-     >
-      
-
-
-
-        
+    <div className='nav-main'>        
         <nav className= {!scrollDirection || scrollDirection === "down" ? 'active': 'hidden'}    >
         <div className='nav-bar-upper-div'>
           <div className='nav-bar-upper-div-left'>
@@ -57,36 +63,29 @@ export default function Navbar() {
         </div>
         
       
+        
+        <div className='Nav-bar-main'>
         <div className='Nav-bar'>
-          
-
-
-
-
-        
-        
-        <div className='Nav-bar-links-div-left'>
+          <div className='Nav-bar-links-div-left'>
             <img src={Icon} alt="Logo" className='nav-bar-img'/>
-        </div>
-        <div className='Nav-bar-links-div-center'>
+          </div>
+          <div className='Nav-bar-links-div-center'>
             <a className={currentPath==='/'?'nav-links-active': 'nav-links'}  href='/'>Home</a>
             <a className={currentPath==='/tours/tourcategory'?'nav-links-active': 'nav-links'} href='/tours/tourcategory'>Tours</a>
-            <a className={currentPath==='/popular_destination'?'nav-links-active': 'nav-links'}  href='/popular_destination'>Popular Destinations</a>
+            <a className={currentPath==='/popular_destination'?'nav-links-active': 'nav-links'}  href='/popular_destination'>Destinations</a>
             <a className={currentPath==='/about'?'nav-links-active': 'nav-links'}  href='/about'>About Us</a>
             <a className={currentPath==='/contactus'?'nav-links-active': 'nav-links'}  href='/contactus'>Contact</a>
-        </div>
-        <div className='Nav-bar-links-div-right'>
+          </div>
+          <div className='Nav-bar-links-div-right'>
             {login ? 
             <div className='nav-bar-login-div'>
             <a href='/cart/1'><img src={Road} alt="Road" className='nav-bar-road-img'/></a>
-            <a href='/profile/1'><img src={User} alt="User" className='nav-bar-user-img'/></a>
+            <a href={`/profile/${user_id}`}><img src={User} alt="User" className='nav-bar-user-img'/></a>
             </div>
           :
-            <a className='nav-bar-login-btn'>Login</a>}
+            <a className='nav-bar-login-btn' href='/login'>Login</a>}
+          </div>
         </div>
-
-
-
         </div>
         </nav>
 

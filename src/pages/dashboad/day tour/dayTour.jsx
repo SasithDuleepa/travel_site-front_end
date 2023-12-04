@@ -3,6 +3,8 @@ import './dayTour.css';
 import axios from 'axios';
 import Delete from './../../../assets/icons/delete.png'
 
+import DaytourEdite from '../edite day_tour/daytourEdite';
+
 export default function DayTour() {
     const[name,setName] = useState('')
   const[description,setDescription] = useState('')
@@ -112,6 +114,7 @@ const Add = async() =>{
     }
   }
   return (  
+    <>
     <div className='daytour'>
         <h1 className='daytour-header'>DAY TOUR</h1>
         <div className='daytour-line'></div>
@@ -190,5 +193,8 @@ const Add = async() =>{
         </div>
         
     </div>
+    <DaytourEdite/>
+    </>
+    
   )
 }

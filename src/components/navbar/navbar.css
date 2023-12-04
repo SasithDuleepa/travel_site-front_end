@@ -6,7 +6,7 @@
         justify-content: center;
     }
     .active {
-        background-color: rgb(37, 223, 16);
+        background-color: rgb(255, 255, 255);
 
         visibility: visible;
         transition: all .5s;
@@ -28,17 +28,7 @@
   
       }
 
-    .Nav-bar{
-        background-color: rgb(255, 255, 255);
-        
-        width: 100%;
-        /* height: 80px; */
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        z-index: 2;
-        
-    }
+
     .nav-bar-upper-div{
         width: 100%;
         height: 25px;
@@ -48,7 +38,7 @@
         align-items: center;
     }
     .nav-bar-upper-div-left{
-        width: 30%;
+        width: 30vw;
         height: 25px;
         background-color: rgb(39, 73, 74);
         display: flex;
@@ -65,7 +55,7 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
-        width: 70%;
+        width: 70vw;
         height: 25px;
         position: relative;
     }
@@ -76,6 +66,24 @@
     }
 
 
+
+    .Nav-bar-main{
+        background-color: white;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .Nav-bar{
+        background-color: rgb(255, 255, 255);
+        
+        width: 1200px;
+        /* height: 80px; */
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 2;
+        
+    }
     .Nav-bar-links-div-left{
         /* background-color: azure; */
         width: 300px;
@@ -93,7 +101,7 @@
         justify-content: space-around;
         align-items: center;
         /* background-color: rgb(34, 98, 98); */
-        width: 600px;
+        /* width: 600px; */
         height: 80px;
     }
     .nav-links{
@@ -102,14 +110,17 @@
         text-decoration: none;
         font-size: 16px;
         font-weight: 800;
+        padding-left: 10px;
+        padding-right: 10px;
         /* padding:31px 15px; */
-        width: 100%;
+        /* width: 100%; */
         height: 100%;
         font-family: poppins;
         /* background-color: antiquewhite; */
         display: flex;
         justify-content: center;
         align-items: center;
+        text-transform: capitalize;
 
         &:hover{
             background-color: orange;
@@ -126,7 +137,9 @@
         font-size: 16px;
         font-family: poppins;
         font-weight: 800;
-        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        /* width: 100%; */
         height: 100%;
         display: flex;
         justify-content: center;
@@ -166,7 +179,7 @@
         font-family: poppins;
         background-color: orange;
         border: none;
-        
+        text-decoration: none;
     }
     
     

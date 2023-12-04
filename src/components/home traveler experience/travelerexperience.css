@@ -42,6 +42,17 @@
     font-size: 16px;
     font-weight: 300;
 }
+.traveler_experience-readme{
+    display: flex;
+    justify-content: center;
+    margin-top: -50px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 500;
+    font-family: poppins;
+    color: white;
+    text-decoration: none;
+}
 
 
 
@@ -74,6 +85,7 @@
 .travelerexperience-img{
     width: 144px;
     height: 144px;
+    margin-top: -100px;
 }
 .travelerexperience-container-right{
 
@@ -86,20 +98,29 @@
     width: 500px;
 
 }
-.travelerexperience-container-right-title{
-    font-size: 28px;
-    line-height: 10px;
-    color: rgb(255, 255, 255);
-    font-weight: 500;
-
-}
 .travelerexperience-container-right-text{
     font-size: 16px;
     font-weight: 300;
     font-family: 'Poppins';
     color: rgb(255, 255, 255);
     width: 500px;
+    text-align: justify;
 }
+.travelerexperience-container-right-title{
+    font-size: 28px;
+    line-height: 1px;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+
+}
+.travelerexperience-container-right-country{
+    font-family: Lato;
+    color: white;
+    font-size: 24px;
+    font-weight: 300;
+    margin-top: 5px;
+}
+
 
 
 .travelerexperience-backward-btn{
@@ -112,6 +133,7 @@
     font-size: 20px;
     font-weight: 600;
     background-color: rgba(240, 248, 255, 0.345);
+    color: white;
 }
 .travelerexperience-forward-btn{
     position: absolute;
@@ -123,4 +145,5 @@
     font-size: 20px;
     font-weight: 600;
     background-color: rgba(240, 248, 255, 0.345);
+    color: white;
 }

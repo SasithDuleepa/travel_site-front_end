@@ -1,0 +1,108 @@
+
+.Tourbook1{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Tourbook1-hero{
+    background-image: url("http://localhost:8080/images/Tour/heroimg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 424px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.Tourbook1-hero-title{
+    margin-top: 100px;
+    font-size: 70px;
+    color: aliceblue;
+    font-family: Playfair Display;
+}
+.Tourbook1-hero-route-div{
+    display: flex;
+    margin-top: -50px;
+    gap: 5px;
+}
+.Tourbook1-hero-route{
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    font-family: poppins;
+    text-decoration: none;
+}
+
+
+
+
+
+.Tourbook1-hero-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 70px auto;
+}
+.Tourbook1-hero-1-p1{
+    font-size: 45px;
+    font-weight: 400;
+    font-family: poppins;
+}
+.Tourbook1-hero-1-p2{
+    font-size: 24px;
+    font-weight: 300;
+    font-family: poppins;
+    text-align: center;
+}
+
+.Tourbook1-form-div{
+    /* background-color: aqua; */
+    margin-top: 20px;
+
+}
+.Tourbook1-form{
+    display: flex;
+    flex-direction: column;
+    margin: 15px auto;
+    gap: 5px;
+}
+.Tourbook1-form-label{
+    font-size: 20px;
+    font-weight: 400;
+    font-family: poppins;
+}
+.Tourbook1-form-input{
+    height: 35px;
+    width: 475px;
+    border: 2px solid rgb(185, 185, 185);
+
+}
+
+.Tourbook1-btn-div{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px auto;
+}
+.Tourbook1-btn-1{
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 166px;
+    height: 40px;
+    border-radius: 10px;
+}
+.Tourbook1-btn-2{
+    background-color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 166px;
+    height: 40px;
+    border-radius: 10px;
+}

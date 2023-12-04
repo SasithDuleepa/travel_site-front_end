@@ -3,7 +3,7 @@
     background-color: beige;
         width: 278px;
         height: 357px;
-        margin: 20px;
+        margin: 0px;
         overflow: hidden;
         /* border-radius: 5px; */
         &:hover{

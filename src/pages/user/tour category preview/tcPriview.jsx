@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './tcPriview.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Socialmedia from '../../../components/social media/socialmedia';
 
 import Card from './card/card';
 
+
 export default function TCPriview() {
     const {tour}= useParams();
+    const [category,setCategory] = useState([])
 
     const[tours,setTours] = useState([])
       //get tours according to tour category
@@ -15,14 +18,30 @@ export default function TCPriview() {
     console.log(res.data)
     setTours(res.data)
   }
+  const GetTourCategory =async() =>{
+    const res = await axios.get(`http://localhost:8080/tourcategory/tourcategory/${tour}`)
+    console.log(res.data[0])
+    setCategory(res.data[0])
+  }
   useEffect(()=>{
     GetTours()
+    GetTourCategory()
   },[tour])
 
 
   return (
     <div className='TCPriview'>
-        <div className='TCPriview-hero'></div>
+        <div className='TCPriview-hero'>
+          <p className='TCPriview-hero-title'>{category.tourcategory_name}</p>
+          <div className='TCPriview-hero-route-div'>
+            <a className='TCPriview-hero-route'>Home</a>
+            <a className='TCPriview-hero-route'>/</a>
+            <a className='TCPriview-hero-route'>Tours</a>
+            <a className='TCPriview-hero-route-active'>{category.tourcategory_name}</a>
+          </div>
+          <Socialmedia/>
+        </div>
+        <div className='TCPriview-sub'>
         <p className='TCPriview-description'>
         Lorem ipsum dolor sit amet consectetur. Erat nisi 
         scelerisque aliquet nunc mauris aliquam sapien vitae
@@ -38,6 +57,7 @@ export default function TCPriview() {
          Congue sed lectus ornare diam in. Arcu donec tellus fames
           augue nulla enim posuere varius porttitor.
         </p>
+
         <div className='TCPriview-card-div'>
 
 
@@ -51,6 +71,10 @@ export default function TCPriview() {
             
             
         </div>
+
+        </div>
+        
+        
     </div>
   )
 }

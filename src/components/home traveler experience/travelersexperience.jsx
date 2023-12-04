@@ -102,6 +102,7 @@ export default function Travelersexperience() {
         </div>
 
   </div>
+  <a className='traveler_experience-readme'>Read More</a>
     </div>
     
   )
@@ -110,7 +111,7 @@ function Travelerexperience(){
     return(
         <div className='travelerexperience-container'>
           <div className='travelerexperience-container-right'>
-            <h1 className='travelerexperience-container-right-title'>james</h1>
+            
             <p className='travelerexperience-container-right-text'>Lorem ipsum dolor sit amet consectetur. 
                 Nisl urna luctus urna massa. Quis sed metus 
                 sagittis eu pellentesque fringilla. In senectus 
@@ -122,7 +123,8 @@ function Travelerexperience(){
                    quisque pulvinar fusce. Eget eu dictum eu mattis 
                    etiam aliquam venenatis feugiat.
                  Nunc libero viverra natoque diam at.</p>
-                 <p className='travelerexperience-container-right-text'>Date </p>
+                 <h1 className='travelerexperience-container-right-title'>james</h1>
+                 <p className='travelerexperience-container-right-country'>Australia </p>
         </div>
         <div className='travelerexperience-container-left'>
             <img className='travelerexperience-img' src={review}/>

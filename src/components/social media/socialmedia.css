@@ -1,0 +1,20 @@
+
+.Socialmedia-div{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.Socialmedia-div-a{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    font-family: poppins;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+}
+.Socialmedia-div-img{
+    width: 24px;
+    height: 24px;
+}

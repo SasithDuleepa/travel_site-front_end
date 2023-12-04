@@ -15,10 +15,13 @@ export default function Places() {
     const [placesPerPage] = useState(8);
     
     const GetPlaces = async()=>{
-        const res = await Axios.get('http://localhost:8080/places/all')
-        console.log(res.data.data)
-        setPlaces(res.data.data)
-
+        try {
+            const res = await Axios.get('http://localhost:8080/places/all')
+            // console.log(res.data.data)
+            setPlaces(res.data.data)
+        } catch (error) {
+            console.log(error)
+        }
     }
     useEffect(()=>{
         GetPlaces()
@@ -27,9 +30,10 @@ export default function Places() {
     const PlaceSearch = async(e) =>{
         try {
             const res = await Axios.get(`http://localhost:8080/places/placesearch/${e.target.value}`)
-        console.log(res.data.data)
-        setPlaces(res.data.data)
+            // console.log(res.data.data)
+            setPlaces(res.data.data)
         } catch (error) {
+            console.log(error)
             GetPlaces()
         }
         

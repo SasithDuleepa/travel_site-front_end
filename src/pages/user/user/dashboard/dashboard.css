@@ -1,0 +1,91 @@
+.profile-dashboard{
+    /* display: none; */
+}
+.profile-dashboard-btn-div{
+    display: flex;
+}
+.profile-dashboard-btn-active{
+    background-color: blue;
+    padding: 10px 30px;
+    margin: 10px;
+}
+.profile-dashboard-btn-deactive{
+    background-color: rgb(67, 67, 90);
+    padding: 10px 30px;
+    margin: 10px;
+}
+.profile-dashboard-title{
+    font-size: 24px;
+    font-weight: 400;
+    font-family: poppins;
+}
+.profile-dashboard-line-1{
+    border-bottom: 1px solid black;
+    width: 90%;
+}
+
+.profile-right-tours-div{
+    
+}
+
+
+
+.profile-right-tours-heder-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.profile-right-tours-heder-line{
+    border-bottom: 2px solid black;
+    width: 100%;
+}
+.profile-right-tours-heder{
+
+}
+
+
+.profile-right-tours-div{
+    margin: 10px 10px 10px 10px;
+    display: flex;
+    column-gap: 10px;
+    flex-wrap: wrap;
+}
+
+.profile-right-day-tours-heder-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.profile-right-day-tours-heder-line{
+    border-bottom: 2px solid black;
+    width: 100%;
+}
+.profile-right-day-tours-heder{
+
+}
+.profile-right-day-tours-div{
+    margin: 10px 10px 10px 10px;
+    display: flex;
+    column-gap: 10px;
+    flex-wrap: wrap;
+}
+
+
+
+
+
+.profile-dashboard-tour{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    margin: 10px;
+}
+
+.profile-dashboard-day-tour{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    margin: 10px;
+}

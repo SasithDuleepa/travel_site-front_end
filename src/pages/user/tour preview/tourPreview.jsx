@@ -323,7 +323,7 @@ export default function TourPreview() {
           </div>
           <div className='TourPreview-header-left-line'></div>
           
-          <a className='TourPreview-header-book-btn'>Book Now</a>
+          <a className='TourPreview-header-book-btn' href={`/tourbook1/${tour}`}>Book Now</a>
         </div>
 
 

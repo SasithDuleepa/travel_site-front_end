@@ -139,22 +139,28 @@ figurecaption {
     padding-bottom: 0px;
     display: flex;
     align-items: center;
+    border-radius: 10px;
 
 }
 .homeheader-input-1{
     width: 180px;
-    height: 36px;
+    height: 30px;
     background-color: rgb(255, 255, 255);
     border: none;
     text-align: center;
-    
 }
+/* .homeheader-input-1:focus{
+    border:4px solid yellow;
+    background-color: violet;
+} */
 .homeheader-input-btn{
     background-color: orange;
-    padding: 14px 50px;
+    padding: 5px 50px;
+    margin: 5px 5px 5px 5px;
     font-size: 20px;
     font-weight: 500;
     font-family: poppins;
+    border-radius: 0px 6px 6px 0px;
 }
 .homeheader-input-center{
     border-left: 2px solid rgb(110, 110, 110);

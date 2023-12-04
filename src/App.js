@@ -34,7 +34,7 @@ import Register from './pages/user/register/register';
 import Login from './pages/user/login/login';
 import Popular from './pages/user/popular  destinations/popular';
 
-import Profile from './pages/user/profile/profile';
+import User from './pages/user/user/user'
 import PlaceReview from './pages/user/placeReview/placeReview';
 
 import HomeCarousel from './components/home carousel/HomeCarousel';
@@ -43,7 +43,11 @@ import Daytour_preview from './pages/user/daytour preview/daytour_preview';
 import TCPriview from './pages/user/tour category preview/tcPriview';
 import Places from './pages/user/all places/places';
 
+import Daytourbook1 from './pages/user/daytour book 1/daytourbook1';
+import Daytourbook2 from './pages/user/daytour book 2/daytourbook2';
 
+import Tourbook1 from './pages/user/tour book 1/tourbook1';
+import Tourbook2 from './pages/user/tour book 2/tourbook2';
 
 
 function App() {
@@ -72,10 +76,13 @@ function App() {
           <Route exact path="/tours/:page" component={Tours} />
           <Route exact path="/tour/:tour" component={TourPreview} />
           <Route exact path="/tourcategory/:tour" component={TCPriview} />
-
-          <Route exact path="/profile/:id" component={Profile} />
+          <Route exact path="/profile/:id" component={User} />
           <Route exact path="/placeReview/:id" component={PlaceReview} />
           <Route exact path="/daytour/:id" component={Daytour_preview}/>
+          <Route exact path="/daytourbook1/:id" component={Daytourbook1}/>
+          <Route exact path="/daytourbook2/:id" component={Daytourbook2}/>
+          <Route exact path="/tourbook1/:id" component={Tourbook1}/>
+          <Route exact path="/tourbook2/:id" component={Tourbook2}/>
 
           <Route exact path="/popular_destination" component={Popular} />
           <Route exact path="/places" component={Places}/>

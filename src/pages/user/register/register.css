@@ -1,57 +1,93 @@
 .register-main{
-    width: 98.93vw;
-    display: flex;
-    justify-content: center;
-    
-
-}
-.register{
-    width: 1920px;
-    /* height: 100vh; */
-    /* background-color: aqua; */
-    /* margin-top: 100px;
-    margin-bottom: 100px; */
-    display: flex;
-}
-.register-left-div{
-    width: 47%;
-    /* background-color: antiquewhite; */
-    height: 900px;
-    background-size: cover;
-    background-image: url('./../../../assets/sunset\ 2\ 1.png');
-
-    
-}
-.register-right-div{
-    width: 53%;
-    /* background-color: aquamarine; */
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    width:100vw;
+    height: 100vh;
+    background-size: cover;
+    background-image: url('./../../../assets/sunset.png')
+}
+.register{
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.489);
+    padding: 10px 50px;
+    border-radius: 20px;
+
+}
+
+
+.register-right-div{
+
+    /* background-color: aquamarine; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.register-right-img{
+    width: 500px;
+    height: 500px;
+}
+
+
+
+
+
+.register-center-div{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 50px;
+}
+.register-center-img{
+        height: 500px;
+}
+
+
+
+
+
+
+.register-left-div{
+    /* background-color: rgba(250, 235, 215, 0.3); */
 }
 
 .register-form-div{
     /* background-color: yellowgreen; */
-    width: 450px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px 20px;
+
 }
 .register-header-text-div{
-    /* background-color: antiquewhite; */
-    width: 100%;
+    /* background-color: rgb(170, 118, 49); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -1px;
+    margin-bottom: 10px;
+
 }
 .register-header-text{
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 0px;
-}
+    font-size: 35px;
+    font-weight: 500;
+    font-family: poppins;
+    color: white;
+    margin-top: -5px;
+    margin-bottom: 0px;
+    }
 .register-header-sub-text{
-    font-size: 18px;
+    font-size: 12px;
     font-weight: 400;
-    line-height: 25px;
+    line-height: 20px;
+    font-family: poppins;
+    text-align: center;
+    color: white;
+    margin-top: -5px;
+    margin-bottom: 1px;
 }
 
 .register-form{
@@ -62,50 +98,83 @@
     margin: 8px auto;
 }
 .register-label{
-    font-size: 24px;
-    margin: 5px 0px;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: poppins;
+    color: white;
+}
+.register-form-sub{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 .register-input{
-    
-    height: 30px;
-    border: 1px solid black;
-    border-radius: 10px;
+    height: 25px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid rgba(185, 185, 186, 1);
+    color: white;
 }
+
+.register-input-validate-p{
+    font-size: 10px;
+    color: red;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.register-validate-img{
+    width: 20px;
+}
+
 .register-form-checkbox{
     margin: 10px 0px 10px 0px;
+    display: flex;
+    align-items: center;
 }
 .register-label-checkbox{
-    font-size: 16px;
+    font-size: 11px;
+    font-weight: 400;
+    font-family: poppins;
+    color: white;
     
 }
 .register-link{
-    color: blue;
-    font-weight: 500;
+    color: orange;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: Lato;
 }
 .register-btn{
     width: 100%;
-    height: 50px;
+    height: 40px;
     border: none;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
-    color: rgb(255, 255, 255);
-    background-color: rgb(6, 6, 83);
+    font-family: poppins;
+    color: rgb(0, 0, 0);
+    background-color: orange;
     margin-top: 20px;
 
 }
 .register-or{
     font-size: 20px;
     font-weight: 700;
-    color: rgb(84, 84, 84);
+    color: rgb(255, 255, 255);
+    margin: 10px auto;
 }
 .google-icon-register{
     width: 30px;
 }
 .register-bottom-text{
-    font-size: 20px;
+    font-size: 15px;
+    font-weight: 400;
+    color: white;
 }
 .register-login{
-    color: blue;
+    color: orange;
     font-weight: 500;
+    text-decoration: none;
 }

@@ -43,26 +43,27 @@
     width: 230px;
     height: 50px;
     overflow: hidden;
-    margin-top: 2px;
+    margin-top: 5px;
+    /* background-color: aqua; */
 }
 .homeCarousel-description{
     color: azure;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 400;
-    text-align: center;
-    width: 200px;
-    height: 50px;
-    line-height: 10px;
+    text-align: justify;
+    width: 210px;
+    height: 65px;
+    line-height: 13px;
     overflow: hidden;
-    margin-top: -35px;
+    margin-top: -38px;
 }
 .homeCarousel-see_more{
  text-align: center;
  color: rgb(7, 7, 7);
  background-color: orange;
- padding: 6px 25px;
+ padding: 3px 15px;
  border-radius: 25px;
- font-size: 15px;
+ font-size: 12px;
  font-weight: 500;
  font-family: poppins;
  text-decoration: none;

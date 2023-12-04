@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './tours.css';
 import axios from 'axios';
 import Delete from '../../../assets/icons/delete.png'
+import TourEdite from '../edite tour/tourEdite';
 
 export default function Tours()  {
   //head data
@@ -16,7 +17,7 @@ export default function Tours()  {
   
 const [dayData, setDayData] =useState([
   {day:1 ,
-    description:null,
+    startdescription:null,
     luxury:null,
     semiluxury:null,
    places:[]
@@ -57,7 +58,7 @@ const SearchHandler =async(e)=>{
 const SelectPlace =(place_name,placeId)=>()=>{
   // console.log(place_name, placeId);
   const newDayData = [...dayData]
-  newDayData[dayDataIndex].places.push({placeName:place_name,placeId:placeId})
+  newDayData[dayDataIndex].places.push({placeName:place_name,placeId:placeId,description_place:''})
   setDayData(newDayData)
   // console.log(newDayData[dayDataIndex].places)
   setSearchData([])
@@ -65,10 +66,10 @@ const SelectPlace =(place_name,placeId)=>()=>{
 }
 
 
-const DayDescription =(e)=>{
+const DayStartDescription =(e)=>{
   
   const newDayData = [...dayData]
-  newDayData[dayDataIndex].description = e.target.value
+  newDayData[dayDataIndex].startdescription= e.target.value
   setDayData(newDayData)
 }
 //delete place  
@@ -136,7 +137,16 @@ const SemiluxuryHandler = (e) =>{
 }
 
 
+const PlaceDescription =(e,index)=>{
+  const newDayData = [...dayData]
+  newDayData[dayDataIndex].places[index].description_place = e.target.value
+  setDayData(newDayData)
+  console.log(newDayData)
+}
+
 return (
+  <>
+  
   <div className='dashboard-tour'>
     <h1>TOUR</h1>
     <div className='dashboard-tour-underline'></div>
@@ -178,11 +188,7 @@ return (
         </a>
       </div>
       <div className='tour-package-place-div'>
-        <h2 className='tour-places-header2'>about day</h2>
-        <div className='tour-places-day-description-div'>
-          <label>day description</label>
-          <textarea type="text" onChange={(e)=>DayDescription(e)} value={dayData[dayDataIndex].description}/>
-        </div>
+        
 
 
         <h2 className='tour-places-header2'>add hotels</h2>
@@ -247,10 +253,16 @@ return (
         
 
         <h2  className='tour-places-header2'>selected places</h2>
+        
+        <div className='tour-places-day-description-div'>
+          <label>day start description</label>
+          <textarea type="text" onChange={(e)=>DayStartDescription(e)} value={dayData[dayDataIndex].description}/>
+        </div>
         {dayData[dayDataIndex].places.map((item,index)=>{
           return(
             <div className='day-tour-place-div'>
               <a key={index}>{item.placeName}</a><img src={Delete} className='place-delete-img' onClick={DeletePlace(index)}/>
+              <textarea onChange={(e)=>PlaceDescription(e,index)} value={dayData[dayDataIndex].places[index].description_place} placeholder='description'/>
             </div>
         )}
         )}
@@ -261,6 +273,8 @@ return (
   </div>
 
   </div>
+  <TourEdite/>
+  </>
 
 );
 }
