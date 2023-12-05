@@ -1,0 +1,43 @@
+.aboutTeamCarouselCard-main {
+    width: 253px;
+    height: 327px;
+    /* background-color: rgb(179, 144, 177); */
+    /* margin-bottom: 120px; */
+}
+.aboutTeamCarouselCard {
+    width: 253px;
+    height: 327px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+.aboutTeamCarouselCard-content {
+    position: absolute;
+    /* background-color: #1d1d1fce; */
+    background-color: rgba(29, 29, 31, 0.7);
+    height: 100px;
+    width: 299px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 253px;
+    height: 98px;
+}
+.aboutTeamCarouselCard-content-name{
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 5px;
+}
+.aboutTeamCarouselCard-content-designation{
+    font-size: 15px;
+    font-weight: 300;
+    color: white;
+    margin-top: 0;
+}
+.aboutTeamCarouselCard-img {
+    width: 100%;
+    height: 100%;
+}
