@@ -71,8 +71,9 @@ export default function Navbar() {
           </div>
           <div className='Nav-bar-links-div-center'>
             <a className={currentPath==='/'?'nav-links-active': 'nav-links'}  href='/'>Home</a>
-            <a className={currentPath==='/tours/tourcategory'?'nav-links-active': 'nav-links'} href='/tours/tourcategory'>Tours</a>
-            <a className={currentPath==='/popular_destination'?'nav-links-active': 'nav-links'}  href='/popular_destination'>Destinations</a>
+            <a className={currentPath==='/tours/tourcategory'?'nav-links-active': 'nav-links'} href='/tours/tourcategory'>Tour Packages</a>
+            <a className={currentPath==='/tours/daytour'?'nav-links-active': 'nav-links'} href='/tours/daytour'>Day Tours</a>
+            <a className={currentPath==='/popular_destination'?'nav-links-active': 'nav-links'}  href='/popular_destination'>Popular Destinations</a>
             <a className={currentPath==='/about'?'nav-links-active': 'nav-links'}  href='/about'>About Us</a>
             <a className={currentPath==='/contactus'?'nav-links-active': 'nav-links'}  href='/contactus'>Contact</a>
           </div>
