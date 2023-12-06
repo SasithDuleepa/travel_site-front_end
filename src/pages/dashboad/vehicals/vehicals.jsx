@@ -7,7 +7,7 @@ export default function Vehicals() {
       <h1>Add Vehicle</h1>
       <div className='vehical-main-div'>
         <div>
-          <label>vahical type</label>
+          <label>vehicle type</label>
           <input />
         </div>
         <div>
@@ -18,6 +18,14 @@ export default function Vehicals() {
           <label>rate per km</label>
           <input />
         </div>
+        <button>Add</button>
+      </div>
+
+
+
+      <h1>update vehicle</h1>
+      <div className='vehicle-update-main'>
+
       </div>
     </div>
   )

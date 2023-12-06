@@ -11,6 +11,22 @@ export default function Tourbook1() {
     const[hotelType, setHotelType] = useState('');
     const[passengers,setPassengers] = useState('');
     const[startDate,setStartDate] = useState('');
+
+    const NextHandler = () => {
+        if(hotelType === '' || passengers === '' || startDate === ''){
+            alert('Please fill all the fields');
+        }else{
+            sessionStorage.setItem('hotelType', hotelType);
+            sessionStorage.setItem('passengers', passengers);
+            sessionStorage.setItem('startDate', startDate);
+            
+            window.location.href = `/tourbook2/${id}`;
+      
+        }
+    
+    }
+
+    const BackHandler = () => {}
   return (
     <div className='Tourbook1'>
         <div className='Tourbook1-hero'>
@@ -33,20 +49,25 @@ export default function Tourbook1() {
             <div className='Tourbook1-form-div'>
                 <div className='Tourbook1-form'>
                     <label className='Tourbook1-form-label'>Select the Hotel Type:</label>
-                    <input className='Tourbook1-form-input'/>
+                    <select className='Tourbook1-form-input' onChange={(e)=>setHotelType(e.target.value)}
+                    value={hotelType}>
+                        <option value=''>Select Hotel Type</option>
+                        <option value='Luxury'>Luxury</option>
+                        <option value='Semi-Luxury'>Semi-Luxury</option>
+                    </select>
                 </div>
                 <div className='Tourbook1-form'>
                     <label className='Tourbook1-form-label'>Enter Passenger Count:</label>
-                    <input className='Tourbook1-form-input'/>
+                    <input type='number' onChange={(e)=>setPassengers(e.target.value)} value={passengers} min='1' max='10' required className='Tourbook1-form-input'/>
                 </div>
                 <div className='Tourbook1-form'>
                     <label className='Tourbook1-form-label'>Tour Start Date:</label>
-                    <input className='Tourbook1-form-input'/>
+                    <input className='Tourbook1-form-input' type='date' onChange={(e)=>setStartDate(e.target.value)}/>
                 </div>
 
                 <div className='Tourbook1-btn-div'>
                     <a className='Tourbook1-btn-1'>Previous</a>
-                    <a className='Tourbook1-btn-2' href={`/tourbook2/${id}`}>Next</a>
+                    <a className='Tourbook1-btn-2'  onClick={NextHandler}>Next</a>
                 </div>
 
             </div>
