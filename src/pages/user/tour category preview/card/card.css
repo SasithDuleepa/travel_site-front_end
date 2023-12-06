@@ -4,8 +4,13 @@
     width: 372px;
     height: 479px;
     display: flex;
+    flex-direction: column;
     align-items: end;
     margin: 50px;
+}
+.tc-card-img{
+    width: 372px;
+    height: 479px;
 }
 .tc-card-info-div{
     background-color: rgba(0, 0, 0, 0.409);
@@ -14,6 +19,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: -210px;
 
 }
 .tc-card-header{

@@ -63,7 +63,7 @@ export default function TCPriview() {
 
 {tours.map((tour,index)=>{
                     return(
-                        <Card key={index} name={tour.tour_name} tour_description={tour.tour_description} link={`/tour/${tour.tour_id
+                        <Card key={index} name={tour.tour_name} tour_description={tour.tour_description} image={`http://localhost:8080/tour/tourimg/?file=${tour.tour_img}`} link={`/tour/${tour.tour_id
                         }`}
                         />
                     )

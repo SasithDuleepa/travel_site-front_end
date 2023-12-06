@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './add_place.css';
 import axios from 'axios';
 import { GoogleMap, useLoadScript, MarkerF  } from '@react-google-maps/api';
+import Cookies from 'js-cookie';
 
 import Delete from './../../../assets/icons/delete.png'
 
@@ -81,11 +82,13 @@ const removeFile =(index)=> (e) => {
           // console.log(data);
         
           try {
-            console.log([...formData]); // Spread the FormData to convert it to an array for easier inspection
+            console.log([...formData]); 
+            const token = Cookies.get('jwt');
 
             const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/places/addplace`, formData, {
               headers: {
                 'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`,
               },
             });
         
@@ -112,6 +115,8 @@ const removeFile =(index)=> (e) => {
               alert("Internal Server Error");
             } else if (error.status === 400) {
               alert("Please fill in the required fields");
+            }else if (error.status === 401) {
+              alert("Unauthorized");
             }
           }
         };

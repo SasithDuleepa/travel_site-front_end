@@ -1,0 +1,30 @@
+
+.request{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.request-pending-div{
+    border: 1px solid black;
+    padding: 20px;
+    
+}
+
+.request-pending-div-results{
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+}
+.request-pending-results{
+    display: flex;
+    align-items: center;
+}
+.request-pending-results-label{
+    font-size: 20px;
+}
+.request-pending-results-button{
+    background-color: blue;
+}

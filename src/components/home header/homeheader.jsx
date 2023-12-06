@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './homeheader.css';
+import axios from 'axios';
+
 
 
 
@@ -7,6 +9,36 @@ import './homeheader.css';
 
 
 export default function Homeheader() {
+
+  const[name , setName] = useState('');
+  const[email , setEmail] = useState('');
+  const[contact , setContact] = useState('');
+  const[country , setCountry] = useState('');
+
+  const SendHandler =async() =>{
+    if(name!=='' && email!=='' && contact!=='' && country!==''){
+      const data ={
+        name:name,
+        email:email,
+        contact:contact,
+        country:country,
+      }
+      try {
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/request/add`,data)
+        console.log(res.data)
+        window.alert('Request Sent Successfully!')
+        setName('')
+        setEmail('')
+        setContact('')
+        setCountry('')
+        
+      } catch (error) {
+        window.alert('please try again!')
+      }
+      ;
+    }
+
+  }
   return (
     <div className='home-header-main'>
       <div class="pic-wrapper">
@@ -18,11 +50,11 @@ export default function Homeheader() {
         <div className='home-header-main-sub2'>
           <p className='homeheader-input-title'>Plan your Best tour with Sri Lanka Travel Expert</p>
           <div className='homeheader-input-div'>
-          <input className='homeheader-input-1' placeholder='Your Name'/>
-          <input className='homeheader-input-1 homeheader-input-center' placeholder='Your Mail'/>
-          <input className='homeheader-input-1 homeheader-input-center' placeholder='Contact Number'/>
-          <input className='homeheader-input-1 homeheader-input-center' placeholder='Your Country'/>
-          <a className='homeheader-input-btn'>Plan Your Tour</a>
+          <input className='homeheader-input-1' placeholder='Your Name' onChange={(e)=>setName(e.target.value)} value={name}/>
+          <input className='homeheader-input-1 homeheader-input-center' placeholder='Your Mail' onChange={(e)=>setEmail(e.target.value)} value={email}/>
+          <input className='homeheader-input-1 homeheader-input-center' placeholder='Contact Number' onChange={(e)=>setContact(e.target.value)} value={contact}/>
+          <input className='homeheader-input-1 homeheader-input-center' placeholder='Your Country' onChange={(e)=>setCountry(e.target.value)} value={country}/>
+          <a onClick={SendHandler} className='homeheader-input-btn'>Plan Your Tour</a>
           </div>
           
           

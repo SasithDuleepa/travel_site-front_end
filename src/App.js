@@ -21,7 +21,10 @@ import DayTour from './pages/dashboad/day tour/dayTour';
 import Tour from './pages/dashboad/tours/tours';
 import PlaceCategory from './pages/dashboad/place_category/placeCategory';
 import PopularDestinations from './pages/dashboad/popular destinations/popularDestinations';
+import Request from './pages/dashboad/request/request';
 import Carousel1 from './components/carousel/carousel1';
+
+import Login_  from './pages/dashboad/log in/login';
 
 
 //user components
@@ -57,7 +60,13 @@ function App() {
   return (
     <div className="App">
 
-      {currentPath.startsWith('/dashboad') ? <Sidebar /> : (currentPath !== '/register' && currentPath !== '/login' ? <Navbar /> : null)}
+      
+{currentPath.startsWith('/admin') ? null : (
+        currentPath.startsWith('/dashboad') ? <Sidebar /> : 
+        (currentPath !== '/register' && currentPath !== '/login' ? <Navbar /> : null)
+      )}
+
+      
 
       
      
@@ -112,6 +121,8 @@ function App() {
           <Route exact path="/dashboad/placeCategory" component={PlaceCategory}/>
           <Route exact path="/dashboad/images" component={Images}/>
           <Route exact path="/dashboad/popular_destinations" component={PopularDestinations}/>
+          <Route exact path="/admin/login" component={Login_}/>
+          <Route exact path="/dashboad/request" component={Request}/>
           
           
         </Switch>
@@ -121,12 +132,14 @@ function App() {
       </div>
 
       
-      {/* <Addplace /> */}
-      {/* <MapRoutes /> */}
-
-     
+    
       {/* {currentPath.startsWith('/dashboad') ? null: <Footer/>} */}
-      {currentPath.startsWith('/dashboad') ? null : (currentPath !== '/register' && currentPath !== '/login' ? <Footer /> : null)}
+      {/* {currentPath.startsWith('/dashboad') ? null : (currentPath !== '/register' && currentPath !== '/login' ? <Footer /> : null)} */}
+
+      {currentPath.startsWith('/admin') ? null : (
+        currentPath.startsWith('/dashboad') ? null : 
+        (currentPath !== '/register' && currentPath !== '/login' ? <Footer /> : null)
+      )}
     </div>
   );
 }

@@ -12,3 +12,31 @@
     margin: 50px;
     padding: 50px 100px;
 }
+
+
+
+
+
+.vehicles-available-div{
+    display: flex;
+    flex-direction: column;
+}
+.vehicles-available-div-child{
+    display: flex;
+    flex-direction: column;
+
+    border: 2px solid black;
+    margin: 20px;
+    padding: 20px;
+}
+
+.vehicles-available-div-child-form{
+    display: flex;
+    flex-direction: column;
+}
+.vehicles-available-div-child-label{
+
+}
+.vehicles-available-div-child-input{
+    
+}

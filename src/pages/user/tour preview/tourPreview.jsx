@@ -68,9 +68,9 @@ export default function TourPreview() {
 
 
 
-  const [expandclass,setExpandClass] = useState('TourPreview-center-right-expand-div')
+  const [expandclass,setExpandClass] = useState('close')
   const {tour}= useParams();
-  const [expandedDay, setExpandedDay] = useState(null);
+  const [expandedDay, setExpandedDay] = useState(0);
 
 
 
@@ -169,22 +169,6 @@ export default function TourPreview() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   //get tour and tour dates
   const GetTour = async() => {
     try {
@@ -197,7 +181,7 @@ export default function TourPreview() {
   };
   const GetPlaces = async() => {
     const res = await axios.get(`http://localhost:8080/tour/places/${tour}`)
-    // console.log(res.data)
+    console.log(res.data)
     setPlaces(res.data)
   }
   
@@ -217,12 +201,14 @@ export default function TourPreview() {
 
 
 
+
   const expandhandler = (tourDateId)=>async() =>{
+    console.log(expandedDay)
     setExpandClass(expandclass === 'TourPreview-center-right-expand-div' ? 'close' : 'TourPreview-center-right-expand-div');
     setExpandedDay(tourDateId);
     try {
       const res =await axios.get(`http://localhost:8080/tour/tourplaces/${tourDateId}`)
-      // console.log(res.data)
+      console.log(res.data)
       setPlacesData(res.data)
     } catch (error) {
       console.log(error)
@@ -462,35 +448,25 @@ export default function TourPreview() {
           {TourData.length>0 ? TourData.map((tourDate,index)=>{
             return(
             <div key={index} className='TourPreview-center-right-day'>
-            <div className='TourPreview-center-right-day-main'><p  className='TourPreview-center-right-day-main-p'>Day {tourDate.tour_date}</p>  <img  key={index} onClick={expandhandler(tourDate.tour_date_id)} src={Plus}/></div>
+            <a key={index} onClick={expandhandler(tourDate.tour_date_id)} className='TourPreview-center-right-day-main'>
+              <p  className='TourPreview-center-right-day-main-p'>Day {tourDate.tour_date}</p>
+               <img   src={Plus}/></a>
+
+
+               
             <div className={expandedDay === tourDate.tour_date_id ? expandclass : 'close'}>
-                  {/* ... (rest of the expanded content) */}
-
-              
-
-              {placesData.map((place,Index)=>{
+              <p>{tourDate.start_description}</p>
+                  {placesData.map((place,Index)=>{
                 return(
                   <div>
-                    <p className='TourPreview-expand-p1'>Lorem ipsum dolor sit amet consectetur.
-               Velit quisque scelerisque vel faucibus ornare.
-               Luctus sapien integer dolor egestas gravida ut eleifend quis. At massa mi
-              </p>
-                    <p className='TourPreview-expand-place-p1'><b>{place.place_name}</b>{place.place_description}</p>
+                    <p className='TourPreview-expand-place-p1'><b>{place.place_name}</b>{place.short_description}</p>
+                    <p>{place.tour_place_description}</p>
 
                   </div>
                   
 
                 )
-                  
               })}
-
-              <p className='TourPreview-expand-p1'>
-                Lorem ipsum dolor sit amet consectetur. Velit quisque scelerisque
-                vel faucibus ornare. Luctus sapien integer dolor egestas gravida ut eleifend quis. At massa mi
-              </p>
-
-              
-
             </div>
             
             </div>)

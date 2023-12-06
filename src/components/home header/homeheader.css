@@ -38,7 +38,7 @@ figurecaption {
 }
 .pic-1 {
     opacity: 1;
-    background-image: url("https://www.lankantravels.com/medias/slide/big/1/slider1.jpg") ;
+    background-image: url("http://localhost:8080/images/Home/heroimg/slider1.jpg") ;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -50,7 +50,7 @@ figurecaption {
     -o-animation-delay: 6s;
     -moz--animation-delay: 6s;
     -webkit-animation-delay: 6s;
-    background-image: url("https://www.lankantravels.com/medias/slide/big/3/slider3.jpg");
+    background-image: url("http://localhost:8080/images/Home/heroimg/slider3.jpg");
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -62,7 +62,7 @@ figurecaption {
     -o-animation-delay: 12s;
     -moz--animation-delay: 12s;
     -webkit-animation-delay: 12s;
-    background-image: url("https://www.lankantravels.com/medias/slide/big/5/slider5.jpg");
+    background-image: url("http://localhost:8080/images/Home/heroimg/slider5.jpg");
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -74,7 +74,7 @@ figurecaption {
     -o-animation-delay: 18s;
     -moz--animation-delay: 18s;
     -webkit-animation-delay: 18s;
-    background-image: url("https://www.lankantravels.com/medias/slide/big/3/slider3.jpg");
+    background-image: url("http://localhost:8080/images/Home/heroimg/slider2.jpg");
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
