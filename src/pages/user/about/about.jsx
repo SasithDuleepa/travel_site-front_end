@@ -104,7 +104,7 @@ export default function About() {
         </div>
       </div>
 
-      <AboutTeamCarousel />
+
 
       <Travelersexperience />
 

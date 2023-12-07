@@ -1,0 +1,76 @@
+
+.TcEdite-main{
+
+}
+.TcEdite{
+    margin: 20px;
+    border: 1px solid black;
+    padding: 20px;
+}
+.TcEdite-tours{
+    background-color: rgb(235, 235, 235);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.TcEdite-tour-results{
+    margin: 2px auto;
+}
+.TcEdite-form-div{
+    /* background-color: antiquewhite; */
+    margin: 10px auto;
+}
+.TcEdite-form{
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+}
+.TcEdite-form-label{
+
+}
+.TcEdite-form-input{
+
+}
+
+.TcEdite-img-form{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.TcEdite-img{
+    width: 372px;
+    height: 479px;
+}
+
+.TcEdite-tour-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.TcEdite-tour{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 5px auto;
+    background-color: rgb(201, 201, 201);
+}
+.TcEdite-tour-delete-img{
+    width: 30px;
+}
+
+.TcEdite-btn-div{
+    display: flex;
+    justify-content: center;
+}
+.TcEdite-btn-div-update{
+    background-color: blue;
+    margin: 10px;
+    padding: 10px 20px;
+}
+.TcEdite-btn-div-delete{
+    background-color: red;
+    margin: 10px;
+    padding: 10px 20px
+}

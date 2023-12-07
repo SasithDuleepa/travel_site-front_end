@@ -140,4 +140,11 @@
     background-color: rgb(12, 12, 71);
     color: white;
     padding: 10px 30px;
+    margin: 10px;
+}
+
+.touredite-delete-btn{
+    background-color: rgb(255, 0, 0);
+    color: white;
+    padding: 10px 30px;
 }

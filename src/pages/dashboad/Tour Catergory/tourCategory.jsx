@@ -3,6 +3,8 @@ import './tourCategory.css';
 import axios from 'axios';
 import Delete from './../../../assets/icons/delete.png'
 
+import TcEdite from '../edite tour category/tcEdite';
+
 
 
 
@@ -128,6 +130,9 @@ export default function TourCategory() {
       <button className='tourcategory-add-button' onClick={AddHandler}>Add</button>
        
       </div>
+
+
+      <TcEdite/>
       
     </div>
 

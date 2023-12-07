@@ -79,7 +79,8 @@
 }
 
 .editeplace-form-img{
-    width: 200px;
+    width: 388px;
+    height: 300px;
 }
 
 
@@ -98,7 +99,8 @@
 }
 
 .editeplace-form-addedimg{
-    width: 200px;
+    width: 388px;
+    height: 300px;
 }
 
 
@@ -120,11 +122,11 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
 }
 
 .editeplace-form-placeimg-div-sub1{
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
     margin: 5px;
 }
 .editeplace-form-placeimg-div-sub1-edite{
