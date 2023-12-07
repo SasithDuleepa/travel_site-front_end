@@ -7,6 +7,7 @@ import HeaderText from '../../../components/homeHeaderText/headerText';
 import Fb from '../../../assets/icons/facebook.png';
 import Insta from '../../../assets/icons/instagram.png';
 import Twitter from '../../../assets/icons/twitter.png';
+import World from '../../../assets/world tour 02 1.png';
 import Beach from '../../../assets/aboutUs/beach.png';
 import Dollar from '../../../assets/aboutUs/Dollar.png';
 import TravelBag from '../../../assets/aboutUs/travel-luggage.png';
@@ -42,7 +43,20 @@ export default function About() {
       </div>
 
       <div className='About-header-text'>
-        <HeaderText />
+        <div className='About-header-text-row'>
+          <div className='About-header-text-row-content'>
+            <p className='About-header-text-row-content-travelWith'>Travel with</p>
+            <p className='About-header-text-row-content-title'>Sri Lanka Travel Experts</p>
+            <p className='About-header-text-row-content-description'>Lorem ipsum dolor sit amet consectetur. In eget placerat auctor adipiscing
+              felis euismod massa mattis facilisis. Nisl in lacus pharetra cursus enim vitae ultrices odio iaculis. Ut posuere feugiat et pellentesque dui.
+              Nulla nunc aliquam duis a viverra at metus morbi. Eu urna arcu ipsum dignissim sit et et faucibus quam.
+              Dignissim semper ornare nisi purus ac risus mi. In sed in nisi varius sed ullamcorper lorem. Fames in vulputate faucibus pretium nulla
+              fringilla aliquam vulputate. Mauris eget nulla morbi aliquet malesuada donec magnis in nec. Malesuada nibh purus ut imperdiet at laoreet.
+              Curabitur commodo nunc et condimentum amet cursus at felis
+            </p>
+          </div>
+          <img className='About-header-text-row-img' src={World} />
+        </div>
       </div>
 
       <div className='About-vm-main'>
@@ -90,12 +104,7 @@ export default function About() {
         </div>
       </div>
 
-      
-      <div  className='About-carousel'>
-        <p  className='About-carousel-title'>Meet our Professional team</p>
-        <div><AboutTeamCarousel/></div>
-      
-      </div>
+
 
       <Travelersexperience />
 
