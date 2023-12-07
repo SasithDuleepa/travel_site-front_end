@@ -73,6 +73,41 @@
     display: flex;
     justify-content: center;
     /* align-items: center; */
+    font-family: Poppins;
+}
+.About-header-text-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 1220px;
+}
+.About-header-text-row-content{
+    display: flex;
+    flex-direction: column;
+    width: 698px;
+}
+.About-header-text-row-content-travelWith{
+    font-size: 30px;
+    font-weight: 500;
+    color: rgb(104, 104, 105);
+    margin-bottom: 0;
+}
+.About-header-text-row-content-title{
+    font-size: 50px;
+    font-weight: 800;
+    font-style: italic;
+    font-family: Playfair Display;
+    margin-top: -5px;
+    margin-bottom: 0;
+}
+.About-header-text-row-content-description{
+    font-size: 16px;
+    font-weight: 100;
+}
+.About-header-text-row-img{
+    width: 489px;
+    height: 489px;
 }
 
 
