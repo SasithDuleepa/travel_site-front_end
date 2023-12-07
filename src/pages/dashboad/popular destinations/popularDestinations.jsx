@@ -39,6 +39,31 @@ export default function PopularDestinations() {
     newdata.push({place_name:place,place_id:place_id})
     setSelectedPlace(newdata)
   }
+
+
+  const AddHandler =async() =>{
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/popular/add`,selectedPlace) 
+      console.log(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const DeleteHandler =(index) =>{
+    console.log(popularPlaces[index])
+
+    const newdata = [...popularPlaces]
+    newdata.splice(index,1)
+    setPopularPlaces(newdata)
+  }
+  const UpdateHandler =async() =>{
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/popular/update`,popularPlaces) 
+      console.log(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div className='PopularDestinations'>
         <h1 className='PopularDestinations-header'>Popular Destinations</h1>
@@ -80,7 +105,7 @@ export default function PopularDestinations() {
 
 
             </div>
-            <button>Add</button>
+            <button onClick={AddHandler}>Add</button>
 
             <div className='PopularDestinations-update-div'>
               <h1>update</h1>
@@ -88,7 +113,7 @@ export default function PopularDestinations() {
                 return(
                   <div className='PopularDestinations-result-place-div' key={index}>
                     <p>{place.place_name}</p>
-                    <img className='dashboad-popular-delete-img' src={Delete} alt="delete" />
+                    <img className='dashboad-popular-delete-img' src={Delete} alt="delete" onClick={()=>DeleteHandler(index)}/>
                   </div>
                 )
               
@@ -98,7 +123,7 @@ export default function PopularDestinations() {
             }
 
             </div>
-            <button>Update</button>
+            <button onClick={()=>UpdateHandler()}>Update</button>
 
         </div>
     </div>

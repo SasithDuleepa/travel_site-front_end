@@ -85,19 +85,19 @@ export default function DaytourEdite() {
         setPlaces([...places, { place_id: '', description: '' }]);
       }
 
-      const PlaceHandler = (index, e) => {
-        const selectedValue = e.target.value;
-        const selectedPlace = allPlaces.find(place => place.place_id === selectedValue);
+    //   const PlaceHandler = (index, e) => {
+    //     const selectedValue = e.target.value;
+    //     const selectedPlace = allPlaces.find(place => place.place_id === selectedValue);
       
-        const newdata = [...places];
-        newdata[index] = {
-          ...newdata[index],
-          place_id: selectedPlace.place_id,
-          place_name: selectedPlace.place_name,
-        };
+    //     const newdata = [...places];
+    //     newdata[index] = {
+    //       ...newdata[index],
+    //       place_id: selectedPlace.place_id,
+    //       place_name: selectedPlace.place_name,
+    //     };
       
-        setPlaces(newdata);
-      };
+    //     setPlaces(newdata);
+    //   };
 
       const infoHandler = (index, e) => {
         const newdata = [...places];
@@ -133,9 +133,28 @@ export default function DaytourEdite() {
      }
     }
 
+
+    const DeleteHandler = async() =>{
+        try {
+            const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/daytour/delete/${id}`);
+            console.log(res.data)
+            if(res.status === 200){
+                window.location.reload()
+            }
+        } catch (error) {
+            console.log(error);
+            window.alert('error')
+        }
+    
+    }
+
   return (
-    <div className='daytouredite'>
+    
+    <div  className='daytouredite-main'>
         <h1>Day Tour Update</h1>
+
+<div className='daytouredite'>
+        
 
         <input type="text" placeholder='search day tour' />
 
@@ -175,23 +194,27 @@ export default function DaytourEdite() {
             </div>
         </div>
 
-        <div>
+        <div className='daytouredite-places-form-div'>
             {places.length>0 && places.map((place,index)=>(
-                <div key={index}>
-                    <p>{place.place_name}</p>
-                    <select  onChange={(e)=>PlaceHandler(index,e)}>
+                <div key={index}  className='daytouredite-places-form'>
+                    <p className='daytouredite-places-form-place'>{place.place_name}</p>
+                    {/* <select  onChange={(e)=>PlaceHandler(index,e)}>
                         <option value="">Select Place</option>
                         {allPlaces.length>0 && allPlaces.map((place)=>(
                             <option  value={place.place_id}>{place.place_name}</option>
                         ))}
                 
-                    </select>
-                    <textarea value={place.description} onChange={(e)=>infoHandler(index,e)}></textarea>
-                    <a onClick={PlaceDeleteHandler(index)}>DELETE</a>
+                    </select> */}
+                    <textarea className='daytouredite-places-form-info' value={place.description} onChange={(e)=>infoHandler(index,e)}></textarea>
+                    <a className='daytouredite-places-form-btn' onClick={PlaceDeleteHandler(index)}>DELETE</a>
                 </div>
+
                 ))}
 
-                <a onClick={AddPlaceHandler}>Add</a>
+                {/* <a onClick={AddPlaceHandler}>add</a> */}
+                
+
+              
         </div>
 
 
@@ -200,8 +223,10 @@ export default function DaytourEdite() {
 
 
 
-        <button onClick={UpdateHandler}>Update</button>
+        <button className='daytouredite-update-btn' onClick={UpdateHandler}>Update</button>
+        <a onClick={DeleteHandler} className='daytouredite-delete-btn'>delete</a>
 
+    </div>
     </div>
   )
 }

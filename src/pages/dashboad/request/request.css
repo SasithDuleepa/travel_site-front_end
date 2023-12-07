@@ -10,21 +10,142 @@
 .request-pending-div{
     border: 1px solid black;
     padding: 20px;
+    max-height: 800px;
+    overflow-y: scroll;
     
 }
 
-.request-pending-div-results{
-    border: 1px solid black;
-    padding: 5px;
-    margin: 5px;
+.request-pending-title-div{
+    display: flex;
+    gap: 5px;
 }
-.request-pending-results{
+.request-pending-title-1{
+    width: 180px;
+    text-align: center;
+}
+.request-pending-title-2{
+    width: 230px;
+    text-align: center;
+}
+.request-pending-title-3{
+    width: 150px;
+    text-align: center;
+}
+.request-pending-title-4{
+    width: 130px;
+    text-align: center;
+}
+.request-pending-title-5{
+    width: 50px;
+    text-align: center;
+}
+
+
+.request-pending-info-div{
     display: flex;
     align-items: center;
+    gap: 5px;
 }
-.request-pending-results-label{
-    font-size: 20px;
+.request-pending-info-1{
+    width: 180px;
+    background-color: rgba(203, 203, 203, 0.727);
 }
-.request-pending-results-button{
+.request-pending-info-2{
+    width: 230px;
+    background-color: rgba(203, 203, 203, 0.727);
+}
+.request-pending-info-3{
+    width: 150px;
+    background-color: rgba(203, 203, 203, 0.727);
+}
+.request-pending-info-4{
+    width: 130px;
+    background-color: rgba(203, 203, 203, 0.727);
+}
+.request-pending-info-5{
+    width: 50px;
+    text-align: center;
+    padding: 5px 10px;
     background-color: blue;
+    color: aliceblue;
+    
 }
+
+
+
+
+
+
+
+
+
+.contactus-request-pending{
+    border: 1px solid black;
+    padding: 20px;
+    margin: 20px auto;
+    max-height: 800px;
+    overflow-y: scroll;
+}
+.contactus-request-pending-info-div{
+    display: flex;
+    align-items: center;
+    /* background-color: antiquewhite; */
+    gap: 5px;
+}
+.contactus-request-pending-info-1{
+    width: 180px;
+    background-color: rgba(198, 198, 198, 0.475);
+
+}.contactus-request-pending-info-2{
+    width: 230px;
+    background-color: rgba(198, 198, 198, 0.475);
+}
+.contactus-request-pending-info-3{
+    width: 150px;
+    background-color: rgba(198, 198, 198, 0.475);
+}
+.contactus-request-pending-info-4{
+    width: 130px;
+    background-color: rgba(198, 198, 198, 0.475);
+}
+.contactus-request-pending-info-5{
+    width: 300px;
+    background-color: rgba(198, 198, 198, 0.475);
+}
+.contactus-request-pending-info-6{
+    width: 50px;
+    background-color: rgb(50, 55, 193);
+    padding: 5px 10px;
+    color: aliceblue;
+}
+
+
+
+.contactus-request-pending-title-div{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.contactus-request-pending-title-1{
+    width: 180px;
+}.contactus-request-pending-title-2{
+    width: 230px;
+}
+.contactus-request-pending-title-3{
+    width: 150px;
+}
+.contactus-request-pending-title-4{
+    width: 130px;
+}
+.contactus-request-pending-title-5{
+    width: 300px;
+}
+.contactus-request-pending-title-6{
+    width: 50px;
+}
+
+
+
+
+
+

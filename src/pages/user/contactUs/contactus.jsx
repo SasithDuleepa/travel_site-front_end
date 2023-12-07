@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './contactus.css'
+import axios from 'axios';
 
 import Fb from '../../../assets/icons/facebook.png';
 import Insta from '../../../assets/icons/instagram.png';
@@ -12,6 +13,41 @@ import InstaBlue from '../../../assets/icons/instagram-blue.png';
 import TwitterBlue from '../../../assets/icons/twitter-blue.png';
 
 export default function Contactus() {
+  const[name,setName] = useState('');
+  const[email,setEmail] = useState('');
+  const[contact,setContact] = useState('');
+  const[country,setCountry] = useState('');
+   const[message,setMessage] = useState('');
+
+   const SubmitHandler =async() =>{
+    let data = {
+      name:name,
+      email:email,
+      contact:contact,
+      country:country,
+      message:message
+    }
+    if(name==='' || email==='' || contact==='' || country==='' || message===''){
+      alert('Please fill all the fields')
+    }else{
+      try {
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/contact/add`,data)
+          if(res.status===200){
+            alert('Message Sent Successfully')
+            setName('')
+            setEmail('')
+            setContact('')
+            setCountry('')
+            setMessage('')
+          
+          }
+      } catch (error) {
+        window.alert('Something went wrong!')
+      }
+          
+    }
+   } 
+  
   return (
     <div className='Contact'>
 
@@ -47,31 +83,31 @@ export default function Contactus() {
             <div className='Contact-getintouch-contactrow-input-row1'>
               <div className='Contact-getintouch-contactrow-input-row1-name'>
                 <label className='Contact-getintouch-contactrow-input-label'>Your Name:</label>
-                <input type='string' className='Contact-getintouch-contactrow-input-input' />
+                <input type='string' className='Contact-getintouch-contactrow-input-input' value={name} onChange={(e)=>setName(e.target.value)}/>
               </div>
               <div className='Contact-getintouch-contactrow-input-row1-email'>
                 <label className='Contact-getintouch-contactrow-input-label'>Your Email:</label>
-                <input type='string' className='Contact-getintouch-contactrow-input-input' />
+                <input type='string' className='Contact-getintouch-contactrow-input-input' value={email} onChange={(e)=>setEmail(e.target.value)} />
               </div>
             </div>
             <div className='Contact-getintouch-contactrow-input-row2'>
               <div className='Contact-getintouch-contactrow-input-row2-number'>
                 <label className='Contact-getintouch-contactrow-input-label'>Your Number:</label>
-                <input type='string' className='Contact-getintouch-contactrow-input-input' />
+                <input type='string' className='Contact-getintouch-contactrow-input-input' value={contact} onChange={(e)=>setContact(e.target.value)} />
               </div>
               <div className='Contact-getintouch-contactrow-input-row2-country'>
                 <label className='Contact-getintouch-contactrow-input-label'>Your Country:</label>
-                <input type='string' className='Contact-getintouch-contactrow-input-input' />
+                <input type='string' className='Contact-getintouch-contactrow-input-input' value={country} onChange={(e)=>setCountry(e.target.value)}/>
               </div>
             </div>
             <div className='Contact-getintouch-contactrow-input-row3'>
               <div className='Contact-getintouch-contactrow-input-row2-number'>
                 <label className='Contact-getintouch-contactrow-input-label'>Your Message:</label>
-                <textarea className='Contact-getintouch-contactrow-input-textarea' rows="4" cols="90"></textarea>
+                <textarea className='Contact-getintouch-contactrow-input-textarea' rows="4" cols="90" value={message} onChange={(e)=>setMessage(e.target.value)}></textarea>
               </div>
             </div>
 
-            <button type='submit' className='Contact-getintouch-contactrow-input-btn'>Send Your Message</button>
+            <button type='submit' className='Contact-getintouch-contactrow-input-btn' onClick={SubmitHandler}>Send Your Message</button>
           </div>
 
 

@@ -90,7 +90,12 @@ export default function About() {
         </div>
       </div>
 
-      <AboutTeamCarousel/>
+      
+      <div  className='About-carousel'>
+        <p  className='About-carousel-title'>Meet our Professional team</p>
+        <div><AboutTeamCarousel/></div>
+      
+      </div>
 
       <Travelersexperience />
 

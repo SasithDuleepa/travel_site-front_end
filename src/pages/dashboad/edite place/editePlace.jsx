@@ -144,6 +144,15 @@ export default function EditePlace() {
         }
 
     }
+
+    const DeleteHandler=async() =>{
+        try {
+            const res = await Axios.delete(`${process.env.REACT_APP_BACKEND_URL}/places/deleteplace/${id}`)
+            console.log(res.data)
+        } catch (error) {
+            
+        }
+    }
   return (
     <div className='editeplace'>
         <h1>EditePlace</h1>
@@ -249,7 +258,7 @@ export default function EditePlace() {
                 {newImgs.length > 0 && newImgs.map((img, index) => (
     <div className='editeplace-form-img_div' key={index}>
         <img className='editeplace-form-addedimg' src={URL.createObjectURL(img.file)} alt="" />
-        <a onClick={newImgDeleteHandler(index)}>DELETE</a>
+        <a className='editeplace-form-addedimg' onClick={newImgDeleteHandler(index)}>DELETE</a>
     </div>
 ))}
 
@@ -259,6 +268,7 @@ export default function EditePlace() {
 
         </div>
         <button onClick={UpdateHandler}>Update</button>
+        <button onClick={DeleteHandler}>Delete</button>
     
                     
     

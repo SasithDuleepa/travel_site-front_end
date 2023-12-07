@@ -121,6 +121,19 @@
     flex-direction: column;
     align-items: center;
 }
+.About-vm-main-keyTags-key-image{
+
+    &&:hover{
+        animation: gelatine 0.5s infinite;
+    }
+}
+@keyframes gelatine {
+    from, to { transform: scale(1, 1); }
+    25% { transform: scale(0.9, 1.1); }
+    50% { transform: scale(1.1, 0.9); }
+    75% { transform: scale(0.95, 1.05); }
+  }
+
 .About-vm-main-keyTags-key-description{
     color: white;
     width: 319px;
@@ -183,3 +196,25 @@
     font-size: 20px;
     margin-top: 0;
 }
+
+
+
+
+
+.About-carousel{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+
+}
+.About-carousel-title{
+    font-size: 32px;
+    font-weight: 400;
+    font-weight: poppins;
+}
+
+
+
