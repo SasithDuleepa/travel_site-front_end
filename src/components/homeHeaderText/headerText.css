@@ -1,7 +1,7 @@
 .header-text-main{
     width: 100%;
     
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
     display: flex;
     justify-content: center;
     margin-top: 50px;
@@ -10,7 +10,7 @@
     position: relative;
     width: 1200px;
     
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
     display: flex;
     justify-content: center;
     gap: 100px;

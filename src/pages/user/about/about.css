@@ -1,0 +1,185 @@
+/* .About{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+} */
+.About-main{
+    background-image: url("http://localhost:8080/images/Tour/heroimg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 424px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+.About-main-title{
+    font-size: 60px;
+    font-weight: 600;
+    font-family: Playfair Display;
+    color: white;
+    margin-top: 150px;
+}
+.About-main-route{
+    display: flex;
+    gap: 5px;
+    margin-top: -50px;
+}
+.About-main-route-link{
+    font-size: 18px;
+    font-weight: 500;
+    font-family: Poppins;
+    color: white;
+    text-decoration: none;
+}
+.About-main-route_link{
+    font-size: 18px;
+    font-weight: 500;
+    font-family: Poppins;
+    color: orange;
+    text-decoration: none;
+}
+.About-main-media{
+    display: flex;
+    gap: 30px;
+    margin-top: 70px;
+}
+.About-main-media-main{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.About-main-media-main-icon{
+    display: flex;
+}
+.About-main-media-main-link{
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    font-family: Poppins;
+}
+
+
+
+.About-header-text{
+    background-image: url(../../../assets/Background-Pattern.png);
+    background-size: conver;
+    background-repeat: no-repeat;
+    height: 560px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+
+
+.About-vm-main{
+    background-color: rgb(8, 28, 85);
+    width: 100%;
+    height: 624px;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+}
+.About-vm-main-vm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 1200px;
+}
+.About-vm-main-vm_vm{
+    color: white;
+    width: 505px;
+}
+.About-vm-main-vm_vm-title{
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 0;
+    font-family: Poppins;
+}
+.About-vm-main-vm_vm-description{
+    font-size: 16px;
+    font-weight: 100;
+    font-family: Poppins;
+}
+.About-vm-main-keyTags{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    margin-top: 100px;
+    width: 1200px;
+}
+.About-vm-main-keyTags-key{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.About-vm-main-keyTags-key-description{
+    color: white;
+    width: 319px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 100;
+    font-family: Poppins;
+}
+
+
+
+.About-VoC-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 510px;
+    font-family: Poppins;
+}
+.About-VoC-main-section{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.About-VoC-main-section-title{
+    font-size: 32px;
+    font-weight: 500;
+    font-family: Poppins;
+}
+.About-VoC-main-section-row{
+    width: 1200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+}
+.About-VoC-main-section-row-image{
+    height: 324px;
+}
+.About-VoC-main-section-row-description{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    height: 324px;
+}
+.About-VoC-main-section-row-description-msg{
+    width: 804px;
+    font-size: 16px;
+    margin-top: -5px;
+}
+.About-VoC-main-section-row-description-company{
+    display: flex;
+    flex-direction: column;
+    margin-top: -8px;
+}
+.About-VoC-main-section-row-description-company-ceo{
+    font-size: 20px;
+    margin-bottom: 0;
+}
+.About-VoC-main-section-row-description-company-nc{
+    font-size: 20px;
+    margin-top: 0;
+}
