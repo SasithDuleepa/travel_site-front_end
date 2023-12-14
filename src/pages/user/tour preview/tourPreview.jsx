@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react';
 import './tourPreview.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Calander from './../../../assets/icons/calendar.png'
+
 import PlaceCard from '../../../components/place card/placeCard';
 import Carousel from "react-simply-carousel";
 import { GoogleMap, useLoadScript, MarkerF ,DirectionsRenderer, DirectionsService } from '@react-google-maps/api';
-import Icon from '../../../assets/icons/icons8-location-48.png';
+
 import Carousel_tp from './carousel/carousel_tp';
 import Edite from '../../../assets/icons/edit.png';
 
-import Fb from './../../../assets/icons/facebook.png'
-import Insta from './../../../assets/icons/instagram.png'
-import Twitter from './../../../assets/icons/twitter.png'
+
+import Socialmedia from './../../../components/social media/socialmedia';
 
 import Plus from './../../../assets/icons/plus.png'
 
@@ -24,13 +23,13 @@ export default function TourPreview() {
   const[pophotel,setPopHotel] = useState('Luxury')
   const[poppassenger,setPopPassneger] = useState(0)
   const[popup,setPopup] = useState('hide')
-  const[popDate , setPopDate] = useState(today)
+  const[popDate , setPopDate] = useState(today);
 
   const[total,setTotal] = useState(0)
   const[hotel,setHotel] = useState('Luxury')
-  const[passenger,setPassenger] = useState(1)
-  const[Price,setPrice] = useState(0)
-  const[vehicle,setVehicle] = useState([])
+  const[passenger,setPassenger] = useState(2)
+
+  const[vehicleRate,setVehicleRate] = useState(0)
   const[distance,setDistance] = useState(0)
   const[hotelPrice,setHotelPrice] = useState(0)
 
@@ -94,9 +93,10 @@ export default function TourPreview() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/vehicles/${passenger}`);
-        console.log(res.data);
-        setVehicle(res.data);
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vehicles/${passenger}`);
+        // console.log(res.data);
+        setVehicleRate(res.data[0].rate);
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -105,84 +105,88 @@ export default function TourPreview() {
     fetchData(); 
   
   }, [passenger]);
-  useEffect(() => {
-    const fetchData = async () => {
-      if (TourData.length > 0) {
-        // Create an array to store all promises
-        const hotelPricePromises = TourData.map(async (tour) => {
-          let hotelprice = 0;
-  
-          if (hotel === 'Luxury') {
-            try {
-              const res = await axios.get(`http://localhost:8080/hotels/price/${tour.luxary_hotel}/${popDate}`);
-              hotelprice += res.data[0].price;
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          } else if (hotel === 'semi-luxury') {
-            try {
-              const res = await axios.get(`http://localhost:8080/hotels/price/${tour.semi_hotel}/${popDate}`);
-              hotelprice += res.data[0].price;
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          }
-  
-          return hotelprice;
-        });
-  
-        // Wait for all promises to resolve
-        const hotelPricesArray = await Promise.all(hotelPricePromises);
-  
-        // Calculate the total price
-        const totalHotelPrice = hotelPricesArray.reduce((total, price) => total + price, 0);
-  
-        // Now you can use totalHotelPrice as needed
-        console.log('Total Hotel Price:', totalHotelPrice);
-        setHotelPrice(totalHotelPrice);
-      
-      }
-    };
-  
-    fetchData();
-  }, [hotel, popDate, TourData]);
-  
 
-
-
-
-
-  useEffect(() => {
+  let hotelprice = 0;
+useEffect(() => {
+  const GetVisitingFee = async () => {
+    
     if (TourData.length > 0) {
-      setPrice(TourData[0].tour_price);
-      setDistance(TourData[0].distance);
+      
+      if (hotel === 'Luxury') {
+        
+        try {
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/luxury/price/${tour}/${popDate}`);
+          if (res.data.length > 0) {
+            // console.log(res.data);
+            hotelprice = 0;
+            res.data.map((item, index) => {
+              return (hotelprice = hotelprice + item.price);
+            });
+            setHotelPrice(hotelprice)
+            
+          }
+          
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      } else if (hotel === 'semi-luxury') {
+        try {
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/semi/price/${tour}/${popDate}`);
+          if (res.data.length > 0) {
+            // console.log(res.data);
+            hotelprice = 0;
+            res.data.map((item, index) => {
+              return (hotelprice = hotelprice + item.price);
+            });
+            setHotelPrice(hotelprice)
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
     }
-  }, [TourData]);
-  useEffect(() => {
-    if (vehicle.length > 0) {
-      let rate = vehicle[0].rate;
-      let distance_rate = distance * rate;
-      // console.log(distance_rate);
-      setTotal(distance_rate + Price +hotelPrice);
-    }
-  }, [vehicle, passenger, distance, Price,hotelPrice]);
+    
+  };
+  
+  GetVisitingFee ();
+}, [hotel, popDate, TourData]);
 
+
+
+
+
+
+let visiting_fee = 0;
 
 
   //get tour and tour dates
   const GetTour = async() => {
     try {
-      const res = await axios.get(`http://localhost:8080/tour/tour/${tour}`);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/tour/${tour}`);
       setTourData(res.data)
-      console.log(res.data)
+      // console.log(res.data)
+      if(res.data.length>0){
+        setDistance(res.data[0].distance)
+
+      }
     } catch (error) {
       console.error('Error fetching tour:', error);
     }
   };
   const GetPlaces = async() => {
-    const res = await axios.get(`http://localhost:8080/tour/places/${tour}`)
-    console.log(res.data)
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/places/${tour}`)
+    // console.log(res.data)
     setPlaces(res.data)
+
+    let placeData = res.data
+    if(placeData.length>0){
+      placeData.map((item,index)=>{
+        visiting_fee = visiting_fee + item.visiting_fee
+        return visiting_fee
+
+        
+      })
+    }
   }
   
   useEffect(() => {
@@ -207,8 +211,8 @@ export default function TourPreview() {
     setExpandClass(expandclass === 'TourPreview-center-right-expand-div' ? 'close' : 'TourPreview-center-right-expand-div');
     setExpandedDay(tourDateId);
     try {
-      const res =await axios.get(`http://localhost:8080/tour/tourplaces/${tourDateId}`)
-      console.log(res.data)
+      const res =await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/tourplaces/${tourDateId}`)
+      // console.log(res.data)
       setPlacesData(res.data)
     } catch (error) {
       console.log(error)
@@ -216,9 +220,27 @@ export default function TourPreview() {
   }
 
 
+  //calculation
+const Calculation =()=>{
+  // console.log('passengers', passenger )
+  // console.log('distance', distance )
+  // console.log('vehicle', vehicleRate )
+  // console.log('hotel', hotelprice )
+  let sub_total = hotelPrice + distance*vehicleRate  + visiting_fee;
+  let total = sub_total/passenger
+
+
+  setTotal(total.toFixed(2))
+}
+useEffect(()=>{
+  Calculation();
+  // console.log('hotel', hotelPrice )
+}
+,[distance,hotelprice,visiting_fee,vehicleRate])
+
   // map
   const [response, setResponse] = React.useState(null)
-  const [origin, setOrigin] = React.useState('colombo');
+  const origin = 'colombo';
   let count = React.useRef(0);
   const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7qsYXATZC1Wj57plqEUhy_U7yHJjmNLM"});
   if (!isLoaded) return (
@@ -233,10 +255,38 @@ export default function TourPreview() {
             setResponse(res);
           } else {
             count.current = 0;
-            console.log('res: ', res);
+            // console.log('res: ', res);
           }
         }
       };
+
+      const Style = {
+        backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        height: '424px',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      };
+
+
+// book now
+const Booknow = () => {
+  try {
+    const login = sessionStorage.getItem("login");
+    if (login === "true") {
+      window.location.href = `/tourbook1/${tour}`;
+    } else {
+      window.location.href = "/login";
+    }
+  } catch (error) {
+    window.location.href = "/login";
+  }
+};
+
     return (
     <div className='TourPreview'>
       <div className={popup}>
@@ -260,32 +310,21 @@ export default function TourPreview() {
             <input type='date' className='tourpreview-popup-form-input' onChange={(e)=>setPopDate(e.target.value)}/>
           </div>
           <div className='tourpreview-popup-btn-div'>
-            <a className='tourpreview-popup-enter-btn' onClick={EnterHandler}>Enter</a>
-            <a className='tourpreview-popup-cancel-btn' onClick={CancelHandler}>Cancel</a>
+            <button className='tourpreview-popup-enter-btn' onClick={EnterHandler}>Enter</button>
+            <button className='tourpreview-popup-cancel-btn' onClick={CancelHandler}>Cancel</button>
           </div>
         </div>
       </div>
-      <div className='TourPreview-hero'>
+      <div style={Style}>
         <p className='TourPreview-hero-title'>{TourData.length>0 ?TourData[0].tour_name:null}</p>
         <div className='TourPreview-hero-route-div'>
           <a className='TourPreview-hero-route' href='/'>Home/</a>
           <a className='TourPreview-hero-route' href='/tours/tourcategory'>Day Tours/</a>
-          <a className='TourPreview-hero_route'>{TourData.length>0 ?TourData[0].tour_name:null}</a>
+          <button className='TourPreview-hero_route'>{TourData.length>0 ?TourData[0].tour_name:null}</button>
         </div>
         <div className='TourPreview-hero-media-div'>
-          <div className='TourPreview-hero-media'>
-            <img src={Fb}/>
-            <a className='TourPreview-hero-media-link'>facebook</a>
-          </div>
-          <div className='TourPreview-hero-media'>
-            <img src={Insta}/>
-            <a className='TourPreview-hero-media-link'>instergrame</a>
-          </div>
-          <div className='TourPreview-hero-media'>
-            <img src={Twitter}/>
-            <a className='TourPreview-hero-media-link'>twitter</a>
-          </div>
-          
+          <Socialmedia/>
+
           
           
         </div>
@@ -296,6 +335,7 @@ export default function TourPreview() {
           <div className='TourPreview-header-left-1'>
             <p className='TourPreview-header-left-p'>Package Price:</p>
             <p className='TourPreview-header-left-p' >{total}</p>
+            <p className='TourPreview-header-left-p-sub'>* per person</p>
           </div>
           <div className='TourPreview-header-info'>
             <p  className='TourPreview-header-info-p'>Hotel Type :{hotel}</p>
@@ -309,7 +349,7 @@ export default function TourPreview() {
           </div>
           <div className='TourPreview-header-left-line'></div>
           
-          <a className='TourPreview-header-book-btn' href={`/tourbook1/${tour}`}>Book Now</a>
+          <button onClick={Booknow} className='TourPreview-header-book-btn'>Book Now</button>
         </div>
 
 
@@ -404,7 +444,7 @@ export default function TourPreview() {
         
         {places.length>0 ? places.map((place,index)=>{
               return(
-                <Carousel_tp place_id={place.place_id  }/>
+                <Carousel_tp key={index} place_id={place.place_id  }/>
                 // <p>{place.place_name  }</p>
               )
             }):null}
@@ -550,8 +590,9 @@ export default function TourPreview() {
             {places.length>0 ? places.map((place,index)=>{
               return(
                 <PlaceCard key={index} id={place.place_id} place={place.place_name} 
-                link ={`/placeReview/${place.place_id}`}
+                img={place.card_img}
                 short={place.short_description}
+                link={place.place_id}
                 />
               )
               

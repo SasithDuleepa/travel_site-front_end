@@ -16,20 +16,30 @@ export default function Tourbook1() {
         if(hotelType === '' || passengers === '' || startDate === ''){
             alert('Please fill all the fields');
         }else{
-            sessionStorage.setItem('hotelType', hotelType);
-            sessionStorage.setItem('passengers', passengers);
-            sessionStorage.setItem('startDate', startDate);
             
-            window.location.href = `/tourbook2/${id}`;
+            window.location.href = `/tourbook2/${id}/${hotelType}/${passengers}/${startDate}`;
       
         }
     
     }
 
     const BackHandler = () => {}
+
+
+    const Style = {
+        backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        height: '424px',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      };
   return (
     <div className='Tourbook1'>
-        <div className='Tourbook1-hero'>
+        <div style={Style}>
             <p className='Tourbook1-hero-title'>Plan My Tour</p>
             <div className='Tourbook1-hero-route-div'>
                 <a className='Tourbook1-hero-route'>Home</a>

@@ -20,7 +20,7 @@ export default function PlaceCard(props) {
   const [img, setimg] = useState('')
   const GetImg = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/places/getplaceimgnames/${props.placeId}`);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/getplaceimgnames/${props.placeId}`);
       // console.log(res.data[0])
       setimg(res.data[1].img_name)
 
@@ -35,7 +35,7 @@ export default function PlaceCard(props) {
         <div className='placecard-bottom-div'>
           <p className='placecard-header'>{props.title}</p>
         </div>
-        <img className='place_img' src={`http://localhost:8080/places/placeimg?file=${img}`} alt="" />
+        <img className='place_img' src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${img}`} alt="" />
 
       </div>
     </a>

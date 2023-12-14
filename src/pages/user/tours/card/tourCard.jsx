@@ -8,8 +8,7 @@ export default function TourCard(props) {
             <img className='Tour-card-img' src={props.img} alt="" />
             <div className='Tour-card-info'>
                 <p className='Tour-card-info-header'>{props.title}</p>
-                <p className='Tour-card-info-info'>Lorem ipsum dolor sit amet consectetur.
-                 Cursus bibendum sit ultrices eros dui elit</p>
+                <p className='Tour-card-info-info'>{props.description}</p>
                  <a className='Tour-card-info-more' href={props.link}>Read more</a>
             </div>
     </div>

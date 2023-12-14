@@ -11,7 +11,6 @@ export default function PopularDestinations() {
   const[popularPlaces, setPopularPlaces] = useState([])
   const PopularDestinations =async () =>{
     const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/popular/place`)
-    console.log(res.data)
     setPopularPlaces(res.data)
   }
 
@@ -22,7 +21,6 @@ export default function PopularDestinations() {
       PopularDestinations()
     } else{
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/placesearch/${e.target.value}`)
-    console.log(res.data.data)
     setResult(res.data.data)
 
     }
@@ -34,7 +32,6 @@ export default function PopularDestinations() {
 
 
   const SelectHandler =(place,place_id)=>async() =>{
-    console.log(place,place_id)
     const newdata = [...selectedPlace]
     newdata.push({place_name:place,place_id:place_id})
     setSelectedPlace(newdata)
@@ -43,14 +40,31 @@ export default function PopularDestinations() {
 
   const AddHandler =async() =>{
     try {
-      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/popular/add`,selectedPlace) 
-      console.log(res.data)
+      const token = sessionStorage.getItem("token");
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/popular/add`,selectedPlace, {
+        headers: {
+          'Authorization': `${token}`,
+        },
+        withCredentials: true,
+      }) 
+      if (res.status === 200) {
+        window.alert("Popular places add successful!");
+        setSelectedPlace([])
+      }
     } catch (error) {
-      console.log(error)
+      if(error.response.status === 401){
+        sessionStorage.clear();
+        window.alert("You are not authorized to perform this action");
+      }else if(error.response.status === 400){
+        window.alert("please select place!");
+      }else if(error.response.status === 500){
+        window.alert("Internal server error");
+      }else{
+        window.alert("Popular places add unsuccessful!");
+      }
     }
   }
   const DeleteHandler =(index) =>{
-    console.log(popularPlaces[index])
 
     const newdata = [...popularPlaces]
     newdata.splice(index,1)
@@ -58,10 +72,28 @@ export default function PopularDestinations() {
   }
   const UpdateHandler =async() =>{
     try {
-      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/popular/update`,popularPlaces) 
-      console.log(res.data)
+      const token = sessionStorage.getItem("token");
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/popular/update`,popularPlaces,{
+        headers: {
+          'Authorization': `${token}`,
+        },
+        withCredentials: true,
+      }) 
+      if (res.status === 200) {
+        window.alert("popular places update successful!");
+      }
+
     } catch (error) {
-      console.log(error)
+      if(error.response.status === 401){
+        sessionStorage.clear();
+        window.alert("You are not authorized to perform this action");
+      }else if(error.response.status === 400){
+        window.alert("All fields are required");
+      }else if(error.response.status === 500){
+        window.alert("Internal server error");
+      }else{
+        window.alert("popular places update unsuccessful!");
+      }
     }
   }
   return (
@@ -70,8 +102,8 @@ export default function PopularDestinations() {
         <div className='PopularDestinations-line'></div>
         <div className='PopularDestinations-form-div'>
             <div className='PopularDestinations-search-place'>
-                <label>find place:</label>
-                <input onChange={(e)=>handleSearch(e)}/>
+                <label className='PopularDestinations-search-place-label'>find place:</label>
+                <input className='PopularDestinations-search-place-input'  onChange={(e)=>handleSearch(e)}/>
             </div>
             <div className='PopularDestinations-result-place'>
               {result.length >0 ? result.map((place, index)=>{
@@ -84,7 +116,7 @@ export default function PopularDestinations() {
               
               }
               ):
-              <p>No result</p>}
+              <p>No Search Result</p>}
               
 
             </div>
@@ -101,14 +133,14 @@ export default function PopularDestinations() {
                   
                   }
                   ):
-                  <p>No result</p>}
+                  <p>No Selected places</p>}
 
 
             </div>
-            <button onClick={AddHandler}>Add</button>
+            <button className='dashboad-popular-add-btn' onClick={AddHandler}>Add</button>
 
             <div className='PopularDestinations-update-div'>
-              <h1>update</h1>
+              <h1>Available Popular Places</h1>
             {popularPlaces.length >0 ? popularPlaces.map((place, index)=>{
                 return(
                   <div className='PopularDestinations-result-place-div' key={index}>
@@ -123,7 +155,7 @@ export default function PopularDestinations() {
             }
 
             </div>
-            <button onClick={()=>UpdateHandler()}>Update</button>
+            <button className='dashboad-popular-delete-btn'  onClick={()=>UpdateHandler()}>Update</button>
 
         </div>
     </div>

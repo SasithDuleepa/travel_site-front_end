@@ -1,15 +1,10 @@
 .place-card{
-    width: 280px;
-    height: 358px;
-    /* background-color: antiquewhite; */
-    margin:5px;
-    overflow: hidden;
+    width: 256px;
+    height: 354px;
 }
 .place-card-img{
-    width: auto;
-    align-items: center;
-    justify-content: center;
-    height: 358px;
+    width: 100%;
+    height: 100%;
 
 }
 .place-card_info{
@@ -24,34 +19,38 @@
 
 }
 .place-card-info-title{
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 500;
-    color: aliceblue;
-    font-family: Poppins;
-    margin-top: 10px;
-    width: 250px;
-    height: 30px;
-    overflow: hidden;
+    font-family: latio;
+    color: azure;
     text-align: center;
-}
-.place-card-info-info{
-    font-size: 11px;
-    font-weight: 300;
-    color: aliceblue;
-    font-family: Poppins;
-    text-align: center;
-    margin-top: -15px;
-    width: 95%;
+    width: 240px;
     height: 50px;
     overflow: hidden;
+    margin-top: 5px;
+}
+.place-card-info-info{
+    color: azure;
+    font-size: 13px;
+    font-weight: 400;
+    text-align: justify;
+    width: 220px;
+    height: 65px;
+    line-height: 13px;
+    overflow: hidden;
+    margin-top: -38px;
 
 }
 .place-card-info-more{
+    text-align: center;
+    color: rgb(7, 7, 7);
     background-color: orange;
-    padding: 8px 15px;
+    padding: 3px 15px;
     border-radius: 25px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: poppins;
     text-decoration: none;
-    color: black;
 
 }
 

@@ -41,7 +41,7 @@ export default function Homeheader() {
   }
   return (
     <div className='home-header-main'>
-      <div class="pic-wrapper">
+      <div className="pic-wrapper">
         <div className='home-header-sub'>
           <p className='home-header-main-text'>Plan your Best tour with</p>
           <p className='home-header-sub-text'>Sri Lanka Travel Experts</p>

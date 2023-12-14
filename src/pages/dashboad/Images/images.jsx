@@ -10,15 +10,28 @@ export default function Images() {
         const formData = new FormData();
         formData.append('newImage', tourImg);
         try {
+            const token = sessionStorage.getItem("token");
             const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg`, formData, {
                 headers: {
                   'Content-Type': 'multipart/form-data',
+                  'Authorization': `${token}`,
                 },
               });
-              console.log(res.data);
-              window.alert('Tour Image Added!')
+              if (res.status === 200) {
+                window.alert("successfully");
+              
+              }
         } catch (error) {
-            window.alert('Tour Image Added Fail!')
+            if(error.response.status === 401){
+                sessionStorage.clear();
+                window.alert("You are not authorized to perform this action");
+              }else if(error.response.status === 400){
+                window.alert("All fields are required");
+              }else if(error.response.status === 500){
+                window.alert("Internal server error");
+              }else{
+                window.alert("Error ");
+              }
         }
         
     }
@@ -33,63 +46,116 @@ export default function Images() {
     //update
     const UpdateImg1 =async()=>{
         try {
+            const token = sessionStorage.getItem("token");
             const formData = new FormData();
         formData.append('newImage', homeHeroImg1);
         formData.append('img', 'slider1.jpg');
         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/images/Home/heroimg`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
+              'Authorization': `${token}`,
             },
           });
-          console.log(res.data);
+          if (res.status === 200) {
+            window.alert("Place added successfully");
+                  }
         } catch (error) {
+            if(error.response.status === 401){
+                sessionStorage.clear();
+                window.alert("You are not authorized to perform this action");
+              }else if(error.response.status === 400){
+                window.alert("All fields are required");
+              }else if(error.response.status === 500){
+                window.alert("Internal server error");
+              }else{
+                window.alert("Error ");
+              }
             
         }
     }
     const UpdateImg2 =async()=>{
        try {
+        const token = sessionStorage.getItem("token");
         const formData = new FormData();
         formData.append('newImage', homeHeroImg2);
         formData.append('img', 'slider3.jpg');
         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/images/Home/heroimg`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
+              'Authorization': `${token}`,
             },
           });
-          console.log(res.data);
+          if (res.status === 200) {
+            window.alert("Place added successfully");
+          }
        } catch (error) {
-        
+        if(error.response.status === 401){
+            sessionStorage.clear();
+            window.alert("You are not authorized to perform this action");
+          }else if(error.response.status === 400){
+            window.alert("All fields are required");
+          }else if(error.response.status === 500){
+            window.alert("Internal server error");
+          }else{
+            window.alert("Error adding place");
+          }
        }
     }
     const UpdateImg3 =async()=>{
         try {
+            const token = sessionStorage.getItem("token");
             const formData = new FormData();
         formData.append('newImage', homeHeroImg3);
         formData.append('img', 'slider5.jpg');
         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/images/Home/heroimg`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
+              'Authorization': `${token}`,
             },
           });
-          console.log(res.data);
+          if (res.status === 200) {
+            window.alert("Place added successfully");
+          }
         } catch (error) {
-            
+            if(error.response.status === 401){
+                sessionStorage.clear();
+                window.alert("You are not authorized to perform this action");
+              }else if(error.response.status === 400){
+                window.alert("All fields are required");
+              }else if(error.response.status === 500){
+                window.alert("Internal server error");
+              }else{
+                window.alert("Error adding place");
+              }
         }
     }
 
     const UpdateImg4 =async()=>{
         try {
+            const token = sessionStorage.getItem("token");
             const formData = new FormData();
         formData.append('newImage', homeHeroImg4);
         formData.append('img', 'slider2.jpg');
         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/images/Home/heroimg`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
+              'Authorization': `${token}`,
             },
           });
-          console.log(res.data);
+          if (res.status === 200) {
+            window.alert("Place added successfully");
+          }
         } catch (error) {
-            
+            if(error.response.status === 401){
+                sessionStorage.clear();
+                window.alert("You are not authorized to perform this action");
+              }else if(error.response.status === 400){
+                window.alert("All fields are required");
+              }else if(error.response.status === 500){
+                window.alert("Internal server error");
+              }else{
+                window.alert("Error adding place");
+              }
         }
     }
   return (
@@ -110,7 +176,7 @@ export default function Images() {
                     {homeHeroImg1?
                         <img className='dashboad-home-hero-img' src={URL.createObjectURL(homeHeroImg1)} alt="" />
                         :
-                        <img className='dashboad-home-hero-img' src={'http://localhost:8080/images/Home/heroimg/slider1.jpg'} alt="" />}
+                        <img className='dashboad-home-hero-img' src={`${process.env.REACT_APP_BACKEND_URL}/images/Home/heroimg/slider1.jpg`} alt="" />}
                         <input type="file"  onChange={(e)=>setHomeHeroImg1(e.target.files[0])}/>
                         <button className='hero-Images-add-btn' onClick={UpdateImg1}>Add Images</button>
                     </div>
@@ -120,7 +186,7 @@ export default function Images() {
                     {homeHeroImg2 ?
                         <img className='dashboad-home-hero-img' src={URL.createObjectURL(homeHeroImg2)} alt="" />
                         :
-                        <img className='dashboad-home-hero-img' src={'http://localhost:8080/images/Home/heroimg/slider3.jpg'} alt="" />}
+                        <img className='dashboad-home-hero-img' src={`${process.env.REACT_APP_BACKEND_URL}/images/Home/heroimg/slider3.jpg`} alt="" />}
                     <input type="file" onChange={(e)=>setHomeHeroImg2(e.target.files[0])} />
                     <button className='hero-Images-add-btn' onClick={UpdateImg2}>Add Images</button>
                     </div>
@@ -130,7 +196,7 @@ export default function Images() {
                     {homeHeroImg3 ?
                         <img className='dashboad-home-hero-img' src={URL.createObjectURL(homeHeroImg3)} alt="" />
                         :
-                        <img className='dashboad-home-hero-img' src={'http://localhost:8080/images/Home/heroimg/slider5.jpg'} alt="" />}
+                        <img className='dashboad-home-hero-img' src={`${process.env.REACT_APP_BACKEND_URL}/images/Home/heroimg/slider5.jpg`} alt="" />}
                     <input type="file" onChange={(e)=>setHomeHeroImg3(e.target.files[0])} />
                     <button className='hero-Images-add-btn' onClick={UpdateImg3}>Add Images</button>
                     </div>
@@ -140,7 +206,7 @@ export default function Images() {
                     {homeHeroImg4 ?
                         <img className='dashboad-home-hero-img' src={URL.createObjectURL(homeHeroImg4)} alt="" />
                         :
-                        <img className='dashboad-home-hero-img' src={'http://localhost:8080/images/Home/heroimg/slider2.jpg'} alt="" />}
+                        <img className='dashboad-home-hero-img' src={`${process.env.REACT_APP_BACKEND_URL}/images/Home/heroimg/slider2.jpg`} alt="" />}
                     <input type="file" onChange={(e)=>setHomeHeroImg4(e.target.files[0])} />
                     <button className='hero-Images-add-btn' onClick={UpdateImg4}>Add Images</button>
                     </div>

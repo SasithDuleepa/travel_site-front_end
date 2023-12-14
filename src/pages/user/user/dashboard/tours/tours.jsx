@@ -8,7 +8,7 @@ export default function Tours() {
       const getTours = async () => {
         let user = sessionStorage.getItem('id');
         if(user){
-          const res = await axios.get(`http://localhost:8080/book/pendingTours/${user}`);
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/book/pendingTours/${user}`);
           console.log(res.data)
           setTours(res.data);
         }
@@ -22,15 +22,16 @@ export default function Tours() {
   return (
     <div>
         <div className='profile-dashboard-tour'>
+        
         {tours.length>0?tours.map((tour,index)=>{
                 return(
                   <ProfileTourCard key={index} tour={tour.tour_name}
-                  img={`http://localhost:8080/tour/tourimg?file=${tour.tour_img}`}
+                  img={`${process.env.REACT_APP_BACKEND_URL}/tour/tourimg?file=${tour.tour_img}`}
                   />
                 )
               
               }
-              ):null}
+              ):<p className='profile-dashboard-day-tour-no-p'>No Tours</p>}
         </div>
     </div>
   )

@@ -9,7 +9,7 @@ export default function DayTour() {
     const[name,setName] = useState('')
   const[description,setDescription] = useState('')
   const[distance,setDistance]= useState(0)
-  const[price,setPrice] = useState('')
+
   const[image,setImage] = useState('')
   const[startDescription,setStartDescription] = useState('')
 
@@ -26,7 +26,7 @@ export default function DayTour() {
     setPlaces(res.data.data)
     }else{
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/placesearch/${placeInput}`)
-    console.log(res.data.data)
+  
     setPlaces(res.data.data)
     }
 
@@ -60,7 +60,7 @@ const SelectPlace = (placeId, placeName) => {
     });
   }
   
-  console.log(selectedPlaces);
+
   setPlaces([])
 };
 
@@ -79,7 +79,7 @@ const Add = async() =>{
     formData.append('daytour', name);
     formData.append('description', description);
     formData.append('distance', distance);
-    formData.append('price', price);
+
     formData.append('file', image);
     formData.append('startDescription', startDescription);
     // formData.append('places', selectedPlaces);
@@ -90,28 +90,44 @@ const Add = async() =>{
 
     // formData.append('places[]', place.placename);
     });
-  
-    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/daytour/add`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    console.log(res.data)
-    if (res.data.status === 200) {
-      alert("category added successfully");
-      setDescription('')
-      setDistance('')
-      setImage('')
-      setName('')
-      setPrice('')
-      setPlaceInput('')
-      setSelectedPlaces([])
-    
-    }else if (res.data.status === 400){
-      alert("plese fill required fields");
-    }else if (res.data.status === 500){
-      alert("internal server error");
+
+    try {
+      const token = sessionStorage.getItem("token");
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/daytour/add`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `${token}`,
+        },
+      });
+      console.log(res.data)
+      if (res.status === 200) {
+        alert("category added successfully");
+        setDescription('')
+        setDistance('')
+        setImage('')
+        setName('')
+
+        setPlaceInput('')
+        setSelectedPlaces([])
+        window.location.reload();
+
+      
+      }
+    } catch (error) {
+      if(error.response.status === 401){
+        sessionStorage.clear();
+        window.alert("You are not authorized to perform this action");
+      }else if(error.response.status === 400){
+        window.alert("All fields are required");
+      }else if(error.response.status === 500){
+        window.alert("Internal server error");
+      }else{
+        window.alert("Error adding place");
+      }
     }
+  
+
+
   }
   return (  
     <>
@@ -133,10 +149,7 @@ const Add = async() =>{
                 <label>distance</label>
                 <input type='number'    className='daytour-input' value={distance} onChange={(e)=>setDistance(e.target.value)}/>
             </div>
-            <div className='daytour-form-div'>
-                <label>price</label>
-                <input type='text'  className='daytour-input' value={price} onChange={(e)=>setPrice(e.target.value)} />
-            </div>
+
             <div className='daytour-form-div'>
                 <label>image</label>
                 <input type='file'   className='daytour-input'  onChange={(e)=>setImage(e.target.files[0])} />

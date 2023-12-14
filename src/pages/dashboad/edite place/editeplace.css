@@ -4,7 +4,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 200px auto;
+    margin: 20px auto;
+    margin-left: 150px;
+ 
 }
 .editeplace-line{
     border-bottom: 2px solid black;
@@ -131,4 +133,20 @@
 }
 .editeplace-form-placeimg-div-sub1-edite{
     position: relative;
+}
+
+
+.edite-place-update-btn{
+    background-color: blue;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+}
+.edite-place-delete-btn{
+    background-color: rgb(255, 0, 0);
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
 }

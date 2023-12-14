@@ -19,7 +19,7 @@ export default function HeaderText() {
                 Sit nec blandit sed enim a commodo quam suspendisse. Sed consectetur
                  molestie non elit porttitor ac auctor. Urna et sed risus sagittis elementum ut.
            Aenean commodo nullam rutrum enim suspendisse blandit ullamcorper nibh.</p>
-           <div className='reveal'><a className='headertext-more-btn'>Read More</a></div>
+           <div className='reveal'><a className='headertext-more-btn' href='/about'>Read More</a></div>
            
         
 

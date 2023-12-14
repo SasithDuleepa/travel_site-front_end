@@ -16,16 +16,59 @@
     border: 1px solid black;
     padding: 50px;
 }
+.PopularDestinations-search-place{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.PopularDestinations-search-place-label{
+    font-size: 22px;
+}
+.PopularDestinations-search-place-input{
+    height: 30px;
+    width: 300px;
 
+}
+
+
+.PopularDestinations-result-place{
+    background-color: rgba(250, 235, 215, 0.73);
+    max-height: 200px;
+    overflow-y: scroll ;
+    
+}
 .PopularDestinations-result-place-div{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .PopularDestinations-selected-div{
-    
+    background-color: rgba(0, 255, 255, 0.375);
+    max-height: 200px;
+    overflow-y: scroll ;
 }
+.dashboad-popular-add-btn{
+    background-color: blue;
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    position: relative;
+    margin: 20px;
+}
+
+
 .dashboad-popular-delete-img{
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
+}
+
+.dashboad-popular-delete-btn{
+    background-color: rgb(255, 0, 0);
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    position: relative;
+    margin: 20px;
 }

@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './popular.css';
 import Axios from 'axios';
 
-import Fb from '../../../assets/icons/facebook.png';
-import Insta from '../../../assets/icons/instagram.png';    
-import Twitter from '../../../assets/icons/twitter.png';
 
 import PlaceCard from '../../../components/place card/placeCard';
+
+import Socialmedia from '../../../components/social media/socialmedia';
 
 
 
@@ -14,7 +13,7 @@ export default function Popular() {
     const[places,setPlaces] = useState([])
 
     const GetPopularPlaces = async() => {
-        const res = await Axios.get('http://localhost:8080/popular/place')
+        const res = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/popular/place`)
         // console.log(res.data)
         setPlaces(res.data)
     }
@@ -22,27 +21,29 @@ export default function Popular() {
         GetPopularPlaces()
     
     },[])
+
+    const Style = {
+        backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        height: '424px',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      };
   return (
     <div className='popular-destinations'>
-        <div  className='popular-destinations-main'>
+        <div style={Style}>
             <p  className='popular-destinations-main-title'>Popular Destinations</p>
             <div className='popular-destinations-main-route'>
                 <a className='popular-destinations-main-route-link'>Home /</a>
                 <a className='popular-destinations-main-route_link '>popular destinations</a>
             </div>
             <div className='popular-destinations-main-media'>
-                <div className='popular-destinations-media-main'>
-                    <img className='popular-destinations-media-main-icon' src={Fb} />
-                    <a className='popular-destinations-media-main-link'>Facebook</a>
-                </div>
-                <div className='popular-destinations-media-main'>
-                    <img className='popular-destinations-media-main-icon' src={Insta} />
-                    <a className='popular-destinations-media-main-link'>Instagram</a>
-                </div>
-                <div className='popular-destinations-media-main'>
-                    <img className='popular-destinations-media-main-icon' src={Twitter} />
-                    <a className='popular-destinations-media-main-link'>Twitter</a>
-                </div>
+                <Socialmedia/>
+
             </div>
         </div>
 
@@ -58,9 +59,9 @@ export default function Popular() {
                    nulla enim posuere varius porttitor.
         </p>
         <div className='popular-destinations-places'>
-            {places.length>0 ? places.map(place=>{
+            {places.length>0 ? places.map((place,index)=>{
                 return(
-                    <PlaceCard id={place.place_id} place={place.place_name} short={place.short_description} link={`/placeReview/${place.place_id}`}/>
+                    <PlaceCard key={index} id={place.place_id} place={place.place_name} short={place.short_description} img={place.card_img } />
                 )
             } ):null
             }

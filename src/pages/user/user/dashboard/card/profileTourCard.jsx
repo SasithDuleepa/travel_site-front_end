@@ -10,7 +10,7 @@ export default function ProfileTourCard(props) {
             <p className='profileTourCard-layer-p2'>5 Days/ 4 Nights</p>
             <p className='profileTourCard-layer-p3'>5 Passengers</p>
             <p className='profileTourCard-layer-p4'>Price: $200</p>
-            <a className='profileTourCard-layer-more'>Read more</a>
+            <button className='profileTourCard-layer-more'>Read more</button>
         </div>
     </div>
   )

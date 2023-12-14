@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import './add_place.css';
 import axios from 'axios';
 import { GoogleMap, useLoadScript, MarkerF  } from '@react-google-maps/api';
-import Cookies from 'js-cookie';
+import EditePlace from './../edite place/editePlace';
 
 import Delete from './../../../assets/icons/delete.png'
 
-import EditePlace from '../edite place/editePlace';
 
-    
 
 export default function Add_place() {
+
     const[data , setData] = useState({
         name:"",
         description:"",
@@ -79,44 +78,42 @@ const removeFile =(index)=> (e) => {
             formData.append('files', file);
           });
         
-          // console.log(data);
-        
           try {
-            console.log([...formData]); 
-            const token = Cookies.get('jwt');
-
+            const token = sessionStorage.getItem("token");
             const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/places/addplace`, formData, {
               headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${token}`,
+               'Content-Type': 'multipart/form-data',
+                'Authorization': `${token}`,
               },
             });
-        
-            console.log(res.data);
-            if (res.data.status === 200) {
-              alert("Place added successfully");
+            // console.log(res.status);
+            if (res.status === 200) {
+              window.alert("Place added successfully");
               setData({
                 name:"",
                 description:"",
+                short:"",
                 time:'',
                 fee:'',
                 lat:6.947248052781988,
                 lng:79.873046875,
                 file:[]
               })
-            }else if (res.data.status === 500) {
-              alert("Internal Server Error");
-            } else if (res.data.status === 400) {
-              alert("Please fill in the required fields");
             }
+          
+            
           } catch (error) {
-            // Handle Error
-            if (error.status === 500) {
-              alert("Internal Server Error");
-            } else if (error.status === 400) {
-              alert("Please fill in the required fields");
-            }else if (error.status === 401) {
-              alert("Unauthorized");
+            if(error.response.status === 401){
+              sessionStorage.clear();
+              window.alert("You are not authorized to perform this action");
+            }else if(error.response.status === 400){
+              window.alert("All fields are required");
+            }else if(error.response.status === 409){
+              window.alert("Place with the same name already exists");
+            }else if(error.response.status === 500){
+              window.alert("Internal server error");
+            }else{
+              window.alert("Error adding place");
             }
           }
         };
@@ -147,11 +144,11 @@ const removeFile =(index)=> (e) => {
                     <div >
                       <div className='Add_place-form-sub-div'>
                         <label className='Add_place-form-sub-div-label'>Place visit time Duration:</label>
-                        <input type='text'  className='add_place_input' id='time' onChange={changeHandler} value={data.time} />
+                        <input type='number'  className='add_place_input' id='time' onChange={changeHandler} value={data.time} />
                       </div>
                       <div className='Add_place-form-sub-div'>
                         <label className='Add_place-form-sub-div-label'>Place visiting fee:</label>
-                        <input type='text'  className='add_place_input' id='fee' onChange={changeHandler} value={data.fee} />
+                        <input type='number'  className='add_place_input' id='fee' onChange={changeHandler} value={data.fee} />
                       </div>
                         
                     </div>
@@ -212,7 +209,7 @@ const removeFile =(index)=> (e) => {
        
     
     </div>
-     <EditePlace />
+     <EditePlace /> 
     </>
     
   )

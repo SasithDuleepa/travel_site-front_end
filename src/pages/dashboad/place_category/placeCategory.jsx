@@ -80,26 +80,41 @@ export default function PlaceCategory() {
       formData.append('places[]', place.placeid);
     // formData.append('places[]', place.placename);
     });
-  
-    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/categories/add`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    console.log(res)
-    if (res.data.status === 200) {
-      alert("category added successfully");
-      setDescription('')
-      setImage('')
-      setName('')
-      setPlaceInput('')
-      setSelectedPlaces([])
     
-    }else if (res.data.status === 400){
-      alert("plese fill required fields");
-    }else if (res.data.status === 500){
-      alert("internal server error");
+
+    try {
+      const token = sessionStorage.getItem("token");
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/categories/add`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `${token}`,
+        },
+      });
+      if (res.status === 200) {
+        alert("category added successfully");
+        setDescription('')
+        setImage('')
+        setName('')
+        setPlaceInput('')
+        setSelectedPlaces([])
+      
+      }
+    
+    } catch (error) {
+      if(error.response.status === 401){
+        sessionStorage.clear();
+        window.alert("You are not authorized to perform this action");
+      }else if(error.response.status === 400){
+        window.alert("All fields are required");
+      }else if(error.response.status === 500){
+        window.alert("Internal server error");
+      }else{
+        window.alert("Error adding place");
+      }
     }
+
+ 
+    
   }
   
     return (

@@ -14,12 +14,12 @@ export default function TCPriview() {
     const[tours,setTours] = useState([])
       //get tours according to tour category
   const GetTours = async() =>{
-    const res = await axios.get(`http://localhost:8080/tour/tours/${tour}`)
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/tours/${tour}`)
     console.log(res.data)
     setTours(res.data)
   }
   const GetTourCategory =async() =>{
-    const res = await axios.get(`http://localhost:8080/tourcategory/tourcategory/${tour}`)
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tourcategory/tourcategory/${tour}`)
     console.log(res.data[0])
     setCategory(res.data[0])
   }
@@ -29,15 +29,28 @@ export default function TCPriview() {
   },[tour])
 
 
+  const Style = {
+    backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: '424px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
   return (
     <div className='TCPriview'>
-        <div className='TCPriview-hero'>
+        <div style={Style}>
           <p className='TCPriview-hero-title'>{category.tourcategory_name}</p>
           <div className='TCPriview-hero-route-div'>
-            <a className='TCPriview-hero-route'>Home</a>
-            <a className='TCPriview-hero-route'>/</a>
-            <a className='TCPriview-hero-route'>Tours</a>
-            <a className='TCPriview-hero-route-active'>{category.tourcategory_name}</a>
+            <a className='TCPriview-hero-route' href='/'>Home</a>
+            <p className='TCPriview-hero-route'>/</p>
+            <a className='TCPriview-hero-route' href='/tours/tourcategory'>Tour Category</a>
+            <p className='TCPriview-hero-route'>/</p>
+            <p className='TCPriview-hero-route-active'>{category.tourcategory_name}</p>
           </div>
           <Socialmedia/>
         </div>
@@ -63,7 +76,7 @@ export default function TCPriview() {
 
 {tours.map((tour,index)=>{
                     return(
-                        <Card key={index} name={tour.tour_name} tour_description={tour.tour_description} image={`http://localhost:8080/tour/tourimg/?file=${tour.tour_img}`} link={`/tour/${tour.tour_id
+                        <Card key={index} name={tour.tour_name} tour_description={tour.tour_description} image={`${process.env.REACT_APP_BACKEND_URL}/tour/tourimg/?file=${tour.tour_img}`} link={`/tour/${tour.tour_id
                         }`}
                         />
                     )

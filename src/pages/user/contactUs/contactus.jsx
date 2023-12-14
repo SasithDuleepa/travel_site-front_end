@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import './contactus.css'
 import axios from 'axios';
 
-import Fb from '../../../assets/icons/facebook.png';
-import Insta from '../../../assets/icons/instagram.png';
-import Twitter from '../../../assets/icons/twitter.png';
+
 import Location from '../../../assets/icons/map-pin.png';
 import Call from '../../../assets/icons/phone-call.png';
 import Email from '../../../assets/icons/mail.png';
 import FacebookBlue from '../../../assets/icons/facebook-blue.png';
 import InstaBlue from '../../../assets/icons/instagram-blue.png';
 import TwitterBlue from '../../../assets/icons/twitter-blue.png';
+
+import Socialmedia from '../../../components/social media/socialmedia';
 
 export default function Contactus() {
   const[name,setName] = useState('');
@@ -31,7 +31,7 @@ export default function Contactus() {
       alert('Please fill all the fields')
     }else{
       try {
-        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/contact/add`,data)
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/request/add`,data)
           if(res.status===200){
             alert('Message Sent Successfully')
             setName('')
@@ -47,29 +47,29 @@ export default function Contactus() {
           
     }
    } 
-  
+   const contactStyle = {
+    backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: '424px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
   return (
     <div className='Contact'>
 
-      <div className='Contact-main'>
+      <div style={contactStyle}>
         <p className='Contact-main-title'>Contact Us</p>
         <div className='Contact-main-route'>
           <a className='Contact-main-route-link' href='/'>Home /</a>
           <a className='Contact-main-route_link' > Contact Us</a>
         </div>
         <div className='Contact-main-media'>
-          <div className='Contact-main-media-main'>
-            <img className='Contact-main-media-main-icon' src={Fb} />
-            <a className='Contact-main-media-main-link'>Facebook</a>
-          </div>
-          <div className='Contact-main-media-main'>
-            <img className='Contact-main-media-main-icon' src={Insta} />
-            <a className='Contact-main-media-main-link'>Instagram</a>
-          </div>
-          <div className='Contact-main-media-main'>
-            <img className='Contact-main-media-main-icon' src={Twitter} />
-            <a className='Contact-main-media-main-link'>Twitter</a>
-          </div>
+          <Socialmedia/>
+
         </div>
       </div>
 

@@ -1,122 +1,87 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import './request.css';
 import axios from 'axios';
 
 export default function Request() {
+  const [pendingRequests, setPendingRequests] = useState([]);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
-    const[pendingRequests, setPendingRequests] = useState([])
-    const getRequest = async () => {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/request/pending`);
-        console.log(res.data);
-        setPendingRequests(res.data);
-    
+  const getRequest = async () => {
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/request/pending`);
+    // console.log(res.data);
+    setPendingRequests(res.data);
+  };
+
+  useEffect(() => {
+    getRequest();
+  }, []);
+
+  const handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+
+  const handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
+  };
+
+  const filteredRequests = pendingRequests.filter((request) => {
+    if (startDate && endDate) {
+      // Filter by date range
+      return request.date >= startDate && request.date <= endDate;
     }
-    useEffect(()=>{
-        getRequest();
-        
-    },[])
+    return true; // If no date range specified, include all requests
+  });
 
-    const PendingHandler =async(id) =>{
-        console.log(id)
-        
-        try {
-            const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/request/update/${id}`);
-            console.log(res.data);
-            
-                window.location.reload();
-           
-        } catch (error) {
-            window.alert('error request update!!')
-        }
-    }
-
-
-
-
-
-    //constact us
-    const[contactUsPending, setContactUsPending] = useState([])
-    const getContactUsPendingRequest = async () => {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/contact/pending`);
-        console.log(res.data);
-        setContactUsPending(res.data);
-    }
-    useEffect(()=>{
-        getContactUsPendingRequest();
-    },[])
-
-    const ContactUsPendingHandler =async(id) =>{
-        console.log(id)
-        try {
-            const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/request/pendingHandle/${id}`);
-        console.log(res.data);
-        if(res.status===200){
-            window.location.reload();
-        }
-        } catch (error) {
-            
-        }
-     }
   return (
     <div className='request'>
-        <h1>Requests</h1>
+      <h1>Requests</h1>
 
-        <div className='request-pending-div'>
+      <div className='request-div'>
         <h2>Home Pending Requests</h2>
-        <div  className='request-pending-title-div' >
-                        <p className='request-pending-title-1'>name</p>
-                        <p className='request-pending-title-2'>email</p>
-                        <p className='request-pending-title-3'>contact</p>
-                        <p className='request-pending-title-4'>country</p>                        
-                        <p className='request-pending-title-5'>Action</p>
-                    </div>
-      
-            {pendingRequests.length>0 ? pendingRequests.map((request,index)=>{
-                return(
-                    <div  className='request-pending-info-div' key={index}>
-                        <p className='request-pending-info-1'>{request.name}</p>
-                        <p className='request-pending-info-2'>{request.email}</p>
-                        <p className='request-pending-info-3'>{request.contact}</p>
-                        <p className='request-pending-info-4'>{request.country}</p>                        
-                        <a className='request-pending-info-5' onClick={()=>PendingHandler(request._id)}>Accept</a>
-                    </div>
-                )
-            
-            }):null}
 
-      
-        </div>
+        {/* Date Range Filter */}
+        <label>
+          Start Date:
+          <input type='date' value={startDate} onChange={handleStartDateChange} />
+        </label>
+        <label>
+          End Date:
+          <input type='date' value={endDate} onChange={handleEndDateChange} />
+        </label>
 
-        <div className='contactus-request-pending'>
-            <h2>Contact Us Pending Request</h2>
-            <div>
-                         <div className='contactus-request-pending-title-div'>
-                            <p className='contactus-request-pending-title-1'>name</p>
-                            <p className='contactus-request-pending-title-2'>email</p>
-                            <p className='contactus-request-pending-title-3'>contact</p>
-                            <p className='contactus-request-pending-title-4'>country</p>
-                            <p className='contactus-request-pending-title-5'>message</p>
-                            <p className='contactus-request-pending-title-6'>action</p>
-                        </div>
-                        
-                {contactUsPending.length>0 ? contactUsPending.map((contactUs,index)=>{
-                    return(
-                        <div key={index} className='contactus-request-pending-info-div'>
-                            <p className='contactus-request-pending-info-1'>{contactUs.name}</p>
-                            <p className='contactus-request-pending-info-2'>{contactUs.email}</p>
-                            <p className='contactus-request-pending-info-3'>{contactUs.contact}</p>
-                            <p className='contactus-request-pending-info-4'>{contactUs.country}</p>
-                            <p className='contactus-request-pending-info-5'>{contactUs.message}</p>
-                            <a className='contactus-request-pending-info-6' onClick={()=>ContactUsPendingHandler(contactUs._id)}>Accept</a>
-                        </div>
-                        
-                    )
-                }):null
-                    }
-            </div>
-        </div>
+        <table className='request-table'>
+          <thead className='request-table-header'>
+            <tr>
+              <th>name</th>
+              <th>email</th>
+              <th>contact</th>
+              <th>country</th>
+              <th>message</th>
+              <th>date/time</th>
+            </tr>
+          </thead>
 
-        
+          <tbody className='request-table-body'>
+            {filteredRequests.length > 0 ? (
+              filteredRequests.map((request, index) => (
+                <tr key={index}>
+                  <td>{request.name}</td>
+                  <td>{request.email}</td>
+                  <td>{request.contact}</td>
+                  <td>{request.country}</td>
+                  <td>{request.message}</td>
+                  <td>{request.date}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan='6'>No matching requests found.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
-  )
+  );
 }

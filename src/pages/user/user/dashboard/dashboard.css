@@ -1,11 +1,12 @@
 .profile-dashboard{
     /* display: none; */
+    margin-left: 10px;
 }
 .profile-dashboard-btn-div{
     display: flex;
 }
 .profile-dashboard-btn-active{
-    background-color: blue;
+    background-color: var(--blue);
     padding: 10px 30px;
     margin: 10px;
     border-radius: 10px;
@@ -13,6 +14,7 @@
     font-weight: 400;
     font-family: poppins;
     color: white;
+    border: none;
 }
 .profile-dashboard-btn-deactive{
 
@@ -22,8 +24,9 @@
     font-size: 18px;
     font-weight: 400;
     font-family: poppins;
+    border: none;
     &&:hover{
-        background-color: blue;
+        background-color: var(--blue);
         color: white;
         transition: .4s;
     }
@@ -46,45 +49,80 @@
 
 .profile-right-tours-heder-div{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     gap: 10px;
+    margin: 20px;
 }
 .profile-right-tours-heder-line{
     border-bottom: 2px solid rgba(185, 185, 186, 1);
     width: 100%;
 }
 .profile-right-tours-heder{
-
+    color:rgba(185, 185, 186, 1); ;
 }
 
 
 .profile-right-tours-div{
     margin: 10px 10px 10px 10px;
     display: flex;
+    justify-content: center;
     column-gap: 10px;
     flex-wrap: wrap;
 }
+.profile-right-tours-div-sub{
+    margin: 10px 10px 10px 10px;
+    display: flex;
+    justify-content: start;
+    column-gap: 10px;
+
+    flex-wrap: wrap;
+}
+.profile-right-tours-no-p{
+    text-align: center;
+    color:rgb(185, 185, 186);
+    font-weight: 600;
+}
+
+
+
 
 .profile-right-day-tours-heder-div{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     gap: 10px;
+    margin: 20px;
 }
 .profile-right-day-tours-heder-line{
     border-bottom: 2px solid rgba(185, 185, 186, 1);
     width: 100%;
 }
 .profile-right-day-tours-heder{
-
+    color:rgba(185, 185, 186, 1) ;
+    width: 149px;
 }
 .profile-right-day-tours-div{
     margin: 10px 10px 10px 10px;
     display: flex;
+    justify-content: center;
     column-gap: 10px;
     flex-wrap: wrap;
 }
+.profile-right-day-tours-div-sub{
+    margin: 10px;
+    display: flex;
+    justify-content: right;
+    column-gap: 10px;
+    flex-wrap: wrap;
+
+}
+.profile-right-day-tours-heder-not-p{
+    text-align: center;
+    color:rgb(185, 185, 186);
+    font-weight: 600;
+}
+
 
 
 
@@ -102,4 +140,9 @@
     flex-wrap: wrap;
     column-gap: 10px;
     margin: 10px;
+}
+.profile-dashboard-day-tour-no-p{
+    text-align: center;
+    color:rgb(185, 185, 186);
+    font-weight: 600;
 }

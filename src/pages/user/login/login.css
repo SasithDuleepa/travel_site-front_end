@@ -90,7 +90,8 @@
     height: 25px;
     background-color: transparent;
     border: none;
-    border-bottom: 3px solid rgba(185, 185, 186, 1);;
+    border-bottom: 3px solid rgba(185, 185, 186, 1);
+    color: white;
 }
 .login-form-{
     margin: 10px 0px 10px 0px;

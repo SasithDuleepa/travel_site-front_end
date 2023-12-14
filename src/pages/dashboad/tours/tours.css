@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-left: 220px;
 }
 .dashboard-tour-underline{
     border-bottom: 2px solid black;

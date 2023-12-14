@@ -24,9 +24,13 @@ export default function TourEdite() {
 
 
     const TourSearch = async(e) => {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/toursSearch/${e.target.value}`)
+        if(e.target.value){
+            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/toursSearch/${e.target.value}`)
         console.log(res.data.data);
         setTours(res.data.data)
+
+        }
+        
     }
 
     const TourSelectHandler = (tourId) => async () => {
@@ -119,22 +123,58 @@ const UpdateTour = async () => {
 
     // console.log([...formData])
     try {
+        const token = sessionStorage.getItem("token");
         const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/tour/tourupdate/${id}`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
+              'Authorization': `${token}`,
             },
           });
       
-        //   console.log(res.data);
+          if (res.status === 200) {
+            window.alert("Place added successfully");
+           
+          }
     } catch (error) {
-        console.log(error)
+        if(error.response.status === 401){
+            sessionStorage.clear();
+            window.alert("You are not authorized to perform this action");
+          }else if(error.response.status === 400){
+            window.alert("All fields are required");
+          }else if(error.response.status === 500){
+            window.alert("Internal server error");
+          }else{
+            window.alert("Error adding place");
+          }
     }
 }
 
 const DeleteTour = async () => {
-    console.log(id)
-    const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/tour/tourdelete/${id}`)
-    console.log(res.data)
+    
+    
+    try {
+        const token = sessionStorage.getItem("token");
+        const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/tour/tourdelete/${id}`,{
+            headers: {
+              'Authorization': `${token}`,
+            },
+            withCredentials: true,
+          })
+          if (res.status === 200) {
+            window.alert("update successfully");
+                      }
+    } catch (error) {
+        if(error.response.status === 401){
+            sessionStorage.clear();
+            window.alert("You are not authorized to perform this action");
+          }else if(error.response.status === 400){
+            window.alert("All fields are required");
+          }else if(error.response.status === 500){
+            window.alert("Internal server error");
+          }else{
+            window.alert("Error adding place");
+          }
+    }
 }
     
   return (
@@ -179,7 +219,7 @@ const DeleteTour = async () => {
                 {newImg ?
                     <img className='tour-edite-form-img' src={URL.createObjectURL(newImg)} alt="" />
                     :
-                    <img className='tour-edite-form-img' src={`http://localhost:8080/tour/tourimg/?file=${image}`} alt="" />
+                    <img className='tour-edite-form-img' src={`${process.env.REACT_APP_BACKEND_URL}/tour/tourimg/?file=${image}`} alt="" />
                     
                 }
             </div>

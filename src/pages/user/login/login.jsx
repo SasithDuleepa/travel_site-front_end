@@ -49,13 +49,14 @@ export default function Login() {
             };
     
             try {
-                const res = await axios.post(`http://localhost:8080/user/login`, data,{ withCredentials: true });
+                const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/login`, data);
                 console.log(res.data); 
                 // console.log(res.cookies.jwt)
 
-                if(res.data.status===200){
+                if(res.status===200){
                     
                     sessionStorage.setItem('login', 'true');
+                    sessionStorage.setItem('token', res.data.token);
                     sessionStorage.setItem('user', res.data.role);
                     sessionStorage.setItem('id', res.data.user_id);
                 

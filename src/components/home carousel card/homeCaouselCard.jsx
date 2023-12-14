@@ -7,8 +7,8 @@ export default function HomeCaouselCard(props) {
       <div className='homeCarouselCard'>
         <img className='homeCarouselCard__img'
          
-         src={props.img ? `http://localhost:8080/tourcategory/img?file=${props.img}`:
-         "http://localhost:8080/categories/categoryimg?file=file-1698209731958-wildlife_tour 1.png"}
+         src={props.img ? `${process.env.REACT_APP_BACKEND_URL}/tourcategory/img?file=${props.img}`:
+         `${process.env.REACT_APP_BACKEND_URL}/categories/categoryimg?file=file-1698209731958-wildlife_tour 1.png`}
          alt="" />
          
         <div className='homeCarouselCard__content'>

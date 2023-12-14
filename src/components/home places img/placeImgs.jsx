@@ -15,10 +15,16 @@ export default function PlaceImgs() {
   const[places,setPlaces] = useState([])
   const GetPopularPlace = async()=>{
     try {
-      const res = await axios.get('http://localhost:8080/popular/place')
-      setPlaces(res.data)
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/popular/place`)
+      if(res.data.length%2===0){
+        setPlaces(res.data)
+      }else{
+        const modifiedData = res.data.slice(0, -1);
+      setPlaces(modifiedData);
+      }
+      
     } catch (error) {
-      console.log(error)
+    
     }
   }
   useEffect(()=>{
@@ -75,12 +81,13 @@ export default function PlaceImgs() {
             itemsToShow={5}
             speed={2000}
             easing="ease-in-out"
-            centerMode
+            // centerMode
           >
          {places.length>0 ?
             places.map((place,index)=>{
               return(
                 <PlaceCard 
+                key={index}
                   placeId={place.place_id}
                   title={place.place_name}
                   direction={index%2 !== 0 ? 'style_css_down':'style_css_up'}

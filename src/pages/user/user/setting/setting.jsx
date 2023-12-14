@@ -8,18 +8,18 @@ export default function Setting() {
       <div className='setting-line'></div>
       <div className='setting-form-div'>
         <div className='setting-form'>
-            <label className='setting-form-label'>Current Password:</label>
+            <label className='setting-form-label'>Current Password :</label>
             <input className='setting-form-input' type="password" />
         </div>
         <div className='setting-form'>
-            <label className='setting-form-label'>New Password:</label>
+            <label className='setting-form-label'>New Password :</label>
             <input className='setting-form-input' type="password" />
         </div>
         <div className='setting-form'>
-            <label className='setting-form-label'>Confirm New Password:</label>
+            <label className='setting-form-label'>Confirm New Password :</label>
             <input className='setting-form-input' type="password" />
         </div>
-        <a className='setting-update-btn'>Update</a>
+        <button className='setting-update-btn'>Update</button>
       </div>
     </div>
   )

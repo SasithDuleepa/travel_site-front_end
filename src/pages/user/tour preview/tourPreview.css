@@ -5,26 +5,17 @@
     align-items: center;
 
 }
-.TourPreview-hero{
-    background-image: url("http://localhost:8080/images/Tour/heroimg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 424px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+
 .TourPreview-hero-title{
     font-size: 60px;
-    font-weight: 500;
+    font-weight: 600;
     color: white;
     font-family: Playfair Display;
     margin-top: 100px;
 }
 .TourPreview-hero-route-div{
     display: flex;
+    margin-top: -50px;
 }
 .TourPreview-hero-route{
     font-size: 18px;
@@ -39,22 +30,13 @@
     font-family: poppins;
     color: orange;
     text-decoration: none;
+    background-color: transparent;
+    border: none;
 }
 .TourPreview-hero-media-div{
     display: flex;
     gap: 15px;
-    margin-top: 10px;
-}
-.TourPreview-hero-media{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-.TourPreview-hero-media-link{
-    font-size: 15px;
-    font-weight: 500;
-    color: white;
-    font-family: poppins;
+    margin-top: 70px;
 }
 
 
@@ -79,10 +61,17 @@
 }
 .TourPreview-header-left-1{
     display: flex;
+    align-items: center;
     gap: 20px;
+    /* background-color: aqua; */
+    height: 50px;
 }
 .TourPreview-header-left-p{
     font-size: 20px;
+    font-weight: 400;
+}
+.TourPreview-header-left-p-sub{
+    font-size: 10px;
     font-weight: 400;
 }
 .TourPreview-header-left-coupen{
@@ -115,11 +104,14 @@
     margin-bottom: 25px;
 }
 .TourPreview-header-book-btn{
-    background-color: orange;
+    background-color:var(--orange);
     padding: 10px 30px;
     border-radius: 10px;
     position: absolute;
     margin: 5px auto;
+    border: none;
+    color: white;
+    font-size: 18px;
     
 }
 

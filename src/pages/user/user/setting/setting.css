@@ -1,6 +1,7 @@
 
 .setting{
 height: 100%;
+margin-left: 10px;
 }
 .setting-title{
     font-size: 24px;
@@ -8,7 +9,7 @@ height: 100%;
     font-family: poppins;
 }
 .setting-line{
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid rgba(185, 185, 186, 1);
     width: 90%;
 }
 .setting-form-div{
@@ -32,8 +33,14 @@ height: 100%;
 }
 
 .setting-update-btn{
-    background-color: orange;
-    padding: 10px 30px;
-    border-radius: 20px;
+    background-color: var(--orange);
+    padding: 7px 20px;
+    border-radius: 10px;
+    margin-left: 20px;
+    top: 30px;
+    position: relative;
+    border: none;
+    color: white;
+    font-size: 17px;
 
 }

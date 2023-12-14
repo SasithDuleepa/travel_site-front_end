@@ -3,6 +3,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin-left: 300px;
 }
 
 .Dashboad-Images-div{
@@ -10,6 +11,7 @@
 justify-content: center;
 flex-direction: column;
 align-items: center;
+
 
 }
 
@@ -28,7 +30,7 @@ align-items: center;
 
 .dashboad-homeimages{
     border: 1px solid black;
-    margin: 50px;
+    margin: 20px;
     padding: 10px 50px 1px 50px; 
     border-radius: 10px;
 }
@@ -52,7 +54,7 @@ align-items: center;
 .dashboad-home-hero-img-main{
     display: flex;
     justify-content: center;
-    gap: 50px;
+    gap: 20px;
 }
 .dashboad-home-hero-img-div-form{
     display: flex;
@@ -99,7 +101,7 @@ align-items: center;
     margin-bottom: 20px;
 }
 .dashboad-tour-hero-img1-div{
-    background-image: url('http://localhost:8080/images/Tour/heroimg');
+    background-image: url('https://travel.tfdatamaster.com/images/Tour/heroimg');
     background-size: cover;
     width: 800px;
     height: 300px;

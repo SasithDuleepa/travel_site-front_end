@@ -1,8 +1,9 @@
 import './App.css';
-import {BrowserRouter as Router,Route} from "react-router-dom";
-import {Switch} from "react-router-dom";
+import { BrowserRouter as Router, Route,Routes, BrowserRouter } from "react-router-dom";
 
-import MapRoutes from "./components/mapRoutes/mapRoutes";
+
+
+
 
 
 //admin components
@@ -53,9 +54,15 @@ import Tourbook1 from './pages/user/tour book 1/tourbook1';
 import Tourbook2 from './pages/user/tour book 2/tourbook2';
 
 
+import PrivateRoute from './utils/PrivateRoute';
+import AdminRoutes from './utils/AdminRoutes';
+
+// import ProtectedRoute from './protectRouter';
 function App() {
   const currentPath = window.location.pathname;
-  console.log(currentPath);
+;
+
+  const user = 'user'
   
   return (
     <div className="App">
@@ -72,76 +79,115 @@ function App() {
      
       
       
-      <div className={currentPath.startsWith('/dashboad') ? "Add-sub-div":null}>
+      {/* <div className={currentPath.startsWith('/dashboad') ? "Add-sub-div":null}> */}
+        
       <Router>
-        <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/register" component={Register}/>
-          <Route exact path="/carousel" component={HomeCarousel}/>
-          <Route exact path="/cart/:id" component={Cart} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/contactus" component={Contactus} />
-          <Route exact path="/tours/:page" component={Tours} />
-          <Route exact path="/tour/:tour" component={TourPreview} />
-          <Route exact path="/tourcategory/:tour" component={TCPriview} />
-          <Route exact path="/profile/:id" component={User} />
-          <Route exact path="/placeReview/:id" component={PlaceReview} />
-          <Route exact path="/daytour/:id" component={Daytour_preview}/>
-          <Route exact path="/daytourbook1/:id" component={Daytourbook1}/>
-          <Route exact path="/daytourbook2/:id" component={Daytourbook2}/>
-          <Route exact path="/tourbook1/:id" component={Tourbook1}/>
-          <Route exact path="/tourbook2/:id" component={Tourbook2}/>
 
-          <Route exact path="/popular_destination" component={Popular} />
-          <Route exact path="/places" component={Places}/>
+          <Routes>
+              <Route element={<Login/>} path="/login"/>
+              <Route exact path="/register" element={<Register/>}/>
+                  <Route exact path="/about" element={<About/>} />
+                  <Route exact path="/contactus" element={<Contactus/>} />
+                  <Route exact path="/tours/:page" element={<Tours/>} />
+                  <Route exact path="/tour/:tour" element={<TourPreview/>} />
+                  <Route exact path="/tourcategory/:tour" element={<TCPriview/>} />
+                  <Route exact path="/placeReview/:id" element={<PlaceReview/>} />
+                  <Route exact path="/daytour/:id" element={<Daytour_preview/>}/>
+                  <Route exact path="/popular_destination" element={<Popular/>} />
+                  <Route exact path="/places" element={<Places/>}/>
 
 
 
+
+              {/* user private */}
+              <Route element={<PrivateRoute/>}>
+                  <Route element={<Home/>} path="/" exact/>
+                  
+                  <Route exact path="/daytourbook1/:id" element={<Daytourbook1/>}/>
+                  <Route exact path="/daytourbook2/:id/:pcount/:date" element={<Daytourbook2/>}/>
+                  <Route exact path="/tourbook1/:id" element={<Tourbook1/>}/>
+                  <Route exact path="/tourbook2/:id/:hotel/:pcount/:date" element={<Tourbook2/>}/>
+
+                  <Route exact path="/carousel" element={<HomeCarousel/>}/>
+                    <Route exact path="/cart/:id" element={<Cart/>} /> 
+                    <Route exact path="/profile/:id" element={<User/>} />
           
+              </Route>
 
 
 
-            
+            {/* admin private */}
+              <Route element={<AdminRoutes/>}>
+                <Route exact path="/dashboad/addplace" element={<Add_place/>}/>
+          <Route exact path="/dashboad/tourCategory" element={<TourCategory/>}/>
+          <Route exact path="/dashboad/hotels" element={<Hotels/>}/>
+          <Route exact path="/dashboad/vehicals" element={<Vehicals/>}/>
+          <Route exact path="/dashboad/agents" element={<Agents/>}/>
+          <Route exact path="/dashboad/tour" element={<Tour/>}/>
+          <Route exact path="/dashboad/daytour" element={<DayTour/>}/>
+          <Route exact path="/dashboad/placeCategory" element={<PlaceCategory/>}/>
+          <Route exact path="/dashboad/images" element={<Images/>}/>
+          <Route exact path="/dashboad/popular_destinations" element={<PopularDestinations/>}/>
+          <Route exact path="/admin/login" element={<Login_/>}/>
+          <Route exact path="/dashboad/request" element={<Request/>}/>
+              </Route>
 
-
-
-          
-
-
-
-          <Route exact path="/dashboad/addplace" component={Add_place}/>
-          <Route exact path="/dashboad/tourCategory" component={TourCategory}/>
-          <Route exact path="/dashboad/hotels" component={Hotels}/>
-          <Route exact path="/dashboad/vehicals" component={Vehicals}/>
-          <Route exact path="/dashboad/agents" component={Agents}/>
-          <Route exact path="/dashboad/tour" component={Tour}/>
-          <Route exact path="/dashboad/daytour" component={DayTour}/>
-
-          <Route exact path="/dashboad/placeCategory" component={PlaceCategory}/>
-          <Route exact path="/dashboad/images" component={Images}/>
-          <Route exact path="/dashboad/popular_destinations" component={PopularDestinations}/>
-          <Route exact path="/admin/login" component={Login_}/>
-          <Route exact path="/dashboad/request" component={Request}/>
-          
-          
-        </Switch>
+          </Routes>
       </Router>
+              
+              
+              
+             
+
+             
+
+
+          
+{/*           
+          
+          
+          
+          
+          
+          
+         
+
+
+
+
+
+
+
+
+
+
+          
+          
+           */}
+        
+     
+
 
     {/* <Carousel1/> */}
-      </div>
+      {/* </div> */}
 
       
     
-      {/* {currentPath.startsWith('/dashboad') ? null: <Footer/>} */}
-      {/* {currentPath.startsWith('/dashboad') ? null : (currentPath !== '/register' && currentPath !== '/login' ? <Footer /> : null)} */}
 
       {currentPath.startsWith('/admin') ? null : (
         currentPath.startsWith('/dashboad') ? null : 
         (currentPath !== '/register' && currentPath !== '/login' ? <Footer /> : null)
       )}
-    </div>
+  </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+

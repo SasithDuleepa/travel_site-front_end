@@ -6,10 +6,10 @@ import Edite from './../../../assets/icons/edit.png'
 import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer, DirectionsService } from '@react-google-maps/api';
 import PlaceCard from '../../../components/place card/placeCard';
 import Carousel from "react-simply-carousel";
-import Dt_carousel from './carousel/dt_carousel';
-import Fb from './../../../assets/icons/facebook.png'
-import insta from './../../../assets/icons/instagram.png' 
-import twitter from './../../../assets/icons/twitter.png'
+
+
+
+import Socialmedia from './../../../components/social media/socialmedia';
 
 export default function Daytour_preview() {
 
@@ -23,8 +23,7 @@ export default function Daytour_preview() {
   const [popup,setPopup] = useState('hide');
   const[popupPassenger,setPopupPassenger] = useState('')
 
-  const[total,setTotal] = useState(100)
-  const[price,setprice] = useState(300);
+  const[total,setTotal] = useState(0)
   const[passenger,setpassenger] = useState(2);
   const[distance,setDistance] = useState(0)
   const[vehicle,setVehicle] = useState([])
@@ -43,9 +42,13 @@ const[class3,setClass3] = useState('daytour-preview-bottom-info-3 hide');
   //data about day tour
   const GetData =async ()=>{
     try {
-          const res = await axios.get(`http://localhost:8080/daytour/daytour/${id}`);
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/daytour/${id}`);
           // console.log(res.data);
-          setData(res.data);
+          
+          if(res.data.length>0){
+            setData(res.data);
+            setDistance(res.data[0].distance)
+          }
     } catch (error) {
       console.log(error)
     }
@@ -66,9 +69,9 @@ const PopupCancel = () =>{
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/vehicles/${passenger}`);
-      // console.log(res.data);
-      setVehicle(res.data);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vehicles/${passenger}`);
+      let data = res.data[0];
+      setVehicle(data.rate);
     } catch (error) {
       console.error(error);
     }
@@ -78,22 +81,6 @@ useEffect(() => {
 
 }, [passenger]);
 
-useEffect(()=>{
-  if(data.length>0){
-    setprice(data[0].price)
-    setDistance(data[0].distance)
-  }
-},[data])
-
-
-useEffect(()=>{
-  if(vehicle.length>0){
-    let rate = vehicle[0].rate
-    let distance_rate = distance*rate
-    setTotal(price+distance_rate+rate)
-
-  }
-},[vehicle,distance,passenger])
 
 
 
@@ -101,35 +88,55 @@ useEffect(()=>{
 
 
 
-  //places according to daytour
-  const [places,setplaces] = useState([]);
-  const GetPlaces =async ()=>{
-    try {
-      if(data.length>0){
-        const res = await axios.get(`http://localhost:8080/daytour/places/${data[0].day_tour_id}`);
-      console.log(res.data)
-      setplaces(res.data)
+
+
+//places according to daytour
+const [places, setPlaces] = useState([]);
+const [fees, setFees] = useState(0);
+
+const getPlaces = async () => {
+  try {
+    if (data.length > 0) {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/places/${data[0].day_tour_id}`);
+      // console.log(res.data);
+      setPlaces(res.data);
+
+      let totalFees = 0;
+
+      if (res.data.length > 0) {
+        res.data.forEach((place) => {
+          if (place.visiting_fee !== undefined) {
+            totalFees += place.visiting_fee;
+          }
+        });
       }
-      
-    } catch (error) {
-      console.log(error);
+
+      setFees(totalFees);
     }
-   
-     
-  
-   
+  } catch (error) {
+    console.log(error);
   }
-  useEffect(()=>{
-    GetPlaces();
-    
-  },[data])
+};
+
+useEffect(() => {
+  getPlaces();
+}, [data]);
+
+
+ 
+useEffect(()=>{
+    let sub_total = fees+distance*vehicle
+    let tot = sub_total/passenger
+    setTotal(tot.toFixed(2))
+
+},[vehicle,distance,passenger,fees])
 
   //image id for carousel
   const [imageId,setImageId] = useState([]);
   useEffect(()=>{
     if(places.length>0){
       places.map(async(place)=>{
-        const res = await axios.get(`http://localhost:8080/places/getplaceimgnames/${place.place_id}`)
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/getplaceimgnames/${place.place_id}`)
         if(res.data.length>0){
           res.data.map((img)=>{
             if(img.img_name!== undefined ||img.img_name){
@@ -155,8 +162,8 @@ useEffect(()=>{
 
 
    // map
-   const [response, setResponse] = React.useState(null)
-   const [origin, setOrigin] = React.useState('colombo');
+   const [response, setResponse] = useState(null)
+   const [origin, setOrigin] = useState('colombo');
    let count = React.useRef(0);
    const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7qsYXATZC1Wj57plqEUhy_U7yHJjmNLM"});
    if (!isLoaded) return (
@@ -178,6 +185,9 @@ useEffect(()=>{
 
 
 //bottom buttons
+
+
+
 
 const ButtonHandler = (btn)=>() =>{
   if(btn===1){
@@ -206,6 +216,48 @@ const ButtonHandler = (btn)=>() =>{
   }
 
 }
+
+
+const calculateCenter = () => {
+  if (places.length === 0) {
+    return { lat: 6.947248052781988, lng: 79.873046875 }; // Default center if no places
+  }
+
+  const totalLat = places.reduce((sum, place) => sum + place.place_lat, 0);
+  const totalLng = places.reduce((sum, place) => sum + place.place_lng, 0);
+
+  const averageLat = totalLat / places.length;
+  const averageLng = totalLng / places.length;
+
+  return { lat: averageLat, lng: averageLng };
+};
+
+
+const Style = {
+  backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  height: '424px',
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
+// book now
+const Booknow = () => {
+  try {
+    const login = sessionStorage.getItem("login");
+    if (login === "true") {
+      window.location.href = `/daytourbook1/${id}`;
+    } else {
+      window.location.href = "/login";
+    }
+  } catch (error) {
+    window.location.href = "/login";
+  }
+};
   return (
     <div className='daytour-preview'>
       {/* pop up */}
@@ -225,7 +277,7 @@ const ButtonHandler = (btn)=>() =>{
         </div>
 
       </div>
-      <div className='daytour-preview-hero'>
+      <div style={Style}>
         <p className='daytour-preview-hero-title'>{data.length>0?data[0].day_tour:null}</p>
         <div  className='daytour-preview-hero-route-div'>
           <a className='daytour-preview-hero-route-1' href='/'>home/</a>
@@ -234,18 +286,8 @@ const ButtonHandler = (btn)=>() =>{
         </div>
 
         <div className='daytour-preview-hero-meadia-div'>
-          <div className='daytour-preview-hero-meadia-div-media'>
-            <img src={Fb} className='day-tour-meadia-media-img'/>
-            <a  className='day-tour-meadia-media-link'> facebook</a>
-          </div>
-          <div className='daytour-preview-hero-meadia-div-media'>
-            <img src={insta} className='day-tour-meadia-media-img'/>
-            <a  className='day-tour-meadia-media-link'> instagram</a>
-          </div>
-          <div className='daytour-preview-hero-meadia-div-media'>
-            <img src={twitter} className='day-tour-meadia-media-img'/>
-            <a  className='day-tour-meadia-media-link'> twitter</a>
-          </div>
+          <Socialmedia/>
+
 
         </div>
 
@@ -254,18 +296,18 @@ const ButtonHandler = (btn)=>() =>{
           <p className='daytour-preview-top-left-p1'>Package Price:{total }</p>
           <div className='daytour-preview-top-left-info'>
             <p>Passenger Count : {passenger}</p>
-            <img src={Edite} onClick={()=>setPopup('day-tour-popup-1')}/>
+            <img alt='' src={Edite} onClick={()=>setPopup('day-tour-popup-1')}/>
           </div>
           
 
           <div  className='daytour-preview-top-left-code'>
             <p className='daytour-preview-top-left-code-p1'>Coupon Code:</p>
             <input  className='daytour-preview-top-left-code-input'/>
-            <a className='daytour-preview-top-left-code-btn'>Enter</a>
+            <button className='daytour-preview-top-left-code-btn'>Enter</button>
           </div>
           
           <div className='daytour-preview-top-left-line'></div>
-          <a className='daytour-preview-top-left-book' href={`/daytourbook1/${id}`}>Book Now</a>
+          <button className='daytour-preview-top-left-book' onClick={Booknow}>Book Now</button>
         </div>
         <div className='daytour-preview-top-right'>
         <Carousel
@@ -279,11 +321,6 @@ const ButtonHandler = (btn)=>() =>{
         preventScrollOnSwipe
         swipeTreshold={60}
         activeSlideIndex={activeSlide}
-        // activeSlideProps={{
-        //   style: {
-        //     background: "blue"
-        //   }
-        // }}
         onRequestChange={setActiveSlide}
         forwardBtnProps={{
           children: ">",
@@ -338,7 +375,7 @@ const ButtonHandler = (btn)=>() =>{
 
             {imageId.length>0 ? imageId.map((img,index)=>{
               return(
-                <img className='daytour-preview-top-right-img' key={index} src={img!==undefined?`http://localhost:8080/places/placeimg?file=${img}`:null} />
+                <img className='daytour-preview-top-right-img' key={index} src={img!==undefined?`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${img}`:null} />
               )
             
             }
@@ -356,7 +393,7 @@ const ButtonHandler = (btn)=>() =>{
         <div className='daytour-preview-center-left'>
        < GoogleMap
         mapContainerClassName='daytour-preview-center-map-container'
-        center={{ lat: 6.947248052781988, lng: 79.873046875 }}
+        center={calculateCenter()}
         zoom={7}
       >
         {places.length>0?places.map((place,index)=>{
@@ -380,7 +417,8 @@ const ButtonHandler = (btn)=>() =>{
             {places.length>0?places.map((place,index)=>{
               return(
                 <div key={index} className='daytour-preview-center-right-place-div-place'>
-                <p><b>{place.place_name} </b> {place.description}</p>
+                <p><b>{place.place_name} </b> {place.short_description
+}</p>
 
                 <p>{place.description}</p>
 
@@ -461,7 +499,7 @@ const ButtonHandler = (btn)=>() =>{
           {places.length>0 ? places.map((place,index)=>{
               return(
                 <PlaceCard key={index} id={place.place_id} place={place.place_name} 
-                link ={`/placeReview/${place.place_id}`}
+                img ={place.card_img}
                 short={place.short_description}
                 />
               )

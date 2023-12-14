@@ -3,10 +3,10 @@
     display: flex;
 
     width: 100%;
-    margin-top: 80px;
+    margin-top: 40px;
 }
 .homecarousel-sub-div1{
-    background-color: rgb(7, 7, 93);
+    background-color: rgb(8, 28, 85);
     width: 45%;
     height: 500px;
 }
@@ -70,7 +70,7 @@
 .homecarousel-info-btn{
     position: absolute;
     bottom: 60px;
-    background-color: orange;
+    background-color: var(--orange);
     color: rgb(0, 0, 0);
     padding: 10px 40px;
     border: none;

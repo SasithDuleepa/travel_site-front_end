@@ -4,7 +4,7 @@
     /* background-color: rgb(255, 255, 255); */
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 .header-text{
     position: relative;
@@ -55,12 +55,15 @@
     margin-bottom: 40px;
 }
 .headertext-more-btn{
-    background-color: orange;
+    background-color: var(--orange);
     font-size: 15px;
     font-weight: 500;
     font-family: poppins;
     padding: 10px 35px;
     border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
 }
 .header-text-p.active_{
     width: 700px;

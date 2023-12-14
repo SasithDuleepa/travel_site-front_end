@@ -1,6 +1,6 @@
 
 .home-header-main{
-    width: 100vw;
+    width: 100%;
 
     background-color: rgba(226, 146, 40, 0.827);
     overflow: hidden;
@@ -38,7 +38,7 @@ figurecaption {
 }
 .pic-1 {
     opacity: 1;
-    background-image: url("http://localhost:8080/images/Home/heroimg/slider1.jpg") ;
+    background-image: url("https://backtravel.tfdatamaster.com/images/Home/heroimg/slider1.jpg") ;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -50,7 +50,7 @@ figurecaption {
     -o-animation-delay: 6s;
     -moz--animation-delay: 6s;
     -webkit-animation-delay: 6s;
-    background-image: url("http://localhost:8080/images/Home/heroimg/slider3.jpg");
+    background-image: url("https://backtravel.tfdatamaster.com/images/Home/heroimg/slider3.jpg");
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -62,7 +62,7 @@ figurecaption {
     -o-animation-delay: 12s;
     -moz--animation-delay: 12s;
     -webkit-animation-delay: 12s;
-    background-image: url("http://localhost:8080/images/Home/heroimg/slider5.jpg");
+    background-image: url("https://backtravel.tfdatamaster.com/images/Home/heroimg/slider5.jpg");
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -74,7 +74,7 @@ figurecaption {
     -o-animation-delay: 18s;
     -moz--animation-delay: 18s;
     -webkit-animation-delay: 18s;
-    background-image: url("http://localhost:8080/images/Home/heroimg/slider2.jpg");
+    background-image: url("https://backtravel.tfdatamaster.com/images/Home/heroimg/slider2.jpg");
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -161,6 +161,7 @@ figurecaption {
     font-weight: 500;
     font-family: poppins;
     border-radius: 0px 6px 6px 0px;
+    color: white;
 }
 .homeheader-input-center{
     border-left: 2px solid rgb(110, 110, 110);

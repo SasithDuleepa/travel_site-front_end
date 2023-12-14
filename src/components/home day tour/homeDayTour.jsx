@@ -136,7 +136,7 @@ export default function HomeDayTour() {
         centerMode
       >
         {daytours.length > 0 && daytours.map((daytour, index) => (
-          <img key={index} src={`http://localhost:8080/daytour/daytourimg?file=${daytour.img}`} alt="" className='DayTourCarousel-img'/>
+          <img key={index} src={`${process.env.REACT_APP_BACKEND_URL}/daytour/daytourimg?file=${daytour.img}`} alt="" className='DayTourCarousel-img'/>
           // <div className='DayTourCarousel-img'>{daytour._id}</div>
         ))
           }

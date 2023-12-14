@@ -1,6 +1,5 @@
 import React, { useEffect,useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams } from 'react-router-dom';
 import './daytourbook2.css'
 import Socialmedia from '../../../components/social media/socialmedia';
 import axios from 'axios';
@@ -8,34 +7,32 @@ import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer, DirectionsServic
 
 
 export default function Daytourbook2() {
-  const history = useHistory();
-    const{id} = useParams();
-    console.log(id);
+ 
+    const {id,pcount , date} = useParams();
+    
 
     const [isLoading, setIsLoading] = useState(true);
 
 
     const[distance,setDistance] = useState(null);
-    const[price,setPrice] = useState(null); 
+    
     const[vehicleRate,setVehicleRate] = useState(null);
     
 
-    const[passengers,setPassengers] = useState(1);
+    const[passengers,setPassengers] = useState(2);
     const[startDate,setStartDate]= useState(null);
 
     const[total,setTotal] = useState(null);
     
     const[places,setPlaces] = useState([])
 
-    useEffect(()=>{
-      let passengers_ = sessionStorage.getItem('passengers');
-      let date_ = sessionStorage.getItem('date');
-      
-      setPassengers(passengers_);
-      setStartDate(date_);
+    let fees = 0;
 
-      console.log(passengers);
-      console.log(startDate);
+    useEffect(()=>{
+     
+      setPassengers(pcount);
+      setStartDate(date);
+
 
     },[])
 
@@ -45,10 +42,10 @@ export default function Daytourbook2() {
     useEffect(() => {
       const GetData = async () => {
         try {
-          const res = await axios.get(`http://localhost:8080/daytour/daytour/${id}`);
-          console.log(res.data[0]);
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/daytour/${id}`);
+          // console.log(res.data[0]);
           setDistance(res.data[0].distance);
-          setPrice(res.data[0].price);
+          
         } catch (error) {
           console.error('Error fetching tour data:', error);
           // Handle the error, e.g., set an error state or show an error message to the user.
@@ -66,8 +63,8 @@ export default function Daytourbook2() {
     //vehicle
     const GetVehicle = async() =>{
       try {
-        const res = await axios.get(`http://localhost:8080/vehicles/${passengers}`)
-      console.log(res.data[0])
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vehicles/${passengers}`)
+      // console.log(res.data[0])
       setVehicleRate(res.data[0].rate)
       } catch (error) {
         console.log(error);
@@ -82,9 +79,19 @@ export default function Daytourbook2() {
     //get places
     const GetPlaces = async() =>{
       try {
-        const res = await axios.get(`http://localhost:8080/daytour/places/${id}`);
-      console.log(res.data)
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/places/${id}`);
+      // console.log(res.data)
       setPlaces(res.data)
+
+      if(res.data.length>0){
+        let Data = res.data;
+        fees=0
+        {Data.map((item,index)=>{
+          
+          return(fees = fees+item.visiting_fee)
+        })}
+      }
+      // console.log(fees)
       } catch (error) {
         console.log(error);
       }
@@ -99,14 +106,15 @@ export default function Daytourbook2() {
 
     //calculation
     const Calculation =()=>{
-      let total = distance * vehicleRate  + price;
+      let sub_total = distance * vehicleRate  +fees;
+      let total = sub_total / passengers;
       setTotal(total);
 
     }
     useEffect(()=>{
       Calculation();
     }
-    ,[distance,vehicleRate,price])
+    ,[distance,vehicleRate])
 
     
 
@@ -120,25 +128,34 @@ export default function Daytourbook2() {
         user_id:user
       }
       try {
-        const res = await axios.post('http://localhost:8080/book/bookDayTour',Data );
+        const token = sessionStorage.getItem("token");
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/book/bookDayTour`,Data ,{
+          headers: {
+                       'Authorization': `${token}`,
+          },
+          withCredentials: true,
+        });
       console.log(res);
       if(res.status === 200){
-       
-        sessionStorage.removeItem('passengers');
-        sessionStorage.removeItem('date');
-
-        history.push('/tours/tourcategory');
-
-
-
+        window.alert("success!!");
       }
       } catch (error) {
-        console.log(error);
+        if(error.response.status === 401){
+          sessionStorage.clear();
+          window.alert("You are not authorized to perform this action");
+          window.location.href = "/login";
+        }else if(error.response.status === 400){
+          window.alert("All fields are required");
+        }else if(error.response.status === 500){
+          window.alert("Internal server error");
+        }else{
+          window.alert("Error adding place");
+        }
       }
     }
 
     const PreviousHandler=() =>{
-      window.history.back();
+      
     }
 
 
@@ -163,16 +180,28 @@ export default function Daytourbook2() {
              setResponse(res);
            } else {
              count.current = 0;
-             console.log('res: ', res);
+            
            }
          }
        };
 
 
+       const Style = {
+        backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        height: '424px',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      };
+
   return (
     <div className='daytour-book-2'>
       
-        <div className='daytour-book-2-hero'>
+        <div style={Style}>
         <p className='daytour-book-2-hero-title'>Plan My Tour</p>
         <div className='daytour-book-2-hero-route-div'>
           <a className='daytour-book-2-hero-route-1'>Home</a>
@@ -192,7 +221,7 @@ export default function Daytourbook2() {
                 <div className='daytour-book-2-sub-left-places-div'>
                   {places.length>0 ? places.map((place,index)=>{
                     return(
-                      <div>
+                      <div key={index}>
                         <Placecard_ 
                         place={place.place_name}
                         key={index}
@@ -277,7 +306,7 @@ function Placecard_(props) {
   return (
     <div className='Placecard_'>
         <div className='Placecard_left'>
-          {props.img ? <img className='Placecard_img' src={`http://localhost:8080/places/placeimg?file=${props.img}`} /> : null}
+          {props.img ? <img className='Placecard_img' src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${props.img}`} /> : null}
         </div>
         <div className='Placecard_right'>
             <p>{props.place}</p>

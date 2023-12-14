@@ -40,7 +40,7 @@
     .nav-bar-upper-div-left{
         width: 30vw;
         height: 25px;
-        background-color: rgb(39, 73, 74);
+        background-color: rgb(243,149,57);
         display: flex;
         align-items: center;
         justify-content: right;
@@ -81,6 +81,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
+
         z-index: 2;
         
     }
@@ -156,11 +157,13 @@
     .Nav-bar-links-div-right{
         /* background-color: rgb(8, 45, 45); */
         width: 200px;
+        display: flex;
+        justify-content: right;
         
     }
     .nav-bar-login-div{
         display: flex;
-        justify-content: space-between;
+        justify-content: right;
     }
     .nav-bar-road-img{
         width: 30px;
@@ -179,6 +182,7 @@
         font-size: 18px;
         font-family: poppins;
         background-color: orange;
+        color: white;
         border: none;
         text-decoration: none;
     }

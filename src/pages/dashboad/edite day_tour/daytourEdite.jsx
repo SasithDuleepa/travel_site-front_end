@@ -33,7 +33,7 @@ export default function DaytourEdite() {
     },[])
 
     const GetAllPlaces = async() =>{
-        const res = await axios.get('http://localhost:8080/places/all');
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/all`);
         // console.log(res.data)
         setAllPlaces(res.data.data);
     }
@@ -123,27 +123,60 @@ export default function DaytourEdite() {
         formData.append(`places[${index}][place]`, place.place_id);
         formData.append(`places[${index}][placeDescription]`, place.description);
      });
-     console.log(currentImg)
-     console.log([...formData])
+
      try {
-        const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/daytour/update/${id}`, formData);
+        const token = sessionStorage.getItem("token");
+        const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/daytour/update/${id}`, formData,{
+            headers: {
+             'Content-Type': 'multipart/form-data',
+              'Authorization': `${token}`,
+            },
+            withCredentials: true,
+          });
         console.log(res.data)
+        if (res.status === 200) {
+            window.alert("Place added successfully");
+           
+          }
      } catch (error) {
-        console.log(error);
+        if(error.response.status === 401){
+            sessionStorage.clear();
+            window.alert("You are not authorized to perform this action");
+          }else if(error.response.status === 400){
+            window.alert("All fields are required");
+          }else if(error.response.status === 500){
+            window.alert("Internal server error");
+          }else{
+            window.alert("Error adding place");
+          }
      }
     }
 
 
     const DeleteHandler = async() =>{
         try {
-            const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/daytour/delete/${id}`);
+            const token = sessionStorage.getItem("token");
+            const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/daytour/delete/${id}`, {
+                headers: {
+                  'Authorization': `${token}`,
+                },
+                withCredentials: true,
+              });
             console.log(res.data)
             if(res.status === 200){
                 window.location.reload()
             }
         } catch (error) {
-            console.log(error);
-            window.alert('error')
+            if(error.response.status === 401){
+                sessionStorage.clear();
+                window.alert("You are not authorized to perform this action");
+              }else if(error.response.status === 400){
+                window.alert("All fields are required");
+              }else if(error.response.status === 500){
+                window.alert("Internal server error");
+              }else{
+                window.alert("Error adding place");
+              }
         }
     
     }
@@ -185,7 +218,7 @@ export default function DaytourEdite() {
                 <label className='daytouredite-form-label'>Image</label>
                 <input className='daytouredite-form-input' type="file" onChange={(e)=>setImage(e.target.files[0])}/>
                 {image ? <img src={URL.createObjectURL(image)} alt="" />
-                :<img src={`http://localhost:8080/daytour/daytourimg?file=${currentImg}`} alt="" />}
+                :<img src={`${process.env.REACT_APP_BACKEND_URL}/daytour/daytourimg?file=${currentImg}`} alt="" />}
       
             </div>
             <div className='daytouredite-form'>

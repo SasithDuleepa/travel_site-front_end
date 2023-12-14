@@ -8,7 +8,7 @@ export default function Daytours() {
       const getDaytours = async () => {
         let user = sessionStorage.getItem('id');
         if(user){
-          const res = await axios.get(`http://localhost:8080/book/pendingDayTours/${user}`);
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/book/pendingDayTours/${user}`);
           console.log(res.data)
           setDaytours(res.data);
         }
@@ -24,12 +24,12 @@ export default function Daytours() {
                 return(
                   <ProfileTourCard key={index}
                   tour={daytour.day_tour}
-                  img={`http://localhost:8080/daytour/daytourimg?file=${daytour.img}`}
+                  img={`${process.env.REACT_APP_BACKEND_URL}/daytour/daytourimg?file=${daytour.img}`}
                   />
                 )
               
               }
-              ):null}
+              ):<p className='profile-dashboard-day-tour-no-p'>No Day Tours</p>}
         </div>
     </div>
   )

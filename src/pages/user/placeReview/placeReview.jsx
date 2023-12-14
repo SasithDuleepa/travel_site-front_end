@@ -39,21 +39,23 @@ export default function PlaceReview() {
 
         
 const[imgs, setImgs] = useState([])
-const[landimg,setLandimg] = useState()
+
 useEffect(() => {
   const GetImg = async() =>{
     const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/getplaceimgnames/${id}`)
-    console.log(res.data);
-    if(res.data){
+    if(res.data.length%2===0){
         setImgs(res.data)
-        setLandimg(res.data[0].img_name)
+        
+    }else if(res.data.length%2!==0) {
+      const modifiedData = res.data.slice(0, -1);
+      setImgs(modifiedData);
+    
     }
   }
   
   const GetPlace = async() =>{
     try {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/getplace/${id}`)
-      console.log(res.data);
       if(res.data){
         let Data = res.data[0];
         
@@ -69,7 +71,7 @@ useEffect(() => {
         });
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -89,15 +91,13 @@ if (!isLoaded) return (
     <div className='placeReview__container-main'>
         <div className='placeReview'>
         <div className='plecereview-img-div'>
-            <img src={`http://localhost:8080/places/placeimg?file=${DATA.cover_img}`} className='placeReview__img'/>
+            <img alt='' src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${DATA.cover_img}`} className='placeReview__img'/>
             <div className='placeReview__title-div'>
               <p className='placeReview__title'>{DATA.place_name}</p>
               <div className='placeReview__routes-div'>
-                <a className='placeReview__routes'>Home</a>
-                <a className='placeReview__routes'>/</a>
-                <a className='placeReview__routes'>Popular Destinations</a>
-                <a className='placeReview__routes'>/</a>
-                <a className='placeReview__routes-active'>{DATA.place_name}</a>
+                <a className='placeReview__routes' href='/'>Home</a>
+                <p className='placeReview__routes'>/</p>
+                <p className='placeReview__routes-active'>{DATA.place_name}</p>
               </div>
               <div className='placeReview__socialmedia'><Socialmedia/></div>
             
@@ -106,13 +106,12 @@ if (!isLoaded) return (
         </div>
         <div className='placceReview-sub-div'>
             <div className='placceReview-sub-div-1'>
-              {/* <p className='placeReview-title-2'>About Destination</p>
-              <p  className='placeReview-text-3'> Visit time : {DATA.visit_time}</p>
-              <p className='placeReview-text-3'> Ticket price : {DATA.visiting_fee} $</p> */}
+              <p className='placeReview-title-2'>About Destination</p>
+             
               
             </div>
             <div className='placceReview-sub-div-2'>
-              <a className='placceReview-sub-div-2-more'>Add to cart<img src={Cart}/></a>
+              <button className='placceReview-sub-div-2-more'>Add to Cart<img src={Cart}/></button>
               
             </div>
         </div>
@@ -125,7 +124,7 @@ if (!isLoaded) return (
             <GoogleMap
             mapContainerClassName='map-container'
             center={{lat: DATA.place_lat, lng: DATA.place_lng}}
-            zoom={10}
+            zoom={15}
            >
            <MarkerF position={{lat: DATA.place_lat, lng: DATA.place_lng}}/>
            </GoogleMap>
@@ -186,8 +185,8 @@ if (!isLoaded) return (
         
         autoplay={true}
         delay={1000}
-        itemsToShow={4}
-        speed={1600}
+        itemsToShow={3}
+        speed={1400}
         easing="ease-in-out"
         // centerMode
       >
@@ -195,7 +194,7 @@ if (!isLoaded) return (
 
          {imgs ? imgs.map((img, index) => (
          
-            <img className={index%2 !==0 ? 'place-review-carousel-img-up':'place-review-carousel-img-down'} key={index} src={`http://localhost:8080/places/placeimg?file=${img.img_name}`}/>
+            <img className={index%2 !==0 ? 'place-review-carousel-img-up':'place-review-carousel-img-down'} key={index} src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${img.img_name}`}/>
           
             
           )):null}

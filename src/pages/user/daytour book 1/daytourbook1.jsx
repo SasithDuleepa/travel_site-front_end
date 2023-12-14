@@ -11,13 +11,29 @@ export default function Daytourbook1() {
   const[date,setDate]= useState(null)
 
   const NextHandler =()=>{
-    sessionStorage.setItem('passengers', passengers);
-    sessionStorage.setItem('date', date);
+    if(passengers === 0 || date === null){
+      alert("Please enter valid input")
+    }else{
+      window.location.href = `/daytourbook2/${id}/${passengers}/${date}`;
+    }
+    
 
   }
+
+  const Style = {
+    backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: '424px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
   return (
     <div className='daytour-book-1'>
-      <div className='daytour-book-1-hero'>
+      <div style={Style}>
         <p className='daytour-book-1-hero-title'>wd</p>
         <div className='daytour-book-1-hero-route-div'>
           <a className='daytour-book-1-hero-route-1'>Home</a>
@@ -43,7 +59,7 @@ export default function Daytourbook1() {
 
         <div  className='daytour-book-1-btn-div'>
           <a className='daytour-book-1-btn-1' href={`/daytour/${id}`}>Previous</a>
-          <a className='daytour-book-1-btn-2' href={`/daytourbook2/${id}`} onClick={NextHandler}>Next</a>
+          <a className='daytour-book-1-btn-2'  onClick={NextHandler}>Next</a>
         </div>
 
       </div>

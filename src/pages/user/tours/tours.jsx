@@ -1,35 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { useParams,useHistory } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import './tours.css';
 import axios from 'axios';
 
 import TourCard from './card/tourCard';
 
-import Fb from './../../../assets/icons/facebook.png';
-import Insta from './../../../assets/icons/instagram.png';
-import Twitter from './../../../assets/icons/twitter.png';
+
+import Socialmedia from './../../../components/social media/socialmedia';
 
 export default function Tours() {
-  const history = useHistory();
+
 
   let { page } = useParams();
   const[Page,SetPage] = useState('')
   const [dayTour, setDayTour] = useState([]);
   const [tourCategory, setTourCategory] = useState([])
 
+
+
   const GetTourCategory = async() =>{
-    const res = await axios.get('http://localhost:8080/tourcategory/getall')
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tourcategory/getall`)
     // console.log(res.data)
     setTourCategory(res.data)
-    SetPage("tourcategory")
-    console.log(tourCategory)
+    
+
   }
   const GetDayTours = async() =>{
-    const res = await axios.get('http://localhost:8080/daytour/daytours')
-    console.log(res.data)
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/daytours`)
+
     setDayTour(res.data)
-    console.log(dayTour)
-    SetPage('daytour')
+
+    
   }
 
 
@@ -38,11 +39,13 @@ export default function Tours() {
       GetTourCategory()
       setTourcatergoryBTN('Tour_button-active')
       setDaytourBTN('Tour_button')
+      SetPage("Tour Packages")
 
     }else if(page === 'daytour'){
       GetDayTours()
       setDaytourBTN('Tour_button-active')
       setTourcatergoryBTN('Tour_button')
+      SetPage('Day Tours')
     }else{
       SetPage('nopage')
     }
@@ -51,8 +54,6 @@ export default function Tours() {
 
 
 
-  console.log(page)
-
   //button handle
   const[tourcatergoryBTN, setTourcatergoryBTN] = useState('Tour_button');
   const[daytourBTN,setDaytourBTN] =useState('Tour_button')
@@ -60,50 +61,67 @@ export default function Tours() {
   const tourcatergoryBTNHandler=()=>{
     setTourcatergoryBTN('Tour_button-active')
     setDaytourBTN('Tour_button')
-    history.push('/tours/tourcategory');
+   
   }
   const daytourBTNHandler=()=>{
     setDaytourBTN('Tour_button-active')
     setTourcatergoryBTN('Tour_button')
-    history.push('/tours/daytour');
+   
   }
+
+  const Style = {
+    backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: '424px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
 
 
   return (
     <div className='Tours'>
-      <div className='Tour-head wrapper'>
+      <div className=' wrapper' style={Style}>
         <p className='Tour-over-layer-p'>Travel in Sri Lanka</p>
         <div className='Tour-over-layer-route-div'>
           <a  className='Tour-over-layer-route' href='/'>Home</a>
           <p className='Tour-over-layer-route'>/</p>
-          <a  className='Tour-over-layer_route'>Tours</a>
+          <p  className='Tour-over-layer_route'>{Page}</p>
         </div>
         <div className='Tour-over-layer-media-div'>
-            <div  className='Tour-over-layer-media-div-sub'>
-              <img src={Fb} />
-              <a className='Tour-over-layer-media-link'>Facebook</a>
-            </div>
-            <div  className='Tour-over-layer-media-div-sub'>
-              <img src={Insta} />
-              <a className='Tour-over-layer-media-link'>Instagram</a>
-            </div>
-            <div  className='Tour-over-layer-media-div-sub'>
-              <img src={Twitter} />
-              <a className='Tour-over-layer-media-link'>Twitter</a>
-            </div>
+          <Socialmedia/>
+
         </div>
         
       </div>
-      <p className='Tour-description'>Lorem ipsum dolor sit amet consectetur.
-       Leo vitae quam feugiat integer. Ac in scelerisque fames eu tempus diam in
-        eleifend. Ac id urna ullamcorper suspendisse. Libero dictum vitae duis
-         mattis. Commodo adipiscing faucibus iaculis augue sit ac adipiscing
-          adipiscing. Est amet ultrices ornare viverra nibh aliquet. Neque mattis
-           eleifend sed gravida. Quis suscipit ut mauris cum duis. Convallis in
-            potenti amet parturient consectetur id. Feugiat et quis rutrum massa 
-            sit suscipit nisl aliquet pellentesque. Laoreet arcu sed urna sed sed
-            senectus tortor. Lobortis enim bibendum elit sed fusce congue eget.
-       Tincidunt massa augue non ultrices urna etiam. Risus tincidunt aliquam ut nisl nec.</p>
+      {dayTour.length>0 ? 
+      <p className='Tour-description'>day tour Lorem ipsum dolor sit amet consectetur.
+      Leo vitae quam feugiat integer. Ac in scelerisque fames eu tempus diam in
+       eleifend. Ac id urna ullamcorper suspendisse. Libero dictum vitae duis
+        mattis. Commodo adipiscing faucibus iaculis augue sit ac adipiscing
+         adipiscing. Est amet ultrices ornare viverra nibh aliquet. Neque mattis
+          eleifend sed gravida. Quis suscipit ut mauris cum duis. Convallis in
+           potenti amet parturient consectetur id. Feugiat et quis rutrum massa 
+           sit suscipit nisl aliquet pellentesque. Laoreet arcu sed urna sed sed
+           senectus tortor. Lobortis enim bibendum elit sed fusce congue eget.
+      Tincidunt massa augue non ultrices urna etiam. Risus tincidunt aliquam ut nisl nec.</p>
+          :null}
+
+       {tourCategory.length>0 ? 
+      <p className='Tour-description'>tour category Lorem ipsum dolor sit amet consectetur.
+      Leo vitae quam feugiat integer. Ac in scelerisque fames eu tempus diam in
+       eleifend. Ac id urna ullamcorper suspendisse. Libero dictum vitae duis
+        mattis. Commodo adipiscing faucibus iaculis augue sit ac adipiscing
+         adipiscing. Est amet ultrices ornare viverra nibh aliquet. Neque mattis
+          eleifend sed gravida. Quis suscipit ut mauris cum duis. Convallis in
+           potenti amet parturient consectetur id. Feugiat et quis rutrum massa 
+           sit suscipit nisl aliquet pellentesque. Laoreet arcu sed urna sed sed
+           senectus tortor. Lobortis enim bibendum elit sed fusce congue eget.
+      Tincidunt massa augue non ultrices urna etiam. Risus tincidunt aliquam ut nisl nec.</p>
+          :null}
 
        <div className='button-div'>
         <a className={tourcatergoryBTN} href='/tours/tourcategory' onClick={tourcatergoryBTNHandler}>Tour category</a>
@@ -113,8 +131,8 @@ export default function Tours() {
         <div className='tours-card-container-div-sub'>
           {dayTour.length>0 ? dayTour.map((tour,index)=>{
           return(
-            <div>
-                <TourCard title={tour.day_tour} link={`/daytour/${tour.day_tour_id}`}  img={`http://localhost:8080/daytour/daytourimg?file=${tour.img}`}  key={index}/>
+            <div key={index}>
+                <TourCard key={index} title={tour.day_tour} description={tour.description} link={`/daytour/${tour.day_tour_id}`}  img={`${process.env.REACT_APP_BACKEND_URL}/daytour/daytourimg?file=${tour.img}`}  />
             </div>
 
                 )
@@ -124,8 +142,8 @@ export default function Tours() {
 
           {tourCategory.length>0 ? tourCategory.map((tour,index)=>{
             return(
-              <div>
-                <TourCard  title={tour.tourcategory_name} link={`/tourcategory/${tour.tourcategory_id}`} img={`http://localhost:8080/tourcategory/img?file=${tour.tourcategory_img}`} key={index}/>
+              <div key={index}>
+                <TourCard key={index}  title={tour.tourcategory_name} description={tour.tourcategory_description} link={`/tourcategory/${tour.tourcategory_id}`} img={`${process.env.REACT_APP_BACKEND_URL}/tourcategory/img?file=${tour.tourcategory_img}`} />
               </div>
             )
           }):null}

@@ -18,7 +18,7 @@
     height: 100%;
 }
 .homeCarouselCard__content{
-    background-color: rgba(18, 18, 18, 0.868);
+    background-color: rgba(0, 0, 0, 0.496);
     position: absolute;
     bottom: 4px;
     height: 158px;
@@ -40,7 +40,7 @@
     font-family: latio;
     color: azure;
     text-align: center;
-    width: 230px;
+    width: 240px;
     height: 50px;
     overflow: hidden;
     margin-top: 5px;
@@ -51,7 +51,7 @@
     font-size: 13px;
     font-weight: 400;
     text-align: justify;
-    width: 210px;
+    width: 220px;
     height: 65px;
     line-height: 13px;
     overflow: hidden;

@@ -41,20 +41,20 @@ export default function User() {
       <div className='user'>
         
         <div className='user-left'>
-            <a className={dashboardBtn===true?'user-link-active':'user-link'} onClick={dashboardBtnHandler}> 
+            <div className={dashboardBtn===true?'user-link-active':'user-link'} onClick={dashboardBtnHandler} href='#'> 
               <svg  width="20" height="20" viewBox="0 0 20 20" stroke={dashboardBtn===true?"#F39539":"#1D1D1F"} fill="none"  xmlns="http://www.w3.org/2000/svg">
             <path d="M8.33333 2.5H2.5V8.33333H8.33333V2.5Z"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M17.5003 2.5H11.667V8.33333H17.5003V2.5Z"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M17.5003 11.6665H11.667V17.4998H17.5003V11.6665Z"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M8.33333 11.6665H2.5V17.4998H8.33333V11.6665Z"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>Dashboard</a>
-            <a className={profileBtn===true?'user-link-active':'user-link'} onClick={profileBtnHandler}>
+              </svg>Dashboard</div>
+            <div className={profileBtn===true?'user-link-active':'user-link'} onClick={profileBtnHandler}>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M16.6663 17.5V15.8333C16.6663 14.9493 16.3152 14.1014 15.69 13.4763C15.0649 12.8512 14.2171 12.5 13.333 12.5H6.66634C5.78229 12.5 4.93444 12.8512 4.30932 13.4763C3.6842 14.1014 3.33301 14.9493 3.33301 15.8333V17.5" stroke={profileBtn===true?"#F39539":"#1D1D1F"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M10.0003 9.16667C11.8413 9.16667 13.3337 7.67428 13.3337 5.83333C13.3337 3.99238 11.8413 2.5 10.0003 2.5C8.15938 2.5 6.66699 3.99238 6.66699 5.83333C6.66699 7.67428 8.15938 9.16667 10.0003 9.16667Z" stroke={profileBtn===true?"#F39539":"#1D1D1F"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-Profile</a>
-            <a className={settingBtn===true?'user-link-active':'user-link'} onClick={settingBtnHandler}>
+              </svg>
+              Profile</div>
+            <div className={settingBtn===true?'user-link-active':'user-link'} onClick={settingBtnHandler}>
               <svg width="20" height="20" viewBox="0 0 20 20" stroke={dashboardBtn===true?"#F39539":"#1D1D1F"}  fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_1537_408)">
 <path d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z" stroke={settingBtn===true?"#F39539":"#1D1D1F"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -65,28 +65,20 @@ Profile</a>
 <rect width="20" height="20" fill="white"/>
 </clipPath>
 </defs>
-</svg>
-Settings</a>
-            <a className='user-link'><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              </svg>
+            Settings</div>
+            <div className='user-link'>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M7.5 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V4.16667C2.5 3.72464 2.67559 3.30072 2.98816 2.98816C3.30072 2.67559 3.72464 2.5 4.16667 2.5H7.5" stroke="#1D1D1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M13.333 14.1668L17.4997 10.0002L13.333 5.8335" stroke="#1D1D1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M17.5 10H7.5" stroke="#1D1D1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-Logout</a>
+              </svg>
+            Logout</div>
         </div>
         <div className='user-right'>
           {dashboardBtn===true?<Dashboard_/>:null}
           {profileBtn===true?<Profile/>:null}
           {settingBtn===true?<Setting/>:null}
-        
-            {/* <Dashboard_/> */}
-            {/* <Profile/> */}
-            {/* <Setting/> */}
-
-            
-          
-          
-          
         </div>
       </div>
     </div>

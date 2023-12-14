@@ -1,5 +1,5 @@
 import React, { useEffect,useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+
 import './tourbook2.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -8,9 +8,9 @@ import Socialmedia from '../../../components/social media/socialmedia';
 
 
 export default function Tourbook2() {
-    const history = useHistory();
-    const{id} = useParams();
-    console.log(id); 
+    
+    const{id,hotel,pcount,date} = useParams();
+ 
 
     const [hotelType, setHotelType] = useState('');
     const [passengers, setPassengers] = useState('');
@@ -21,26 +21,21 @@ export default function Tourbook2() {
 
     const[total,setTotal] = useState(null);
     const[vehicleRate,setVehicleRate] = useState(null); 
-    const[hotelRateList,setHotelRateList] = useState(null);
+
 
     useEffect(()=>{
-        let HotelType = sessionStorage.getItem('hotelType')
-        let passengers_ = sessionStorage.getItem('passengers');
-        let date_ = sessionStorage.getItem('startDate');
-
-        setHotelType(HotelType);
-        setPassengers(passengers_);
-        setStartDate(date_);
+        setHotelType(hotel);
+        setPassengers(pcount);
+        setStartDate(date);
       },[id])
 
       //tour details
       useEffect(()=>{
         const fetchTour = async () => {
           try {
-            const response = await axios.get(`http://localhost:8080/tour/tour/${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/tour/${id}`);
             const data = await response.data;
             if(data.length>0){
-                console.log(data)
                 setTour(data);
                 setDistance(data[0].distance);
             }
@@ -53,14 +48,24 @@ export default function Tourbook2() {
       ,[id])
 
       //tour places
+      let fees = 0;
       const [tourPlaces, setTourPlaces] = useState([]);
       useEffect(()=>{
         const fetchTourPlaces = async () => {
           try {
-            const response = await axios.get(`http://localhost:8080/tour/places/${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/places/${id}`);
             const data = await response.data;
             // console.log(data);
             setTourPlaces(data);
+            if(response.data.length>0){
+              let Data = response.data;
+              fees=0
+              {Data.map((item,index)=>{
+                
+                return(fees = fees+item.visiting_fee)
+              })}
+            }
+            // console.log(fees)
           } catch (error) {
             console.error('Error fetching tour places:', error);
           }
@@ -73,7 +78,7 @@ export default function Tourbook2() {
           //vehicle
     const GetVehicle = async() =>{
         try {
-          const res = await axios.get(`http://localhost:8080/vehicles/${passengers}`)
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vehicles/${passengers}`)
           if(res.data.length>0){
         setVehicleRate(res.data[0].rate)
             }
@@ -87,20 +92,38 @@ export default function Tourbook2() {
       ,[passengers])
 
       //get hotels prices
+      let hotel_fees = 0;
       useEffect(()=>{
         const fetchHotelsPrices = async () => {
                 if(hotelType==='Luxury'){
                     try {
-                        const res = await axios.get(`http://localhost:8080/hotels/luxury/price/${id}/${startDate}`);
+                        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/luxury/price/${id}/${startDate}`);
                         const data = await res.data;
-                        setHotelRateList(data);
+                        console.log(data)
+                       
+
+                        if(data.length>0){
+                          hotel_fees = 0;
+                          {data.map((item,index)=>{
+                            return(hotel_fees = hotel_fees+item.price)                          
+                          })}
+                        }
+                        console.log(hotel_fees)
                     } catch (error) {
                         console.log(error);
                     }
                 }else if(hotelType==='Semi-Luxury'){
-                    const res = await axios.get(`http://localhost:8080/hotels/semi/price/${id}/${startDate}`);
+                    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/semi/price/${id}/${startDate}`);
                     const data = await res.data;
-                    setHotelRateList(data);
+                    console.log(data)
+                    
+                    if(data.length>0){
+                      hotel_fees = 0;
+                      {data.map((item,index)=>{
+                        return(hotel_fees = hotel_fees+item.price)                          
+                      })}
+                    }
+                    console.log(hotel_fees)
                 }
         };
         fetchHotelsPrices();
@@ -109,9 +132,9 @@ export default function Tourbook2() {
 
       //calculation
       const Calculation =()=>{
-        let total = distance * vehicleRate  ;
-            // console.log(tour[0].tour_price)
-        setTotal(total);
+        let sub_total = distance * vehicleRate + fees +hotel_fees  ;
+        let total = sub_total / passengers;
+        setTotal(total.toFixed(2));
       }
       useEffect(()=>{
         Calculation();
@@ -154,7 +177,7 @@ export default function Tourbook2() {
         }
         console.log(Data);
         try {
-            const res = await axios.post('http://localhost:8080/book/bookTour',Data );
+            const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/book/bookTour`,Data );
           console.log(res);
           if(res.status === 200){
            
@@ -162,7 +185,7 @@ export default function Tourbook2() {
             sessionStorage.removeItem('passengers');
             sessionStorage.removeItem('startDate');
     
-            history.push('/tours/tourcategory');
+            
     
     
     
@@ -175,16 +198,28 @@ export default function Tourbook2() {
         window.history.back();
       }
   
+
+      const Style = {
+        backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        height: '424px',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      };
   return (
     <div className='tourbook2'>
-        <div className='tourbook2-hero'>
+        <div style={Style}>
             <p className='tourbook2-hero-title'>Tour Summary</p>
             <div className='tourbook2-hero-route-div'>
-                <a className='tourbook2-hero-route'>Home</a>
-                <a className='tourbook2-hero-route'>/</a>
+                <a className='tourbook2-hero-route' href='/'>Home</a>
+                <p className='tourbook2-hero-route'>/</p>
                 <a className='tourbook2-hero-route'>Tours</a>
-                <a className='tourbook2-hero-route'>/</a>
-                <a className='tourbook2-hero-route active-route'>{tour[0].tour_name}</a>
+                <p className='tourbook2-hero-route'>/</p>
+                <p className='tourbook2-hero-route active-route'>{tour.length>0 && tour[0].tour_name}</p>
             </div>
             <div className='tourbook2-hero-social-div'>
                 <Socialmedia/>
@@ -207,7 +242,12 @@ export default function Tourbook2() {
             </div>
             <div className='tourbook2-sub-right'>
                 <p className='tourbook2-sub-right-title'>Tour Package Details:</p>
-                <p className='tourbook2-sub-right-p'>Tour Package Price : {total}</p>
+                <div  className='tourbook2-sub-right-price-div'>
+                  <p className='tourbook2-sub-right-p'>Tour Package Price :</p>
+                  <p className='tourbook2-sub-right-p'>$ {total}</p>
+                  <p className='tourbook2-sub-right-p-sub'> * per person</p>
+                </div>
+
                 <div className='tourbook2-sub-right-coupon-div'>
                     <p className='tourbook2-sub-right-coupon-p'>Coupon Code :</p>
                     <input  className='tourbook2-sub-right-coupon-input'/>
@@ -277,7 +317,7 @@ function Tourbook2_card(props) {
   return (
     <div className='tourbook2_card'>
         <div className='tourbook2_card-left'>
-        {props.img ? <img className='tourbook2-Placecard-img' src={`http://localhost:8080/places/placeimg?file=${props.img}`} /> : null}
+        {props.img ? <img className='tourbook2-Placecard-img' src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${props.img}`} /> : null}
         </div>
         <div className='tourbook2_card-right'>
         <p className='tourbook2_card-right-p'>{props.place}</p>

@@ -13,7 +13,7 @@ import RightArrow from './../../assets/icons/Right Arrow.svg'
 export default function HomeCarousel() {
     const [activeSlide, setActiveSlide] = useState(0);
     const slidefunc = (e) =>{
-            console.log(e);
+           
             setActiveSlide(e);
     }
 
@@ -102,7 +102,7 @@ export default function HomeCarousel() {
             centerMode
   >
     {categories.length > 0 && categories.map((category, index) => (
-      <HomeCaouselCard title={category.tourcategory_name} img={category.tourcategory_img} description={category.tourcategory_description} link={`/tourcategory/${category.tourcategory_id}`}/>
+      <HomeCaouselCard key={index} title={category.tourcategory_name} img={category.tourcategory_img} description={category.tourcategory_description} link={`/tourcategory/${category.tourcategory_id}`}/>
     ))}
    
 

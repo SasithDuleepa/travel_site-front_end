@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ProfileTourCard from './card/profileTourCard';
+
 import './dashboard.css'
 
 import Alltours from './alltours/alltours';
@@ -34,7 +34,7 @@ export default function Dashboard_() {
     const getDaytours = async () => {
       let user = sessionStorage.getItem('id');
       if(user){
-        const res = await axios.get(`http://localhost:8080/book/pendingDayTours/${user}`);
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/book/pendingDayTours/${user}`);
         console.log(res.data)
         setDaytours(res.data);
       }
@@ -45,7 +45,7 @@ export default function Dashboard_() {
     const getTours = async () => {
       let user = sessionStorage.getItem('id');
       if(user){
-        const res = await axios.get(`http://localhost:8080/book/pendingTours/${user}`);
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/book/pendingTours/${user}`);
         console.log(res.data)
         setTours(res.data);
       }
@@ -61,9 +61,9 @@ export default function Dashboard_() {
         <div className='profile-dashboard-line-1'></div>
 
         <div className='profile-dashboard-btn-div'>
-              <a className={allbtn===true? 'profile-dashboard-btn-active':'profile-dashboard-btn-deactive'} onClick={AllBtnHandler}>All</a>
-              <a className={tourbtn===true?'profile-dashboard-btn-active':'profile-dashboard-btn-deactive'} onClick={TourBtnHandler}>Tours</a>
-              <a className={daytourbtn===true?'profile-dashboard-btn-active':'profile-dashboard-btn-deactive'} onClick={DaytourBtnHandler}>Day Tours</a>
+              <button className={allbtn===true? 'profile-dashboard-btn-active':'profile-dashboard-btn-deactive'} onClick={AllBtnHandler}>All</button>
+              <button className={tourbtn===true?'profile-dashboard-btn-active':'profile-dashboard-btn-deactive'} onClick={TourBtnHandler}>Tours</button>
+              <button className={daytourbtn===true?'profile-dashboard-btn-active':'profile-dashboard-btn-deactive'} onClick={DaytourBtnHandler}>Day Tours</button>
               {/* <a className='profile-dashboard-btn'>Custom Tours</a> */}
             </div>
 

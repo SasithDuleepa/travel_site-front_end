@@ -1,8 +1,8 @@
 
 .Tour-card{
     background-color: beige;
-        width: 278px;
-        height: 357px;
+        width: 256px;
+    height: 354px;
         margin: 0px;
         overflow: hidden;
         /* border-radius: 5px; */
@@ -30,35 +30,38 @@
     align-items: center;
 }
 .Tour-card-info-header{
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 500;
-    font-family: poppins;
-    color: aliceblue;
-    width: 90%;
+    font-family: latio;
+    color: azure;
     text-align: center;
-    height: 45px;
+    width: 240px;
+    height: 50px;
     overflow: hidden;
+    margin-top: 5px;
 }
 
 .Tour-card-info-info{
-    font-size: 11px;
+    color: azure;
+    font-size: 13px;
     font-weight: 400;
-    color: aliceblue;
-    text-align: center;
-    margin-top: -10px;
-    height: 50px;
-    width: 90%;
+    text-align: justify;
+    width: 220px;
+    height: 65px;
+    line-height: 13px;
     overflow: hidden;
+    margin-top: -38px;
 }
 .Tour-card-info-more{
+    text-align: center;
+    color: rgb(7, 7, 7);
     background-color: orange;
-  padding: 8px 22px;
-  border-radius: 25px;
-  margin: 1px 5px 10px 5px;
-  text-decoration: none;
-  color: black;
-  font-size: 15px;
-  font-weight: 500;
+    padding: 3px 15px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: poppins;
+    text-decoration: none;
   &:hover{
     background-color: aliceblue;
     color: orange;

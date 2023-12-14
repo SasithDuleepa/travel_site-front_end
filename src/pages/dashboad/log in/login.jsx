@@ -21,7 +21,7 @@ export default function Login() {
             };
     
             try {
-                const res = await axios.post(`http://localhost:8080/user/login`, data,{ withCredentials: true });
+                const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/login`, data);
                 console.log(res.data); 
                 // console.log(res.cookies.jwt)
 

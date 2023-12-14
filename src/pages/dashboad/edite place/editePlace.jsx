@@ -25,13 +25,13 @@ export default function EditePlace() {
     const[deletedImgs,setDeletedImgs] = useState([])
 
     const GetPlaces = async () => {
-        const res = await Axios.get('http://localhost:8080/places/all');
+        const res = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/all_admin`);
         setPlaces(res.data.data);
     };
 
     const SelectHandler =  (id)=>async() => {
-        console.log(id);
-        const res = await Axios.get(`http://localhost:8080/places/getplace/${id}`);
+        // console.log(id);
+        const res = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/getplace/${id}`);
         console.log(res.data[0]);
         setId(res.data[0].place_id);
         setPlaceInfo(res.data[0]);
@@ -50,8 +50,8 @@ export default function EditePlace() {
     };
 
     const GetImgs = async() =>{
-        const res = await Axios.get(`http://localhost:8080/places/getplaceimgnames/${placeInfo.place_id}`);
-        console.log(res.data);
+        const res = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/getplaceimgnames/${placeInfo.place_id}`);
+        // console.log(res.data);
         setImgs(res.data);
     }
     useEffect(() => {
@@ -65,7 +65,7 @@ export default function EditePlace() {
 
 
     const ImgDeleteHandler = (index,id) => async() =>{
-        console.log(index,id)
+        // console.log(index,id)
         //delete img from imgs
         const new_Imgs = [...imgs];
         new_Imgs.splice(index,1);
@@ -78,7 +78,7 @@ export default function EditePlace() {
     }
     const Filehandler = (e) => {
         const selectedFile = e.target.files[0];
-        console.log(selectedFile)
+        // console.log(selectedFile)
         const new_file = [...newImgs];
         new_file.push({file:selectedFile});
         setNewImgs(new_file);
@@ -130,27 +130,88 @@ export default function EditePlace() {
         
 
         try {
-            console.log([...formData])
-            console.log(newImgs)
+            // console.log([...formData])
+            // console.log(newImgs)
+            const token = sessionStorage.getItem("token");
             const res = await Axios.put(`${process.env.REACT_APP_BACKEND_URL}/places/updateplace/${id}`, formData, {
                 headers: {
                   'Content-Type': 'multipart/form-data',
+                  'Authorization': `${token}`,
                 },
               });
           
-              console.log(res.data);
+              if(res.status === 200){
+                window.alert("Place updated successfully");
+              }
         } catch (error) {
-            
+            if(error.response.status === 401){
+                sessionStorage.clear();
+                window.alert("You are not authorized to perform this action");
+              }else if(error.response.status === 400){
+                window.alert("All fields are required");
+              }else if(error.response.status === 500){
+                window.alert("Internal server error");
+              }else{
+                window.alert("Error adding place");
+              }
         }
 
     }
 
     const DeleteHandler=async() =>{
         try {
-            const res = await Axios.delete(`${process.env.REACT_APP_BACKEND_URL}/places/deleteplace/${id}`)
-            console.log(res.data)
-        } catch (error) {
+            const token = sessionStorage.getItem("token");
+            const res = await Axios.delete(`${process.env.REACT_APP_BACKEND_URL}/places/deleteplace/${id}`,
+            {
+                headers: {
+                  'Authorization': `${token}`,
+                },
+              })
+              if(res.status === 200){
+                window.alert("Place hide successfully");
+                window.location.reload();
+              }
             
+        } catch (error) {
+            if(error.response.status === 401){
+                sessionStorage.clear();
+                window.alert("You are not authorized to perform this action");
+              }else if(error.response.status === 400){
+                window.alert("All fields are required");
+              }else if(error.response.status === 500){
+                window.alert("Internal server error");
+              }else{
+                window.alert("Error adding place");
+              }
+        }
+    }
+
+    const DELETE = async() =>{
+        try {
+            const token = sessionStorage.getItem("token");
+            const res = await Axios.delete(`${process.env.REACT_APP_BACKEND_URL}/places/delete/${id}`,
+            {
+                headers: {
+                  'Authorization': `${token}`,
+                },
+                withCredentials: true,
+              })
+            // console.log(res.data)
+            if(res.status === 200){
+                window.alert("Place deleted successfully");
+                window.location.reload();
+              }
+        } catch (error) {
+            if(error.response.status === 401){
+                sessionStorage.clear();
+                window.alert("You are not authorized to perform this action");
+              }else if(error.response.status === 400){
+                window.alert("All fields are required");
+              }else if(error.response.status === 500){
+                window.alert("Internal server error");
+              }else{
+                window.alert("Error adding place");
+              }
         }
     }
   return (
@@ -213,7 +274,7 @@ export default function EditePlace() {
                     {newCardImg ?
                         <img className='editeplace-form-img' src={URL.createObjectURL(newCardImg)} alt="" />
                         :
-                        <img className='editeplace-form-img'   src={`http://localhost:8080/places/placeimg/?file=${cardImg}`}/>
+                        <img className='editeplace-form-img'   src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg/?file=${cardImg}`}/>
                     }
                     
                     
@@ -224,7 +285,7 @@ export default function EditePlace() {
                     {newCoverImgs ?
                         <img className='editeplace-form-img' src={URL.createObjectURL(newCoverImgs)} alt="" />
                         :
-                        <img   src={`http://localhost:8080/places/placeimg/?file=${coverImgs}`}/>
+                        <img   src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg/?file=${coverImgs}`}/>
                     }
                     
                     
@@ -238,7 +299,7 @@ export default function EditePlace() {
                 {imgs.length>0 && imgs.map((img,index)=>{
                     return(
                         <div  className='editeplace-form-placeimg-div-sub1' key={index}>
-                            <img className='editeplace-form-img' src={`http://localhost:8080/places/placeimg/?file=${img.img_name}`} alt="" />
+                            <img className='editeplace-form-img' src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg/?file=${img.img_name}`} alt="" />
                             <a className='editeplace-form-placeimg-div-sub1-edite' onClick={ImgDeleteHandler(index,img.img_name)}>DELETE</a>
                         </div>
                     )
@@ -267,8 +328,9 @@ export default function EditePlace() {
             </div>
 
         </div>
-        <button onClick={UpdateHandler}>Update</button>
-        <button onClick={DeleteHandler}>Delete</button>
+        <button className='edite-place-update-btn' onClick={UpdateHandler}>Update</button>
+        <button className='edite-place-delete-btn' onClick={DeleteHandler}>hide</button>
+        <button className='edite-place-delete-btn' onClick={DELETE}>DELETE </button>
     
                     
     

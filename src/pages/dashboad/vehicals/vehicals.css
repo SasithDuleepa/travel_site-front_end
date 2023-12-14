@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 100px;
 }
 .vehical-main-div{
     border: 1px solid black;
@@ -12,7 +13,13 @@
     margin: 50px;
     padding: 50px 100px;
 }
-
+.vehicle-main-form{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 300px;
+    gap: 5px;
+}
 
 
 
@@ -20,11 +27,12 @@
 .vehicles-available-div{
     display: flex;
     flex-direction: column;
+
 }
 .vehicles-available-div-child{
     display: flex;
-    flex-direction: column;
-
+    align-items: center;
+    gap: 10px;
     border: 2px solid black;
     margin: 20px;
     padding: 20px;
@@ -39,4 +47,26 @@
 }
 .vehicles-available-div-child-input{
     
+}
+
+.add-vehicle-btn{
+    padding: 10px 30px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    background-color: blue;
+}
+.update-vehicle-btn{
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: blue;
+}
+.delete-vehicle-btn{
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(255, 0, 21);
 }

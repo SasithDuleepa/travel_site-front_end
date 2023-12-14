@@ -41,6 +41,8 @@
 }
 .home-tour-plan-div-right-btn{
     background-color: orange;
+    color:white;
+    text-decoration: none;
     padding: 10px 50px;
     border: none;
     border-radius: 25px;

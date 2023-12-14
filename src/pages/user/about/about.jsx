@@ -1,12 +1,9 @@
 import React from 'react';
 import './about.css';
 
-import HeaderText from '../../../components/homeHeaderText/headerText';
 
 
-import Fb from '../../../assets/icons/facebook.png';
-import Insta from '../../../assets/icons/instagram.png';
-import Twitter from '../../../assets/icons/twitter.png';
+
 import World from '../../../assets/world tour 02 1.png';
 import Beach from '../../../assets/aboutUs/beach.png';
 import Dollar from '../../../assets/aboutUs/Dollar.png';
@@ -15,30 +12,32 @@ import Travelersexperience from '../../../components/home traveler experience/tr
 import ChairmanImage from '../../../assets/aboutUs/person.png';
 import AboutTeamCarousel from '../../../components/about team carousel/aboutTeamCarousel';
 
+import Socialmedia from '../../../components/social media/socialmedia';
 
 export default function About() {
+
+  const contact_us={
+    backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: '424px',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
   return (
     <div className='About'>
 
-      <div className='About-main'>
+      <div style={contact_us}>
         <p className='About-main-title'>About Us</p>
         <div className='About-main-route'>
           <a className='About-main-route-link' href='/'>Home /</a>
           <a className='About-main-route_link' > About Us</a>
         </div>
         <div className='About-main-media'>
-          <div className='About-main-media-main'>
-            <img className='About-main-media-main-icon' src={Fb} />
-            <a className='About-main-media-main-link'>Facebook</a>
-          </div>
-          <div className='About-main-media-main'>
-            <img className='About-main-media-main-icon' src={Insta} />
-            <a className='About-main-media-main-link'>Instagram</a>
-          </div>
-          <div className='About-main-media-main'>
-            <img className='About-main-media-main-icon' src={Twitter} />
-            <a className='About-main-media-main-link'>Twitter</a>
-          </div>
+          <Socialmedia/>
         </div>
       </div>
 

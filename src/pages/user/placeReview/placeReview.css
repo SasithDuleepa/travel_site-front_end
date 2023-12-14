@@ -27,7 +27,7 @@
     transition: 1s;
 }
 .placeReview__title-div{
-    margin-top: -156px;
+    margin-top: -200px;
     /* background-color: antiquewhite; */
     display: flex;
     flex-direction: column;
@@ -51,13 +51,14 @@
     align-items: center;
     gap: 5px;
     position: relative;
-    inset: auto auto  90px auto;
+    inset: -110px auto  90px auto;
 }
 .placeReview__routes{
     color: white;
     font-size: 18px;
     font-weight: 500;
     font-family: poppins;
+    text-decoration: none;
 }
 .placeReview__routes-active{
     color: orange;
@@ -72,20 +73,8 @@
 
 }
 
-.placeReview-title-2{
-    
-    font-size: 45px;
-    font-weight: 500;
-    font-family: Poppins;
-    
-}
-.placeReview-text-2{
-    width: 1200px;
-    font-size: 16px;
-    font-weight: 300;
-    font-family: Poppins;
-    text-align: justify;
-}
+
+
 
 
 .placeReview-text-3{
@@ -101,26 +90,29 @@
 .placceReview-sub-div{
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: center;
     width: 1200px;
     height: 100px;
+    margin-top: 20px;
     /* background-color: aqua; */
 }
 .placceReview-sub-div-1{
-    width: 500px;
 
 }
+.placeReview-title-2{
+    
+    font-size: 45px;
+    font-weight: 500;
+    font-family: Poppins;
+    
+}
 .placceReview-sub-div-2{
-    width: 500px;
-    height: 100%;
-  
-    /* background-color: aqua; */
+
 }
 .placceReview-sub-div-2-more{
     background-color: orange;
-    
+    border: none;
     position: relative;
-    right: -300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,6 +123,14 @@
     font-size: 20px;
     font-weight: 500;
     border-radius: 10px;
+}
+
+.placeReview-text-2{
+    width: 1200px;
+    font-size: 16px;
+    font-weight: 300;
+    font-family: Poppins;
+    text-align: justify;
 }
 
 .placeReview-title-4{
@@ -166,16 +166,20 @@
 
 
 .placeReview-crousel-div{
-    margin: 20px auto;
+    margin: 20px auto ;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .place-review-carousel-img-up{
-    width: 299px;
-    height: 442px;
+    width: 388px;
+    height: 300px;
     padding-bottom: 50px;
 }
 .place-review-carousel-img-down{
-    width: 299px;
-    height: 442px;
+    width: 388px;
+    height: 300px;
     padding-top: 50px;
 }
 
@@ -191,8 +195,8 @@
     border: none;
  
 
-    margin-left: 1170px;
-    margin-top: 200px;
+    margin-left: 1140px;
+    margin-top: 130px;
 
 }
 .place-review-carousel-backward-img{
@@ -203,7 +207,7 @@
     position: absolute;
     background-color: transparent;
     border: none;
-    margin-top: 200px;
+    margin-top: 130px;
     margin-left: -35px;
     z-index: 1;
 }

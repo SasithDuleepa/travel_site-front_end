@@ -3,11 +3,13 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    height:1000pxt;
 }
 .add-place-sub{
-    width: 1210px;
+    
     /* background-color: yellow; */
+    margin-left: 150px;
+    /* background-color: aqua; */
+
 }
 .header-Add_place{
     text-align: center;
@@ -32,10 +34,11 @@
     
 .div1-Add_place { 
         grid-area: 1 / 1 / 2 / 2;
-        /* background-color: yellowgreen; */
+
         height: 70vh;
         padding-top: 0px;
         padding-left: 0px;
+        height: 100%;
      }
 .div2-Add_place { grid-area: 1 / 2 / 2 / 3;
 

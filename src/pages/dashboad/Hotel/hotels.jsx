@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './hotels.css';
 import axios from 'axios';
 
+import Edite_hotel from '../edite hotel/edite_hotel';
 export default function Hotels() {
   const[name,setName] = useState('')
   const[lat,setLat] = useState('')
@@ -77,16 +78,34 @@ export default function Hotels() {
   const AddHotel = async() => {
     console.log(prices)
     try {
+      const token = sessionStorage.getItem("token");
       const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/hotels/add`,{
         hotelName:name,
         lat:lat,
         lng:lang,
         category:category,
         prices:prices,
+      },{
+        headers: {
+         'Content-Type': 'multipart/form-data',
+          'Authorization': `${token}`,
+        },
+        withCredentials: true,
       })
-      console.log(res.data) 
+      if (res.status === 200) {
+        window.alert("Place added successfully");
+              }
     } catch (error) {
-      console.log(error);
+      if(error.response.status === 401){
+        sessionStorage.clear();
+        window.alert("You are not authorized to perform this action");
+      }else if(error.response.status === 400){
+        window.alert("All fields are required");
+      }else if(error.response.status === 500){
+        window.alert("Internal server error");
+      }else{
+        window.alert("Error adding place");
+      }
     }
   }
   return (
@@ -136,10 +155,10 @@ export default function Hotels() {
             </div>
             <div  className='hotel-prices-form-div'>
               <label>price :</label>
-              <input id='price' name={index} onChange={(e)=>PriceHandler(e)} />
+              <input type='number' id='price' name={index} onChange={(e)=>PriceHandler(e)} />
             </div>
             <p>Number of days: {calculatedDays[index]}</p>
-            <a onClick={DeleteHandler(index)}>delete</a>
+            <a className='hotel-prices-form-div-delete-btn' onClick={DeleteHandler(index)}>delete</a>
           </div>
         )
 
@@ -151,10 +170,11 @@ export default function Hotels() {
           <div>
     <p>Total Number of Days: {calculateTotalDays()}</p>
   </div>
-          <a onClick={AddPriceRange}>+</a>
+          <a className='hotel-prices-dashboad-add-btn' onClick={AddPriceRange}>+</a>
         </div>
-        <button className='dashboad-add-btn' onClick={AddHotel}>Add </button>
+        <button className='hotel-dashboad-add-btn' onClick={AddHotel}>Add </button>
       </div>
+      <Edite_hotel/>
     </div>
   )
 }

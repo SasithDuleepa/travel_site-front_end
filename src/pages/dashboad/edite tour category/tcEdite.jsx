@@ -78,19 +78,60 @@ const UpdateHandler =async()=>{
         formData.append('Tours[]', tour.tour_id);
       
       })
-
+      try {
+        const token = sessionStorage.getItem("token");
       const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/tourcategory/update/${tcId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          'Authorization': `${token}`,
         },
       });
-      console.log(res)
+      if (res.status === 200) {
+        window.alert("tour category update successful!");
+        window.location.reload();
+      }
 
+      } catch (error) {
+        if(error.response.status === 401){
+            sessionStorage.clear();
+            window.alert("You are not authorized to perform this action");
+          }else if(error.response.status === 400){
+            window.alert("All fields are required");
+          }else if(error.response.status === 500){
+            window.alert("Internal server error");
+          }else{
+            window.alert("tour category update unsuccessful!");
+          }
+      }
+      
 }
 
 const Delete =async()=>{
-    const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/tourcategory/delete/${tcId}`);
-    console.log(res.data)
+    
+    try {
+        const token = sessionStorage.getItem("token");
+        const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/tourcategory/delete/${tcId}`, {
+            headers: {
+              'Authorization': `${token}`,
+            },
+            withCredentials: true,
+          });
+          if (res.status === 200) {
+            window.alert("tour category delete successful!");
+            window.location.reload();
+                      }
+    } catch (error) {
+        if(error.response.status === 401){
+            sessionStorage.clear();
+            window.alert("You are not authorized to perform this action");
+          }else if(error.response.status === 400){
+            window.alert("All fields are required");
+          }else if(error.response.status === 500){
+            window.alert("Internal server error");
+          }else{
+            window.alert("tour category delete unsuccessful!");
+          }
+    }
 }
   return (
     <div className='TcEdite-main'>
@@ -118,7 +159,7 @@ const Delete =async()=>{
                     </div>
                     <div className='TcEdite-form'>
                         <label className='TcEdite-form-label'>category description:</label>
-                        <textarea  className='TcEdite-form-input' value={description}/>
+                        <textarea  className='TcEdite-form-input' value={description} onChange={(e)=>setDescription(e.target.value)}/>
                     </div>
                     <div className='TcEdite-img-form'>
                         
