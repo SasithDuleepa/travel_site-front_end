@@ -87,10 +87,8 @@ export default function Hotels() {
         prices:prices,
       },{
         headers: {
-         'Content-Type': 'multipart/form-data',
           'Authorization': `${token}`,
         },
-        withCredentials: true,
       })
       if (res.status === 200) {
         window.alert("Place added successfully");

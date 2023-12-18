@@ -194,8 +194,7 @@ export default function EditePlace() {
                 headers: {
                   'Authorization': `${token}`,
                 },
-                withCredentials: true,
-              })
+                      })
             // console.log(res.data)
             if(res.status === 200){
                 window.alert("Place deleted successfully");
@@ -210,7 +209,7 @@ export default function EditePlace() {
               }else if(error.response.status === 500){
                 window.alert("Internal server error");
               }else{
-                window.alert("Error adding place");
+                window.alert("Error deleting place");
               }
         }
     }
@@ -227,11 +226,9 @@ export default function EditePlace() {
             <div className='editeplace-search-result-div'>
                 {places.length>0 && places.map((place,index)=>{
                     return(
-                        <div className='editeplace-search-result' key={index}>
-                            {/* <p  className='editeplace-search-result-pl'>{place.place_id}</p> */}
-                            {/* <p>{place.place_name}</p> */}
-                            <a onClick={SelectHandler(place.place_id)}>{place.place_name}</a>
-                        </div>
+
+                            <button key={index} className='editeplace-search-result' onClick={SelectHandler(place.place_id)}>{place.place_name}</button>
+                     
                     )
                 }    )}
             </div>
@@ -272,9 +269,9 @@ export default function EditePlace() {
                     <label className='editeplace-form-label'>card image:</label>
                     <input type='file' onChange={(e)=>setNewCardImg(e.target.files[0])}/>
                     {newCardImg ?
-                        <img className='editeplace-form-img' src={URL.createObjectURL(newCardImg)} alt="" />
+                        <img className='editeplace-form-img-card' src={URL.createObjectURL(newCardImg)} alt="" />
                         :
-                        <img className='editeplace-form-img'   src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg/?file=${cardImg}`}/>
+                        <img className='editeplace-form-img-card'   src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg/?file=${cardImg}`}/>
                     }
                     
                     
@@ -283,9 +280,9 @@ export default function EditePlace() {
                     <label className='editeplace-form-label'>cover image:</label>
                     <input type='file' onChange={(e)=>setNewCoverImgs(e.target.files[0])}/>
                     {newCoverImgs ?
-                        <img className='editeplace-form-img' src={URL.createObjectURL(newCoverImgs)} alt="" />
+                        <img className='editeplace-form-img-cover' src={URL.createObjectURL(newCoverImgs)} alt="" />
                         :
-                        <img   src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg/?file=${coverImgs}`}/>
+                        <img  className='editeplace-form-img-cover'  src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg/?file=${coverImgs}`}/>
                     }
                     
                     
@@ -300,7 +297,7 @@ export default function EditePlace() {
                     return(
                         <div  className='editeplace-form-placeimg-div-sub1' key={index}>
                             <img className='editeplace-form-img' src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg/?file=${img.img_name}`} alt="" />
-                            <a className='editeplace-form-placeimg-div-sub1-edite' onClick={ImgDeleteHandler(index,img.img_name)}>DELETE</a>
+                            <button className='editeplace-form-placeimg-div-sub1-edite' onClick={ImgDeleteHandler(index,img.img_name)}>DELETE</button>
                         </div>
                     )
                 
@@ -319,7 +316,7 @@ export default function EditePlace() {
                 {newImgs.length > 0 && newImgs.map((img, index) => (
     <div className='editeplace-form-img_div' key={index}>
         <img className='editeplace-form-addedimg' src={URL.createObjectURL(img.file)} alt="" />
-        <a className='editeplace-form-addedimg' onClick={newImgDeleteHandler(index)}>DELETE</a>
+        <button className='editeplace-form-addedimg' onClick={newImgDeleteHandler(index)}>DELETE</button>
     </div>
 ))}
 
@@ -329,7 +326,7 @@ export default function EditePlace() {
 
         </div>
         <button className='edite-place-update-btn' onClick={UpdateHandler}>Update</button>
-        <button className='edite-place-delete-btn' onClick={DeleteHandler}>hide</button>
+        {/* <button className='edite-place-delete-btn' onClick={DeleteHandler}>hide</button> */}
         <button className='edite-place-delete-btn' onClick={DELETE}>DELETE </button>
     
                     

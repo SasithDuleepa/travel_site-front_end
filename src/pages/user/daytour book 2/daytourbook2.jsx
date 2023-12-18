@@ -237,7 +237,12 @@ export default function Daytourbook2() {
             </div>
             <div className='daytour-book-2-sub-right'>
                 <p className='daytour-book-2-sub-right-title'>Tour Package Details:</p>
-                <p className='daytour-book-2-sub-right-p'>Tour Package Price: $ {total}</p>
+                <div className='daytour-book-2-sub-right-p-div'>
+                  <p className='daytour-book-2-sub-right-p'>Tour Package Price: </p>
+                  <p className='daytour-book-2-sub-right-p-2'> $ {total}</p>
+                  <p className='daytour-book-2-sub-right-p-1'>* per person</p>
+                </div>
+
                 <div className='daytour-book-2-sub-right-coupen-div'>
                   <p>Coupon Code: </p>
                   <input type="text" placeholder='Enter Coupon Code'/>

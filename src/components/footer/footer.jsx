@@ -19,8 +19,8 @@ export default function Footer() {
         <div className='footer-center'>
           <p className='footer-contact'>Contact Us</p>
           <div>
-            <p className='footer-center-p'>40C, Hospital Road, Nagoda, Kalutara, Sri Lanka</p>
-            <p className='footer-center-p'>+94 7777 17615 (Direct Line)<br/> +94 11279 8800 (Whatsapp)</p>
+            <p className='footer-center-p'>785, Negombo Road, Liyanagemulla, Seeduwa, Sri Lanka</p>
+            <p className='footer-center-p'>+94112833833 (Direct Line)<br/> +94764998615 (Whatsapp)</p>
             <p className='footer-center-p'>info@srilankatravelexpert.com</p>
           </div>
         </div>

@@ -52,10 +52,10 @@ export default function Navbar() {
         <nav className= {!scrollDirection || scrollDirection === "down" ? 'active': 'hidden'}    >
         <div className='nav-bar-upper-div'>
           <div className='nav-bar-upper-div-left'>
-            <p className='nav-bar-upper-div-left-p'>+94 00 00 00 000</p>
+            <p className='nav-bar-upper-div-left-p'>(+94)112833833</p>
           </div>
           <div className='nav-bar-upper-div-right'>
-            <a className='nav-bar-upper-div-right-1'>40C, Hospital Road, Nagoda, Kalutara, Sri Lanka</a>
+            <a className='nav-bar-upper-div-right-1'>785, Negombo Road, Liyanagemulla, Seeduwa, Sri Lanka</a>
             <p className='nav-bar-upper-div-right-1'>|</p>
             <a className='nav-bar-upper-div-right-1'>info@srilankatravelexpert.com</a>
             <a className='nav-bar-upper-div-right-1'></a>

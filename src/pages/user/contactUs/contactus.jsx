@@ -118,17 +118,15 @@ export default function Contactus() {
               <img className='Contact-getintouch-contactrow-contacts-row1-icon' src={Location} />
               <div className='Contact-getintouch-contactrow-contacts-row1-contact'>
                 <p className='Contact-getintouch-contactrow-contacts-row1-contact-address'>
-                  Sri Lanka Travel Experts (Pvt.) Ltd,
-                  40C, Hospital Road, Nagoda,
-                  Kalutara, Sri Lanka
+                785, Negombo Road, Liyanagemulla, Seeduwa, Sri Lanka
                 </p>
               </div>
             </div>
             <div className='Contact-getintouch-contactrow-contacts-row2'>
               <img className='Contact-getintouch-contactrow-contacts-row2-icon' src={Call} />
               <div className='Contact-getintouch-contactrow-contacts-row2-contact'>
-                <p className='Contact-getintouch-contactrow-contacts-row2-contact-number1'>+94 7777 17615 (Direct Line)</p>
-                <p className='Contact-getintouch-contactrow-contacts-row2-contact-number2'>+94 11279 8800 (Whatsapp)</p>
+                <p className='Contact-getintouch-contactrow-contacts-row2-contact-number1'>+94112833833 (Direct Line)</p>
+                <p className='Contact-getintouch-contactrow-contacts-row2-contact-number2'>+94764998615 (Whatsapp)</p>
               </div>
             </div>
             <div className='Contact-getintouch-contactrow-contacts-row3'>

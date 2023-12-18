@@ -20,10 +20,10 @@ export default function Profile() {
                 <label className='profile-form-label'>Email :</label>
                 <input className='profile-form-input' type="text" />
             </div>
-            <div className='profile-form'>
+            {/* <div className='profile-form'>
                 <label className='profile-form-label'>Country :</label>
                 <input className='profile-form-input' type="text" />
-            </div>
+            </div> */}
             <button className='profile-update-btn'>Update</button>
         </div>
     </div>
