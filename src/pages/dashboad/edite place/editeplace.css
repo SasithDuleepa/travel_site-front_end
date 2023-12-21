@@ -114,6 +114,9 @@
     width: 388px;
     height: 300px;
 }
+.editeplace-form-addedimg-delete{
+    background-color: red;
+}
 
 
 
@@ -145,6 +148,7 @@
 }
 .editeplace-form-placeimg-div-sub1-edite{
     position: relative;
+    background-color: blueviolet
 }
 
 

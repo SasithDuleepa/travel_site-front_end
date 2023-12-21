@@ -11,27 +11,30 @@ export default function Tours()  {
   const [image, setImage] = useState('');
   const [price, setPrice] = useState('');
   const[distance, setDistance] =useState('');
-  const[luxury, setLuxury] = useState('')
-  const [semiluxury, setSemiluxury] = useState('')
+
+
 
   
 const [dayData, setDayData] =useState([
   {day:1 ,
-    startdescription:null,
-    luxury:null,
-    semiluxury:null,
+    startdescription:'',
+    luxury:'',
+    semiluxury:'',
    places:[]
   }
 ])
 
 
 const[dayDataIndex, setDayDataIndex] = useState(0)
-
 const[searchData, setSearchData] = useState([])
 
 //add day
 const AddDay =()=>{
-  setDayData([...dayData,{day:dayData.length+1,places:[]}])
+
+  const newData = [...dayData]
+  newData.push({day:newData.length+1,startdescription:'',luxury:'',semiluxury:'',places:[]})
+  setDayData(newData)
+
 }
 
 
@@ -125,14 +128,14 @@ const Submit =async()=>{
 const[luxaryHotels,setLuxuryHotels] = useState([])
 const GetLuxuryHotels = async()=>{
   const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/luxury`)
-  console.log(res.data)
+  // console.log(res.data)
   setLuxuryHotels(res.data)
 
 }
 const[semiluxuryHotels,setSemiluxuryHotels]  =useState([])
 const GetSemiluxuryHotels = async() =>{
   const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/semi`)
-  console.log(res.data)
+  // console.log(res.data)
   setSemiluxuryHotels(res.data)
 }
 useEffect(()=>{
@@ -142,14 +145,14 @@ useEffect(()=>{
 
 //set hotels
 const LuxuryHandler =(e) =>{
-  console.log(e.target.value);
+  // console.log(e.target.value);
   const newdata = [...dayData]
   newdata[dayDataIndex].luxury = e.target.value
   setDayData(newdata)
 }
 
 const SemiluxuryHandler = (e) =>{
-  console.log(e);
+  // console.log(e);
   const newdata = [...dayData]
   newdata[dayDataIndex].semiluxury = e.target.value
   setDayData(newdata)
@@ -161,8 +164,10 @@ const PlaceDescription =(e,index)=>{
   const newDayData = [...dayData]
   newDayData[dayDataIndex].places[index].description_place = e.target.value
   setDayData(newDayData)
-  console.log(newDayData)
+  // console.log(newDayData)
 }
+
+
 
 return (
   <>
@@ -185,10 +190,10 @@ return (
         <input type="file" onChange={(e)=>setImage(e.target.files[0])} />
       </div>
       
-      <div className='dashboard-tour-form'>
+      {/* <div className='dashboard-tour-form'>
         <label>price without hire and hotel:</label>
         <input type="text" value={price} onChange={(e)=>setPrice(e.target.value)} />
-      </div>
+      </div> */}
       <div className='dashboard-tour-form'>
         <label>distance:</label>
         <input type="number" value={distance} onChange={(e)=>setDistance(e.target.value)} />
@@ -211,11 +216,11 @@ return (
         
 
 
-        <h2 className='tour-places-header2'>add hotels</h2>
-        <div>
+        <h2 className='tour-places-hotel-title'>add day {dayDataIndex+1} hotels</h2>
+        <div className='tour-places-hotel-div'>
           <div>
-            <label>luxary</label>
-            <select onChange={(e)=>LuxuryHandler(e)}>
+            <label>5 star hotel :</label>
+            <select onChange={(e)=>LuxuryHandler(e)} className='tour-places-hotel-select'>
             <option>select hotel</option>
               {luxaryHotels.map((hotel,index)=>{
                 return(
@@ -229,8 +234,8 @@ return (
 
           </div>
           <div>
-            <label>semi luxary</label>
-            <select onChange={(e)=>SemiluxuryHandler(e)}>
+            <label>3star/4star hotel :</label>
+            <select onChange={(e)=>SemiluxuryHandler(e)} className='tour-places-hotel-select'>
             <option>select hotel</option>
               {semiluxuryHotels.map((hotel,index)=>{
                 return(
@@ -247,12 +252,16 @@ return (
 
 
 
-        <h2 className='tour-places-header2'>search places</h2>
+        <h2 className='tour-places-header2'>add day {dayDataIndex+1} places</h2>
         <div className='tour-package-search-div'>
 
         <div className='tour-package-place-search-div'>
-          <label>place:</label>
+          <div>
+          <label>search place : </label>
           <input type="text" onChange={(e)=>SearchHandler(e)}/>
+
+          </div>
+          
           <div className='tour-package-place-results'>
           {searchData.map((place,index)=>{
           return(
@@ -262,11 +271,7 @@ return (
           </div>
         </div>
 
-        <div className='tour-package-place-search-div'>
-          <label>category:</label>
-          <input type="text" />
-          
-        </div>
+        
 
         </div>
         
@@ -275,14 +280,19 @@ return (
         <h2  className='tour-places-header2'>selected places</h2>
         
         <div className='tour-places-day-description-div'>
-          <label>day start description</label>
-          <textarea type="text" onChange={(e)=>DayStartDescription(e)} value={dayData[dayDataIndex].description}/>
+          <label>day {dayDataIndex+1} start description : </label>
+          <textarea className='tour-places-day-description-input' type="text" onChange={(e)=>DayStartDescription(e)} value={dayData[dayDataIndex].startdescription}/>
+
+        
         </div>
         {dayData[dayDataIndex].places.map((item,index)=>{
           return(
-            <div className='day-tour-place-div'>
-              <a key={index}>{item.placeName}</a><img src={Delete} className='place-delete-img' onClick={DeletePlace(index)}/>
-              <textarea onChange={(e)=>PlaceDescription(e,index)} value={dayData[dayDataIndex].places[index].description_place} placeholder='description'/>
+            <div className='day-tour-place-div' key={index}>
+              <div className='day-tour-place-div-sub1'>
+                <p  className='day-tour-place-div-p'>{item.placeName}</p><img src={Delete} className='place-delete-img' onClick={DeletePlace(index)}/>
+              </div>
+              
+              <textarea className='day-tour-place-div-input'  onChange={(e)=>PlaceDescription(e,index)} value={dayData[dayDataIndex].places[index].description_place} placeholder='description'/>
             </div>
         )}
         )}

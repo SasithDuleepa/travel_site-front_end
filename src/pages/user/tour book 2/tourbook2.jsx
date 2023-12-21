@@ -95,7 +95,7 @@ export default function Tourbook2() {
       let hotel_fees = 0;
       useEffect(()=>{
         const fetchHotelsPrices = async () => {
-                if(hotelType==='Luxury'){
+                if(hotelType==='5 star'){
                     try {
                         const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/luxury/price/${id}/${startDate}`);
                         const data = await res.data;
@@ -112,7 +112,7 @@ export default function Tourbook2() {
                     } catch (error) {
                         console.log(error);
                     }
-                }else if(hotelType==='Semi-Luxury'){
+                }else if(hotelType==='3 star/4 star'){
                     const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/semi/price/${id}/${startDate}`);
                     const data = await res.data;
                     console.log(data)

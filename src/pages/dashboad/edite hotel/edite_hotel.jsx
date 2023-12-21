@@ -11,7 +11,7 @@ export default function Edite_hotel() {
     const[name,setName] = useState("")
     const[lat,setLat] = useState("")
     const[lang, setLang] = useState("")
-    const[type, setType] = useState("Luxury")
+    const[type, setType] = useState("5 star")
 
     const[prices, setPrice] = useState([
         // {
@@ -54,6 +54,7 @@ export default function Edite_hotel() {
                 setName(res.data[0].hotel_name)
                 setLat(res.data[0].hotel_lat)
                 setLang(res.data[0].hotel_lang)
+                setType(res.data[0].hotel_category)
             }
         } catch (error) {
             
@@ -95,6 +96,7 @@ export default function Edite_hotel() {
     }
 
     const UpdateHandler = async() =>{
+        console.log(type)
         try {
             const token = sessionStorage.getItem("token");
             const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/hotels/update/${id}`,{
@@ -201,10 +203,10 @@ export default function Edite_hotel() {
             </div>
             <div className='edit-hotel-form'>
                 <label className='edit-hotel-form-label'>Hotel Category :</label>
-                <select onChange={(e)=>setType(e.target.select)}>
-                    <option value={type}>{type}</option>
-                    <option value={'Luxury'}>Luxury</option>
-                    <option value={'Semi-Luxury'}>Semi Luxury</option>
+                <select onChange={(e)=>setType(e.target.value)}>
+                <option value={type}>{type}</option>
+                    <option value={'5 star'}>5 star</option>
+                    <option value={'3 star/4 star'}>3 star/4 star</option>
                 </select>
             </div>
         </div>

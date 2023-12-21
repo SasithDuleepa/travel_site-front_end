@@ -20,13 +20,13 @@ export default function TourPreview() {
   const today = 
   new Date().toISOString().slice(0, 10);
   //pop up
-  const[pophotel,setPopHotel] = useState('Luxury')
+  const[pophotel,setPopHotel] = useState('5 star')
   const[poppassenger,setPopPassneger] = useState(0)
   const[popup,setPopup] = useState('hide')
   const[popDate , setPopDate] = useState(today);
 
   const[total,setTotal] = useState(0)
-  const[hotel,setHotel] = useState('Luxury')
+  const[hotel,setHotel] = useState('5 star')
   const[passenger,setPassenger] = useState(2)
 
   const[vehicleRate,setVehicleRate] = useState(0)
@@ -112,7 +112,7 @@ useEffect(() => {
     
     if (TourData.length > 0) {
       
-      if (hotel === 'Luxury') {
+      if (hotel === '5 star') {
         
         try {
           const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/luxury/price/${tour}/${popDate}`);
@@ -129,7 +129,7 @@ useEffect(() => {
         } catch (error) {
           console.error('Error fetching data:', error);
         }
-      } else if (hotel === 'semi-luxury') {
+      } else if (hotel === '3 star/4 star') {
         try {
           const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/semi/price/${tour}/${popDate}`);
           if (res.data.length > 0) {
@@ -228,9 +228,13 @@ const Calculation =()=>{
   // console.log('hotel', hotelprice )
   let sub_total = hotelPrice + distance*vehicleRate  + visiting_fee;
   let total = sub_total/passenger
+  let total_ = total.toFixed(0)
+
+  let total_1 = total_/10
+  let total_2 = Math.ceil(total_1)
 
 
-  setTotal(total.toFixed(2))
+  setTotal(total_2*10)
 }
 useEffect(()=>{
   Calculation();
@@ -297,8 +301,8 @@ const Booknow = () => {
 
             <select className='tourpreview-popup-form-input' onChange={(e)=>setPopHotel(e.target.value)}>
               <option value=''>Select</option>
-              <option value='Luxury'>Luxury</option>
-              <option value='semi-luxury' >Semi Luxury</option>
+              <option value='5 star'>5 start</option>
+            <option value='3 star/4 star'>3 star / 4 star</option>
             </select>
           </div>
           <div className='tourpreview-popup-form'>
@@ -334,7 +338,7 @@ const Booknow = () => {
         <div className='TourPreview-header-left'>
           <div className='TourPreview-header-left-1'>
             <p className='TourPreview-header-left-p'>Package Price:</p>
-            <p className='TourPreview-header-left-p' >{total}</p>
+            <p className='TourPreview-header-left-p' >$ {total}</p>
             <p className='TourPreview-header-left-p-sub'>* per person</p>
           </div>
           <div className='TourPreview-header-info'>

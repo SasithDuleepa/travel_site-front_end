@@ -12,6 +12,7 @@ export default function Add_place() {
 
     const[data , setData] = useState({
         name:"",
+        priority:"",
         description:"",
         short:"",
         time:'',
@@ -64,6 +65,7 @@ const removeFile =(index)=> (e) => {
         const AddData = async () => {
           const formData = new FormData();
           formData.append('name', data.name);
+          formData.append('priority', data.priority);
           formData.append('description', data.description);
           formData.append('shortDescription', data.short);
           formData.append('time', data.time);
@@ -130,6 +132,10 @@ const removeFile =(index)=> (e) => {
                     <div className='Add_place-form-sub-div'>
                         <label className='Add_place-form-sub-div-label'>Name:</label>
                         <input type='text' className='add_place_input' id='name' onChange={changeHandler} value={data.name} />
+                    </div>
+                    <div className='Add_place-form-sub-div'>
+                        <label className='Add_place-form-sub-div-label'>Priority:</label>
+                        <input type='text' className='add_place_input' id='priority' onChange={changeHandler} value={data.name} />
                     </div>
                     <div  className='Add_place-form-location-div'>
                         <div className='Add_place-form-sub-div'>

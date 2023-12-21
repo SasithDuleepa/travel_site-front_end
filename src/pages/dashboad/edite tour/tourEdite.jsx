@@ -26,19 +26,126 @@ export default function TourEdite() {
     const TourSearch = async(e) => {
         if(e.target.value){
             const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/toursSearch/${e.target.value}`)
-        console.log(res.data.data);
+        // console.log(res.data.data);
         setTours(res.data.data)
 
         }
         
     }
 
+    const[ Data, setData] =useState( {
+        tour_id:'',
+        tour_name:'',
+        tour_description:'',
+        tour_img:'',
+        tour_new_img:'',
+        tour_distance:'',
+        tour_dates:[{
+            tour_date:'',
+            tour_date_id:'',
+            start_description:'',
+            luxary_hotel:'',
+            luxary_hotel_id:'',
+            semi_hotel:'',
+            semi_hotel_id:'',
+            places:[{
+                place_id:'',
+                place_name:'',
+                place_description:'',
+            }],
+        }],
+    } )
+
     const TourSelectHandler = (tourId) => async () => {
         try {
 
 
             const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/tour/${tourId}`);
-            // console.log(res.data);
+            console.log(res.data)
+
+            // setData({
+            //     tour_id: res.data[0].tour_id,
+            //     tour_name: res.data[0].tour_name,
+            //     tour_description: res.data[0].tour_description,
+            //     tour_img: res.data[0].tour_img,
+            //     tour_new_img: res.data[0].tour_new_img,
+            //     tour_distance: res.data[0].distance,
+            //     tour_dates: res.data.map((day) => ({
+            //         tour_date: day.tour_date,
+            //         tour_date_id: day.tour_date_id,
+            //         start_description: day.start_description,
+            //         luxary_hotel: day.luxary_hotel,
+            //         luxary_hotel_id: day.luxary_hotel_id,
+            //         semi_hotel: day.semi_hotel,
+            //         semi_hotel_id: day.semi_hotel_id,
+            //         places: res.data.map((place)=>({
+            //             place_id: place.tour_places_id ,
+            //             place_name: place.place_name ,
+            //             place_description: place.tour_place_description,
+            //         })),
+            //     }))
+            // });
+
+
+
+            setData({
+                tour_id: res.data[0].tour_id,
+                tour_name: res.data[0].tour_name,
+                tour_description: res.data[0].tour_description,
+                tour_img: res.data[0].tour_img,
+                tour_new_img: res.data[0].tour_new_img,
+                tour_distance: res.data[0].distance,
+                tour_dates: res.data.reduce((acc, day) => {
+                    const existingEntry = acc.find((entry) => entry.tour_date === day.tour_date);
+            
+                    if (!existingEntry) {
+                        acc.push({
+                            tour_date: day.tour_date,
+                            tour_date_id: day.tour_date_id,
+                            start_description: day.start_description,
+                            luxary_hotel: day.luxary_hotel,
+                            luxary_hotel_id: day.luxary_hotel_id,
+                            semi_hotel: day.semi_hotel,
+                            semi_hotel_id: day.semi_hotel_id,
+                            places: res.data
+                                .filter((place) => place.tour_date === day.tour_date)
+                                .map((place) => ({
+                                    place_id: place.tour_places_id,
+                                    place_name: place.place_name,
+                                    place_description: place.tour_place_description,
+                                })),
+                        });
+                    }
+            
+                    return acc;
+                }, []),
+            });
+            
+
+
+
+
+
+
+            
+            
+
+
+         
+            
+
+            let newData = res.data.map((day) => (
+                {
+                day: day.tour_date,
+                dateId: day.tour_date_id,
+                day_sartDescription: day.start_description,
+                luxury_hotel: day.luxary_hotel,
+                luxury_hotel_id: day.luxary_hotel_id,
+                semi_hotel: day.semi_hotel,
+                semi_hotel_id: day.semi_hotel_id,
+                places: [],
+            }
+            ));
             setId(res.data[0].tour_id);
             setName(res.data[0].tour_name);
             setDescription(res.data[0].tour_description);
@@ -46,21 +153,12 @@ export default function TourEdite() {
             setPrice(res.data[0].tour_price);
             setDistance(res.data[0].distance);
             setLength(res.data.length);
-
-            const newData = res.data.map((day) => ({
-                day: day.tour_date,
-                dateId: day.tour_date_id,
-                day_sartDescription: day.start_description,
-                luxury_hotel: day.luxary_hotel,
-                semi_hotel: day.semi_hotel,
-                places: [],
-            }));
             setDayData(newData);
-            // console.log(dayData)
-            if(res.data.length===dayData.length){
+            console.log(Data)
+
                 GetPlaces();
-                console.log('get places called!!!')
-            }
+               
+
 
         } catch (error) {
             console.error('Error fetching tour data:', error);
@@ -70,13 +168,17 @@ export default function TourEdite() {
 
 //get placess according to date
 const GetPlaces = async () => {
-    dayData.forEach(async (day,Index) => {
-        console.log(day)
+    // console.log('get places called !!')
+
+    dayData.slice(0,length).forEach(async (day,Index) => {
+        
+
         try {            
             const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/tour_places/${day.dateId}`);
-            console.log(res.data);
+            // console.log(dayData);
             res.data.forEach((place, index) => {
-                const newdata = [...dayData];                
+                const newdata = [...dayData]; 
+
                 newdata[Index].places.push(place)
                 setDayData(newdata);
             });
@@ -176,7 +278,33 @@ const DeleteTour = async () => {
           }
     }
 }
-    
+
+
+
+    //get hotels
+const[luxaryHotels,setLuxuryHotels] = useState([])
+const GetLuxuryHotels = async()=>{
+  const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/luxury`)
+  // console.log(res.data)
+  setLuxuryHotels(res.data)
+
+}
+const[semiluxuryHotels,setSemiluxuryHotels]  =useState([])
+const GetSemiluxuryHotels = async() =>{
+  const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/semi`)
+  // console.log(res.data)
+  setSemiluxuryHotels(res.data)
+}
+useEffect(()=>{
+  GetLuxuryHotels()
+  GetSemiluxuryHotels()
+},[])
+
+
+
+//luxury hotels 
+
+const LuxuryHandler =(e) =>{}
   return (
     <div className='tour-edite'>
         <h1 className='tour-edite-title'>Tour Edite</h1>
@@ -248,11 +376,55 @@ const DeleteTour = async () => {
                         newdata[selectedDay-1].day_sartDescription = e.target.value
                         setDayData(newdata)
                     }
-                    
-                    
-                    
-                    
-                }></textarea>
+
+                }/>
+                <p>5 star</p>
+                <p>{dayData.length>0?dayData[selectedDay-1].luxury_hotel:null}</p>
+                <p>3star/4star</p>
+                <p>{dayData.length>0?dayData[selectedDay-1].semi_hotel:null}</p>
+
+                <div>
+            <label>5 star hotel :</label>
+            <select className='' onChange={(e)=>{
+                const newdata = [...dayData]
+              newdata[selectedDay-1].luxury_hotel = e.target.value
+              newdata[selectedDay-1].luxury_hotel_id = e.target.id
+              setDayData(newdata)
+            }}>
+            <option>select hotel</option>
+              {luxaryHotels.map((hotel,index)=>{
+                return(
+                  
+                  <option key={index} id={hotel.hotel_id } value={hotel.hotel_name}>{hotel.hotel_name}</option>
+                )
+              
+              })}
+
+            </select>
+
+          </div>
+
+
+
+          <div>
+            <label>3star/4star hotel :</label>
+            <select className='' onChange={(e)=>{
+                const newdata = [...dayData]
+              newdata[selectedDay-1].semi_hotel = e.target.value
+              newdata[selectedDay-1].semi_hotel_id = e.target.id
+              setDayData(newdata)
+            }}>
+            <option>select hotel</option>
+              {semiluxuryHotels.map((hotel,index)=>{
+                return(
+                  
+                    <option key={index} id={hotel.hotel_id } value={hotel.hotel_name}>{hotel.hotel_name}</option>
+                )
+              
+              })}
+
+            </select>
+          </div>
 
                 
             </div>

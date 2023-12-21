@@ -10,6 +10,7 @@ export default function EditePlace() {
     // Input values
     const[id,setId] = useState('')
     const [name, setName] = useState('');
+    const[priority,setPriority] = useState('');
     const [lat, setLat] = useState('');
     const [lng, setLng] = useState('');
     const [time, setTime] = useState('');
@@ -36,6 +37,7 @@ export default function EditePlace() {
         setId(res.data[0].place_id);
         setPlaceInfo(res.data[0]);
         setName(res.data[0].place_name);
+        setPriority(res.data[0].priority);
         setLat(res.data[0].place_lat);
         setLng(res.data[0].place_lng);
         setTime(res.data[0].visit_time);
@@ -102,6 +104,7 @@ export default function EditePlace() {
 
         const formData = new FormData();
         formData.append('name', name);
+        formData.append('priority', priority);
         formData.append('lat', lat);
         formData.append('lng', lng);
         formData.append('time', time);
@@ -239,6 +242,10 @@ export default function EditePlace() {
                     <label className='editeplace-form-label'>Name:</label>
                     <input className='editeplace-form-input' type='text'  value={name}  onChange={(e)=>setName(e.target.value)}/>
                 </div>
+                <div className='editeplace-form'>
+                    <label className='editeplace-form-label'>Priority:</label>
+                    <input className='editeplace-form-input' type='text'  value={priority}  onChange={(e)=>setPriority(e.target.value)}/>
+                </div>
                 <div className='editeplace-form-location'>
                     <div className='editeplace-form'>
                         <label className='editeplace-form-label'>Lat</label>
@@ -316,7 +323,7 @@ export default function EditePlace() {
                 {newImgs.length > 0 && newImgs.map((img, index) => (
     <div className='editeplace-form-img_div' key={index}>
         <img className='editeplace-form-addedimg' src={URL.createObjectURL(img.file)} alt="" />
-        <button className='editeplace-form-addedimg' onClick={newImgDeleteHandler(index)}>DELETE</button>
+        <button className='editeplace-form-addedimg-delete' onClick={newImgDeleteHandler(index)}>DELETE</button>
     </div>
 ))}
 

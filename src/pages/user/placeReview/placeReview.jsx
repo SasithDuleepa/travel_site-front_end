@@ -124,7 +124,7 @@ if (!isLoaded) return (
             <GoogleMap
             mapContainerClassName='map-container'
             center={{lat: DATA.place_lat, lng: DATA.place_lng}}
-            zoom={15}
+            zoom={17}
            >
            <MarkerF position={{lat: DATA.place_lat, lng: DATA.place_lng}}/>
            </GoogleMap>

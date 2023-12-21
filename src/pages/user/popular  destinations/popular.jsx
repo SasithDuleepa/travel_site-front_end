@@ -61,7 +61,7 @@ export default function Popular() {
         <div className='popular-destinations-places'>
             {places.length>0 ? places.map((place,index)=>{
                 return(
-                    <PlaceCard key={index} id={place.place_id} place={place.place_name} short={place.short_description} img={place.card_img } />
+                    <PlaceCard key={index} id={place.place_id} link={place.place_id} place={place.place_name} short={place.short_description} img={place.card_img } />
                 )
             } ):null
             }

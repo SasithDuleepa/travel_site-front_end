@@ -36,15 +36,24 @@
         background-color: rgb(3, 14, 110);
         display: flex;
         align-items: center;
+        justify-content: center;
     }
     .nav-bar-upper-div-left{
-        width: 30vw;
+
         height: 25px;
         background-color: rgb(243,149,57);
         display: flex;
         align-items: center;
         justify-content: right;
+        width: 30%;
     }
+    .nav-bar-upper-div-left-sub{
+        /* background-color: aqua; */
+        display: flex;
+        justify-content: left;
+        width: 290px;
+    }
+
     .nav-bar-upper-div-left-p{
         color: white;
         text-align: right;
@@ -53,16 +62,31 @@
     .nav-bar-upper-div-right{
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: left;
         gap: 10px;
-        width: 70vw;
+width: 70%;
         height: 25px;
         position: relative;
+        /* background-color: yellowgreen; */
+    }
+    .nav-bar-upper-div-right-sub{
+        /* background-color: rgb(27, 217, 74); */
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        width: 900px;
+
     }
     .nav-bar-upper-div-right-1{
         color: white;
         font-family: poppins;
         font-size: 14px;
+    }
+    .nav-bar-upper-div-right1{
+        color: white;
+        font-family: poppins;
+        font-size: 14px;
+        margin: 0px 5px;
     }
 
 

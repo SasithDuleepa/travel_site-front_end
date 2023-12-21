@@ -129,8 +129,8 @@ export default function Hotels() {
           <label className='hotels-form-label'>hotel category :</label>
           <select className='hotels-form-input' onChange={(e)=>setCategory(e.target.value)}>
             <option value=''>select category</option>
-            <option value='Luxury'>Luxury</option>
-            <option value='Semi-Luxury'>Semi-Luxury</option>
+            <option value='5 star'>5 start</option>
+            <option value='3 star/4 star'>3 star / 4 star</option>
           </select>
 
         </div>

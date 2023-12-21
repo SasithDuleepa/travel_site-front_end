@@ -1,9 +1,8 @@
 
 .Tour-card{
     background-color: beige;
-        width: 256px;
-    height: 354px;
-        margin: 0px;
+    width: 294px;
+    height: 376px;
         overflow: hidden;
         /* border-radius: 5px; */
         &:hover{

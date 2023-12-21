@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import './placeCard.css';
 
 export default function PlaceCard(props) {
@@ -8,7 +7,7 @@ export default function PlaceCard(props) {
 
   return (
     <div className='place-card'>
-        <img  className='place-card-img' src={ 
+        <img  className='place-card-img' alt='' src={ 
             `${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${props.img}`
 
            }/>

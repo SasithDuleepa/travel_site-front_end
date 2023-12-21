@@ -98,11 +98,11 @@
 .tours-card-container-div-sub{
     /* background-color: aquamarine; */
 
-    max-width: 1200px;
+    width: 1200px;
     display:flex ;
     flex-wrap: wrap;
-    row-gap: 10px;
+    row-gap: 5px;
     column-gap: 5px;
-    justify-content: center;
+    justify-content: left;
     margin-bottom: 50px;
 }

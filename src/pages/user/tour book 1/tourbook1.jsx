@@ -62,8 +62,8 @@ export default function Tourbook1() {
                     <select className='Tourbook1-form-input' onChange={(e)=>setHotelType(e.target.value)}
                     value={hotelType}>
                         <option value=''>Select Hotel Type</option>
-                        <option value='Luxury'>Luxury</option>
-                        <option value='Semi-Luxury'>Semi-Luxury</option>
+                        <option value='5 star'>5 start</option>
+                         <option value='3 star/4 star'>3 star / 4 star</option>
                     </select>
                 </div>
                 <div className='Tourbook1-form'>

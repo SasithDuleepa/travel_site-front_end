@@ -50,6 +50,7 @@ export default function PopularDestinations() {
       if (res.status === 200) {
         window.alert("Popular places add successful!");
         setSelectedPlace([])
+        PopularDestinations()
       }
     } catch (error) {
       if(error.response.status === 401){
@@ -69,6 +70,7 @@ export default function PopularDestinations() {
     const newdata = [...popularPlaces]
     newdata.splice(index,1)
     setPopularPlaces(newdata)
+    PopularDestinations()
   }
   const UpdateHandler =async() =>{
     try {

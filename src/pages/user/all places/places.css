@@ -16,6 +16,7 @@
 }
 .Places-main-route{
     display: flex;
+    align-items: center;
     gap: 5px;
     margin-top: -50px;
 }
@@ -82,8 +83,17 @@
 }
 
 .Places-places{
-    max-width: 1192px;
+    width: 1200px;
     display: flex;
+    justify-content:left;
     flex-wrap: wrap;
     gap: 5px;
+    /* background-color: aqua; */
+}
+
+.Places-pagination{
+    background-color: aqua;
+}
+.Places-pagination-btn{
+    color: blue;
 }
