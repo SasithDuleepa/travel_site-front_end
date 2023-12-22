@@ -8,9 +8,12 @@ export default function DaytourEdite() {
     const[name,setName] = useState("");
     const[description,setDescription] = useState("");
     const[distance,setDistance] = useState("");
+    const[organizingCost , setOrganizingCost] = useState(0);
     const[price,setPrice] = useState("");
     const[currentImg, setCurrentImg] = useState("");
     const[image, setImage] = useState(null);
+    const[currentCoverImg, setCurrentCoverImg] = useState('')
+    const[coverImg, setCoverImg] = useState(null);
     const[startDescription, setStartDescription]= useState('')
 
     const[daytours,setDaytours] = useState([]);
@@ -21,7 +24,7 @@ export default function DaytourEdite() {
     const SearchAllHandler = async() =>{
         try {
             const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/daytours`);
-            // console.log(res.data)
+            console.log(res.data)
             setDaytours(res.data);
         } catch (error) {
             console.log(error);
@@ -52,9 +55,11 @@ export default function DaytourEdite() {
             setName(res.data[0].day_tour)
             setDescription(res.data[0].description)
             setDistance(res.data[0].distance)
+            setOrganizingCost(res.data[0].organizing_cost)
             setPrice(res.data[0].price)
             setCurrentImg(res.data[0].img)
             setStartDescription(res.data[0].start_description)
+            setCurrentCoverImg(res.data[0].cover_img)
 
         } catch (error) {
             console.log(error);
@@ -115,9 +120,12 @@ export default function DaytourEdite() {
     formData.append('daytour', name);
     formData.append('description', description);
     formData.append('distance', distance);
+    formData.append('organizingCost', organizingCost);
     formData.append('price', price);
     formData.append('currentImg', currentImg);
     formData.append('file', image);
+    formData.append('currentCoverImg', currentCoverImg);
+    formData.append('coverImg', coverImg);
     formData.append('startDescription', startDescription); 
     places.forEach((place, index) => {
         formData.append(`places[${index}][place]`, place.place_id);
@@ -208,11 +216,15 @@ export default function DaytourEdite() {
             </div>
             <div className='daytouredite-form'>
                 <label className='daytouredite-form-label'>Distance</label>
-                <input className='daytouredite-form-input' type="text" value={distance} onChange={(e)=>setDistance(e.target.value)}/>
+                <input className='daytouredite-form-input' type="number" value={distance} onChange={(e)=>setDistance(e.target.value)}/>
+            </div>
+            <div className='daytouredite-form'>
+                <label className='daytouredite-form-label'>Organizing Cost : </label>
+                <input className='daytouredite-form-input' type="number" value={organizingCost} onChange={(e)=>setOrganizingCost(e.target.value)}/>
             </div>
             <div className='daytouredite-form'>
                 <label className='daytouredite-form-label'>Price</label>
-                <input className='daytouredite-form-input' type="text" value={price} onChange={(e)=>setPrice(e.target.value)}/>
+                <input className='daytouredite-form-input' type="number" value={price} onChange={(e)=>setPrice(e.target.value)}/>
             </div>
             <div className='daytouredite-form'>
                 <label className='daytouredite-form-label'>Image</label>
@@ -221,6 +233,17 @@ export default function DaytourEdite() {
                 :<img src={`${process.env.REACT_APP_BACKEND_URL}/daytour/daytourimg?file=${currentImg}`} alt="" />}
       
             </div>
+
+
+            <div className='daytouredite-form'>
+                <label className='daytouredite-form-label'>Image</label>
+                <input className='daytouredite-form-input' type="file" onChange={(e)=>setCoverImg(e.target.files[0])}/>
+                {image ? <img src={URL.createObjectURL(coverImg)} alt="" />
+                :<img src={`${process.env.REACT_APP_BACKEND_URL}/daytour/daytourimg?file=${currentCoverImg}`} alt="" />}
+      
+            </div>
+
+
             <div className='daytouredite-form'>
                 <label className='daytouredite-form-label'>Start Description</label>
                 <textarea className='daytouredite-form-input' type="text" value={startDescription} onChange={(e)=>setStartDescription(e.target.value)}/>

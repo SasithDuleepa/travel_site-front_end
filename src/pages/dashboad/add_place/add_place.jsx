@@ -79,6 +79,8 @@ const removeFile =(index)=> (e) => {
           data.file.forEach((file, index) => {
             formData.append('files', file);
           });
+
+          console.log([...formData])
         
           try {
             const token = sessionStorage.getItem("token");
@@ -135,7 +137,7 @@ const removeFile =(index)=> (e) => {
                     </div>
                     <div className='Add_place-form-sub-div'>
                         <label className='Add_place-form-sub-div-label'>Priority:</label>
-                        <input type='text' className='add_place_input' id='priority' onChange={changeHandler} value={data.name} />
+                        <input type='text' className='add_place_input' id='priority' onChange={changeHandler} value={data.priority} />
                     </div>
                     <div  className='Add_place-form-location-div'>
                         <div className='Add_place-form-sub-div'>

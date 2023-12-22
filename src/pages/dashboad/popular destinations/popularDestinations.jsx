@@ -70,7 +70,7 @@ export default function PopularDestinations() {
     const newdata = [...popularPlaces]
     newdata.splice(index,1)
     setPopularPlaces(newdata)
-    PopularDestinations()
+  
   }
   const UpdateHandler =async() =>{
     try {
@@ -83,6 +83,7 @@ export default function PopularDestinations() {
       }) 
       if (res.status === 200) {
         window.alert("popular places update successful!");
+        PopularDestinations()
       }
 
     } catch (error) {

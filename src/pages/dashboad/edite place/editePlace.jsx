@@ -29,6 +29,17 @@ export default function EditePlace() {
         const res = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/all_admin`);
         setPlaces(res.data.data);
     };
+    const PlaceSearcHandler =async(e) =>{
+        if(e.target.value){
+            const res = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/placesearch/${e.target.value}`);
+            setPlaces(res.data.data);
+        
+        }else{
+            GetPlaces();
+        }
+        
+
+    }
 
     const SelectHandler =  (id)=>async() => {
         // console.log(id);
@@ -130,10 +141,13 @@ export default function EditePlace() {
             formData.append('newImgs', file.file );
           });
 
+
+          console.log([...formData])
+
         
 
         try {
-            // console.log([...formData])
+            
             // console.log(newImgs)
             const token = sessionStorage.getItem("token");
             const res = await Axios.put(`${process.env.REACT_APP_BACKEND_URL}/places/updateplace/${id}`, formData, {
@@ -216,6 +230,8 @@ export default function EditePlace() {
               }
         }
     }
+
+
   return (
     <div className='editeplace'>
         <h1>EditePlace</h1>
@@ -223,7 +239,7 @@ export default function EditePlace() {
 
         <div className='editeplace-div1'>
             <div className='editeplace-search-div'>
-                <input  className='editeplace-search-input' type="text" placeholder='search place'/>
+                <input  className='editeplace-search-input' type="text" placeholder='search place' onChange={(e)=>PlaceSearcHandler(e)}/>
             </div>
 
             <div className='editeplace-search-result-div'>
@@ -234,6 +250,12 @@ export default function EditePlace() {
                      
                     )
                 }    )}
+            </div>
+
+            <div>
+            <button className='edite-place-update-btn' onClick={UpdateHandler}>Update</button>
+        {/* <button className='edite-place-delete-btn' onClick={DeleteHandler}>hide</button> */}
+        <button className='edite-place-delete-btn' onClick={DELETE}>DELETE </button>
             </div>
 
 
@@ -332,9 +354,7 @@ export default function EditePlace() {
             </div>
 
         </div>
-        <button className='edite-place-update-btn' onClick={UpdateHandler}>Update</button>
-        {/* <button className='edite-place-delete-btn' onClick={DeleteHandler}>hide</button> */}
-        <button className='edite-place-delete-btn' onClick={DELETE}>DELETE </button>
+        
     
                     
     

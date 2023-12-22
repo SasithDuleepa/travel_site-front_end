@@ -1,15 +1,21 @@
 
 .Tour-card{
-    background-color: beige;
     width: 294px;
     height: 376px;
         overflow: hidden;
-        /* border-radius: 5px; */
+
         &:hover{
             .Tour-card-img{
                 transform:scale(1.1);
                 -ms-transform:scale(1.1);
-                transition: .5s;
+                transition: .4s;
+            }
+            .Tour-card-info-more{
+                background-color: var(--blue);
+                color: white;
+                transition: .7s;
+                font-weight: 700;
+    
             }
         }
 
@@ -17,27 +23,28 @@
 .Tour-card-img{
     width: 100%;
     height: 100%;
+    transition: .4s;
 }
 .Tour-card-info{
-    background-color: rgba(0, 0, 0, 0.348);
+    background-color: rgba(0, 0, 0, 0.496);
     width: 100%;
-    height: 161px;
+    height: 156px;
     position:relative;
-    bottom: 165px;
+    bottom: 160px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .Tour-card-info-header{
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
     font-family: latio;
     color: azure;
     text-align: center;
-    width: 240px;
-    height: 50px;
+    width: 290px;
+    max-height: 80px;
     overflow: hidden;
-    margin-top: 5px;
+    margin-top: 7px;
 }
 
 .Tour-card-info-info{
@@ -45,11 +52,12 @@
     font-size: 13px;
     font-weight: 400;
     text-align: justify;
-    width: 220px;
-    height: 65px;
-    line-height: 13px;
+    width: 270px;
+
+    height: 78px;
+    line-height: 15px;
     overflow: hidden;
-    margin-top: -38px;
+    margin-top: -18px;
 }
 .Tour-card-info-more{
     text-align: center;
@@ -61,9 +69,8 @@
     font-weight: 500;
     font-family: poppins;
     text-decoration: none;
-  &:hover{
-    background-color: aliceblue;
-    color: orange;
-    transition: .4s;
-  }
+    margin-top: -4px;
+    transition: .8s;
+
+
 }

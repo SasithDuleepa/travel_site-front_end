@@ -9,8 +9,9 @@ export default function DayTour() {
     const[name,setName] = useState('')
   const[description,setDescription] = useState('')
   const[distance,setDistance]= useState(0)
-
+  const[oranizingCost,setOrganizingCost ] = useState(0)
   const[image,setImage] = useState('')
+  const[coverImg, setCoverImg] = useState('')
   const[startDescription,setStartDescription] = useState('')
 
   //place input 
@@ -79,8 +80,9 @@ const Add = async() =>{
     formData.append('daytour', name);
     formData.append('description', description);
     formData.append('distance', distance);
-
+    formData.append('organizingcost', oranizingCost);
     formData.append('file', image);
+    formData.append('coverImg', coverImg);
     formData.append('startDescription', startDescription);
     // formData.append('places', selectedPlaces);
     // Loop through the files and append them to the formData
@@ -105,6 +107,7 @@ const Add = async() =>{
         setDescription('')
         setDistance('')
         setImage('')
+        setCoverImg('')
         setName('')
 
         setPlaceInput('')
@@ -151,9 +154,20 @@ const Add = async() =>{
             </div>
 
             <div className='daytour-form-div'>
+                <label>oranizing cost :</label>
+                <input type='number'    className='daytour-input' value={oranizingCost} onChange={(e)=>setOrganizingCost(e.target.value)}/>
+            </div>
+
+            <div className='daytour-form-div'>
                 <label>image</label>
                 <input type='file'   className='daytour-input'  onChange={(e)=>setImage(e.target.files[0])} />
             </div>
+
+            <div className='daytour-form-div'>
+                <label> cover image</label>
+                <input type='file'   className='daytour-input'  onChange={(e)=>setCoverImg(e.target.files[0])} />
+            </div>
+
             <div className='daytour-form-div'>
                 <label>places</label>
                 <input type='text' className='daytour-input' value={placeInput} onChange={(e)=>{setPlaceInput(e.target.value)}}/>
@@ -201,6 +215,7 @@ const Add = async() =>{
           ) : <p>no place</p>
           }
                 </div>
+                <p> last description should day end description</p>
             </div>
             <button className='day-tour-add-btn' onClick={Add}>ADD</button>
         </div>

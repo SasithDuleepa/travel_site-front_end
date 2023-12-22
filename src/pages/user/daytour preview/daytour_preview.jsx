@@ -3,7 +3,7 @@ import './daytour_preview.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Edite from './../../../assets/icons/edit.png'
-import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer, DirectionsService } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer, DirectionsService ,DistanceMatrixService} from '@react-google-maps/api';
 import PlaceCard from '../../../components/place card/placeCard';
 import Carousel from "react-simply-carousel";
 
@@ -13,19 +13,27 @@ import Socialmedia from './../../../components/social media/socialmedia';
 
 export default function Daytour_preview() {
 
+
+  
+
   const {id}= useParams();
   // console.log(id);
 
   //map
   const [activeSlide, setActiveSlide] = useState(0);
 
+  const[startDistance, setStartDistance] = useState(0)
+
   //pop up
   const [popup,setPopup] = useState('hide');
+  const [popup1,setPopup1] = useState('hide');
+  const [popup2,setPopup2] = useState('hide');
   const[popupPassenger,setPopupPassenger] = useState('')
 
   const[total,setTotal] = useState(0)
   const[passenger,setpassenger] = useState(2);
-  const[distance,setDistance] = useState(0)
+  const[distance,setDistance] = useState(0);
+  const[oranizingCost, setOrganizingCost] = useState(0)
   const[vehicle,setVehicle] = useState([])
 
 
@@ -38,16 +46,20 @@ const[class2,setClass2] = useState('daytour-preview-bottom-info-2 hide');
 const[class3,setClass3] = useState('daytour-preview-bottom-info-3 hide');
 
 
+const [coverImg, setCoverImg] = useState('')
+
   const [data, setData] = useState([]);
   //data about day tour
   const GetData =async ()=>{
     try {
           const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/daytour/${id}`);
-          // console.log(res.data);
+          console.log(res.data);
           
           if(res.data.length>0){
             setData(res.data);
             setDistance(res.data[0].distance)
+            setOrganizingCost(res.data[0].organizing_cost)
+            setCoverImg(res.data[0].cover_img)
           }
     } catch (error) {
       console.log(error)
@@ -61,9 +73,13 @@ const[class3,setClass3] = useState('daytour-preview-bottom-info-3 hide');
 const PopupEnter = () =>{
   setpassenger(popupPassenger);
   setPopup('hide')
+  setPopup1('hide')
+  setPopup2('hide')
 }
 const PopupCancel = () =>{
   setPopup('hide');
+  setPopup1('hide')
+  setPopup2('hide')
 }
 
 useEffect(() => {
@@ -123,13 +139,27 @@ useEffect(() => {
 }, [data]);
 
 
- 
+//calculation 
 useEffect(()=>{
-    let sub_total = fees+distance*vehicle
-    let tot = sub_total/passenger
-    setTotal(tot.toFixed(2))
+  // console.log('organizing' , oranizingCost)
+  // console.log('vehicle' , vehicle)
+  // console.log('distance' , distance)
+  // console.log('passenger' , passenger)
+  // console.log('fees' , fees)
+  // console.log('startDistance' , startDistance)
 
-},[vehicle,distance,passenger,fees])
+    let sub_total = fees + startDistance*2*vehicle + oranizingCost
+    let tot = sub_total/passenger
+
+    let tot_1 = tot.toFixed(0)
+
+    let tot_2 = tot_1/10
+    let tot_3 = Math.ceil(tot_2)
+    setTotal(tot_3*10)
+
+},[vehicle,distance,passenger,fees,startDistance])
+
+
 
   //image id for carousel
   const [imageId,setImageId] = useState([]);
@@ -170,8 +200,8 @@ useEffect(()=>{
        <p>Loading...</p>
        )
  
-       const directionsCallback = res => {
-        //  console.log(res)
+       const directionsCallback = (res) => {
+
          if (res !== null && count.current < 2) {
            if (res.status === 'OK') {
              count.current += 1;
@@ -182,6 +212,17 @@ useEffect(()=>{
            }
          }
        };
+
+       const distanceCallback =(response) =>{
+        if (response && response.rows && response.rows.length > 0) {
+          const distanceValue = response.rows[0].elements[0].distance.value;
+          console.log('Distance:', distanceValue/1000);
+          setStartDistance(distanceValue/1000)
+          // Update your state or perform any other actions with the distance information
+        } else {
+          console.error('Error retrieving distance information');
+        }
+       }
 
 
 //bottom buttons
@@ -233,18 +274,6 @@ const calculateCenter = () => {
 };
 
 
-const Style = {
-  backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-  height: '424px',
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-};
-
 // book now
 const Booknow = () => {
   try {
@@ -261,28 +290,66 @@ const Booknow = () => {
   return (
     <div className='daytour-preview'>
       {/* pop up */}
-      <div className={popup}>
+      <div className={popup1}>
         <div className='day-tour-popup-1-main'>
           <p className='day-tour-popup-1-main-title'>Please select the hotel type and passenger count for tour tour.</p>
           
           <div className='day-tour-popup-1-main-form'>
-            <label  className='day-tour-popup-1-main-form-label'>Enter Passenger Count:</label>
-            
-            <input  className='day-tour-popup-1-main-form-input' onChange={(e)=>setPopupPassenger(e.target.value)}/>
+            <label  className='day-tour-popup-1-main-form-label'>Enter Your Location:</label>            
+            <select  className='day-tour-popup-1-main-form-input' onChange={(e)=>setOrigin(e.target.value)} value={origin}>
+              <option>select town</option>
+              <option value={'colombo'}>colombo</option>
+              <option value={'galle'}>galle</option>
+              <option value={'matara'}>matara</option>
+              <option value={'kandy'}>kandy</option>
+              <option value={'jaffna'}>jaffna</option>
+              <option value={'kurunegala'}>kurunegala</option>
+              <option value={'trincomalee'}>trincomalee</option>
+              <option value={'anuradhapura'}>anuradhapura</option>
+              <option value={'batticaloa'}>batticaloa</option>
+              <option value={'kegalle'}>kegalle</option>
+              <option value={'kalutara'}>kalutara</option>
+              <option value={'rathnapura'}>rathnapura</option>
+            </select>
           </div>
           <div className='day-tour-popup-1-main-button-div'>
             <a className='day-tour-popup-1-main-ok' onClick={PopupEnter}>Enter</a>
             <a className='day-tour-popup-1-main-cancel' onClick={PopupCancel}>Cancel</a>
           </div>
         </div>
+        
 
       </div>
-      <div style={Style}>
-        <p className='daytour-preview-hero-title'>{data.length>0?data[0].day_tour:null}</p>
+      <div className={popup2}>
+        <div className='day-tour-popup-1-main'>
+          <p className='day-tour-popup-1-main-title'>Please select the hotel type and passenger count for tour tour.</p>
+          
+          <div className='day-tour-popup-1-main-form'>
+            <label  className='day-tour-popup-1-main-form-label'>Enter Passenger Count:</label>            
+            <input  className='day-tour-popup-1-main-form-input' onChange={(e)=>setPopupPassenger(e.target.value)} value={popupPassenger}/>
+          </div>
+
+          <div className='day-tour-popup-1-main-button-div'>
+            <a className='day-tour-popup-1-main-ok' onClick={PopupEnter}>Enter</a>
+            <a className='day-tour-popup-1-main-cancel' onClick={PopupCancel}>Cancel</a>
+          </div>
+        </div>
+        
+
+      </div>
+      <div className='daytour-preview-hero'>
+      <img alt='' src={`${process.env.REACT_APP_BACKEND_URL}/daytour/daytourimg?file=${coverImg}`} className='daytour-hero-img'/>
+
+      <div className='daytour-preview-hero-sub'>
+      <p className='daytour-preview-hero-title'>{data.length>0?data[0].day_tour:null}</p>
         <div  className='daytour-preview-hero-route-div'>
           <a className='daytour-preview-hero-route-1' href='/'>home/</a>
           <a className='daytour-preview-hero-route-1' href='/tours/daytour'>day Tours/</a>
           <a className='daytour-preview-hero-route-1 active-route'>{data.length>0?data[0].day_tour:null}</a></div>
+        
+      </div>
+        
+        
         </div>
 
         <div className='daytour-preview-hero-meadia-div'>
@@ -293,11 +360,27 @@ const Booknow = () => {
 
       <div className='daytour-preview-top'>
         <div className='daytour-preview-top-left'>
-          <p className='daytour-preview-top-left-p1'>Package Price:{total }</p>
-          <div className='daytour-preview-top-left-info'>
-            <p>Passenger Count : {passenger}</p>
-            <img alt='' src={Edite} onClick={()=>setPopup('day-tour-popup-1')}/>
+          <div  className='daytour-preview-top-left-price-div'>
+            <p className='daytour-preview-top-left-p1'>Package Price :</p>
+            <p className='daytour-preview-top-left-p1'>$</p>
+            <p className='daytour-preview-top-left-p1'>{total }</p>
+            <p className='daytour-preview-top-left-p2'>* per person</p>
           </div>
+          
+          <div className='daytour-preview-top-left-info'>
+            <div className='daytour-preview-top-left-info-sub'>
+              <p>Passenger Count : {passenger}</p>
+              <img alt='' src={Edite} onClick={()=>setPopup2('day-tour-popup-1')}/>
+            </div> 
+            <div className='daytour-preview-top-left-info-sub'>
+              <p>Your Nearest City : {origin}</p>
+              <img alt='' src={Edite} onClick={()=>setPopup1('day-tour-popup-1')}/>
+
+            </div>
+            
+            
+          </div>
+          
           
 
           <div  className='daytour-preview-top-left-code'>
@@ -391,36 +474,60 @@ const Booknow = () => {
 
       <div className='daytour-preview-center'>
         <div className='daytour-preview-center-left'>
-       < GoogleMap
-        mapContainerClassName='daytour-preview-center-map-container'
-        center={calculateCenter()}
-        zoom={7}
-      >
-        {places.length>0?places.map((place,index)=>{
-          return(
-            <MarkerF key={index} position={{ lat: place.place_lat, lng: place.place_lng }} />
-          )
-         
-        }):null}
-     
-        
+        <GoogleMap
+  mapContainerClassName='daytour-preview-center-map-container'
+  center={calculateCenter()}
+  zoom={7}
+>
+  {places.length > 0
+    ? places.map((place, index) => (
+        <MarkerF key={index} position={{ lat: place.place_lat, lng: place.place_lng }} />
+      ))
+    : null}
 
+  <DirectionsService
+    options={{
+      destination: origin,
+      waypoints: [
+        places.length > 0
+          ? { location: { lat: places[0].place_lat, lng: places[0].place_lng } }
+          : { location: 'Naula' },
+      ],
+      origin: origin,
+      travelMode: 'DRIVING',
+      optimizeWaypoints: true,
+    }}
+    callback={directionsCallback}
+  />
+  <DirectionsRenderer directions={response} />
 
-      </GoogleMap>
+  <DistanceMatrixService
+    options={{
+      destinations: [
+        places.length > 0
+          ? { location: { lat: places[0].place_lat, lng: places[0].place_lng } }
+          : { location: 'Naula' },
+      ],
+      origins: [origin],
+      travelMode: 'DRIVING',
+    }}
+    callback={distanceCallback}
+  />s
+</GoogleMap>
         </div>
 
 
 
         <div className='daytour-preview-center-right'>
           <div  className='daytour-preview-center-right-place-div'>
-            <p>{data.length>0?data[0].start_description:null}</p>
+            <p  className='daytour-preview-center-right-place-div-place-start'>{data.length>0?data[0].start_description:null}</p>
             {places.length>0?places.map((place,index)=>{
               return(
                 <div key={index} className='daytour-preview-center-right-place-div-place'>
-                <p><b>{place.place_name} </b> {place.short_description
+                <p className='daytour-preview-center-right--place'><b>{place.place_name} - </b> {place.short_description
 }</p>
 
-                <p>{place.description}</p>
+                <p  className='daytour-preview-center-right-place-description'>{place.description}</p>
 
               </div>
 

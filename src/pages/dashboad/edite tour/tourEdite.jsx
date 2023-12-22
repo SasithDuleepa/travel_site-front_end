@@ -8,15 +8,7 @@ export default function TourEdite() {
     const[length,setLength] = useState(0)
 
     const[id,setId] = useState('');
-    const[name,setName] = useState('');
-    const[description,setDescription] = useState('');
-    const[image,setImage] = useState('');
 
-    const[price,setPrice] = useState('');
-    const[distance,setDistance] = useState('');
-    const[startDescription,setStartDescription] = useState('');
-
-    const[newImg, setNewImg] = useState('');
 
     const[dayData,setDayData] = useState([])
 
@@ -39,6 +31,8 @@ export default function TourEdite() {
         tour_description:'',
         tour_img:'',
         tour_new_img:'',
+        tour_cover_img:'',
+        tour_new_cover_img:'',
         tour_distance:'',
         tour_dates:[{
             tour_date:'',
@@ -93,7 +87,9 @@ export default function TourEdite() {
                 tour_name: res.data[0].tour_name,
                 tour_description: res.data[0].tour_description,
                 tour_img: res.data[0].tour_img,
-                tour_new_img: res.data[0].tour_new_img,
+                tour_new_img: '',
+                tour_cover_img: res.data[0].cover_img,
+                tour_new_cover_img: '',
                 tour_distance: res.data[0].distance,
                 tour_dates: res.data.reduce((acc, day) => {
                     const existingEntry = acc.find((entry) => entry.tour_date === day.tour_date);
@@ -147,11 +143,7 @@ export default function TourEdite() {
             }
             ));
             setId(res.data[0].tour_id);
-            setName(res.data[0].tour_name);
-            setDescription(res.data[0].tour_description);
-            setImage(res.data[0].tour_img);
-            setPrice(res.data[0].tour_price);
-            setDistance(res.data[0].distance);
+
             setLength(res.data.length);
             setDayData(newData);
             console.log(Data)
@@ -197,58 +189,59 @@ const PlaceDelete =(index)=>()=>{
 }
        
 const UpdateTour = async () => {
+  console.log(Data)
     // console.log(dayData)
-    const formData = new FormData();
-    formData.append('id', id);
-    formData.append('name', name);
-    formData.append('description', description);
-    formData.append('image', image);
-    formData.append('price', price);
-    formData.append('distance', distance);
+    // const formData = new FormData();
+    // formData.append('id', id);
+    // formData.append('name', name);
+    // formData.append('description', description);
+    // formData.append('image', image);
+    // formData.append('price', price);
+    // formData.append('distance', distance);
     
-    formData.append('file', newImg);
-    dayData.forEach((day, index) => {
-        formData.append(`dayData[${index}][day]`, day.day);
-        formData.append(`dayData[${index}][dateId]`, day.dateId);
-        formData.append(`dayData[${index}][day_sartDescription]`, day.day_sartDescription);
-        formData.append(`dayData[${index}][luxury_hotel]`, day.luxury_hotel);
-        formData.append(`dayData[${index}][semi_hotel]`, day.semi_hotel);
+    // formData.append('file', newImg);
+    // dayData.forEach((day, index) => {
+    //     formData.append(`dayData[${index}][day]`, day.day);
+    //     formData.append(`dayData[${index}][dateId]`, day.dateId);
+    //     formData.append(`dayData[${index}][day_sartDescription]`, day.day_sartDescription);
+    //     formData.append(`dayData[${index}][luxury_hotel]`, day.luxury_hotel);
+    //     formData.append(`dayData[${index}][semi_hotel]`, day.semi_hotel);
     
-        day.places.forEach((place, placeIndex) => {
-            formData.append(`dayData[${index}][places][${placeIndex}][place_name]`, place.place_name);
-            formData.append(`dayData[${index}][places][${placeIndex}][place_id]`, place.place_id);
-            formData.append(`dayData[${index}][places][${placeIndex}][tour_place_description]`, place.tour_place_description);
-            // Add other place properties as needed
-        });
-    });
+    //     day.places.forEach((place, placeIndex) => {
+    //         formData.append(`dayData[${index}][places][${placeIndex}][place_name]`, place.place_name);
+    //         formData.append(`dayData[${index}][places][${placeIndex}][place_id]`, place.place_id);
+    //         formData.append(`dayData[${index}][places][${placeIndex}][tour_place_description]`, place.tour_place_description);
+    //         // Add other place properties as needed
+    //     });
+    // });
     
 
-    // console.log([...formData])
-    try {
-        const token = sessionStorage.getItem("token");
-        const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/tour/tourupdate/${id}`, formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-              'Authorization': `${token}`,
-            },
-          });
+    // // console.log([...formData])
+    // try {
+    //     const token = sessionStorage.getItem("token");
+    //     const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/tour/tourupdate/${id}`, formData, {
+    //         headers: {
+    //           'Content-Type': 'multipart/form-data',
+    //           'Authorization': `${token}`,
+    //         },
+    //       });
       
-          if (res.status === 200) {
-            window.alert("Place added successfully");
+    //       if (res.status === 200) {
+    //         window.alert("Place added successfully");
            
-          }
-    } catch (error) {
-        if(error.response.status === 401){
-            sessionStorage.clear();
-            window.alert("You are not authorized to perform this action");
-          }else if(error.response.status === 400){
-            window.alert("All fields are required");
-          }else if(error.response.status === 500){
-            window.alert("Internal server error");
-          }else{
-            window.alert("Error adding place");
-          }
-    }
+    //       }
+    // } catch (error) {
+    //     if(error.response.status === 401){
+    //         sessionStorage.clear();
+    //         window.alert("You are not authorized to perform this action");
+    //       }else if(error.response.status === 400){
+    //         window.alert("All fields are required");
+    //       }else if(error.response.status === 500){
+    //         window.alert("Internal server error");
+    //       }else{
+    //         window.alert("Error adding place");
+    //       }
+    // }
 }
 
 const DeleteTour = async () => {
@@ -326,28 +319,66 @@ const LuxuryHandler =(e) =>{}
         <div className='tour-edite-form-div-main'>
             <div className='tour-edite-form'>
                 <label className='tour-edite-form-label'>name</label>
-                <input className='tour-edite-form-input' type="text" value={name} onChange={(e)=>setName(e.target.value)}/>
+                <input className='tour-edite-form-input' type="text" value={Data.tour_name} 
+                onChange={(e)=>{
+                  const newdata = {...Data}
+                  newdata.tour_name = e.target.value
+                  setData(newdata)
+                }}/>
             </div>
             <div className='tour-edite-form'>
                 <label className='tour-edite-form-label'>description</label>
-                <textarea className='tour-edite-form-input' type="text" value={description} onChange={(e)=>setDescription(e.target.value)}/>
+                <textarea className='tour-edite-form-input' type="text" value={Data.tour_description} 
+                onChange={(e)=>{
+                  const newdata = {...Data}
+                  newdata.tour_description = e.target.value
+                  setData(newdata)
+                }}/>
             </div>
             
-            <div className='tour-edite-form'>
+            {/* <div className='tour-edite-form'>
                 <label className='tour-edite-form-label'>price</label>
                 <input className='tour-edite-form-input' type="text" value={price} onChange={(e)=>setPrice(e.target.value)}/>
-            </div>
+            </div> */}
             <div className='tour-edite-form'>
                 <label className='tour-edite-form-label'>distance</label>
-                <input className='tour-edite-form-input' type="text" value={distance} onChange={(e)=>setDistance(e.target.value)}/>
+                <input className='tour-edite-form-input' type="text" value={Data.tour_distance} 
+                onChange={(e)=>{
+                  const newdata = {...Data}
+                  newdata.tour_distance = e.target.value
+                  setData(newdata)
+                
+                }}/>
             </div>
             <div className='tour-edite-form'>
                 <label className='tour-edite-form-label'>image</label>
-                <input className='tour-edite-form-input' type="file"  onChange={(e)=>setNewImg(e.target.files[0])}/>
-                {newImg ?
-                    <img className='tour-edite-form-img' src={URL.createObjectURL(newImg)} alt="" />
+                <input className='tour-edite-form-input' type="file"  onChange={(e)=>{
+                  const newdata = {...Data}
+                  newdata.tour_new_img = e.target.files[0]
+                  setData(newdata)
+                
+                }}/>
+                {Data.tour_new_img ?
+                    <img className='tour-edite-form-img' src={URL.createObjectURL(Data.tour_new_img)} alt="" />
                     :
-                    <img className='tour-edite-form-img' src={`${process.env.REACT_APP_BACKEND_URL}/tour/tourimg/?file=${image}`} alt="" />
+                    <img className='tour-edite-form-img' src={`${process.env.REACT_APP_BACKEND_URL}/tour/tourimg/?file=${Data.tour_img}`} alt="" />
+                    
+                }
+            </div>
+
+
+            <div className='tour-edite-form'>
+                <label className='tour-edite-form-label'>cover image</label>
+                <input className='tour-edite-form-input' type="file"  onChange={(e)=>{
+                  const newdata = {...Data}
+                  newdata.tour_new_cover_img = e.target.files[0]
+                  setData(newdata)
+                
+                }}/>
+                {Data.tour_new_cover_img ?
+                    <img className='tour-edite-form-img' src={URL.createObjectURL(Data.tour_new_cover_img)} alt="" />
+                    :
+                    <img className='tour-edite-form-img' src={`${process.env.REACT_APP_BACKEND_URL}/tour/tourimg/?file=${Data.tour_cover_img}`} alt="" />
                     
                 }
             </div>
@@ -355,11 +386,32 @@ const LuxuryHandler =(e) =>{}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div className='tour-day-edite-form-div'>
         <div className='tour-day-edite-form-div-left'>
-            {dayData.length>0?dayData.map((day,index)=>{
+            {Data.tour_dates.length>0?Data.tour_dates.map((day,index)=>{
                 return(
-                    <a className={ day.day===selectedDay?'tour-day-edite-form-div-left-a-active':'tour-day-edite-form-div-left-a'} key={index} onClick={()=>setSelectedDay(day.day)}>Day {day.day}</a>
+                    <a className={ day.tour_date===selectedDay?'tour-day-edite-form-div-left-a-active':'tour-day-edite-form-div-left-a'} key={index} onClick={()=>setSelectedDay(day.tour_date)}>Day {day.tour_date}</a>
                 )
             
             }):<p>no date</p>}
@@ -369,26 +421,25 @@ const LuxuryHandler =(e) =>{}
             
             <div className='tour-day-edite-form-div-right-form'>
                 <label className='tour-day-edite-form-div-right-form-label'>day start description :</label>
-                <textarea className='tour-day-edite-form-div-right-form-input' value={dayData.length>0?dayData[selectedDay-1].day_sartDescription:null} onChange={(e)=>
+                <textarea className='tour-day-edite-form-div-right-form-input' value={Data.tour_dates.length>0?Data.tour_dates[selectedDay-1].start_description:null} onChange={(e)=>
                     {
-                        const newdata = [...dayData]
-                        console.log(newdata)
-                        newdata[selectedDay-1].day_sartDescription = e.target.value
-                        setDayData(newdata)
+                        const newdata = [...Data]
+                        newdata[selectedDay-1].start_description = e.target.value
+                        setData(newdata)
                     }
 
                 }/>
                 <p>5 star</p>
-                <p>{dayData.length>0?dayData[selectedDay-1].luxury_hotel:null}</p>
+                <p>{Data.tour_dates.length>0?Data.tour_dates[selectedDay-1].luxary_hotel:null}</p>
                 <p>3star/4star</p>
-                <p>{dayData.length>0?dayData[selectedDay-1].semi_hotel:null}</p>
+                <p>{Data.tour_dates.length>0?Data.tour_dates[selectedDay-1].semi_hotel:null}</p>
 
                 <div>
             <label>5 star hotel :</label>
             <select className='' onChange={(e)=>{
-                const newdata = [...dayData]
-              newdata[selectedDay-1].luxury_hotel = e.target.value
-              newdata[selectedDay-1].luxury_hotel_id = e.target.id
+                const newdata = [...Data]
+              newdata[selectedDay-1].luxary_hotel = e.target.value
+              newdata[selectedDay-1].luxary_hotel_id = e.target.id
               setDayData(newdata)
             }}>
             <option>select hotel</option>
@@ -409,7 +460,7 @@ const LuxuryHandler =(e) =>{}
           <div>
             <label>3star/4star hotel :</label>
             <select className='' onChange={(e)=>{
-                const newdata = [...dayData]
+                const newdata = [...Data]
               newdata[selectedDay-1].semi_hotel = e.target.value
               newdata[selectedDay-1].semi_hotel_id = e.target.id
               setDayData(newdata)
@@ -428,7 +479,7 @@ const LuxuryHandler =(e) =>{}
 
                 
             </div>
-        {dayData.length>0?dayData[selectedDay-1].places.map((place,index)=>{
+        {Data.tour_dates.length>0?Data.tour_dates[selectedDay-1].places.map((place,index)=>{
                 return(
                     <div className='tour-day-edite-form-div-right-sub' key={index} >
                          
@@ -436,7 +487,7 @@ const LuxuryHandler =(e) =>{}
                          <div className='tour-day-edite-form-div-right-form-1'>
                             <label className='tour-day-edite-form-div-right-form-label-1'>place:</label>
                             <input className='tour-day-edite-form-div-right-form-input-1' value={place.place_name} onChange={(e)=>{
-                                const newdata = [...dayData]
+                                const newdata = [...Data]
                                 newdata[selectedDay-1].places[index].place_name = e.target.value
                                 setDayData(newdata)
                             
@@ -444,13 +495,11 @@ const LuxuryHandler =(e) =>{}
                          </div>
                          <div className='tour-day-edite-form-div-right-form-1'>
                             <label className='tour-day-edite-form-div-right-form-label-1'>place description:</label>
-                            <textarea  value={place.tour_place_description}
+                            <textarea  value={place.place_description}
                                        onChange={(e) => {
-                                            setDayData((prevData) => {
-                                             const newdata = [...prevData];
-                                            newdata[selectedDay - 1].places[index].tour_place_description = e.target.value;
-                                            return newdata;
-                                                });
+                                        const newdata = [...Data]
+                                        newdata[selectedDay-1].places[index].place_description = e.target.value
+                                        setDayData(newdata)
                                                             }}    />
                             <a onClick={PlaceDelete(index)}>DELETE</a>
 

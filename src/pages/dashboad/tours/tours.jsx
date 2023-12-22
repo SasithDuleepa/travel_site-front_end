@@ -9,6 +9,7 @@ export default function Tours()  {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
+  const [coverImage, setCoverImage] = useState('');
   const [price, setPrice] = useState('');
   const[distance, setDistance] =useState('');
 
@@ -18,7 +19,9 @@ export default function Tours()  {
 const [dayData, setDayData] =useState([
   {day:1 ,
     startdescription:'',
+    luxury_id:'',
     luxury:'',
+    semiluxury_id:'',
     semiluxury:'',
    places:[]
   }
@@ -90,6 +93,7 @@ const Submit =async()=>{
   formData.append('packageName', name);
   formData.append('description', description);
   formData.append('file', image);
+  formData.append('coverImage', coverImage);
   formData.append('price', price);
   formData.append('distance', distance);
   formData.append('dayData', JSON.stringify(dayData));
@@ -148,6 +152,7 @@ const LuxuryHandler =(e) =>{
   // console.log(e.target.value);
   const newdata = [...dayData]
   newdata[dayDataIndex].luxury = e.target.value
+  newdata[dayDataIndex].luxury_id = e.target.id
   setDayData(newdata)
 }
 
@@ -155,6 +160,7 @@ const SemiluxuryHandler = (e) =>{
   // console.log(e);
   const newdata = [...dayData]
   newdata[dayDataIndex].semiluxury = e.target.value
+  newdata[dayDataIndex].semiluxury_id = e.target.id
   setDayData(newdata)
 
 }
@@ -189,6 +195,10 @@ return (
         <label>image:</label>
         <input type="file" onChange={(e)=>setImage(e.target.files[0])} />
       </div>
+      <div className='dashboard-tour-form'>
+        <label>cover image:</label>
+        <input type="file" onChange={(e)=>setCoverImage(e.target.files[0])} />
+      </div>
       
       {/* <div className='dashboard-tour-form'>
         <label>price without hire and hotel:</label>
@@ -220,12 +230,12 @@ return (
         <div className='tour-places-hotel-div'>
           <div>
             <label>5 star hotel :</label>
-            <select onChange={(e)=>LuxuryHandler(e)} className='tour-places-hotel-select'>
-            <option>select hotel</option>
+            <select onChange={(e)=>LuxuryHandler(e)} className='tour-places-hotel-select' value={dayData[dayDataIndex].luxury}>
+            <option>select hotel </option>
               {luxaryHotels.map((hotel,index)=>{
                 return(
                   
-                  <option key={index} value={hotel.hotel_id}>{hotel.hotel_name}</option>
+                  <option key={index} id={hotel.hotel_id} value={hotel.hotel_name}>{hotel.hotel_name}</option>
                 )
               
               })}
@@ -235,12 +245,12 @@ return (
           </div>
           <div>
             <label>3star/4star hotel :</label>
-            <select onChange={(e)=>SemiluxuryHandler(e)} className='tour-places-hotel-select'>
-            <option>select hotel</option>
+            <select onChange={(e)=>SemiluxuryHandler(e)} className='tour-places-hotel-select' value={dayData[dayDataIndex].semiluxury}>
+            <option>select hotel </option>
               {semiluxuryHotels.map((hotel,index)=>{
                 return(
                   
-                  <option key={index} value={hotel.hotel_id}>{hotel.hotel_name}</option>
+                  <option key={index} id={hotel.hotel_id} value={hotel.hotel_name}>{hotel.hotel_name}</option>
                 )
               
               })}

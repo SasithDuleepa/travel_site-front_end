@@ -37,6 +37,8 @@ export default function TourPreview() {
   const[TourData,setTourData]= useState([])
   const[placesData, setPlacesData]= useState([])
   const[places,setPlaces] = useState([])
+
+  const[coverImg , setCoverImg] = useState('')
   
 
   const[btn1,setBtn1]=useState('deactive')
@@ -164,7 +166,8 @@ let visiting_fee = 0;
     try {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/tour/${tour}`);
       setTourData(res.data)
-      // console.log(res.data)
+      setCoverImg(res.data[0].cover_img)
+      console.log(res.data)
       if(res.data.length>0){
         setDistance(res.data[0].distance)
 
@@ -319,13 +322,18 @@ const Booknow = () => {
           </div>
         </div>
       </div>
-      <div style={Style}>
-        <p className='TourPreview-hero-title'>{TourData.length>0 ?TourData[0].tour_name:null}</p>
+      <div className='TourPreview-hero'>
+      <img alt='' src={`${process.env.REACT_APP_BACKEND_URL}/tour/tourimg?file=${coverImg}`} className='tour-hero-img'/>
+      <div className='TourPreview-hero-sub'>
+      <p className='TourPreview-hero-title'>{TourData.length>0 ?TourData[0].tour_name:null}</p>
         <div className='TourPreview-hero-route-div'>
           <a className='TourPreview-hero-route' href='/'>Home/</a>
-          <a className='TourPreview-hero-route' href='/tours/tourcategory'>Day Tours/</a>
+          <a className='TourPreview-hero-route' href='/tour/tourcategory'>Day Tours/</a>
           <button className='TourPreview-hero_route'>{TourData.length>0 ?TourData[0].tour_name:null}</button>
         </div>
+
+      </div>
+        
         <div className='TourPreview-hero-media-div'>
           <Socialmedia/>
 
@@ -338,7 +346,8 @@ const Booknow = () => {
         <div className='TourPreview-header-left'>
           <div className='TourPreview-header-left-1'>
             <p className='TourPreview-header-left-p'>Package Price:</p>
-            <p className='TourPreview-header-left-p' >$ {total}</p>
+            <p className='TourPreview-header-left-p' >$</p>
+            <p className='TourPreview-header-left-p' > {total}</p>
             <p className='TourPreview-header-left-p-sub'>* per person</p>
           </div>
           <div className='TourPreview-header-info'>
