@@ -16,26 +16,13 @@ export default function PlaceCard(props) {
 
   }
 
-  //Image
-  const [img, setimg] = useState('')
-  const GetImg = async () => {
-    try {
-      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/getplaceimgnames/${props.placeId}`);
-      // console.log(res.data[0])
-      setimg(res.data[1].img_name)
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  useEffect(() => { GetImg() }, [props.placeId])
   return (
     <a href={`/placeReview/${props.placeId}`}>
       <div className='placecard' style={props.direction === 'style_css_up' ? style_css_up : style_css_down}>
         <div className='placecard-bottom-div'>
           <p className='placecard-header'>{props.title}</p>
         </div>
-        <img className='place_img' src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${img}`} alt="" />
+        <img className='place_img' src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${props.img}`} alt="" />
 
       </div>
     </a>

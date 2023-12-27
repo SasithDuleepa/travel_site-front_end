@@ -14,8 +14,9 @@ import Socialmedia from './../../../components/social media/socialmedia';
 export default function Daytour_preview() {
 
 
-  
-
+  const [response, setResponse] = useState(null)
+  const [origin, setOrigin] = useState('colombo');
+  const [mapKey, setMapKey] = useState(1);
   const {id}= useParams();
   // console.log(id);
 
@@ -149,6 +150,7 @@ useEffect(()=>{
   // console.log('startDistance' , startDistance)
 
     let sub_total = fees + startDistance*2*vehicle + oranizingCost
+    console.log(sub_total)
     let tot = sub_total/passenger
 
     let tot_1 = tot.toFixed(0)
@@ -187,13 +189,15 @@ useEffect(()=>{
   }}
   ,[places])
 
-
-
+  useEffect(()=>{
+    setMapKey((prevKey) => prevKey + 1);
+  
+  },[origin])
+  
 
 
    // map
-   const [response, setResponse] = useState(null)
-   const [origin, setOrigin] = useState('colombo');
+
    let count = React.useRef(0);
    const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7qsYXATZC1Wj57plqEUhy_U7yHJjmNLM"});
    if (!isLoaded) return (
@@ -225,7 +229,7 @@ useEffect(()=>{
        }
 
 
-//bottom buttons
+
 
 
 
@@ -297,19 +301,42 @@ const Booknow = () => {
           <div className='day-tour-popup-1-main-form'>
             <label  className='day-tour-popup-1-main-form-label'>Enter Your Location:</label>            
             <select  className='day-tour-popup-1-main-form-input' onChange={(e)=>setOrigin(e.target.value)} value={origin}>
-              <option>select town</option>
-              <option value={'colombo'}>colombo</option>
-              <option value={'galle'}>galle</option>
-              <option value={'matara'}>matara</option>
-              <option value={'kandy'}>kandy</option>
-              <option value={'jaffna'}>jaffna</option>
-              <option value={'kurunegala'}>kurunegala</option>
-              <option value={'trincomalee'}>trincomalee</option>
-              <option value={'anuradhapura'}>anuradhapura</option>
-              <option value={'batticaloa'}>batticaloa</option>
-              <option value={'kegalle'}>kegalle</option>
-              <option value={'kalutara'}>kalutara</option>
-              <option value={'rathnapura'}>rathnapura</option>
+            <option>select town</option>
+<option value={'negombo'}>Negombo</option>
+<option value={'ja-ela'}>Ja-Ela</option>
+<option value={'wattala'}>Wattala</option>
+<option value={'colombo'}>Colombo</option>
+<option value={'dehiwala'}>Dehiwala</option>
+<option value={'mount-lavinia'}>Mount Lavinia</option>
+<option value={'moratuwa'}>Moratuwa</option>
+<option value={'panadura'}>Panadura</option>
+<option value={'wadduwa'}>Wadduwa</option>
+<option value={'kalutara'}>Kalutara</option>
+<option value={'payagala'}>Payagala</option>
+<option value={'maggona'}>Maggona</option>
+<option value={'beruwala'}>Beruwala</option>
+<option value={'aluthgama'}>Aluthgama</option>
+<option value={'bentota'}>Bentota</option>
+<option value={'induruwa'}>Induruwa</option>
+<option value={'kosgoda'}>Kosgoda</option>
+<option value={'ahungalla'}>Ahungalla</option>
+<option value={'balapitiya'}>Balapitiya</option>
+<option value={'ambalangoda'}>Ambalangoda</option>
+<option value={'madampagama'}>Madampagama</option>
+<option value={'akurala'}>Akurala</option>
+<option value={'hikkaduwa'}>Hikkaduwa</option>
+<option value={'rathgama'}>Rathgama</option>
+<option value={'boossa'}>Boossa</option>
+<option value={'galle'}>Galle</option>
+<option value={'unawatuna'}>Unawatuna</option>
+<option value={'talpe'}>Talpe</option>
+<option value={'koggala'}>Koggala</option>
+<option value={'ahangama'}>Ahangama</option>
+<option value={'weligama'}>Weligama</option>
+<option value={'mirissa'}>Mirissa</option>
+<option value={'polhena'}>Polhena</option>
+<option value={'matara'}>Matara</option>
+
             </select>
           </div>
           <div className='day-tour-popup-1-main-button-div'>
@@ -326,7 +353,7 @@ const Booknow = () => {
           
           <div className='day-tour-popup-1-main-form'>
             <label  className='day-tour-popup-1-main-form-label'>Enter Passenger Count:</label>            
-            <input  className='day-tour-popup-1-main-form-input' onChange={(e)=>setPopupPassenger(e.target.value)} value={popupPassenger}/>
+            <input  className='day-tour-popup-1-main-form-input' onChange={(e)=>setpassenger(e.target.value)} value={passenger}/>
           </div>
 
           <div className='day-tour-popup-1-main-button-div'>
@@ -474,7 +501,9 @@ const Booknow = () => {
 
       <div className='daytour-preview-center'>
         <div className='daytour-preview-center-left'>
+        {/* <p>{origin}</p> */}
         <GoogleMap
+        key={mapKey}
   mapContainerClassName='daytour-preview-center-map-container'
   center={calculateCenter()}
   zoom={7}
@@ -484,14 +513,15 @@ const Booknow = () => {
         <MarkerF key={index} position={{ lat: place.place_lat, lng: place.place_lng }} />
       ))
     : null}
-
+{/* <MarkerF  position={{ lat: 8.938354312738735, lng: 80.543212890625 }} /> */}
   <DirectionsService
     options={{
-      destination: origin,
+      // destination: origin,
       waypoints: [
         places.length > 0
-          ? { location: { lat: places[0].place_lat, lng: places[0].place_lng } }
-          : { location: 'Naula' },
+          ? { location: { lat: places[0].place_lat, lng: places[0].place_lng }
+         }
+          : null,
       ],
       origin: origin,
       travelMode: 'DRIVING',
@@ -499,20 +529,28 @@ const Booknow = () => {
     }}
     callback={directionsCallback}
   />
+
   <DirectionsRenderer directions={response} />
 
-  <DistanceMatrixService
+
+  
+
+
+<DistanceMatrixService
     options={{
-      destinations: [
+      destinations: [origin],
+      origins: [
         places.length > 0
           ? { location: { lat: places[0].place_lat, lng: places[0].place_lng } }
           : { location: 'Naula' },
       ],
-      origins: [origin],
       travelMode: 'DRIVING',
     }}
     callback={distanceCallback}
-  />s
+  />
+
+
+
 </GoogleMap>
         </div>
 

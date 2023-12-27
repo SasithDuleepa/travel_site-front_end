@@ -67,6 +67,19 @@
 }
 
 
+.daytouredite-places-form-div-search{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.daytouredite-places-form-div-search-results{
+    display: flex;
+    flex-direction: column;
+    max-height: 140px;
+    overflow-y:scroll ;
+}
+
 
 
 .daytouredite-update-btn{

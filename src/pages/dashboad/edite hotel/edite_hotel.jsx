@@ -113,7 +113,7 @@ export default function Edite_hotel() {
                 },
               })
             if (res.status === 200) {
-                window.alert("Place Update successfully");
+                window.alert("Hotel Update successfully");
                 setId("")
                 setName("")
                 setLang("")
@@ -144,7 +144,7 @@ export default function Edite_hotel() {
         try {
             const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/hotels/delete/${id}`)
             if (res.status === 200) {
-                window.alert("Place Deleted successfully");
+                window.alert("hotel Deleted successfully");
                 setId("")
                 setName("")
                 setLang("")

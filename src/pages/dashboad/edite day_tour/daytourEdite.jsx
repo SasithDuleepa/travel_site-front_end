@@ -14,6 +14,9 @@ export default function DaytourEdite() {
     const[image, setImage] = useState(null);
     const[currentCoverImg, setCurrentCoverImg] = useState('')
     const[coverImg, setCoverImg] = useState(null);
+    const[homeImg,setHomeImg] = useState(null);
+    const[currentHomeImg, setCurrentHomeImg] = useState(null)
+    
     const[startDescription, setStartDescription]= useState('')
 
     const[daytours,setDaytours] = useState([]);
@@ -31,6 +34,21 @@ export default function DaytourEdite() {
         }
         ;
     }
+
+    const TourSearchHandler =async (e) =>{
+        console.log(e.target.value)
+        if(e.target.value){
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/Search/${e.target.value}`);
+          console.log(res.data)
+          setDaytours(res.data.data)
+      
+        }else{
+            SearchAllHandler()
+        }
+        
+      }
+
+    
     useEffect(()=>{
         SearchAllHandler()
     },[])
@@ -40,9 +58,18 @@ export default function DaytourEdite() {
         // console.log(res.data)
         setAllPlaces(res.data.data);
     }
-    useEffect(() => {
-        GetAllPlaces();
-    }, []);
+        //search bar
+const SearchHandler =async(e)=>{
+    console.log(e.target.value);
+    if(e.target.value!==""){
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/placesearch/${e.target.value}`)
+      // console.log(res.data.data);
+      setAllPlaces(res.data.data)
+    }else{
+        GetAllPlaces()
+    }
+  }
+
 
     const searchHandler =(id)=> async() =>{
         
@@ -60,6 +87,7 @@ export default function DaytourEdite() {
             setCurrentImg(res.data[0].img)
             setStartDescription(res.data[0].start_description)
             setCurrentCoverImg(res.data[0].cover_img)
+            setCurrentHomeImg(res.data[0].home_img)
 
         } catch (error) {
             console.log(error);
@@ -79,6 +107,8 @@ export default function DaytourEdite() {
     
     }
 
+  
+
     const PlaceDeleteHandler =(index)=> async() =>{
         const newPlaces = [...places];
         newPlaces.splice(index, 1);
@@ -86,23 +116,23 @@ export default function DaytourEdite() {
     
 
     }
-    const AddPlaceHandler = () => {
-        setPlaces([...places, { place_id: '', description: '' }]);
+    const AddPlaceHandler = (place,id) => {
+        setPlaces([...places, { place_id: id,place_name: place, description: '' }]);
       }
 
-    //   const PlaceHandler = (index, e) => {
-    //     const selectedValue = e.target.value;
-    //     const selectedPlace = allPlaces.find(place => place.place_id === selectedValue);
+      const PlaceHandler = (index, e) => {
+        const selectedValue = e.target.value;
+        const selectedPlace = allPlaces.find(place => place.place_id === selectedValue);
       
-    //     const newdata = [...places];
-    //     newdata[index] = {
-    //       ...newdata[index],
-    //       place_id: selectedPlace.place_id,
-    //       place_name: selectedPlace.place_name,
-    //     };
+        const newdata = [...places];
+        newdata[index] = {
+          ...newdata[index],
+          place_id: selectedPlace.place_id,
+          place_name: selectedPlace.place_name,
+        };
       
-    //     setPlaces(newdata);
-    //   };
+        setPlaces(newdata);
+      };
 
       const infoHandler = (index, e) => {
         const newdata = [...places];
@@ -126,6 +156,8 @@ export default function DaytourEdite() {
     formData.append('file', image);
     formData.append('currentCoverImg', currentCoverImg);
     formData.append('coverImg', coverImg);
+    formData.append('homeImg', homeImg);
+    formData.append('currentHomeImg', currentHomeImg);
     formData.append('startDescription', startDescription); 
     places.forEach((place, index) => {
         formData.append(`places[${index}][place]`, place.place_id);
@@ -143,7 +175,23 @@ export default function DaytourEdite() {
           });
         console.log(res.data)
         if (res.status === 200) {
-            window.alert("Place added successfully");
+            window.alert("day tour updated successfully");
+
+            setId("")
+            setName('')
+            setDescription('')
+            setDistance('')
+            setOrganizingCost(0)
+            setPrice('')
+            setCurrentImg('')
+            setImage(null)
+            setCurrentCoverImg('')
+            setCoverImg(null)
+            setStartDescription('')
+            setPlaces([])
+            setCurrentHomeImg('')
+            setHomeImg(null)
+            window.location.reload();
            
           }
      } catch (error) {
@@ -172,6 +220,7 @@ export default function DaytourEdite() {
               });
             console.log(res.data)
             if(res.status === 200){
+                window.alert("day tour deleted successfully");
                 window.location.reload()
             }
         } catch (error) {
@@ -197,7 +246,7 @@ export default function DaytourEdite() {
 <div className='daytouredite'>
         
 
-        <input type="text" placeholder='search day tour' />
+        <input type="text" placeholder='search day tour' onChange={(e)=>TourSearchHandler(e)}/>
 
         <div  className='daytouredite-result'>
             {daytours.length>0 && daytours.map((daytour)=>(
@@ -227,7 +276,7 @@ export default function DaytourEdite() {
                 <input className='daytouredite-form-input' type="number" value={price} onChange={(e)=>setPrice(e.target.value)}/>
             </div>
             <div className='daytouredite-form'>
-                <label className='daytouredite-form-label'>Image</label>
+                <label className='daytouredite-form-label'>card Image</label>
                 <input className='daytouredite-form-input' type="file" onChange={(e)=>setImage(e.target.files[0])}/>
                 {image ? <img src={URL.createObjectURL(image)} alt="" />
                 :<img src={`${process.env.REACT_APP_BACKEND_URL}/daytour/daytourimg?file=${currentImg}`} alt="" />}
@@ -236,10 +285,18 @@ export default function DaytourEdite() {
 
 
             <div className='daytouredite-form'>
-                <label className='daytouredite-form-label'>Image</label>
+                <label className='daytouredite-form-label'>cover Image</label>
                 <input className='daytouredite-form-input' type="file" onChange={(e)=>setCoverImg(e.target.files[0])}/>
-                {image ? <img src={URL.createObjectURL(coverImg)} alt="" />
+                {coverImg ? <img src={URL.createObjectURL(coverImg)} alt="" />
                 :<img src={`${process.env.REACT_APP_BACKEND_URL}/daytour/daytourimg?file=${currentCoverImg}`} alt="" />}
+      
+            </div>
+
+            <div className='daytouredite-form'>
+                <label className='daytouredite-form-label'>home Image</label>
+                <input className='daytouredite-form-input' type="file" onChange={(e)=>setHomeImg(e.target.files[0])}/>
+                {homeImg ? <img src={URL.createObjectURL(homeImg)} alt="" />
+                :<img src={`${process.env.REACT_APP_BACKEND_URL}/daytour/daytourimg?file=${currentHomeImg}`} alt="" />}
       
             </div>
 
@@ -266,6 +323,20 @@ export default function DaytourEdite() {
                 </div>
 
                 ))}
+
+                <div className='daytouredite-places-form-div-search'>
+                    <input onChange={(e)=>SearchHandler(e)} />
+                    <div className='daytouredite-places-form-div-search-results'>
+                        {allPlaces.map((place,index)=>{
+                            return(
+                                <a onClick={()=>AddPlaceHandler(place.place_name,place.place_name)}>{place.place_name}</a>
+
+                            )
+                            
+
+                        })}
+                    </div>
+                </div>
 
                 {/* <a onClick={AddPlaceHandler}>add</a> */}
                 

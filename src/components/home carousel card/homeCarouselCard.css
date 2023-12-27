@@ -1,6 +1,7 @@
 .homeCarouselCard-main{
     width: 256px;
     height: 354px;
+    /* position: relative; */
 }
 .homeCarouselCard{
     width: 251px;

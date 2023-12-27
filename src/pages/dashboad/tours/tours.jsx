@@ -12,6 +12,7 @@ export default function Tours()  {
   const [coverImage, setCoverImage] = useState('');
   const [price, setPrice] = useState('');
   const[distance, setDistance] =useState('');
+  const[days,setDays] = useState('');
 
 
 
@@ -96,6 +97,7 @@ const Submit =async()=>{
   formData.append('coverImage', coverImage);
   formData.append('price', price);
   formData.append('distance', distance);
+  formData.append('days', days);
   formData.append('dayData', JSON.stringify(dayData));
   try {
     const token = sessionStorage.getItem("token");
@@ -190,6 +192,10 @@ return (
       <div className='dashboard-tour-form'>
         <label>description:</label>
         <textarea type="text" value={description} onChange={(e)=>setDescription(e.target.value)}/> 
+      </div>
+      <div className='dashboard-tour-form'>
+        <label>days:</label>
+        <input type="number" value={days} onChange={(e)=>setDays(e.target.value)}/> 
       </div>
       <div className='dashboard-tour-form'>
         <label>image:</label>

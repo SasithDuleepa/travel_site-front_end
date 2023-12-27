@@ -11,6 +11,7 @@ export default function DayTour() {
   const[distance,setDistance]= useState(0)
   const[oranizingCost,setOrganizingCost ] = useState(0)
   const[image,setImage] = useState('')
+  const[homeImage,setHomeImage] = useState('')
   const[coverImg, setCoverImg] = useState('')
   const[startDescription,setStartDescription] = useState('')
 
@@ -82,6 +83,7 @@ const Add = async() =>{
     formData.append('distance', distance);
     formData.append('organizingcost', oranizingCost);
     formData.append('file', image);
+    formData.append('homeImage', homeImage);
     formData.append('coverImg', coverImg);
     formData.append('startDescription', startDescription);
     // formData.append('places', selectedPlaces);
@@ -159,8 +161,13 @@ const Add = async() =>{
             </div>
 
             <div className='daytour-form-div'>
-                <label>image</label>
+                <label>card image</label>
                 <input type='file'   className='daytour-input'  onChange={(e)=>setImage(e.target.files[0])} />
+            </div>
+
+            <div className='daytour-form-div'>
+                <label>home image</label>
+                <input type='file'   className='daytour-input'  onChange={(e)=>setHomeImage(e.target.files[0])} />
             </div>
 
             <div className='daytour-form-div'>

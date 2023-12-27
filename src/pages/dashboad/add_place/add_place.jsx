@@ -96,6 +96,7 @@ const removeFile =(index)=> (e) => {
               setData({
                 name:"",
                 description:"",
+                priority:"",
                 short:"",
                 time:'',
                 fee:'',
@@ -103,6 +104,9 @@ const removeFile =(index)=> (e) => {
                 lng:79.873046875,
                 file:[]
               })
+              setCardImg([]);
+              setCoverImgs([]);
+
             }
           
             

@@ -7,15 +7,31 @@
     border: 1px solid black;
     padding: 20px;
 }
+.TcEdite-search-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px;
+}
 .TcEdite-tours{
     background-color: rgb(235, 235, 235);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    max-height: 120px;
+    overflow-y: scroll;
 }
 .TcEdite-tour-results{
     margin: 2px auto;
+    width: 300px;
+}
+.TcEdite-tour-results-btn{
+    width: 100%;
+
+    &:hover{
+        background-color: aliceblue;
+    }
 }
 .TcEdite-form-div{
     /* background-color: antiquewhite; */

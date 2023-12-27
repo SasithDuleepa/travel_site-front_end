@@ -23,6 +23,23 @@ const TourCategory =async() =>{
     console.log(res.data);
     setTourCategory(res.data);
 }
+const TourCategorySearch = async(e) =>{
+  if(e.target.value  !== ''){
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tourcategory/search/${e.target.value}`);
+      console.log(res.data);
+      setTourCategory(res.data);
+      
+    } catch (error) {
+      setTourCategory([])
+    }
+
+  }else{
+    TourCategory();
+  }
+  
+  
+} 
 
 useEffect(()=>{
     TourCategory()
@@ -64,6 +81,17 @@ const DeleteHandler =(index)=>{
     setTours(data)
 }
 
+const[searchdata,setSearchdata] = useState([])
+const SearchHandler =async (e) =>{
+  console.log(e.target.value)
+  if(e.target.value){
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/toursSearch/${e.target.value}`);
+    console.log(res.data)
+    setSearchdata(res.data.data)
+
+  }
+  
+}
 
 
 const UpdateHandler =async()=>{
@@ -137,11 +165,16 @@ const Delete =async()=>{
     <div className='TcEdite-main'>
         <h1>Edite Tour Category</h1>
         <div className='TcEdite'>
+          <div className='TcEdite-search-div'>
+            <input onChange={(e)=>TourCategorySearch(e)} placeholder='search tour category'/>
+
+          </div>
+          
             <div className='TcEdite-tours'>
                     {tourCategory.length>0 && tourCategory.map((tourcategory,index)=>{
                         return(
                             <div className='TcEdite-tour-results' key={index}>
-                                <a onClick={()=>setTcId(tourcategory.tourcategory_id)}>{tourcategory.tourcategory_name}</a>
+                                <button className='TcEdite-tour-results-btn' onClick={()=>setTcId(tourcategory.tourcategory_id)}>{tourcategory.tourcategory_name}</button>
 
                             </div>
                         )
@@ -183,6 +216,33 @@ const Delete =async()=>{
                         
                         
                         })}
+                    </div>
+
+
+                    <div>
+                      <input type="text" onChange={(e)=>SearchHandler(e)}/>
+                      <div className='TcEdite-search-result'>
+                        {searchdata.length>0 && searchdata.map((item,index)=>{
+                            return(
+                                <div className='TcEdite-search-result-div' key={index}>
+                                    <a onClick={()=>
+                                        {
+                                            const data = [...tours]
+                                            data.push({tour_id:item.tour_id,tour_name:item.tour_name})
+                                            setTours(data)
+                                        }
+                                        
+                                        }
+                                        
+                                        
+                                        
+                                        key={index}
+                                        >{item.tour_name}</a>
+
+                                </div>
+                            )
+                        })}
+                      </div>
                     </div>
                 </div>
                 <div className='TcEdite-btn-div'>

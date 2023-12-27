@@ -36,7 +36,7 @@ export default function MapRoutes() {
         zoom={11}
       >
         <MarkerF position={{ lat: 6.93665, lng: 79.84505 }} />
-        <DirectionsService
+        {/* <DirectionsService
             options={{
               destination: origin,
               waypoints: [{ 
@@ -49,7 +49,7 @@ export default function MapRoutes() {
             }}
             callback={directionsCallback}
           />
-          <DirectionsRenderer directions={response} />
+          <DirectionsRenderer directions={response} /> */}
 
         {/* {directions && (
           <DirectionsRenderer directions={directions} />

@@ -7,9 +7,9 @@ export default function HeaderText() {
     <div className='header-text-main'>
       <div className='header-text'>
       <div className='header-text-child1'>
-        <p className='header-text-sub-p reveal'>Travel with</p>
-        <h1 className='header-text-h1 reveal'>Sri Lanka Travel Experts</h1>
-        <p className='header-text-p reveal'>Lorem ipsum dolor sit amet consectetur. Pharetra lectus nisi lacus non ut turpis.
+        <p className='header-text-sub-p '>Travel with</p>
+        <h1 className='header-text-h1 '>Sri Lanka Travel Experts</h1>
+        <p className='header-text-p '>Lorem ipsum dolor sit amet consectetur. Pharetra lectus nisi lacus non ut turpis.
            Senectus elit lobortis morbi amet. Commodo nullam accumsan fames sed sapien gravida           
             nec gravida id. Netus at proin tristique pharetra eget feugiat tempor amet non.
              Enim vel sodales tellus sem in sit at sodales pharetra. Dictum quis varius
@@ -19,7 +19,7 @@ export default function HeaderText() {
                 Sit nec blandit sed enim a commodo quam suspendisse. Sed consectetur
                  molestie non elit porttitor ac auctor. Urna et sed risus sagittis elementum ut.
            Aenean commodo nullam rutrum enim suspendisse blandit ullamcorper nibh.</p>
-           <div className='reveal'><a className='headertext-more-btn' href='/about'>Read More</a></div>
+           <div className=''><a className='headertext-more-btn' href='/about'>Read More</a></div>
            
         
 
@@ -27,7 +27,7 @@ export default function HeaderText() {
 
 
       <div className='header-text-child2'>
-          <img className='header-text-child2-img reveal' src={World} alt="" />
+          <img className='header-text-child2-img ' src={World} alt="" />
       </div>
     </div>
 
@@ -36,24 +36,24 @@ export default function HeaderText() {
   )
 }
 
-function reveal() {
-  var reveals = document.querySelectorAll(".reveal");
-  // console.log(reveals);
+// function reveal() {
+//   var reveals = document.querySelectorAll(".reveal");
+//   // console.log(reveals);
 
-  for (var i = 0; i < reveals.length; i++) {
-    var windowHeight = window.innerHeight;
-    var elementTop = reveals[i].getBoundingClientRect().top;
-    var elementVisible = 110;
+//   for (var i = 0; i < reveals.length; i++) {
+//     var windowHeight = window.innerHeight;
+//     var elementTop = reveals[i].getBoundingClientRect().top;
+//     var elementVisible = 110;
 
-    // console.log(windowHeight);
-    // console.log(elementTop);
+//     // console.log(windowHeight);
+//     // console.log(elementTop);
 
-    if (elementTop < windowHeight - elementVisible) {
-      reveals[i].classList.add("active_");
-    } else {
-      reveals[i].classList.remove("active_");
-    }
-  }
-}
+//     if (elementTop < windowHeight - elementVisible) {
+//       reveals[i].classList.add("active_");
+//     } else {
+//       reveals[i].classList.remove("active_");
+//     }
+//   }
+// }
 
-window.addEventListener("scroll", reveal);
+// window.addEventListener("scroll", reveal);

@@ -71,13 +71,14 @@ export default function TCPriview() {
           augue nulla enim posuere varius porttitor.
         </p>
 
-        <div className='TCPriview-card-div'>
+        <div className='TCPriview-card_div'>
 
 
 {tours.map((tour,index)=>{
                     return(
                         <Card key={index} name={tour.tour_name} tour_description={tour.tour_description} image={`${process.env.REACT_APP_BACKEND_URL}/tour/tourimg/?file=${tour.tour_img}`} link={`/tour/${tour.tour_id
                         }`}
+                        days={tour.days}
                         />
                     )
                 })}

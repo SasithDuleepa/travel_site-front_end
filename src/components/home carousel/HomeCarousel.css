@@ -32,13 +32,12 @@
 
 
 .homecarousel{
-    padding: 50px 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 50px 0px;
+
     width: 765px;
 
     /* background-color: yellowgreen; */
+    
 
 }
 .homecarousel-info-div{
@@ -89,9 +88,8 @@
 
 
 .carousel{
-    display: flex;
-    gap: 50px;
-    background-color: yellowgreen;
+
+    /* background-color: yellowgreen; */
 }
 .carousel-container{
     /* background-color: aqua; */
@@ -105,48 +103,33 @@
 
 
 .homecarousel-forward-arrow{
-    background-color: transparent;
-    width: 48px;
-    height: 48px;
-    background-color: transparent;
-    color: aliceblue;
-
-}
-.homecarousel-forward-btn{
     background-color: rgba(87, 87, 87, 0.445);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 48px;
     height: 48px;
     border-radius: 100px;
-
-    border: none;
     position: absolute;
-    top:200px;
-    margin-left: -30px;
-    
+    top: 150px;
+    left: -30px;
+
+
+
+
 }
+
 .homecarousel-backward-arrow{
-    background-color: transparent;
-    width: 48px;
-    background-color: transparent;
-    color: aliceblue;
-}
-.homecarousel-backward-btn{
     background-color: rgba(87, 87, 87, 0.445);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 48px;
     height: 48px;
     border-radius: 100px;
-    border: none;
     position: absolute;
-    top: 200px;
-    margin-left: 744px;
-    z-index: 1;
+    z-index: 2;
+    top: 150px;
+    right: -30px;
+
+
+
 }
+
 
 
 

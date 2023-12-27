@@ -136,6 +136,12 @@
 
 
 
+.touredite-update-day-place-select-div{
+    padding: 20px;
+    background-color: antiquewhite;
+}
+
+
 .touredite-update-btn{
     background-color: rgb(12, 12, 71);
     color: white;

@@ -1,5 +1,8 @@
-import React, { Component, useEffect, useState } from "react";
-import Carousel from "react-simply-carousel";
+import React, { useEffect, useState } from "react";
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import './HomeCarousel.css';
 import axios from "axios";
 
@@ -11,11 +14,8 @@ import LeftArrow from './../../assets/icons/Left Arrow.svg'
 import RightArrow from './../../assets/icons/Right Arrow.svg'
 
 export default function HomeCarousel() {
-    const [activeSlide, setActiveSlide] = useState(0);
-    const slidefunc = (e) =>{
-           
-            setActiveSlide(e);
-    }
+
+
 
     const[categories, setCategories] = useState([{category_img:"",category_nam:"",category_description:""}])
     //get all tour categories
@@ -28,8 +28,40 @@ export default function HomeCarousel() {
       Categories();
       
     },[])
-    // console.log(activeSlide)
-    // console.log(categories)
+
+
+    const settings = {
+      dots: false,
+      speed: 1400,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      // arrows:false,
+      nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />
+
+
+    };
+
+    function SampleNextArrow(props) {
+      const {onClick } = props;
+      return (
+
+           <img alt="" onClick={onClick} src={RightArrow} className= "homecarousel-forward-arrow"/>
+        
+      );
+    }
+    
+    function SamplePrevArrow(props) {
+      const {  onClick } = props;
+      return (
+
+          <img alt="" onClick={onClick} src={LeftArrow} className= "homecarousel-backward-arrow" />
+
+      );
+    }
   return (
     <div className="homecarousel-main-div">
       <div className="homecarousel-sub-div1"></div>
@@ -46,69 +78,18 @@ export default function HomeCarousel() {
 
         </div>
         <div className='homecarousel'>
-          <Carousel
-        
-        containerProps={{
-          
-          style: {
-            width: "100%",
-            justifyContent: "space-between",
-            userSelect: "none"
-          }
-        }}
-    preventScrollOnSwipe
-    swipeTreshold={60}
-    activeSlideIndex={activeSlide}
+
+          <Slider {...settings}>
+          {categories.length > 0 && categories.map((category, index) => (
+            <div>
+              <HomeCaouselCard key={index} title={category.tourcategory_name} img={category.tourcategory_img} description={category.tourcategory_description} link={`/tourcategory/${category.tourcategory_id}`}/>
     
 
+            </div>
+      ))}
 
-    onRequestChange={setActiveSlide}
-    forwardBtnProps={{
-      children: <img src={RightArrow} className= "homecarousel-forward-arrow"/>,
-      className: "homecarousel-forward-btn",
-      }}
-    backwardBtnProps={{
-      children:<img src={LeftArrow} className= "homecarousel-backward-arrow" />,
-      // children: <img className="arrow-left" src={Arrow} />,
-      className: "homecarousel-backward-btn",
-    }}
-    dotsNav={{
-      show: false,
-      itemBtnProps: {
-        style: {
-          height: 16,
-          width: 16,
-          borderRadius: "50%",
-          border: 0,
-          
-        }
-      },
-      activeItemBtnProps: {
-        style: {
-          height: 16,
-          width: 16,
-          borderRadius: "50%",
-          border: 0,
-          background: "black"
-        }
-      }
-    }}
-    
-    autoplay={true}
-            delay={1000}
-            itemsToShow={5}
-            speed={2000}
-            easing="ease-in-out"
-            centerMode
-  >
-    {categories.length > 0 && categories.map((category, index) => (
-      <HomeCaouselCard key={index} title={category.tourcategory_name} img={category.tourcategory_img} description={category.tourcategory_description} link={`/tourcategory/${category.tourcategory_id}`}/>
-    ))}
-   
 
-    
-    
-          </Carousel>
+          </Slider>
         </div>
       </div>
 

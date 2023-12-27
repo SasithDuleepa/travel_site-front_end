@@ -159,6 +159,7 @@ export default function EditePlace() {
           
               if(res.status === 200){
                 window.alert("Place updated successfully");
+                window.location.reload();
               }
         } catch (error) {
             if(error.response.status === 401){
