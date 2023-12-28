@@ -61,7 +61,7 @@ export default function Contactus() {
   return (
     <div className='Contact'>
 
-      <div style={contactStyle}>
+      <div  className=' wrapper' style={contactStyle}>
         <p className='Contact-main-title'>Contact Us</p>
         <div className='Contact-main-route'>
           <a className='Contact-main-route-link' href='/'>Home /</a>

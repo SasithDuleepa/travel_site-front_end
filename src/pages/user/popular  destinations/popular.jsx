@@ -35,7 +35,7 @@ export default function Popular() {
       };
   return (
     <div className='popular-destinations'>
-        <div style={Style}>
+        <div className=' wrapper' style={Style}>
             <p  className='popular-destinations-main-title'>Popular Destinations</p>
             <div className='popular-destinations-main-route'>
                 <a className='popular-destinations-main-route-link'>Home /</a>

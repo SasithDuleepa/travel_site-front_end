@@ -52,9 +52,11 @@
 
 
 
+
+
 .Tour-description{
     text-align: justify;
-    margin: 70px auto ;
+    margin: 45px auto 35px auto;
     width: 1200px;
 }
 
@@ -62,12 +64,12 @@
     border-top: 1px solid rgb(60, 60, 60);
     border-bottom: 1px solid rgb(60, 60, 60);
     height: 50px;
-    margin: 20px 100px;
+    margin: 0px 100px 20px 100px;
     display: flex;
     justify-content: center;
-    gap: 50px;
+    gap: 100px;
     align-items: center;
-    width: 1000px;
+    width: 1200px;
 }
 .Tour_button{
     background-color: rgba(0, 0, 73, 0);
@@ -100,9 +102,10 @@
 
     width: 1200px;
     display:flex ;
+    justify-content: space-between;
     flex-wrap: wrap;
     row-gap: 5px;
-    column-gap: 5px;
+    column-gap: 8px;
     justify-content: left;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
 }

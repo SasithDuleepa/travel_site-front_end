@@ -16,6 +16,8 @@ export default function Tours() {
   const [dayTour, setDayTour] = useState([]);
   const [tourCategory, setTourCategory] = useState([])
 
+  const[pageTitle,setPageTitle] = useState("Tour Packages")
+
 
 
   const GetTourCategory = async() =>{
@@ -40,12 +42,14 @@ export default function Tours() {
       setTourcatergoryBTN('Tour_button-active')
       setDaytourBTN('Tour_button')
       SetPage("Tour Packages")
+      setPageTitle('Tour Packages')
 
     }else if(page === 'daytour'){
       GetDayTours()
       setDaytourBTN('Tour_button-active')
       setTourcatergoryBTN('Tour_button')
       SetPage('Day Tours')
+      setPageTitle("Day Tour Packages")
     }else{
       SetPage('nopage')
     }
@@ -61,11 +65,13 @@ export default function Tours() {
   const tourcatergoryBTNHandler=()=>{
     setTourcatergoryBTN('Tour_button-active')
     setDaytourBTN('Tour_button')
+    
    
   }
   const daytourBTNHandler=()=>{
     setDaytourBTN('Tour_button-active')
     setTourcatergoryBTN('Tour_button')
+    
    
   }
 
@@ -85,11 +91,11 @@ export default function Tours() {
   return (
     <div className='Tours'>
       <div className=' wrapper' style={Style}>
-        <p className='Tour-over-layer-p'>Travel in Sri Lanka</p>
+        <p className='Tour-over-layer-p'>{pageTitle}</p>
         <div className='Tour-over-layer-route-div'>
           <a  className='Tour-over-layer-route' href='/'>Home</a>
           <p className='Tour-over-layer-route'>/</p>
-          <p  className='Tour-over-layer_route'>{Page}</p>
+          <p  className='Tour-over-layer_route'>{pageTitle}</p>
         </div>
         <div className='Tour-over-layer-media-div'>
           <Socialmedia/>
@@ -124,8 +130,8 @@ export default function Tours() {
           :null}
 
        <div className='button-div'>
-        <a className={tourcatergoryBTN} href='/tours/tourcategory' onClick={tourcatergoryBTNHandler}>Tour category</a>
-        <a className={daytourBTN}  href='/tours/daytour'  onClick={daytourBTNHandler}>Day Tour Package</a>
+        <a className={tourcatergoryBTN} href='/tours/tourcategory' onClick={tourcatergoryBTNHandler}>Tour Packages</a>
+        <a className={daytourBTN}  href='/tours/daytour'  onClick={daytourBTNHandler}>Day Tour Packages</a>
        </div>
        <div className='tours-card-container-div'>
         <div className='tours-card-container-div-sub'>

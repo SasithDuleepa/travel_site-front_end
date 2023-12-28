@@ -95,11 +95,19 @@
     font-size: 20px;
     font-weight: 400;
     font-family: poppins;
+
+}
+.daytour-preview-top-left-p3{
+    font-size: 20px;
+    font-weight: 400;
+    font-family: poppins;
+    text-decoration: line-through;
 }
 .daytour-preview-top-left-p2{
     font-size: 10px;
     font-weight: 400;
     font-family: poppins;
+    
 }
 .daytour-preview-top-left-info{
     display: flex;
@@ -122,7 +130,8 @@
 .daytour-preview-top-left-code{
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
+    /* background-color: yellowgreen; */
 }
 .daytour-preview-top-left-code-p1{
     font-size: 20px;
@@ -130,18 +139,26 @@
     color: orange;
     font-family: poppins;
 }
-.daytour-preview-top-left-code-input{
-    width: 125px;
-    height: 25px;
-    border: 3px solid orange;
-    border-radius: 5px;
+.daytour-preview-top-left-code-p2{
+    font-size: 20px;
+    font-weight: 400;
+    color: rgb(253, 37, 37);
+    font-family: poppins;
+    text-decoration: line-through;
+
+
 }
-.daytour-preview-top-left-code-btn{
-    background-color: orange;
-    padding: 8px 28px;
-    border-radius: 25px;
-    border: none;
-    
+.daytour-preview-top-left-code-p3{
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(253, 37, 37);
+    font-family: poppins;
+}
+.daytour-preview-top-left-code-p4{
+    font-size: 10px;
+    font-weight: 400;
+    font-family: poppins;
+    color: orange;
 }
 .daytour-preview-top-left-line{
     border-bottom: 2px solid black;
@@ -160,14 +177,23 @@
    
 }
 .daytour-preview-top-right{
-    /* background-color: blue; */
+   
     width: 792px;
     height: 320px;
 }
-.daytour-preview-top-right-img{
+.daytour-preview-top-right-img-div{
+
     width: 388px;
     height: 300px;
-    padding:0px 5px 0px 5px;
+
+}
+.daytour-preview-top-right-img{
+    width: 391px;
+    height: 300px;
+    margin: 5px;
+    display: flex;
+
+
 }
 
 
@@ -194,8 +220,8 @@
 
 .daytour-preview-center{
     display: flex;
-    justify-content: center;
-    width: 1195px;
+    justify-content: space-between;
+    width: 1200px;
     margin: 50px auto;
 }
 .daytour-preview-center-left{
@@ -260,7 +286,7 @@
 .daytour-preview-bottom-btn-div{
     border-bottom: 1px solid black;
     border-top: 1px solid black;
-    width: 1000px;
+    width: 1200px;
     padding: 5px 10px;
     display: flex;
     justify-content: space-around
@@ -278,13 +304,16 @@
 }
 .daytour-preview-bottom-info-div{
     /* background-color: aqua; */
-    height: 500px;
+    /* height: 500px; */
 }
 
 
 
 .daytour-preview-bottom-info-1{
     display: flex;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    height: 378px;
 }
 .daytour-preview-bottom-info-1-left{
     width: 50%;
@@ -297,7 +326,10 @@
 
 .daytour-preview-bottom-info-2{
     width: 100%;
-    height: 458px;
+    height: 378px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+
    
 }
 .daytour-preview-bottom-info-2-map{
@@ -307,7 +339,10 @@
 .daytour-preview-bottom-info-3{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
+    gap: 8px;
+    margin: 35px auto 35px auto;
+    height: 378px;
 }
 
 
@@ -330,7 +365,7 @@
 }  
 .day-tour-popup-1-main{
     border: 2px solid black;
-    padding: 50px 100px;
+    padding: 30px 50px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -345,6 +380,7 @@
 .day-tour-popup-1-main-form{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .day-tour-popup-1-main-form-label{
     font-size: 20px;
@@ -352,16 +388,17 @@
     font-family: poppins;
 }
 .day-tour-popup-1-main-form-input{
-    width: 475px;
-    height: 35px;
+    width: 275px;
+    height: 30px;
     border-radius: 5px;
     border: 2px solid rgba(0, 0, 0, 0.692);
+    text-align: center;
 }
 .day-tour-popup-1-main-button-div{
     display: flex;
-    gap: 50px;
+    gap: 40px;
     margin: 10px auto;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 .day-tour-popup-1-main-ok{
     background-color: orange;

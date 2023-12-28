@@ -146,6 +146,7 @@ const SearchHandler =async(e)=>{
       
 
     const UpdateHandler = async() =>{
+      console.log(places)
         const formData = new FormData();
     formData.append('daytour', name);
     formData.append('description', description);
@@ -263,18 +264,18 @@ const SearchHandler =async(e)=>{
                 <label className='daytouredite-form-label'>Description</label>
                 <input className='daytouredite-form-input' type="text" value={description} onChange={(e)=>setDescription(e.target.value)}/>
             </div>
-            <div className='daytouredite-form'>
+            {/* <div className='daytouredite-form'>
                 <label className='daytouredite-form-label'>Distance</label>
                 <input className='daytouredite-form-input' type="number" value={distance} onChange={(e)=>setDistance(e.target.value)}/>
-            </div>
+            </div> */}
             <div className='daytouredite-form'>
                 <label className='daytouredite-form-label'>Organizing Cost : </label>
                 <input className='daytouredite-form-input' type="number" value={organizingCost} onChange={(e)=>setOrganizingCost(e.target.value)}/>
             </div>
-            <div className='daytouredite-form'>
+            {/* <div className='daytouredite-form'>
                 <label className='daytouredite-form-label'>Price</label>
                 <input className='daytouredite-form-input' type="number" value={price} onChange={(e)=>setPrice(e.target.value)}/>
-            </div>
+            </div> */}
             <div className='daytouredite-form'>
                 <label className='daytouredite-form-label'>card Image</label>
                 <input className='daytouredite-form-input' type="file" onChange={(e)=>setImage(e.target.files[0])}/>
@@ -310,26 +311,25 @@ const SearchHandler =async(e)=>{
         <div className='daytouredite-places-form-div'>
             {places.length>0 && places.map((place,index)=>(
                 <div key={index}  className='daytouredite-places-form'>
+                    <div className='daytouredite-places-form-sub'>
                     <p className='daytouredite-places-form-place'>{place.place_name}</p>
-                    {/* <select  onChange={(e)=>PlaceHandler(index,e)}>
-                        <option value="">Select Place</option>
-                        {allPlaces.length>0 && allPlaces.map((place)=>(
-                            <option  value={place.place_id}>{place.place_name}</option>
-                        ))}
-                
-                    </select> */}
-                    <textarea className='daytouredite-places-form-info' value={place.description} onChange={(e)=>infoHandler(index,e)}></textarea>
                     <a className='daytouredite-places-form-btn' onClick={PlaceDeleteHandler(index)}>DELETE</a>
+
+                    </div>
+                    
+
+                    <textarea className='daytouredite-places-form-info' value={place.description} onChange={(e)=>infoHandler(index,e)}></textarea>
+                    
                 </div>
 
                 ))}
 
                 <div className='daytouredite-places-form-div-search'>
-                    <input onChange={(e)=>SearchHandler(e)} />
+                    <input onChange={(e)=>SearchHandler(e)} placeholder='search places'/>
                     <div className='daytouredite-places-form-div-search-results'>
                         {allPlaces.map((place,index)=>{
                             return(
-                                <a onClick={()=>AddPlaceHandler(place.place_name,place.place_name)}>{place.place_name}</a>
+                                <a onClick={()=>AddPlaceHandler(place.place_name,place.place_id)}>{place.place_name}</a>
 
                             )
                             

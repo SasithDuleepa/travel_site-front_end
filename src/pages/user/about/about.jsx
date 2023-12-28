@@ -30,7 +30,7 @@ export default function About() {
   return (
     <div className='About'>
 
-      <div style={contact_us}>
+      <div className=' wrapper' style={contact_us}>
         <p className='About-main-title'>About Us</p>
         <div className='About-main-route'>
           <a className='About-main-route-link' href='/'>Home /</a>

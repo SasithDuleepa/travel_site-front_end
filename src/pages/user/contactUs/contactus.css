@@ -23,8 +23,8 @@
 }
 .Contact-main-route{
     display: flex;
-    gap: 5px;
-    margin-top: -50px;
+    gap: 7px;
+    margin-top: -32px;
 }
 .Contact-main-route-link{
     font-size: 18px;
@@ -42,8 +42,8 @@
 }
 .Contact-main-media{
     display: flex;
-    gap: 30px;
-    margin-top: 70px;
+    gap: 20px;
+    margin-top: 58px;
 }
 
 

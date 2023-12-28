@@ -15,7 +15,8 @@ export default function Vehicals() {
     vehicleType:"",
     minPassengers:"",
     maxPassengers:"",
-    ratePerKm:""
+    ratePerKm:"",
+
     })
 
   const InputHandler = (e) => {
@@ -146,6 +147,10 @@ const DeleteHandler = async (id) => {
           <label>rate per km :</label>
           <input type='number' value={data.ratePerKm} id='ratePerKm' onChange={(e)=>InputHandler(e)}/>
         </div>
+        {/* <div className='vehicle-main-form'>
+          <label>rate per km (day tour):</label>
+          <input type='number' value={data.ratePerKm} id='ratePerKm' onChange={(e)=>InputHandler(e)}/>
+        </div> */}
         <button className='add-vehicle-btn' onClick={AddHandler}>Add</button>
       </div>
 

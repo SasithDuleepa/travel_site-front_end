@@ -17,6 +17,7 @@ import Hotels from './pages/dashboad/Hotel/hotels';
 import Vehicals from './pages/dashboad/vehicals/vehicals';
 import Agents from './pages/dashboad/agents/agents';
 import Images from './pages/dashboad/Images/images';
+import Rates from './pages/dashboad/rates/rates';
 
 import DayTour from './pages/dashboad/day tour/dayTour';
 import Tour from './pages/dashboad/tours/tours';
@@ -130,6 +131,7 @@ function App() {
           <Route exact path="/dashboad/popular_destinations" element={<PopularDestinations/>}/>
           <Route exact path="/admin/login" element={<Login_/>}/>
           <Route exact path="/dashboad/request" element={<Request/>}/>
+          <Route exact path="/dashboad/rates" element={<Rates/>}/>
               </Route>
 
           </Routes>

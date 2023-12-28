@@ -59,11 +59,11 @@ export default function Places() {
       };
   return (
     <div className='Places'>
-        <div style={Style}>
-        <p  className='Places-main-title'>Places</p>
+        <div className=' wrapper'  style={Style}>
+        <p  className='Places-main-title'>Destinations</p>
             <div className='Places-main-route'>
                 <a className='Places-main-route-link' href='/'>Home /</a>
-                <p className='Places-main-route_link '>places</p>
+                <p className='Places-main-route_link '>Destinations</p>
             </div>
             <div className='Places-main-media'>
                 <Socialmedia/>

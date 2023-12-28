@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import './daytour_preview.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -9,13 +12,19 @@ import Carousel from "react-simply-carousel";
 
 
 
+
+
 import Socialmedia from './../../../components/social media/socialmedia';
 
 export default function Daytour_preview() {
 
+  
 
+
+  const[daytourRate,setDaytourRate] = useState(null)
+  const[daytourDiscountRate,setDaytourDiscountRate] = useState(null)
   const [response, setResponse] = useState(null)
-  const [origin, setOrigin] = useState('colombo');
+
   const [mapKey, setMapKey] = useState(1);
   const {id}= useParams();
   // console.log(id);
@@ -26,13 +35,18 @@ export default function Daytour_preview() {
   const[startDistance, setStartDistance] = useState(0)
 
   //pop up
-  const [popup,setPopup] = useState('hide');
   const [popup1,setPopup1] = useState('hide');
   const [popup2,setPopup2] = useState('hide');
-  const[popupPassenger,setPopupPassenger] = useState('')
 
-  const[total,setTotal] = useState(0)
+  const [origin, setOrigin] = useState('Colombo');
+  const [popUpOrigin, setPopUpOrigin] = useState('Colombo');
+
   const[passenger,setpassenger] = useState(2);
+  const[popupPassenger,setPopupPassenger] = useState(2)
+
+  const[total,setTotal] = useState(0);
+  const[finalTotal,setFinalTotal] = useState(0)
+  
   const[distance,setDistance] = useState(0);
   const[oranizingCost, setOrganizingCost] = useState(0)
   const[vehicle,setVehicle] = useState([])
@@ -50,6 +64,37 @@ const[class3,setClass3] = useState('daytour-preview-bottom-info-3 hide');
 const [coverImg, setCoverImg] = useState('')
 
   const [data, setData] = useState([]);
+
+
+  //get daytour rates
+  const GetDaytourRates =async ()=>{
+    try {
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/data/daytour`);
+          console.log(res.data);
+          
+          if(res.data.length>0){
+            setDaytourRate(res.data[0].daytour_rate)
+          }
+    } catch (error) {
+      console.log(error)
+    }
+  
+  }
+  const GetDayTourDiscountRates = async() => {
+    try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/data/daytour_discount`)
+        // console.log(res.data);
+        setDaytourDiscountRate(res.data[0].daytour_discount_rate);
+    } catch (error) {
+        
+    }
+
+}
+  useEffect(()=>{
+    GetDaytourRates();
+    GetDayTourDiscountRates();
+  }
+  ,[])
   //data about day tour
   const GetData =async ()=>{
     try {
@@ -73,12 +118,13 @@ const [coverImg, setCoverImg] = useState('')
 //pop up func
 const PopupEnter = () =>{
   setpassenger(popupPassenger);
-  setPopup('hide')
+  setOrigin(popUpOrigin);
+
   setPopup1('hide')
   setPopup2('hide')
 }
 const PopupCancel = () =>{
-  setPopup('hide');
+
   setPopup1('hide')
   setPopup2('hide')
 }
@@ -148,18 +194,34 @@ useEffect(()=>{
   // console.log('passenger' , passenger)
   // console.log('fees' , fees)
   // console.log('startDistance' , startDistance)
+  // console.log('daytour rate' , daytourRate)
+  console.log('daytour discount rate' , daytourDiscountRate)
 
     let sub_total = fees + startDistance*2*vehicle + oranizingCost
-    console.log(sub_total)
+    // console.log(sub_total)
     let tot = sub_total/passenger
 
-    let tot_1 = tot.toFixed(0)
+
+
+    let nettotal = (100*tot)/(100-daytourRate)
+
+
+    
+
+    let tot_1 = nettotal.toFixed(0)
 
     let tot_2 = tot_1/10
     let tot_3 = Math.ceil(tot_2)
     setTotal(tot_3*10)
 
-},[vehicle,distance,passenger,fees,startDistance])
+    // console.log('tot3 =',tot_3*10)
+    let tot_4 = tot_3*10  *(100-daytourDiscountRate)/100
+    // console.log('tot 4 =',tot_4)
+    // let tot_5 = tot_4/10
+    // let tot_6 = Math.ceil(tot_5)
+    setFinalTotal(tot_4)
+
+},[vehicle,passenger,fees,startDistance])
 
 
 
@@ -291,51 +353,68 @@ const Booknow = () => {
     window.location.href = "/login";
   }
 };
+
+
+const settings = {
+  dots: false,
+  speed: 1900,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 2500,
+  arrows:false
+
+
+
+
+};
+
+
   return (
     <div className='daytour-preview'>
       {/* pop up */}
       <div className={popup1}>
         <div className='day-tour-popup-1-main'>
-          <p className='day-tour-popup-1-main-title'>Please select the hotel type and passenger count for tour tour.</p>
-          
           <div className='day-tour-popup-1-main-form'>
-            <label  className='day-tour-popup-1-main-form-label'>Enter Your Location:</label>            
-            <select  className='day-tour-popup-1-main-form-input' onChange={(e)=>setOrigin(e.target.value)} value={origin}>
+            <label  className='day-tour-popup-1-main-form-label'>Tour Starts From:</label>            
+            <select  className='day-tour-popup-1-main-form-input' onChange={(e)=>setPopUpOrigin(e.target.value)} value={popUpOrigin}>
             <option>select town</option>
-<option value={'negombo'}>Negombo</option>
-<option value={'ja-ela'}>Ja-Ela</option>
-<option value={'wattala'}>Wattala</option>
-<option value={'colombo'}>Colombo</option>
-<option value={'dehiwala'}>Dehiwala</option>
-<option value={'mount-lavinia'}>Mount Lavinia</option>
-<option value={'moratuwa'}>Moratuwa</option>
-<option value={'panadura'}>Panadura</option>
-<option value={'wadduwa'}>Wadduwa</option>
-<option value={'kalutara'}>Kalutara</option>
-<option value={'payagala'}>Payagala</option>
-<option value={'maggona'}>Maggona</option>
-<option value={'beruwala'}>Beruwala</option>
-<option value={'aluthgama'}>Aluthgama</option>
-<option value={'bentota'}>Bentota</option>
-<option value={'induruwa'}>Induruwa</option>
-<option value={'kosgoda'}>Kosgoda</option>
-<option value={'ahungalla'}>Ahungalla</option>
-<option value={'balapitiya'}>Balapitiya</option>
-<option value={'ambalangoda'}>Ambalangoda</option>
-<option value={'madampagama'}>Madampagama</option>
-<option value={'akurala'}>Akurala</option>
-<option value={'hikkaduwa'}>Hikkaduwa</option>
-<option value={'rathgama'}>Rathgama</option>
-<option value={'boossa'}>Boossa</option>
-<option value={'galle'}>Galle</option>
-<option value={'unawatuna'}>Unawatuna</option>
-<option value={'talpe'}>Talpe</option>
-<option value={'koggala'}>Koggala</option>
-<option value={'ahangama'}>Ahangama</option>
-<option value={'weligama'}>Weligama</option>
-<option value={'mirissa'}>Mirissa</option>
-<option value={'polhena'}>Polhena</option>
-<option value={'matara'}>Matara</option>
+            <option value={'Negombo'}>Negombo</option>
+<option value={'Ja-Ela'}>Ja-Ela</option>
+<option value={'Wattala'}>Wattala</option>
+<option value={'Colombo'}>Colombo</option>
+<option value={'Dehiwala'}>Dehiwala</option>
+<option value={'Mount-Lavinia'}>Mount Lavinia</option>
+<option value={'Moratuwa'}>Moratuwa</option>
+<option value={'Panadura'}>Panadura</option>
+<option value={'Wadduwa'}>Wadduwa</option>
+<option value={'Kalutara'}>Kalutara</option>
+<option value={'Payagala'}>Payagala</option>
+<option value={'Maggona'}>Maggona</option>
+<option value={'Beruwala'}>Beruwala</option>
+<option value={'Aluthgama'}>Aluthgama</option>
+<option value={'Bentota'}>Bentota</option>
+<option value={'Induruwa'}>Induruwa</option>
+<option value={'Kosgoda'}>Kosgoda</option>
+<option value={'Ahungalla'}>Ahungalla</option>
+<option value={'Balapitiya'}>Balapitiya</option>
+<option value={'Ambalangoda'}>Ambalangoda</option>
+<option value={'Madampagama'}>Madampagama</option>
+<option value={'Akurala'}>Akurala</option>
+<option value={'Hikkaduwa'}>Hikkaduwa</option>
+<option value={'Rathgama'}>Rathgama</option>
+<option value={'Boossa'}>Boossa</option>
+<option value={'Galle'}>Galle</option>
+<option value={'Unawatuna'}>Unawatuna</option>
+<option value={'Talpe'}>Talpe</option>
+<option value={'Koggala'}>Koggala</option>
+<option value={'Ahangama'}>Ahangama</option>
+<option value={'Weligama'}>Weligama</option>
+<option value={'Mirissa'}>Mirissa</option>
+<option value={'Polhena'}>Polhena</option>
+<option value={'Matara'}>Matara</option>
+
 
             </select>
           </div>
@@ -349,11 +428,10 @@ const Booknow = () => {
       </div>
       <div className={popup2}>
         <div className='day-tour-popup-1-main'>
-          <p className='day-tour-popup-1-main-title'>Please select the hotel type and passenger count for tour tour.</p>
           
           <div className='day-tour-popup-1-main-form'>
             <label  className='day-tour-popup-1-main-form-label'>Enter Passenger Count:</label>            
-            <input  className='day-tour-popup-1-main-form-input' onChange={(e)=>setpassenger(e.target.value)} value={passenger}/>
+            <input type='number' className='day-tour-popup-1-main-form-input' onChange={(e)=>setPopupPassenger(e.target.value)} value={popupPassenger}/>
           </div>
 
           <div className='day-tour-popup-1-main-button-div'>
@@ -389,8 +467,8 @@ const Booknow = () => {
         <div className='daytour-preview-top-left'>
           <div  className='daytour-preview-top-left-price-div'>
             <p className='daytour-preview-top-left-p1'>Package Price :</p>
-            <p className='daytour-preview-top-left-p1'>$</p>
-            <p className='daytour-preview-top-left-p1'>{total }</p>
+            {/* <p className='daytour-preview-top-left-p3'>$</p> */}
+            <p className='daytour-preview-top-left-p3'>$ {total }</p>
             <p className='daytour-preview-top-left-p2'>* per person</p>
           </div>
           
@@ -411,88 +489,30 @@ const Booknow = () => {
           
 
           <div  className='daytour-preview-top-left-code'>
-            <p className='daytour-preview-top-left-code-p1'>Coupon Code:</p>
-            <input  className='daytour-preview-top-left-code-input'/>
-            <button className='daytour-preview-top-left-code-btn'>Enter</button>
+            <p className='daytour-preview-top-left-code-p1'>Discounted price :</p>
+            {/* <p className='daytour-preview-top-left-code-p2'> $ {total }</p> */}
+            <p className='daytour-preview-top-left-code-p3'>$ {finalTotal}</p>
+            <p className='daytour-preview-top-left-code-p4'>  * per person</p>
           </div>
           
           <div className='daytour-preview-top-left-line'></div>
           <button className='daytour-preview-top-left-book' onClick={Booknow}>Book Now</button>
         </div>
         <div className='daytour-preview-top-right'>
-        <Carousel
-        containerProps={{
-          
-          style: {
-            width: "100%",
-           
-          }
-        }}
-        preventScrollOnSwipe
-        swipeTreshold={60}
-        activeSlideIndex={activeSlide}
-        onRequestChange={setActiveSlide}
-        forwardBtnProps={{
-          children: ">",
-          
-          style: {
-            width: 60,
-            height: 60,
-            minWidth: 60,
-            alignSelf: "center",
-            display:'none'
-          }
-        }}
-        backwardBtnProps={{
-          children: "<",
-          style: {
-            width: 60,
-            height: 60,
-            minWidth: 60,
-            alignSelf: "center",
-            display:'none'
-          }
-        }}
-        dotsNav={{
-          show: false,
-          itemBtnProps: {
-            style: {
-              height: 16,
-              width: 16,
-              borderRadius: "50%",
-              border: 0
-            }
-          },
-          activeItemBtnProps: {
-            style: {
-              height: 16,
-              width: 16,
-              borderRadius: "50%",
-              border: 0,
-              background: "black"
-            }
-          }
-        }}
-        
-        autoplay={true}
-        delay={2000}
-        itemsToShow={2}
-        speed={1600}
-        easing="ease-in-out"
-        // centerMode
-      >
-        
 
-            {imageId.length>0 ? imageId.map((img,index)=>{
+      <Slider {...settings}>
+      {imageId.length>0 ? imageId.map((img,index)=>{
               return(
-                <img className='daytour-preview-top-right-img' key={index} src={img!==undefined?`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${img}`:null} />
+
+                  <img key={index} className='daytour-preview-top-right-img'  src={img!==undefined?`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${img}`:null} />
+
+                
               )
             
             }
             ):null}
 
-     
-      </Carousel>
+      </Slider>
         </div>
       </div>
 
@@ -504,16 +524,17 @@ const Booknow = () => {
         {/* <p>{origin}</p> */}
         <GoogleMap
         key={mapKey}
-  mapContainerClassName='daytour-preview-center-map-container'
-  center={calculateCenter()}
-  zoom={7}
->
-  {places.length > 0
+        mapContainerClassName='daytour-preview-center-map-container'
+        center={calculateCenter()}
+        zoom={5}
+        >
+  {/* {places.length > 0
     ? places.map((place, index) => (
         <MarkerF key={index} position={{ lat: place.place_lat, lng: place.place_lng }} />
       ))
-    : null}
+    : null} */}
 {/* <MarkerF  position={{ lat: 8.938354312738735, lng: 80.543212890625 }} /> */}
+<MarkerF  position={origin} />
   <DirectionsService
     options={{
       // destination: origin,
@@ -533,21 +554,37 @@ const Booknow = () => {
   <DirectionsRenderer directions={response} />
 
 
+  {/* <DistanceMatrixService
+    options={{
+      destinations: [
+        places.length > 0
+          ?{ location: 'Ella' }
+          //  { location: { lat: places[0].place_lat, lng: places[0].place_lng } }
+          : { location: 'Naula' },
+      ],
+      origins:[origin] ,
+      travelMode: 'DRIVING',
+    }}
+    callback={distanceCallback}
+  /> */}
   
 
 
 <DistanceMatrixService
     options={{
-      destinations: [origin],
-      origins: [
+      destinations: [
         places.length > 0
-          ? { location: { lat: places[0].place_lat, lng: places[0].place_lng } }
+          ?
+           { location: { lat: places[0].place_lat, lng: places[0].place_lng } }
           : { location: 'Naula' },
       ],
+      origins:[origin] ,
       travelMode: 'DRIVING',
     }}
     callback={distanceCallback}
   />
+
+
 
 
 

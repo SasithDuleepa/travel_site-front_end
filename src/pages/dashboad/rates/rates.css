@@ -1,0 +1,74 @@
+
+
+.rates{
+    margin-left: 17%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.daytour-rates-div{
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px
+}
+.daytour-rates-form-div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.daytour-rates-form-input{
+    width: 100px;
+}
+
+
+
+
+.tour-rates-div{
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px
+}
+.tour-rates-form-div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.tour-rates-form-input{
+    width: 100px;
+}
+
+
+
+.tour-discount-rates-div{
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px
+}
+.tour-discount-rates-form-div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.tour-discount-rates-form-input{
+    width: 100px;
+}
+
+
+
+
+.daytour-discount-rates-div{
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px
+}
+.daytour-discount-rates-form-div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.daytour-discount-rates-form-input{
+    width: 100px;
+}

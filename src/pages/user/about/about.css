@@ -4,7 +4,13 @@
     align-items: center;
     flex-direction: column;
 } */
-
+.wrapper{
+    width: 100%;
+    height: 528px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .About-main-title{
     font-size: 60px;
     font-weight: 600;
@@ -14,8 +20,9 @@
 }
 .About-main-route{
     display: flex;
-    gap: 5px;
-    margin-top: -50px;
+    align-items: center;
+    gap: 7px;
+    margin-top: -32px;
 }
 .About-main-route-link{
     font-size: 18px;
@@ -33,8 +40,8 @@
 }
 .About-main-media{
     display: flex;
-    gap: 30px;
-    margin-top: 70px;
+    gap: 20px;
+    margin-top: 58px;
 }
 
 

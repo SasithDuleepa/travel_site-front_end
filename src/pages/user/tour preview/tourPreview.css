@@ -62,14 +62,13 @@
     display: flex;
 
     width: 1200px;
-    justify-content: center;
-    margin: 30px auto;
+    justify-content: space-between;
+    margin: 15px auto 0px auto;
 }
 .TourPreview-header-left{
-    /* background-color: aqua; */
+   
     width: 389px;
-    
-    padding: 20px 5px;
+
    
 }
 .TourPreview-header-left-1{
@@ -77,11 +76,13 @@
     align-items: center;
     gap: 5px;
 
-    height: 50px;
+    height: 30px;
+    /* background-color: aqua; */
 }
 .TourPreview-header-left-p{
     font-size: 20px;
     font-weight: 400;
+    font-family: poppins;
 }
 .TourPreview-header-left-p-sub{
     font-size: 10px;
@@ -132,14 +133,36 @@
 
 .TourPreview-header-info{
     display: flex;
-    gap: 20px;
-    height: 10px;
     align-items: center;
+    gap: 20px;
+    height: 20px;
+    /* background-color: rgb(24, 158, 22); */
+    margin-top: 20px;
+}
+.TourPreview-header-info2{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 20px;
+}
+.TourPreview-header-info1{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 20px;
+    /* background-color: violet; */
+    margin-top: 10px;
 }
 .TourPreview-header-info-p{
     font-size: 14px;
     font-weight: 400;
+    font-family: poppins;
     color: rgb(106, 106, 106);
+}
+.TourPreview-header-info-p1{
+    font-size: 14px;
+    font-weight: 400;
+    font-family: poppins;
 }
 
 
@@ -177,9 +200,10 @@
 .tourpreview-popup-main{
     border: 2px solid black;
     border-radius: 10px;
-    padding: 50px 100px;
+    padding: 20px 50px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     background-color: white;
 }
@@ -191,6 +215,8 @@
 .tourpreview-popup-form{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 20px auto;
 }
 .tourpreview-popup-form-label{
@@ -199,26 +225,29 @@
     font-family: poppins;
 }
 .tourpreview-popup-form-input{
-    width: 475px;
-    height: 35px;
+    width:300px;
+    height: 30px;
     border-radius: 5px;
     border: 2px solid rgba(0, 0, 0, 0.498);
+    text-align: center;
 }
 .tourpreview-popup-btn-div{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
 }
 .tourpreview-popup-enter-btn{
     background-color: orange;
     padding: 10px 30px;
     border-radius: 10px;
+    border: none;
 }
 .tourpreview-popup-cancel-btn{
     background-color: rgb(10, 21, 108);
     padding: 10px 30px;
     border-radius: 10px;
     color: aliceblue;
+    border: none;
 }
 
 
@@ -233,11 +262,11 @@
 .TourPreview-center-line{
     border-bottom: 2px solid rgba(99, 99, 99, 0.834);
     width: 1200px;
-    margin: 50px auto;
+    margin: 20px auto;
 }
 .TourPreview-center-description{
     text-align: center;
-    margin: 10px 50px 50px 50px;
+    margin: 0px 0px 10px 0px;
     width: 1200px;
 }
 

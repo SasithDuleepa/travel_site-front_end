@@ -65,7 +65,7 @@ export default function Hotels() {
   }
 
   const calculateTotalDays = () => {
-    return calculatedDays.reduce((total, days) => total + days, 0);
+    return calculatedDays.reduce((total, days) => total + days, 0) +1;
   };
 
   const DeleteHandler = (index) =>()=> {
@@ -155,7 +155,7 @@ export default function Hotels() {
               <label>price :</label>
               <input type='number' id='price' name={index} onChange={(e)=>PriceHandler(e)} />
             </div>
-            <p>Number of days: {calculatedDays[index]}</p>
+            <p>Number of days: {calculatedDays[index] + 1}</p>
             <a className='hotel-prices-form-div-delete-btn' onClick={DeleteHandler(index)}>delete</a>
           </div>
         )

@@ -21,10 +21,12 @@ export default function TourPreview() {
   new Date().toISOString().slice(0, 10);
   //pop up
   const[pophotel,setPopHotel] = useState('5 star')
-  const[poppassenger,setPopPassneger] = useState(0)
-  const[popup,setPopup] = useState('hide')
+  const[poppassenger,setPopPassneger] = useState(2)
+  const[popup1,setPopup1] = useState('hide')
+  const[popup2,setPopup2] = useState('hide')
   const[popDate , setPopDate] = useState(today);
 
+  const[startDay, setStartDay] = useState(today)
   const[total,setTotal] = useState(0)
   const[hotel,setHotel] = useState('5 star')
   const[passenger,setPassenger] = useState(2)
@@ -81,16 +83,22 @@ export default function TourPreview() {
 
   //pop up
   const PopUpHandler =() =>{
-    setPopup('tourpreview-popup')
+    setPopup1('tourpreview-popup')
   
+  }
+  const PopUpHandler2 =() =>{
+    setPopup2('tourpreview-popup')
   }
   const EnterHandler = () =>{
     setPassenger(poppassenger)
     setHotel(pophotel)
-    setPopup('hide')
+    setStartDay(popDate)
+    setPopup1('hide')
+    setPopup2('hide')
   }
   const CancelHandler = () =>{
-    setPopup('hide')
+    setPopup1('hide')
+    setPopup2('hide')
   }
   useEffect(() => {
     const fetchData = async () => {
@@ -296,11 +304,15 @@ const Booknow = () => {
 
     return (
     <div className='TourPreview'>
-      <div className={popup}>
+      <div className={popup1}>
         <div  className='tourpreview-popup-main'>
-          <p className='tourpreview-popup-title'>Please select the hotel type and passenger count for tour tour.</p>
+         
           <div className='tourpreview-popup-form'>
-            <label className='tourpreview-popup-form-label'>Select the Hotel Type:</label>
+            <label className='tourpreview-popup-form-label'>Enter number of tourists :</label>
+            <input type='number' className='tourpreview-popup-form-input' onChange={(e)=>setPopPassneger(e.target.value)}/>
+          </div>
+          <div className='tourpreview-popup-form'>
+            <label className='tourpreview-popup-form-label'>Select the hotel type :</label>
 
             <select className='tourpreview-popup-form-input' onChange={(e)=>setPopHotel(e.target.value)}>
               <option value=''>Select</option>
@@ -308,10 +320,15 @@ const Booknow = () => {
             <option value='3 star/4 star'>3 star / 4 star</option>
             </select>
           </div>
-          <div className='tourpreview-popup-form'>
-            <label className='tourpreview-popup-form-label'>Enter Passenger Count:</label>
-            <input className='tourpreview-popup-form-input' onChange={(e)=>setPopPassneger(e.target.value)}/>
+          <div className='tourpreview-popup-btn-div'>
+            <button className='tourpreview-popup-enter-btn' onClick={EnterHandler}>Enter</button>
+            <button className='tourpreview-popup-cancel-btn' onClick={CancelHandler}>Cancel</button>
           </div>
+        </div>
+      </div>
+      <div className={popup2}>
+        <div  className='tourpreview-popup-main'>
+          
           <div className='tourpreview-popup-form'>
             <label className='tourpreview-popup-form-label'>Enter Tour Date:</label>
             <input type='date' className='tourpreview-popup-form-input' onChange={(e)=>setPopDate(e.target.value)}/>
@@ -345,15 +362,28 @@ const Booknow = () => {
       <div className='TourPreview-header'>
         <div className='TourPreview-header-left'>
           <div className='TourPreview-header-left-1'>
-            <p className='TourPreview-header-left-p'>Package Price:</p>
+            <p className='TourPreview-header-left-p'>Package Price :</p>
             <p className='TourPreview-header-left-p' >$</p>
             <p className='TourPreview-header-left-p' > {total}</p>
             <p className='TourPreview-header-left-p-sub'>* per person</p>
           </div>
           <div className='TourPreview-header-info'>
-            <p  className='TourPreview-header-info-p'>Hotel Type :{hotel}</p>
-            <p className='TourPreview-header-info-p'>Passenger Count :2</p>
+            <div className='TourPreview-header-info2'>
+              <p >Passenger Count : </p>
+              <p >{passenger}</p>
+            </div>
+            <div className='TourPreview-header-info2'>
+              <p>Hotel Type : </p>
+              <p  >{hotel}</p>
+            </div>
+          
+            
             <a onClick={PopUpHandler}><img src={Edite}/></a>
+          </div>
+          <div className='TourPreview-header-info1'>
+          <p >Tour Start Date : </p>
+          <p> {startDay}</p>
+          <a onClick={PopUpHandler2}><img src={Edite}/></a>
           </div>
           <div className='TourPreview-header-left-coupen'>
             <p className='TourPreview-header-left-p couponcode-p'>Coupon Code : </p>
