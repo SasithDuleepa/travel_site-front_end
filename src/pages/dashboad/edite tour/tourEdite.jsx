@@ -162,8 +162,8 @@ day.places.forEach((place, placeIndex) => {
           });
       
           if (res.status === 200) {
-            window.alert("Place updated successfully");
-           
+            window.alert("tour updated successfully");
+            window.location.reload();
           }
     } catch (error) {
         if(error.response.status === 401){
@@ -174,7 +174,7 @@ day.places.forEach((place, placeIndex) => {
           }else if(error.response.status === 500){
             window.alert("Internal server error");
           }else{
-            window.alert("Error updating place");
+            window.alert("Error updating tour");
           }
     }
 }
@@ -198,14 +198,15 @@ const DeleteTour = async () => {
     
     try {
         const token = sessionStorage.getItem("token");
-        const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/tour/tourdelete/${id}`,{
+        const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/tour/tourdelete/${Data.tour_id}`,{
             headers: {
               'Authorization': `${token}`,
             },
             withCredentials: true,
           })
           if (res.status === 200) {
-            window.alert("update successfully");
+            window.alert("tour deleted successfully");
+            window.location.reload();
                       }
     } catch (error) {
         if(error.response.status === 401){
@@ -216,7 +217,8 @@ const DeleteTour = async () => {
           }else if(error.response.status === 500){
             window.alert("Internal server error");
           }else{
-            window.alert("Error adding place");
+            window.alert("Error tour deleting");
+            console.log(error)
           }
     }
 }

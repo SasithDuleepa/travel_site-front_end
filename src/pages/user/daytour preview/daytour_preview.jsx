@@ -33,6 +33,7 @@ export default function Daytour_preview() {
   const [activeSlide, setActiveSlide] = useState(0);
 
   const[startDistance, setStartDistance] = useState(0)
+  const[startPlace, setStartPlace ] = useState('Naula') 
 
   //pop up
   const [popup1,setPopup1] = useState('hide');
@@ -251,31 +252,55 @@ useEffect(()=>{
   }}
   ,[places])
 
-  useEffect(()=>{
-    setMapKey((prevKey) => prevKey + 1);
+  // useEffect(()=>{
+  //   setMapKey((prevKey) => prevKey + 1);
   
-  },[origin])
+  // },[origin])
+
+  useEffect(() => {
+setTimeout(() => {
+      setMapKey((prevKey) => prevKey + 1);
+    }, 1000);
+    console.log('origin')
+
+  }, [origin]);
   
 
 
    // map
 
    let count = React.useRef(0);
+
    const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7qsYXATZC1Wj57plqEUhy_U7yHJjmNLM"});
    if (!isLoaded) return (
        <p>Loading...</p>
        )
  
        const directionsCallback = (res) => {
+        console.log( 'direction call back origin' , origin)
+        console.log( 'direction call back' , res)
+        console.log('count =' , count)
+        
+        
 
-         if (res !== null && count.current < 2) {
+        
+          if (res !== null && count.current < 2) {
+          
            if (res.status === 'OK') {
              count.current += 1;
-             setResponse(res);
+
+              console.log( 'direction call back called!!!!!' )
+              setResponse(res);
+
+             
            } else {
              count.current = 0;
              console.log('res: ', res);
            }
+         } else{
+           count.current = 0;
+     
+         
          }
        };
 
@@ -521,7 +546,7 @@ const settings = {
 
       <div className='daytour-preview-center'>
         <div className='daytour-preview-center-left'>
-        {/* <p>{origin}</p> */}
+        <p>{origin}</p>
         <GoogleMap
         key={mapKey}
         mapContainerClassName='daytour-preview-center-map-container'
@@ -533,41 +558,24 @@ const settings = {
         <MarkerF key={index} position={{ lat: place.place_lat, lng: place.place_lng }} />
       ))
     : null} */}
-{/* <MarkerF  position={{ lat: 8.938354312738735, lng: 80.543212890625 }} /> */}
-<MarkerF  position={origin} />
+<MarkerF  position={{ lat: 8.938354312738735, lng: 80.543212890625 }} />
+
   <DirectionsService
     options={{
-      // destination: origin,
-      waypoints: [
-        places.length > 0
-          ? { location: { lat: places[0].place_lat, lng: places[0].place_lng }
-         }
-          : null,
-      ],
-      origin: origin,
+      destination: places.length > 0
+        ? { location: { lat: places[0].place_lat, lng: places[0].place_lng }
+       }
+        : null,
+      waypoints: [ ],
+      origin:origin,
       travelMode: 'DRIVING',
       optimizeWaypoints: true,
     }}
     callback={directionsCallback}
+
   />
 
   <DirectionsRenderer directions={response} />
-
-
-  {/* <DistanceMatrixService
-    options={{
-      destinations: [
-        places.length > 0
-          ?{ location: 'Ella' }
-          //  { location: { lat: places[0].place_lat, lng: places[0].place_lng } }
-          : { location: 'Naula' },
-      ],
-      origins:[origin] ,
-      travelMode: 'DRIVING',
-    }}
-    callback={distanceCallback}
-  /> */}
-  
 
 
 <DistanceMatrixService
@@ -643,13 +651,13 @@ const settings = {
             </div>
           </div>
           <div  className={class2}>
-          <GoogleMap
+          {/* <GoogleMap
               mapContainerClassName='daytour-preview-bottom-info-2-map'
               center={{lat: 6.947248052781988, lng: 79.873046875}}
               zoom={7}
 
                       >
-              {/* <MarkerF position={{ lat: 6.93665, lng: 79.84505 }} /> */}
+
               <DirectionsService
             options={{
               destination: origin,
@@ -657,12 +665,6 @@ const settings = {
               waypoints: [
                 ...(places.length > 0
                   ? places.map((place, index) => ({ location: { lat: place.place_lat, lng: place.place_lng },
-                    // icon: {
-                    //   url: {Icon},
-                    //   scaledSize: new window.google.maps.Size(30, 30),
-                    // },
-                                                    
-                  
                   }))
                   : [])
               ],
@@ -675,7 +677,7 @@ const settings = {
           <DirectionsRenderer directions={response} />
 
               
-            </GoogleMap>
+            </GoogleMap> */}
           </div>
           <div  className={class3}>
           {places.length>0 ? places.map((place,index)=>{
@@ -692,6 +694,18 @@ const settings = {
 
         </div>
       </div>
+
+
+
+
+      <h2 class="ribbon">Title Ribbon</h2>
+
+
+
+
+
+
+
     </div>
   )
 }
