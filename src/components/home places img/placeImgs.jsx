@@ -61,10 +61,8 @@ export default function PlaceImgs() {
               return(
                 <PlaceCard 
                 key={index}
-                  placeId={place.place_id}
-                  title={place.place_name}
-                  img={place.card_img}
-                  direction={index%2 !== 0 ? 'style_css_down':'style_css_up'}
+                id={place.place_id} link={place.place_id} place={place.place_name} short={place.short_description} img={place.card_img }
+
                 />
               )
             })

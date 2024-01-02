@@ -5,13 +5,32 @@ import { useState } from 'react';
 import Carousel from "react-simply-carousel";
 import Arrow from './../../assets/icons/arrow-right.png';
 import Sinharaja from './../../assets/Sinharaja.png'
+import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer, DirectionsService ,DistanceMatrixService} from '@react-google-maps/api';
 
 import LeftArrow from './../../assets/icons/Left Arrow.png';
 import RightArrow from './../../assets/icons/Right Arrow.png';
 
 export default function HomeDayTour() {
+
+  const[startPlaceLat, setStartPlaceLat] = useState(8.938354312738735);
+  const[startPlaceLng, setStartPlaceLng] = useState(80.543212890625);
+  const[startDistance, setStartDistance] = useState();
+  const[vehicleRate, setVehicleRate] = useState();
+  const[daytourRate,setDaytourRate] = useState(null)
+  const[daytourDiscountRate,setDaytourDiscountRate] = useState(null);
+  const [fees, setFees] = useState(0);
+  const[oranizingCost, setOrganizingCost] = useState(0)
+
+
+  const[packagePrice, setPackageprice] = useState(0)
+  const[passengers,setPassengers] = useState(2)
+  const[discountedPrice,setDiscountedPrice]= useState(0)
+
+
+
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeSlide_, setActiveSlide_] = useState(0);
+
   const activeslideHandler = (val) =>{
     setActiveSlide(val)
       // console.log('active val',val);
@@ -21,10 +40,12 @@ export default function HomeDayTour() {
       setTimeout(() => {
         setActiveSlide_(val)
       },2000);
+
+
   }
   const [daytours,setDaytours] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  // const [daytours,setDaytours] = useState([{day_tour:"",day_tour_id:"",description:"",img:"",price:"",_id:""}]);
+  const [isLoade, setIsLoade] = useState(false);
+ 
   const GetDayTours = async() =>{
     const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/daytours`);
     // console.log(res.data);
@@ -38,15 +59,157 @@ export default function HomeDayTour() {
 
   useEffect(() => {
     // console.log(daytours, activeSlide);
-    // console.log(daytours[activeSlide])
-    setIsLoaded(false);
+    // console.log(daytours[activeSlide].day_tour_id)
+    setIsLoade(false);
     setTimeout(() => {
-      setIsLoaded(true);
+      setIsLoade(true);
     }, 2000);
   }, [daytours, activeSlide]);
 
 
+  const GetTourData = async() =>{
+    
+    if(daytours.length>0){
+      try {
+        // console.log('tour api called!!!')
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/daytour/${daytours[activeSlide].day_tour_id}`);
+        // console.log(res.data);
+        
+        if(res.data.length>0){
+         setOrganizingCost(res.data[0].organizing_cost)
+        }
+  } catch (error) {
+    console.log(error)
+  }
+
+    }
+
+  }
+  const GetTourPlaceData = async() =>{
+    
+    if(daytours.length>0){
+      try {
+        // console.log('place data api called!!!')
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/places/${daytours[activeSlide_].day_tour_id}`);
+        // console.log(res.data);
+        let totalFees = 0;
+        
+        if(res.data.length>0){
+        //  console.log(res.data[0].place_lat)
+        //  console.log(res.data[0].place_lng)
+         setStartPlaceLat(res.data[0].place_lat)
+         setStartPlaceLng(res.data[0].place_lng)
+
+         res.data.forEach((place) => {
+          if (place.visiting_fee !== undefined) {
+            totalFees += place.visiting_fee;
+          }
+        });
+        }
+        setFees(totalFees);
+  } catch (error) {
+    console.log(error)
+  }
+
+    }
+
+  }
+useEffect(()=>{
+  if(daytours.length>0 ){
+  }
+  GetTourData();
+  GetTourPlaceData();
+},[daytours, activeSlide_])
+
+
+
+
+
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vehicles/${passengers}`);
+        let data = res.data[0];
+        // console.log(data);
+        setVehicleRate(data.rate);
+      } catch (error) {
+        console.error(error);
+      }
+    };
   
+    fetchData(); 
+  
+  }, [startDistance]);
+
+
+
+    //get daytour rates
+    const GetDaytourRates =async ()=>{
+      try {
+            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/data/daytour`);
+            // console.log(res.data);
+            
+            if(res.data.length>0){
+              setDaytourRate(res.data[0].daytour_rate)
+            }
+      } catch (error) {
+        console.log(error)
+      }
+    
+    }
+    const GetDayTourDiscountRates = async() => {
+      try {
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/data/daytour_discount`)
+          // console.log(res.data);
+          setDaytourDiscountRate(res.data[0].daytour_discount_rate);
+      } catch (error) {
+          
+      }
+  
+  }
+    useEffect(()=>{
+      GetDaytourRates();
+      GetDayTourDiscountRates();
+    }
+    ,[])
+
+    useEffect(()=>{
+      let sub_total = fees + startDistance*2*vehicleRate+ oranizingCost
+
+      let tot = sub_total/passengers
+      let nettotal = (100*tot)/(100-daytourRate)
+      let tot_1 = nettotal.toFixed(0)
+      let tot_2 = tot_1/10
+    let tot_3 = Math.ceil(tot_2)
+
+    setPackageprice(tot_3*10)
+
+    let tot_4 = tot_3*10  *(100-daytourDiscountRate)/100
+    setDiscountedPrice(tot_4)
+
+    },[fees,startDistance,vehicleRate,oranizingCost])
+
+
+
+    const { isLoaded, loadError } = useLoadScript({
+      googleMapsApiKey: "AIzaSyA7qsYXATZC1Wj57plqEUhy_U7yHJjmNLM",
+    });
+    
+    
+    if (loadError) return <p>Error loading Google Maps API</p>;
+    if (!isLoaded) return console.log('map loading');
+//distance
+
+  const distanceCallback =(response) =>{
+    if (response && response.rows && response.rows.length > 0) {
+      const distanceValue = response.rows[0].elements[0].distance.value;
+      // console.log('Distance:', distanceValue/1000);
+      setStartDistance(distanceValue/1000)
+      // Update your state or perform any other actions with the distance information
+    } else {
+      console.error('Error retrieving distance information');
+    }
+   }
   return (
     <div className='HomeDayTour'>
       <div className='HomeDayTour-main'>
@@ -57,17 +220,70 @@ export default function HomeDayTour() {
           {daytours.length > 0 ?
           <div className='HomeDayTour-carousel-info'>
           <h1 className='HomeDayTour-carousel-info-h1'>Day Tour Packages</h1>
-          <p className={`HomeDayTour-carousel-info-p1 ${isLoaded ? 'start-animation' : ''}`}>{daytours[activeSlide_].day_tour}</p>
-          <p className={`HomeDayTour-carousel-info-p2 ${isLoaded ? 'start-animation' : ''}`}>{daytours[activeSlide_].description}</p>
+          <a  className='HomeDayTour-link' href={`/daytour/${daytours[activeSlide_].day_tour_id}`}>
+          <p  className={`HomeDayTour-carousel-info-p1 ${isLoade ? 'start-animation' : ''}`}>{daytours[activeSlide_].day_tour}</p>
+          <p  className={`HomeDayTour-carousel-info-p2 ${isLoade ? 'start-animation' : ''}`}>{daytours[activeSlide_].description}</p>
+          </a>
+          <br/>
+
+
+
+          <div className={`HomeDayTour-info-div-1 ${isLoade ? 'start-animation' : ''}`} >
+          
+          <div className='HomeDayTour-info-sub-div-1'>
+            <p className='HomeDayTour-info-p1'>Number of Tourists : </p>
+            <p className='HomeDayTour-info-p1'>{passengers}</p>
+          </div>
+          <div className='HomeDayTour-info-sub-div-1'>
+            <p className='HomeDayTour-info-p1'>Tour Starts from : </p>
+            <p className='HomeDayTour-info-p1'>Colombo</p>
+          </div>
+          <div className='HomeDayTour-info-sub-div-1'>
+            <p className='HomeDayTour-info-p1'>Discounted price : </p>
+            <p className='HomeDayTour-info-p1'> $ {discountedPrice}</p>
+          </div>
+          <div className='HomeDayTour-info-sub-div-1'>
+            <p className='HomeDayTour-info-p1'>Packages price : </p>
+            <p className='HomeDayTour-info-p1'> $ {packagePrice}</p>
+          </div>
+
+          <>
+          {/* <div className='HomeDayTour-info-sub-div-1'>
+            <p className='HomeDayTour-info-p1'>vehicle price : </p>
+            <p className='HomeDayTour-info-p1'>{vehicleRate}</p>
+          </div>
+          <div className='HomeDayTour-info-sub-div-1'>
+            <p className='HomeDayTour-info-p1'>start distance : </p>
+            <p className='HomeDayTour-info-p1'>{startDistance}</p>
+          </div>
+          <div className='HomeDayTour-info-sub-div-1'>
+            <p className='HomeDayTour-info-p1'>discounte rate : </p>
+            <p className='HomeDayTour-info-p1'>{daytourDiscountRate}</p>
+          </div>
+          <div className='HomeDayTour-info-sub-div-1'>
+            <p className='HomeDayTour-info-p1'>tour rate : </p>
+            <p className='HomeDayTour-info-p1'>{daytourRate}</p>
+          </div>
+          <div className='HomeDayTour-info-sub-div-1'>
+            <p className='HomeDayTour-info-p1'>fees : </p>
+            <p className='HomeDayTour-info-p1'>{fees}</p>
+          </div>
+          <div className='HomeDayTour-info-sub-div-1'>
+            <p className='HomeDayTour-info-p1'>organizing : </p>
+            <p className='HomeDayTour-info-p1'>{oranizingCost}</p>
+          </div> */}
+          </>
+          
+          </div>
           
              <div className='HomeDayTour-carousel-info-price-div'>
-             <p className={`HomeDayTour-carousel-price-p ${isLoaded ? 'start-animation' : ''}`}>price :</p>
+             <p className={`HomeDayTour-carousel-price-p ${isLoade ? 'start-animation' : ''}`}>price :</p>
               
-              <p className={`HomeDayTour-carousel-price ${isLoaded ? 'start-animation' : ''}`}>${daytours[activeSlide_].price}</p>
+              <p className={`HomeDayTour-carousel-price ${isLoade ? 'start-animation' : ''}`}>$ {discountedPrice}</p>
 
              </div>
-             <div className={`HomeDayTour-carousel- ${isLoaded ? 'start-animation' : ''}`}>
-                <a className='HomeDayTour-carousel-readmore'   href={`/daytour/${daytours[activeSlide_].day_tour_id}`}>Read more</a>
+             <div className={`HomeDayTour-carousel- ${isLoade ? 'start-animation' : ''}`}>
+                {/* <a className='HomeDayTour-carousel-readmore'   href={`/daytour/${daytours[activeSlide_].day_tour_id}`}>Read more</a> */}
              </div>
              
             <div className='home-daytour-reacd-more-div'>
@@ -78,10 +294,6 @@ export default function HomeDayTour() {
 
           :null
           }
-
-          
-          
-
 
         <div>
         <Carousel
@@ -137,15 +349,37 @@ export default function HomeDayTour() {
       >
         {daytours.length > 0 && daytours.map((daytour, index) => (
           <img key={index} src={`${process.env.REACT_APP_BACKEND_URL}/daytour/daytourimg?file=${daytour.home_img}`} alt="" className='DayTourCarousel-img'/>
-          // <div className='DayTourCarousel-img'>{daytour._id}</div>
         ))
           }
 
-
- 
-        {/* <img src={Sinharaja} alt="" className='DayTourCarousel-img'/> */}
         
       </Carousel>
+
+
+
+      <div>
+        {isLoade && (
+          <GoogleMap>
+          <DistanceMatrixService
+      options={{
+        destinations: [{ location: { lat: startPlaceLat, lng: startPlaceLng} }],
+        origins:['Colombo'] ,
+        travelMode: 'DRIVING',
+      }}
+      callback={distanceCallback}
+    />
+          </GoogleMap>
+
+        )}
+
+
+          
+
+
+        
+      </div>
+
+
         </div>
       </div>
     </div>

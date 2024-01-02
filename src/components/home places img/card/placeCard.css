@@ -1,33 +1,86 @@
 
-.placecard{
-    background-color: aqua;
-    width:299px;
-    height: 392px;
+.PlaceCard{
+    width: 294px;
+    height: 376px;
+    overflow: hidden;
+
+
+    &:hover{
+        .PlaceCard-img{
+            transform:scale(1.1);
+                -ms-transform:scale(1.1);
+                transition: .4s;
+       }
+        .PlaceCard-info-more{
+            background-color: var(--blue);
+            color: white;
+            transition: .7s;
+            font-weight: 700;
+
+        }
+    }
+}
+.PlaceCard-img{
+    width: 100%;
+    height: 100%;
+    transition: .4s;
+
+}
+.PlaceCard_info{
+    background-color: rgba(0, 0, 0, 0.496);
+    height: 156px;
+    width: 100%;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -156px;
+    position: relative;
+
+}
+.PlaceCard-info-title{
+    font-size: 20px;
+    font-weight: 500;
+    font-family: latio;
+    color: azure;
+    text-align: center;
+    width: 290px;
+    max-height: 80px;
+    overflow: hidden;
+    margin-top: 7px;
+    /* background-color: aqua; */
+    line-height: 18px;
+    padding-bottom: 6px;
    
 }
-.placecard-bottom-div{
-    position: absolute;
-    background-color: #1d1d1fce;
-    height: 100px;
-    width: 299px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.placecard-header{
-    font-size: 25px;
-    font-weight: 800;
-    color: aliceblue;
-    font-family: poppins;
-    width: 280px;
-    /* height: 70px; */
-    text-align: center;
+.PlaceCard-info-info{
+    color: azure;
+    font-size: 13px;
+    font-weight: 400;
+    text-align: justify;
+    width: 270px;
+
+    height: 78px;
+    line-height: 15px;
     overflow: hidden;
+    margin-top: -18px;
     /* background-color: aqua; */
+
 }
-.place_img{
-    /* width: auto; */
-    height: 100%;
+.PlaceCard-info-more{
+    text-align: center;
+    color: rgb(7, 7, 7);
+    background-color: orange;
+    padding: 3px 15px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: poppins;
+    text-decoration: none;
+    margin-top: -4px;
+    transition: .8s;
+
 }
+
+
+
+

@@ -20,7 +20,7 @@ export default function TourPreview() {
   const today = 
   new Date().toISOString().slice(0, 10);
   //pop up
-  const[pophotel,setPopHotel] = useState('5 star')
+  const[pophotel,setPopHotel] = useState('3 star/4 star')
   const[poppassenger,setPopPassneger] = useState(2)
   const[popup1,setPopup1] = useState('hide')
   const[popup2,setPopup2] = useState('hide')
@@ -28,7 +28,7 @@ export default function TourPreview() {
 
   const[startDay, setStartDay] = useState(today)
   const[total,setTotal] = useState(0)
-  const[hotel,setHotel] = useState('5 star')
+  const[hotel,setHotel] = useState('3 star/4 star')
   const[passenger,setPassenger] = useState(2)
 
   const[vehicleRate,setVehicleRate] = useState(0)
@@ -308,11 +308,11 @@ const Booknow = () => {
         <div  className='tourpreview-popup-main'>
          
           <div className='tourpreview-popup-form'>
-            <label className='tourpreview-popup-form-label'>Enter number of tourists :</label>
+            <label className='tourpreview-popup-form-label'>Number of Tourists :</label>
             <input type='number' className='tourpreview-popup-form-input' onChange={(e)=>setPopPassneger(e.target.value)}/>
           </div>
           <div className='tourpreview-popup-form'>
-            <label className='tourpreview-popup-form-label'>Select the hotel type :</label>
+            <label className='tourpreview-popup-form-label'>Hotel Category :</label>
 
             <select className='tourpreview-popup-form-input' onChange={(e)=>setPopHotel(e.target.value)}>
               <option value=''>Select</option>
@@ -330,7 +330,7 @@ const Booknow = () => {
         <div  className='tourpreview-popup-main'>
           
           <div className='tourpreview-popup-form'>
-            <label className='tourpreview-popup-form-label'>Enter Tour Date:</label>
+            <label className='tourpreview-popup-form-label'>Tour Start Date:</label>
             <input type='date' className='tourpreview-popup-form-input' onChange={(e)=>setPopDate(e.target.value)}/>
           </div>
           <div className='tourpreview-popup-btn-div'>
@@ -369,11 +369,11 @@ const Booknow = () => {
           </div>
           <div className='TourPreview-header-info'>
             <div className='TourPreview-header-info2'>
-              <p >Passenger Count : </p>
+              <p >Number of Tourists : </p>
               <p >{passenger}</p>
             </div>
             <div className='TourPreview-header-info2'>
-              <p>Hotel Type : </p>
+              <p>Hotel Category : </p>
               <p  >{hotel}</p>
             </div>
           

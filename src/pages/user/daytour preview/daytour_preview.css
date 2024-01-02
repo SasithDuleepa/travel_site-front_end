@@ -30,6 +30,13 @@
     font-weight: 600;
     color: white;
     text-align: center;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.496);
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 .daytour-preview-hero-route-div{
@@ -183,8 +190,9 @@
 }
 .daytour-preview-top-right-img-div{
 
-    width: 388px;
+    width: 394px;
     height: 300px;
+   
 
 }
 .daytour-preview-top-right-img{
@@ -423,36 +431,43 @@
 
 
 .ribbon {
-    --s: 70px; /* the ribbon size */
-    --d: 20px; /* the depth */
-    --c: 20px; /* the cutout part */
+    --s: 30px; /* the ribbon size */
+    --d: 15px; /* the depth */
+    --c: 15px; /* the cutout part */
     /* update one variable a time and you will understand what it does */
     
     padding: 0 calc(var(--s) + var(--d)) var(--d);
-    background:
+    background-color:
       conic-gradient(at left  var(--s) bottom var(--d),
        #0000 25%,#0008 0 37.5%,#0004 0) 0   /50% no-repeat,
       conic-gradient(at right var(--s) bottom var(--d),
        #0004 62.5%,#0008 0 75%,#0000 0) 100%/50% no-repeat;
     clip-path: polygon(0 var(--d), var(--s) var(--d),var(--s) 0,calc(100% - var(--s)) 0,calc(100% - var(--s)) var(--d),100% var(--d),calc(100% - var(--c)) calc(50% + var(--d)/2),100% 100%,calc(100% - var(--s) - var(--d)) 100%,calc(100% - var(--s) - var(--d)) calc(100% - var(--d)),calc(var(--s) + var(--d)) calc(100% - var(--d)),calc(var(--s) + var(--d)) 100%,0 100%,var(--c) calc(50% + var(--d)/2));
     background-color: #CC333F; /* the main color */
+    
     /* width: fit-content; you may need to use this in your code if the element is full width */
-  }
-  
-  
-  
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: grid;
-    place-content: center;
-    place-items: center;
-  }
-  
-  h2{
+
+
     font-family: sans-serif;
     color: #fff;
     line-height: 1.8;
-    font-size: 2em;
+    font-size: 16px;
     text-align: center;
+    width: 100px;
+    position: absolute;
+    left: 30%;
+    rotate: 30deg;
+
+
+
+
+  font-family: 'Fredoka One', cursive;
+  fill:#992ac2;
+    
   }
+  
+  
+  
+
+  
+

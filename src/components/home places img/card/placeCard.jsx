@@ -7,25 +7,19 @@ import axios from 'axios';
 
 export default function PlaceCard(props) {
 
-  const style_css_up = {
-
-
-  }
-  const style_css_down = {
-    marginTop: '100px'
-
-  }
 
   return (
-    <a href={`/placeReview/${props.placeId}`}>
-      <div className='placecard' style={props.direction === 'style_css_up' ? style_css_up : style_css_down}>
-        <div className='placecard-bottom-div'>
-          <p className='placecard-header'>{props.title}</p>
-        </div>
-        <img className='place_img' src={`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${props.img}`} alt="" />
+    <div className='PlaceCard'>
+        <img  className='PlaceCard-img' alt='' src={ 
+            `${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${props.img}`
 
-      </div>
-    </a>
+           }/>
+        <div className='PlaceCard_info'>
+            <p className='PlaceCard-info-title'>{props.place}</p>
+            <p className='PlaceCard-info-info'>{props.short}</p>
+            <a className='PlaceCard-info-more' href={`/placeReview/${props.link}`}>Read more</a>
+        </div>
+    </div>
 
   )
 

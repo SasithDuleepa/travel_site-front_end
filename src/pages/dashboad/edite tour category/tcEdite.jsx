@@ -220,7 +220,8 @@ const Delete =async()=>{
 
 
                     <div>
-                      <input type="text" onChange={(e)=>SearchHandler(e)}/>
+                      <label>add tours : </label>
+                      <input placeholder='search tour' type="text" onChange={(e)=>SearchHandler(e)}/>
                       <div className='TcEdite-search-result'>
                         {searchdata.length>0 && searchdata.map((item,index)=>{
                             return(

@@ -402,43 +402,43 @@ const settings = {
       <div className={popup1}>
         <div className='day-tour-popup-1-main'>
           <div className='day-tour-popup-1-main-form'>
-            <label  className='day-tour-popup-1-main-form-label'>Tour Starts From:</label>            
+            <label  className='day-tour-popup-1-main-form-label'>Tour starts from :</label>            
             <select  className='day-tour-popup-1-main-form-input' onChange={(e)=>setPopUpOrigin(e.target.value)} value={popUpOrigin}>
-            <option>select town</option>
-            <option value={'Negombo'}>Negombo</option>
-<option value={'Ja-Ela'}>Ja-Ela</option>
-<option value={'Wattala'}>Wattala</option>
+    
+            <option value={'Ahungalla'}>Ahungalla</option>
+<option value={'Akurala'}>Akurala</option>
+<option value={'Aluthgama'}>Aluthgama</option>
+<option value={'Ambalangoda'}>Ambalangoda</option>
+<option value={'Balapitiya'}>Balapitiya</option>
+<option value={'Beruwala'}>Beruwala</option>
+<option value={'Bentota'}>Bentota</option>
+<option value={'Boossa'}>Boossa</option>
 <option value={'Colombo'}>Colombo</option>
 <option value={'Dehiwala'}>Dehiwala</option>
-<option value={'Mount-Lavinia'}>Mount Lavinia</option>
-<option value={'Moratuwa'}>Moratuwa</option>
-<option value={'Panadura'}>Panadura</option>
-<option value={'Wadduwa'}>Wadduwa</option>
-<option value={'Kalutara'}>Kalutara</option>
-<option value={'Payagala'}>Payagala</option>
-<option value={'Maggona'}>Maggona</option>
-<option value={'Beruwala'}>Beruwala</option>
-<option value={'Aluthgama'}>Aluthgama</option>
-<option value={'Bentota'}>Bentota</option>
-<option value={'Induruwa'}>Induruwa</option>
-<option value={'Kosgoda'}>Kosgoda</option>
-<option value={'Ahungalla'}>Ahungalla</option>
-<option value={'Balapitiya'}>Balapitiya</option>
-<option value={'Ambalangoda'}>Ambalangoda</option>
-<option value={'Madampagama'}>Madampagama</option>
-<option value={'Akurala'}>Akurala</option>
-<option value={'Hikkaduwa'}>Hikkaduwa</option>
-<option value={'Rathgama'}>Rathgama</option>
-<option value={'Boossa'}>Boossa</option>
 <option value={'Galle'}>Galle</option>
-<option value={'Unawatuna'}>Unawatuna</option>
-<option value={'Talpe'}>Talpe</option>
+<option value={'Hikkaduwa'}>Hikkaduwa</option>
+<option value={'Induruwa'}>Induruwa</option>
+<option value={'Ja-Ela'}>Ja-Ela</option>
+<option value={'Kalutara'}>Kalutara</option>
 <option value={'Koggala'}>Koggala</option>
-<option value={'Ahangama'}>Ahangama</option>
-<option value={'Weligama'}>Weligama</option>
-<option value={'Mirissa'}>Mirissa</option>
-<option value={'Polhena'}>Polhena</option>
+<option value={'Kosgoda'}>Kosgoda</option>
+<option value={'Madampagama'}>Madampagama</option>
+<option value={'Maggona'}>Maggona</option>
 <option value={'Matara'}>Matara</option>
+<option value={'Mirissa'}>Mirissa</option>
+<option value={'Moratuwa'}>Moratuwa</option>
+<option value={'Mount-Lavinia'}>Mount Lavinia</option>
+<option value={'Negombo'}>Negombo</option>
+<option value={'Panadura'}>Panadura</option>
+<option value={'Payagala'}>Payagala</option>
+<option value={'Polhena'}>Polhena</option>
+<option value={'Rathgama'}>Rathgama</option>
+<option value={'Talpe'}>Talpe</option>
+<option value={'Unawatuna'}>Unawatuna</option>
+<option value={'Wadduwa'}>Wadduwa</option>
+<option value={'Wattala'}>Wattala</option>
+<option value={'Weligama'}>Weligama</option>
+
 
 
             </select>
@@ -496,14 +496,30 @@ const settings = {
             <p className='daytour-preview-top-left-p3'>$ {total }</p>
             <p className='daytour-preview-top-left-p2'>* per person</p>
           </div>
+          <h2 class="ribbon">{daytourDiscountRate}% off</h2>
+
+
+          {/* <svg width="200" height="200">
+      <defs>
+      
+        <path id="textPath" d="M10 80 Q 95 10 180 80" />
+      </defs>
+      <text>
+        
+        <textPath href="#textPath">Curved Text</textPath>
+      </text>
+    </svg> */}
+
+
+          
           
           <div className='daytour-preview-top-left-info'>
             <div className='daytour-preview-top-left-info-sub'>
-              <p>Passenger Count : {passenger}</p>
+              <p>Number of Tourists : {passenger}</p>
               <img alt='' src={Edite} onClick={()=>setPopup2('day-tour-popup-1')}/>
             </div> 
             <div className='daytour-preview-top-left-info-sub'>
-              <p>Your Nearest City : {origin}</p>
+              <p>Tour Starts from : {origin}</p>
               <img alt='' src={Edite} onClick={()=>setPopup1('day-tour-popup-1')}/>
 
             </div>
@@ -528,8 +544,12 @@ const settings = {
       <Slider {...settings}>
       {imageId.length>0 ? imageId.map((img,index)=>{
               return(
-
+                <div className='daytour-preview-top-right-img-div'>
                   <img key={index} className='daytour-preview-top-right-img'  src={img!==undefined?`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${img}`:null} />
+
+                </div>
+
+                  
 
                 
               )
@@ -698,7 +718,7 @@ const settings = {
 
 
 
-      <h2 class="ribbon">Title Ribbon</h2>
+      
 
 
 
