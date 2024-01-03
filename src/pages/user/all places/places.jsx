@@ -42,8 +42,56 @@ export default function Places() {
      const indexOfLastPlace = currentPage * placesPerPage;
      const indexOfFirstPlace = indexOfLastPlace - placesPerPage;
      const currentPlaces = places.slice(indexOfFirstPlace, indexOfLastPlace);
+
+     const totalPages = Math.ceil(places.length / placesPerPage);
  
      const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+     const renderPageButtons = () => {
+        const pageButtons = [];
+
+        // Show previous button if not on the first page
+        if (currentPage > 1) {
+            pageButtons.push(
+                <button key="prev" className='Places-pagination-btn1' onClick={() => paginate(currentPage - 1)}>
+                    &lt;
+                </button>
+            );
+        }
+
+
+
+        // Display up to 5 page buttons, centered around the current page
+        for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
+            pageButtons.push(
+                <button key={i} className={`Places-pagination-btn2 ${i === currentPage ? 'active' : ''}`} onClick={() => paginate(i)}>
+                    {i}
+                    
+                </button>
+            );
+        }
+
+        // Show ellipses if there are more than 5 pages
+        if (totalPages > 5 && currentPage + 2 < totalPages) {
+            pageButtons.push(<span key="ellipsis">...</span>);
+        }
+
+         // Show last page button
+         if (currentPage < totalPages) {
+            pageButtons.push(
+                <button key="next" className='Places-pagination-btn3' onClick={() => paginate(currentPage + 1)}>
+                    &gt;
+                </button>
+            );
+        }
+
+        return pageButtons;
+    };
+
+
+
+
+
 
 
      const Style = {
@@ -91,12 +139,9 @@ export default function Places() {
 
             {/* Pagination */}
             <div className="Places-pagination">
-            <button></button>
-                {Array.from({ length: Math.ceil(places.length / placesPerPage) }, (_, i) => (
-                    <button className='Places-pagination-btn' key={i} onClick={() => paginate(i + 1)}>{i + 1}</button>
-                    
-                ))}
-                <button onClick={()=>paginate(currentPage+1)}>{ }</button>
+
+            {renderPageButtons()}
+                
             </div>
         
     </div>

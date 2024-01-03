@@ -13,7 +13,8 @@ import Edite from '../../../assets/icons/edit.png';
 
 import Socialmedia from './../../../components/social media/socialmedia';
 
-import Plus from './../../../assets/icons/plus.png'
+import Plus from './../../../assets/icons/plus.png';
+import Minus from './../../../assets/icons/minus.png';
 
 export default function TourPreview() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -22,6 +23,7 @@ export default function TourPreview() {
   //pop up
   const[pophotel,setPopHotel] = useState('3 star/4 star')
   const[poppassenger,setPopPassneger] = useState(2)
+  const[popup0,setPopup0] = useState('hide')
   const[popup1,setPopup1] = useState('hide')
   const[popup2,setPopup2] = useState('hide')
   const[popDate , setPopDate] = useState(today);
@@ -75,7 +77,12 @@ export default function TourPreview() {
   const {tour}= useParams();
   const [expandedDay, setExpandedDay] = useState(0);
 
+  const[activeIndex,setActiveIndex] = useState(0)
 
+//day - + 
+const [icon1,setIcon1] = useState(Plus)
+const [icon2,setIcon2] = useState(Plus)
+const [icon3,setIcon3] = useState(Plus)
 
  
 
@@ -84,6 +91,10 @@ export default function TourPreview() {
   //pop up
   const PopUpHandler =() =>{
     setPopup1('tourpreview-popup')
+  
+  }
+  const PopUpHandler0 =() =>{
+    setPopup0('tourpreview-popup')
   
   }
   const PopUpHandler2 =() =>{
@@ -95,10 +106,12 @@ export default function TourPreview() {
     setStartDay(popDate)
     setPopup1('hide')
     setPopup2('hide')
+    setPopup0('hide')
   }
   const CancelHandler = () =>{
     setPopup1('hide')
     setPopup2('hide')
+    setPopup0('hide')
   }
   useEffect(() => {
     const fetchData = async () => {
@@ -172,7 +185,7 @@ let visiting_fee = 0;
   //get tour and tour dates
   const GetTour = async() => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/tour/${tour}`);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/tour/tour/${tour}`);
       setTourData(res.data)
       setCoverImg(res.data[0].cover_img)
       console.log(res.data)
@@ -217,10 +230,19 @@ let visiting_fee = 0;
 
 
 
-  const expandhandler = (tourDateId)=>async() =>{
+  const expandhandler = (tourDateId,index)=>async() =>{
     console.log(expandedDay)
-    setExpandClass(expandclass === 'TourPreview-center-right-expand-div' ? 'close' : 'TourPreview-center-right-expand-div');
     setExpandedDay(tourDateId);
+
+    if(activeIndex === index){
+      setActiveIndex(null)
+    }else{
+      setActiveIndex(index)
+    }
+    
+    // setExpandClass(expandclass === 'TourPreview-center-right-expand-div' ? 'close' : 'TourPreview-center-right-expand-div');
+    setExpandClass( 'TourPreview-center-right-expand-div');
+    
     try {
       const res =await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/tourplaces/${tourDateId}`)
       // console.log(res.data)
@@ -289,11 +311,37 @@ useEffect(()=>{
 
 
 // book now
-const Booknow = () => {
+const Booknow = async() => {
   try {
     const login = sessionStorage.getItem("login");
     if (login === "true") {
-      window.location.href = `/tourbook1/${tour}`;
+
+      let user = sessionStorage.getItem('id');
+        let Data ={
+            tour_id:tour,
+            user_id:user,
+            tour_price:total,
+            hotel_type:hotel,
+            passengers:passenger,
+            start_date:startDay,
+            booked_date:new Date().toISOString().slice(0, 10)
+            
+        }
+
+        try {
+          const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/book/bookTour`,Data );
+        console.log(res);
+        if(res.status === 200){
+
+
+  
+        }
+        } catch (error) {
+          console.log(error);
+        }
+
+
+
     } else {
       window.location.href = "/login";
     }
@@ -302,15 +350,38 @@ const Booknow = () => {
   }
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
     <div className='TourPreview'>
-      <div className={popup1}>
+      <div className={popup0}>
         <div  className='tourpreview-popup-main'>
          
           <div className='tourpreview-popup-form'>
             <label className='tourpreview-popup-form-label'>Number of Tourists :</label>
             <input type='number' className='tourpreview-popup-form-input' onChange={(e)=>setPopPassneger(e.target.value)}/>
           </div>
+          <div className='tourpreview-popup-btn-div'>
+            <button className='tourpreview-popup-enter-btn' onClick={EnterHandler}>Enter</button>
+            <button className='tourpreview-popup-cancel-btn' onClick={CancelHandler}>Cancel</button>
+          </div>
+        </div>
+      </div>
+      <div className={popup1}>
+        <div  className='tourpreview-popup-main'>
+         
+
           <div className='tourpreview-popup-form'>
             <label className='tourpreview-popup-form-label'>Hotel Category :</label>
 
@@ -367,20 +438,24 @@ const Booknow = () => {
             <p className='TourPreview-header-left-p' > {total}</p>
             <p className='TourPreview-header-left-p-sub'>* per person</p>
           </div>
+
           <div className='TourPreview-header-info'>
-            <div className='TourPreview-header-info2'>
               <p >Number of Tourists : </p>
               <p >{passenger}</p>
-            </div>
-            <div className='TourPreview-header-info2'>
-              <p>Hotel Category : </p>
-              <p  >{hotel}</p>
+              <a onClick={PopUpHandler0}><img src={Edite}/></a>
             </div>
           
             
-            <a onClick={PopUpHandler}><img src={Edite}/></a>
-          </div>
-          <div className='TourPreview-header-info1'>
+            <div className='TourPreview-header-info'>
+              <p>Hotel Category : </p>
+              <p  >{hotel}</p>
+              <a onClick={PopUpHandler}><img src={Edite}/></a>
+            </div>           
+            
+        
+
+
+          <div className='TourPreview-header-info'>
           <p >Tour Start Date : </p>
           <p> {startDay}</p>
           <a onClick={PopUpHandler2}><img src={Edite}/></a>
@@ -519,9 +594,24 @@ const Booknow = () => {
 
               {placesData.length>0 ?placesData.map((place,index)=>{
                 return(
-                  <MarkerF key={index}
-                  position={{lat: place.place_lat, lng: place.place_lng}}
-                  />
+<MarkerF
+  key={index}
+  position={{ lat: place.place_lat, lng: place.place_lng }}
+  icon={{
+    url: `data:image/svg+xml,${encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve"><defs></defs><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><path d="M 45 90 c -1.415 0 -2.725 -0.748 -3.444 -1.966 l -4.385 -7.417 C 28.167 65.396 19.664 51.02 16.759 45.189 c -2.112 -4.331 -3.175 -8.955 -3.175 -13.773 C 13.584 14.093 27.677 0 45 0 c 17.323 0 31.416 14.093 31.416 31.416 c 0 4.815 -1.063 9.438 -3.157 13.741 c -0.025 0.052 -0.053 0.104 -0.08 0.155 c -2.961 5.909 -11.41 20.193 -20.353 35.309 l -4.382 7.413 C 47.725 89.252 46.415 90 45 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(4,136,219); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" /><path d="M 45 45.678 c -8.474 0 -15.369 -6.894 -15.369 -15.368 S 36.526 14.941 45 14.941 c 8.474 0 15.368 6.895 15.368 15.369 S 53.474 45.678 45 45.678 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" /></g></svg>'
+    )}`,
+    // url: require('./../../../assets/icons/location.svg').default,
+    scaledSize: new window.google.maps.Size(50, 50),
+    origin: new window.google.maps.Point(0, 0),
+    anchor: new window.google.maps.Point(0, 0),
+    className: 'your-custom-class',
+    }
+  }
+  title={place.place_name}
+
+/>
+
                 )
               }):null}
             </GoogleMap>
@@ -531,13 +621,17 @@ const Booknow = () => {
           {TourData.length>0 ? TourData.map((tourDate,index)=>{
             return(
             <div key={index} className='TourPreview-center-right-day'>
-            <a key={index} onClick={expandhandler(tourDate.tour_date_id)} className='TourPreview-center-right-day-main'>
+              <a  key={index} onClick={expandhandler(tourDate.tour_date_id,index)} className={`TourPreview-center-right-day-main-${index}`}>
               <p  className='TourPreview-center-right-day-main-p'>Day {tourDate.tour_date}</p>
-               <img   src={Plus}/></a>
+               
+               <div className={expandedDay === tourDate.tour_date_id && activeIndex === index ? `TourPreview-center-right-day-main-icon-${index}-active` : `TourPreview-center-right-day-main-icon-${index}`}></div>
+               
+               </a>
 
 
                
-            <div className={expandedDay === tourDate.tour_date_id ? expandclass : 'close'}>
+            <div className={expandedDay === tourDate.tour_date_id && activeIndex === index? expandclass : 'close'}>
+
               <p>{tourDate.start_description}</p>
                   {placesData.map((place,Index)=>{
                 return(

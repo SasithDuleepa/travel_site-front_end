@@ -158,6 +158,18 @@ export default function Images() {
               }
         }
     }
+    const css = {
+      backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: '300px',
+    width: '800px',
+
+    
+    
+    
+    
+    };
   return (
     <div className='Dashboad-Images'>
         <div className='Dashboad-Images-div'>
@@ -222,8 +234,8 @@ export default function Images() {
                 <h2 className='dashboad-tour-hero-header'>Tour page Hero Images</h2>
                 <div className='dashboad-tour-hero-line'></div>
                 <div className='dashboad-tour-hero-img1-main'>
-                    <div className=' img-input-div'>
-                      {/* <img className='dashboad-tour-hero-img1-div' src={URL}/> */}
+                    <div className=' img-input-div' style={css}>
+                      
                         <input type="file" className='dashboad-tour-hero-img1-input' onChange={(e)=>setTourImg(e.target.files[0])}/>
                     
                     </div>

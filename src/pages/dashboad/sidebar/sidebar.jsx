@@ -9,6 +9,8 @@ export default function Sidebar() {
       </div>
       <div className='sidebar-links-div'>
       <a className={window.location.pathname==='/dashboad/request' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/request"}>Request</a>
+      <a className={window.location.pathname==='/dashboad/tourbook' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/tourbook"}>Tour book</a> 
+      <a className={window.location.pathname==='/dashboad/daytourbook' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/daytourbook"}>Day Tour book</a> 
         <a className={window.location.pathname==='/dashboad/addplace' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/addplace"}>Place</a>
         {/* <a className={window.location.pathname==='/dashboad/placeCategory' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/placeCategory"}>Place Category</a> */}
         
@@ -26,6 +28,7 @@ export default function Sidebar() {
         {/* <a className={window.location.pathname==='/dashboad/agents' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/agents"}>Agents</a>  */}
         <a className={window.location.pathname==='/dashboad/popular_destinations' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/popular_destinations"}>Popular Destinations</a>
         <a className={window.location.pathname==='/dashboad/rates' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/rates"}>Percentages</a> 
+        <a className={window.location.pathname==='/dashboad/descriptions' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/descriptions"}>Descriptions</a> 
       </div>
     </div>
   )

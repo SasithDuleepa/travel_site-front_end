@@ -352,7 +352,7 @@ const ButtonHandler = (btn)=>() =>{
 
 const calculateCenter = () => {
   if (places.length === 0) {
-    return { lat: 6.947248052781988, lng: 79.873046875 }; // Default center if no places
+    return { lat: places[0].place_lat, lng: places[0].place_lng}; // Default center if no places
   }
 
   const totalLat = places.reduce((sum, place) => sum + place.place_lat, 0);
@@ -366,11 +366,42 @@ const calculateCenter = () => {
 
 
 // book now
-const Booknow = () => {
+const Booknow = async() => {
   try {
     const login = sessionStorage.getItem("login");
     if (login === "true") {
-      window.location.href = `/daytourbook1/${id}`;
+      let user = sessionStorage.getItem('id');
+      const Data = {
+        tour_id:id,
+        passengers:passenger,
+        date:new Date().toISOString().slice(0, 10),
+        total:finalTotal,
+        user_id:user,
+        start_from:origin,
+      }
+
+      try {
+        const token = sessionStorage.getItem("token");
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/book/bookDayTour`,Data ,{
+          headers: {
+                       'Authorization': `${token}`,
+          },
+          withCredentials: true,
+        });
+      console.log(res);
+      if(res.status === 200){
+        window.alert("success!!");
+      }
+      } catch (error) {
+        
+      }
+
+
+
+
+
+
+
     } else {
       window.location.href = "/login";
     }
@@ -566,51 +597,25 @@ const settings = {
 
       <div className='daytour-preview-center'>
         <div className='daytour-preview-center-left'>
-        <p>{origin}</p>
+
         <GoogleMap
         key={mapKey}
         mapContainerClassName='daytour-preview-center-map-container'
         center={calculateCenter()}
-        zoom={5}
+        zoom={9}
         >
-  {/* {places.length > 0
+  {places.length > 0
     ? places.map((place, index) => (
         <MarkerF key={index} position={{ lat: place.place_lat, lng: place.place_lng }} />
       ))
-    : null} */}
-<MarkerF  position={{ lat: 8.938354312738735, lng: 80.543212890625 }} />
-
-  <DirectionsService
-    options={{
-      destination: places.length > 0
-        ? { location: { lat: places[0].place_lat, lng: places[0].place_lng }
-       }
-        : null,
-      waypoints: [ ],
-      origin:origin,
-      travelMode: 'DRIVING',
-      optimizeWaypoints: true,
-    }}
-    callback={directionsCallback}
-
-  />
-
-  <DirectionsRenderer directions={response} />
+    : null}
 
 
-<DistanceMatrixService
-    options={{
-      destinations: [
-        places.length > 0
-          ?
-           { location: { lat: places[0].place_lat, lng: places[0].place_lng } }
-          : { location: 'Naula' },
-      ],
-      origins:[origin] ,
-      travelMode: 'DRIVING',
-    }}
-    callback={distanceCallback}
-  />
+
+
+
+
+
 
 
 
@@ -671,33 +676,51 @@ const settings = {
             </div>
           </div>
           <div  className={class2}>
-          {/* <GoogleMap
-              mapContainerClassName='daytour-preview-bottom-info-2-map'
-              center={{lat: 6.947248052781988, lng: 79.873046875}}
-              zoom={7}
+          <GoogleMap
+        key={mapKey}
+        mapContainerClassName=' daytour-preview-bottom-info-2-map'
+        center={calculateCenter()}
+        zoom={6}
+        >
 
-                      >
 
-              <DirectionsService
-            options={{
-              destination: origin,
-              
-              waypoints: [
-                ...(places.length > 0
-                  ? places.map((place, index) => ({ location: { lat: place.place_lat, lng: place.place_lng },
-                  }))
-                  : [])
-              ],
-              
-              origin: origin,
-              travelMode: 'DRIVING'
-            }}
-            callback={directionsCallback}
-          />
-          <DirectionsRenderer directions={response} />
+  <DirectionsService
+    options={{
+      destination: places.length > 0
+        ? { location: { lat: places[0].place_lat, lng: places[0].place_lng }
+       }
+        : null,
+      waypoints: [ ],
+      origin:origin,
+      travelMode: 'DRIVING',
+      optimizeWaypoints: true,
+    }}
+    callback={directionsCallback}
 
-              
-            </GoogleMap> */}
+  />
+
+  <DirectionsRenderer directions={response} />
+
+
+<DistanceMatrixService
+    options={{
+      destinations: [
+        places.length > 0
+          ?
+           { location: { lat: places[0].place_lat, lng: places[0].place_lng } }
+          : { location: 'Colombo' },
+      ],
+      origins:[origin] ,
+      travelMode: 'DRIVING',
+    }}
+    callback={distanceCallback}
+  />
+
+
+
+
+
+</GoogleMap>
           </div>
           <div  className={class3}>
           {places.length>0 ? places.map((place,index)=>{
@@ -705,6 +728,7 @@ const settings = {
                 <PlaceCard key={index} id={place.place_id} place={place.place_name} 
                 img ={place.card_img}
                 short={place.short_description}
+                link={place.place_id}
                 />
               )
               

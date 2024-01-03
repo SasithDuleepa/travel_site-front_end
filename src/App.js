@@ -26,6 +26,8 @@ import PopularDestinations from './pages/dashboad/popular destinations/popularDe
 import Request from './pages/dashboad/request/request';
 import Carousel1 from './components/carousel/carousel1';
 
+import Descriptions from './pages/dashboad/descriptions/descriptions';
+
 import Login_  from './pages/dashboad/log in/login';
 
 
@@ -48,11 +50,12 @@ import Daytour_preview from './pages/user/daytour preview/daytour_preview';
 import TCPriview from './pages/user/tour category preview/tcPriview';
 import Places from './pages/user/all places/places';
 
-import Daytourbook1 from './pages/user/daytour book 1/daytourbook1';
-import Daytourbook2 from './pages/user/daytour book 2/daytourbook2';
 
-import Tourbook1 from './pages/user/tour book 1/tourbook1';
-import Tourbook2 from './pages/user/tour book 2/tourbook2';
+
+import TourBook from './pages/dashboad/tour book/tourBook';
+import DayTourBook from './pages/dashboad/day tour book/dayTourBook';
+
+
 
 
 import PrivateRoute from './utils/PrivateRoute';
@@ -103,11 +106,8 @@ function App() {
               {/* user private */}
               <Route element={<PrivateRoute/>}>
                   <Route element={<Home/>} path="/" exact/>
-                  
-                  <Route exact path="/daytourbook1/:id" element={<Daytourbook1/>}/>
-                  <Route exact path="/daytourbook2/:id/:pcount/:date" element={<Daytourbook2/>}/>
-                  <Route exact path="/tourbook1/:id" element={<Tourbook1/>}/>
-                  <Route exact path="/tourbook2/:id/:hotel/:pcount/:date" element={<Tourbook2/>}/>
+
+
 
                   <Route exact path="/carousel" element={<HomeCarousel/>}/>
                     <Route exact path="/cart/:id" element={<Cart/>} /> 
@@ -132,6 +132,9 @@ function App() {
           <Route exact path="/admin/login" element={<Login_/>}/>
           <Route exact path="/dashboad/request" element={<Request/>}/>
           <Route exact path="/dashboad/rates" element={<Rates/>}/>
+          <Route exact path="/dashboad/tourBook" element={<TourBook/>}/>
+          <Route exact path="/dashboad/daytourbook" element={<DayTourBook/>}/>
+          <Route exact path="/dashboad/descriptions" element={<Descriptions/>}/>
               </Route>
 
           </Routes>

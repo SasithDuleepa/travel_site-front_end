@@ -42,10 +42,21 @@ export default function Homeheader() {
   return (
     <div className='home-header-main'>
       <div className="pic-wrapper">
-        <div className='home-header-sub'>
+        {/* <div className='home-header-sub'>
           <p className='home-header-main-text'>Plan your Best tour with</p>
           <p className='home-header-sub-text'>Sri Lanka Travel Experts</p>
+        </div> */}
+
+
+<div className='home-header-sub'>
+          <p className='home-header-main-text-1'>Plan your Best tour with</p>
+          <p className='home-header-main-text-2'>Sri Lanka Travel Experts</p>
+          
         </div>
+
+
+
+
 
         <div className='home-header-main-sub2'>
           <p className='homeheader-input-title'>Plan your Best tour with Sri Lanka Travel Expert</p>
