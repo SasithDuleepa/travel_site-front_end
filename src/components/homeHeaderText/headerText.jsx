@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './headerText.css';
-import World from './../../assets/world tour 02 1.png'
+import World from './../../assets/world tour 02 1.png';
+import axios from 'axios';
 
 export default function HeaderText() {
+  const [about,setAbout] = useState('')
+  const GetAbout = async() => {
+    try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/description/about`);
+        setAbout(res.data[0].about)
+
+    } catch (error) {
+        
+    }
+}
+
+useEffect(() => {
+  GetAbout();
+},[])
   return (
     <div className='header-text-main'>
       <div className='header-text'>
       <div className='header-text-child1'>
         <p className='header-text-sub-p '>Travel with</p>
         <h1 className='header-text-h1 '>Sri Lanka Travel Experts</h1>
-        <p className='header-text-p '>Lorem ipsum dolor sit amet consectetur. Pharetra lectus nisi lacus non ut turpis.
-           Senectus elit lobortis morbi amet. Commodo nullam accumsan fames sed sapien gravida           
-            nec gravida id. Netus at proin tristique pharetra eget feugiat tempor amet non.
-             Enim vel sodales tellus sem in sit at sodales pharetra. Dictum quis varius
-              lacus cursus nullam consectetur amet quis. Orci ligula ac lacus vestibulum 
-              blandit at turpis pharetra neque. Mi id non dui velit malesuada sollicitudin
-               suspendisse odio rhoncus. Viverra pharetra at pellentesque gravida dictum.
-                Sit nec blandit sed enim a commodo quam suspendisse. Sed consectetur
-                 molestie non elit porttitor ac auctor. Urna et sed risus sagittis elementum ut.
-           Aenean commodo nullam rutrum enim suspendisse blandit ullamcorper nibh.</p>
+        <p className='header-text-p '>{about}</p>
            <div className=''><a className='headertext-more-btn' href='/about'>Read More</a></div>
            
         

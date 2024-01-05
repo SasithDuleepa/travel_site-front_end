@@ -7,8 +7,8 @@ import Arrow from './../../assets/icons/arrow-right.png';
 import Sinharaja from './../../assets/Sinharaja.png'
 import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer, DirectionsService ,DistanceMatrixService} from '@react-google-maps/api';
 
-import LeftArrow from './../../assets/icons/Left Arrow.png';
-import RightArrow from './../../assets/icons/Right Arrow.png';
+import LeftArrow from './../../assets/icons/Left Arrow.svg';
+import RightArrow from './../../assets/icons/Right Arrow.svg';
 
 export default function HomeDayTour() {
 

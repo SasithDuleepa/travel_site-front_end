@@ -1,12 +1,13 @@
 .aboutTeamCarouselCard-main {
-    width: 253px;
-    height: 327px;
+    width: 298px;
+    height: 376px;
     /* background-color: rgb(179, 144, 177); */
     /* margin-bottom: 120px; */
 }
 .aboutTeamCarouselCard {
-    width: 253px;
-    height: 327px;
+    margin: auto;
+    width: 294px;
+    height: 376px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -17,12 +18,11 @@
     /* background-color: #1d1d1fce; */
     background-color: rgba(29, 29, 31, 0.7);
     height: 100px;
-    width: 299px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 253px;
+    width: 294px;
     height: 98px;
 }
 .aboutTeamCarouselCard-content-name{

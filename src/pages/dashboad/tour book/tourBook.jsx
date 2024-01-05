@@ -36,9 +36,10 @@ export default function TourBook() {
     
   return (
     <div className='dashboad-tourbook'>
+      <h1>Booked Tour packages</h1>
+      <div className='dashboad-tourbook-sub'>
 
-
-
+        
 
        {/* Date Range Filter */}
        <label>
@@ -85,6 +86,11 @@ export default function TourBook() {
             )}
           </tbody>
         </table>
+
+
+      </div>
+
+
 
     </div>
   )

@@ -34,6 +34,29 @@ export default function Tours() {
 
     
   }
+  
+
+
+  //descriptions
+  const [tourpackages,setTourpackages] = useState('')
+    const [daytourpackages,setDaytourpackages] = useState('')
+    const GetTourPackages = async() => {
+      try {
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/description/tour_package`);
+          setTourpackages(res.data[0].tour_package)
+      } catch (error) {
+          
+      }
+  }
+  const GetDaytourPackages = async() => {
+    try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/description/daytour_package`);
+        setDaytourpackages(res.data[0].daytour_package)
+    } catch (error) {
+        
+    }
+}
+
 
 
   useEffect(()=>{
@@ -54,6 +77,8 @@ export default function Tours() {
       SetPage('nopage')
     }
     
+    GetTourPackages();
+    GetDaytourPackages();
   },[])
 
 
@@ -104,29 +129,11 @@ export default function Tours() {
         
       </div>
       {dayTour.length>0 ? 
-      <p className='Tour-description'>day tour Lorem ipsum dolor sit amet consectetur.
-      Leo vitae quam feugiat integer. Ac in scelerisque fames eu tempus diam in
-       eleifend. Ac id urna ullamcorper suspendisse. Libero dictum vitae duis
-        mattis. Commodo adipiscing faucibus iaculis augue sit ac adipiscing
-         adipiscing. Est amet ultrices ornare viverra nibh aliquet. Neque mattis
-          eleifend sed gravida. Quis suscipit ut mauris cum duis. Convallis in
-           potenti amet parturient consectetur id. Feugiat et quis rutrum massa 
-           sit suscipit nisl aliquet pellentesque. Laoreet arcu sed urna sed sed
-           senectus tortor. Lobortis enim bibendum elit sed fusce congue eget.
-      Tincidunt massa augue non ultrices urna etiam. Risus tincidunt aliquam ut nisl nec.</p>
+      <p className='Tour-description'>{daytourpackages}</p>
           :null}
 
        {tourCategory.length>0 ? 
-      <p className='Tour-description'>tour category Lorem ipsum dolor sit amet consectetur.
-      Leo vitae quam feugiat integer. Ac in scelerisque fames eu tempus diam in
-       eleifend. Ac id urna ullamcorper suspendisse. Libero dictum vitae duis
-        mattis. Commodo adipiscing faucibus iaculis augue sit ac adipiscing
-         adipiscing. Est amet ultrices ornare viverra nibh aliquet. Neque mattis
-          eleifend sed gravida. Quis suscipit ut mauris cum duis. Convallis in
-           potenti amet parturient consectetur id. Feugiat et quis rutrum massa 
-           sit suscipit nisl aliquet pellentesque. Laoreet arcu sed urna sed sed
-           senectus tortor. Lobortis enim bibendum elit sed fusce congue eget.
-      Tincidunt massa augue non ultrices urna etiam. Risus tincidunt aliquam ut nisl nec.</p>
+      <p className='Tour-description'>{tourpackages}</p>
           :null}
 
        <div className='button-div'>

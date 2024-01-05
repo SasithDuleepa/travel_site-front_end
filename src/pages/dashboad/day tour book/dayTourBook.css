@@ -1,4 +1,15 @@
 
 .dashboad-DayTourBook{
     margin-left: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboad-DayTourBook-sub{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
 }

@@ -35,9 +35,9 @@ export default function DayTourBook() {
       });
   return (
     <div className='dashboad-DayTourBook'>
-
-            {/* Date Range Filter */}
-       <label>
+      <h1>Booked Day Tours</h1>
+      <div className='dashboad-DayTourBook-sub'>
+      <label>
           Start Date:
           <input type='date' value={startDate} onChange={handleStartDateChange} />
         </label>
@@ -81,6 +81,10 @@ export default function DayTourBook() {
             )}
           </tbody>
         </table>
+      </div>
+
+            
+      
     </div>
   )
 }

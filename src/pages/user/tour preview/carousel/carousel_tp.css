@@ -1,7 +1,10 @@
-
-
-.Carousel_tp-img{
+.Carousel_tp{
     width: 388px;
     height: 300px;
-    margin: auto 2px auto 2px;
+}
+
+.Carousel_tp-img{
+    width: 385px;
+    height: 300px;
+    margin: auto;
 }

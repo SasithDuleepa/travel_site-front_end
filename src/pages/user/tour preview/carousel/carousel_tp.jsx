@@ -15,7 +15,7 @@ export default function Carousel_tp(props) {
         GetImgNames()
     },[props.place_id])
   return (
-    <div>
+    <div className='Carousel_tp'>
         <img
         className='Carousel_tp-img'
          src={imgs.length>0 ?  

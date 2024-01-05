@@ -27,6 +27,7 @@ import Request from './pages/dashboad/request/request';
 import Carousel1 from './components/carousel/carousel1';
 
 import Descriptions from './pages/dashboad/descriptions/descriptions';
+import Team from './pages/dashboad/add team/add_team';
 
 import Login_  from './pages/dashboad/log in/login';
 
@@ -135,6 +136,7 @@ function App() {
           <Route exact path="/dashboad/tourBook" element={<TourBook/>}/>
           <Route exact path="/dashboad/daytourbook" element={<DayTourBook/>}/>
           <Route exact path="/dashboad/descriptions" element={<Descriptions/>}/>
+          <Route exact path="/dashboad/team" element={<Team/>}/>
               </Route>
 
           </Routes>

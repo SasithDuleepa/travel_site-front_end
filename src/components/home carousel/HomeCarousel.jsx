@@ -14,6 +14,18 @@ import LeftArrow from './../../assets/icons/Left Arrow.svg'
 import RightArrow from './../../assets/icons/Right Arrow.svg'
 
 export default function HomeCarousel() {
+  const [tourSlider,setTourSlider] = useState('');
+  const GetTourSlider = async() => {
+    try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/description/slider`);
+        setTourSlider(res.data[0].tp_slider)
+    } catch (error) {
+        
+    }
+}
+useEffect(() => {
+  GetTourSlider();
+},[])
 
 
 
@@ -70,10 +82,7 @@ export default function HomeCarousel() {
       <div className="homecarousel-upper-div">
         <div className="homecarousel-info-div">
               <p className="homecarousel-info-p1">Tour Packages</p>
-              <p className="homecarousel-info-p2">Lorem ipsum dolor sit amet consectetur. Dictum risus praesent
-                 convallis morbi auctor vel risus. Tortor vulputate sed neque 
-                 varius dictum sagittis blandit mi. 
-              </p>
+              <p className="homecarousel-info-p2">{tourSlider}</p>
               <a className="homecarousel-info-btn" href='tours/tourcategory'>Find More</a>
 
         </div>
@@ -82,9 +91,11 @@ export default function HomeCarousel() {
           <Slider {...settings}>
           {categories.length > 0 && categories.map((category, index) => (
             <div>
-              <HomeCaouselCard key={index} title={category.tourcategory_name} img={category.tourcategory_img} description={category.tourcategory_description} link={`/tourcategory/${category.tourcategory_id}`}/>
-    
-
+              <HomeCaouselCard key={index} 
+              title={category.tourcategory_name} 
+              img={category.tourcategory_img} 
+              description={category.tourcategory_description} 
+              link={`/tourcategory/${category.tourcategory_id}`}/>
             </div>
       ))}
 

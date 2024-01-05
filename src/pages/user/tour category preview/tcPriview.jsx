@@ -55,21 +55,8 @@ export default function TCPriview() {
           <Socialmedia/>
         </div>
         <div className='TCPriview-sub'>
-        <p className='TCPriview-description'>
-        Lorem ipsum dolor sit amet consectetur. Erat nisi 
-        scelerisque aliquet nunc mauris aliquam sapien vitae
-        . Diam nulla etiam mauris eget malesuada consequat 
-        pharetra odio in. Iaculis nisi vehicula maecenas
-         facilisis vestibulum ultrices amet ac. Mattis
-          diam sit fermentum pharetra consectetur sollicitudin.
-           Consequat porta nullam aenean sit quam tellus orci.
-            Dignissim in pulvinar volutpat nunc. Commodo
-             eu sit at elementum. Morbi elementum laoreet 
-             sed tortor. Est pellentesque malesuada a dignissim sed id ut.
-              Volutpat tempor et congue pellentesque ut tempus.
-         Congue sed lectus ornare diam in. Arcu donec tellus fames
-          augue nulla enim posuere varius porttitor.
-        </p>
+        <p className='TCPriview-description'>{category ? category.tourcategory_description : null
+}</p>
 
         <div className='TCPriview-card_div'>
 

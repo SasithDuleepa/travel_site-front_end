@@ -1,4 +1,16 @@
 
 .dashboad-tourbook{
     margin-left: 330px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.dashboad-tourbook-sub{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
 }

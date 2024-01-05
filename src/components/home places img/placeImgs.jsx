@@ -52,6 +52,7 @@ export default function PlaceImgs() {
   };
   return (
     <div className='place-Imgs'>
+      <h1  className='place-Imgs-title'>Popular Places</h1>
        <div className='places-main'>
 
 

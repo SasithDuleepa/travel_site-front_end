@@ -4,7 +4,7 @@ import Google from './../../../assets/google.png';
 import Image2 from './../../../assets/image2.png';
 import Line from './../../../assets/Line 29.png'
 import axios from 'axios';
-import Cookies from 'js-cookie'
+
 export default function Login() {
 
     //inputs

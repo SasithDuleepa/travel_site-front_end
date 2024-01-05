@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Slider from 'react-slick';
 import './tourPreview.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -16,10 +17,19 @@ import Socialmedia from './../../../components/social media/socialmedia';
 import Plus from './../../../assets/icons/plus.png';
 import Minus from './../../../assets/icons/minus.png';
 
+
+
 export default function TourPreview() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const today = 
-  new Date().toISOString().slice(0, 10);
+
+  const[tourRate,setTourRate] = useState(null)
+
+  
+  const realToday = new Date();
+  realToday.setDate(realToday.getDate() + 3);
+  const today = realToday.toISOString().slice(0, 10);
+
+
   //pop up
   const[pophotel,setPopHotel] = useState('3 star/4 star')
   const[poppassenger,setPopPassneger] = useState(2)
@@ -101,12 +111,16 @@ const [icon3,setIcon3] = useState(Plus)
     setPopup2('tourpreview-popup')
   }
   const EnterHandler = () =>{
-    setPassenger(poppassenger)
+console.log('popup hotel',pophotel)
+
+    setPassenger(passenger)
     setHotel(pophotel)
     setStartDay(popDate)
     setPopup1('hide')
     setPopup2('hide')
     setPopup0('hide')
+    GetVisitingFee()
+    Calculation(hotelPrice)
   }
   const CancelHandler = () =>{
     setPopup1('hide')
@@ -130,38 +144,53 @@ const [icon3,setIcon3] = useState(Plus)
   }, [passenger]);
 
   let hotelprice = 0;
-useEffect(() => {
+
   const GetVisitingFee = async () => {
+
+    
     
     if (TourData.length > 0) {
       
-      if (hotel === '5 star') {
+      
+      if (pophotel === '5 star') {
+        console.log('luxury hotel pricess called!!!',pophotel)
         
         try {
           const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/luxury/price/${tour}/${popDate}`);
           if (res.data.length > 0) {
-            // console.log(res.data);
+            console.log(res.data);
             hotelprice = 0;
             res.data.map((item, index) => {
-              return (hotelprice = hotelprice + item.price);
+              hotelprice = hotelprice + item.price;
+              setHotelPrice(hotelprice)
+
             });
-            setHotelPrice(hotelprice)
+            
             
           }
           
         } catch (error) {
           console.error('Error fetching data:', error);
         }
-      } else if (hotel === '3 star/4 star') {
+      } else if (pophotel === '3 star/4 star') {
+        console.log('semi hotel pricess called!!!',pophotel)
         try {
+          
           const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/semi/price/${tour}/${popDate}`);
+        
           if (res.data.length > 0) {
-            // console.log(res.data);
+            console.log(res.data)
+            
             hotelprice = 0;
             res.data.map((item, index) => {
-              return (hotelprice = hotelprice + item.price);
+
+                hotelprice = hotelprice + item.price;
+                console.log("hotel fee called !!!!",hotelprice)
+                setHotelPrice(hotelprice)
+                
+
             });
-            setHotelPrice(hotelprice)
+            
           }
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -170,15 +199,18 @@ useEffect(() => {
     }
     
   };
+useEffect(() => {
+  
   
   GetVisitingFee ();
-}, [hotel, popDate, TourData]);
+  // console.log('hotel fee api called!!!')
+}, [hotel,pophotel, popDate, TourData]);
 
 
 
 
 
-
+const [placeFee,setPlaceFee] = useState(0)
 let visiting_fee = 0;
 
 
@@ -206,7 +238,10 @@ let visiting_fee = 0;
     if(placeData.length>0){
       placeData.map((item,index)=>{
         visiting_fee = visiting_fee + item.visiting_fee
+
+        setPlaceFee(visiting_fee)
         return visiting_fee
+        
 
         
       })
@@ -253,27 +288,72 @@ let visiting_fee = 0;
   }
 
 
+
+  //get daytour rates
+  const GetDaytourRates =async ()=>{
+    try {
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/data/tour`);
+          console.log(res.data);
+          
+          if(res.data.length>0){
+            setTourRate(res.data[0].tour_rate)
+          }
+    } catch (error) {
+      console.log(error)
+    }
+  
+  }
+  useEffect(()=>{
+    GetDaytourRates();
+  }
+  ,[])
+
+
   //calculation
-const Calculation =()=>{
-  // console.log('passengers', passenger )
-  // console.log('distance', distance )
-  // console.log('vehicle', vehicleRate )
-  // console.log('hotel', hotelprice )
-  let sub_total = hotelPrice + distance*vehicleRate  + visiting_fee;
+const Calculation =(Hotel)=>{
+  console.log('passengers', passenger )
+  console.log('fee', placeFee )
+  console.log('distance', distance )
+  console.log('vehicle', vehicleRate )
+  console.log('hotel', Hotel )
+  console.log('tour rate', tourRate )
+
+
+  //passenger count for hotel room
+  let tot_passengers = passenger
+  let passengers_1 = tot_passengers/2
+  console.log('num of couples', passengers_1)
+  let rooms = Math.ceil(passengers_1)
+  console.log('num of rooms ', rooms)
+ 
+
+  
+  let sub_total = Hotel*rooms + distance*vehicleRate  + placeFee;
   let total = sub_total/passenger
-  let total_ = total.toFixed(0)
+  let nettotal = (100*total)/(100-tourRate)
+
+
+
+
+
+  let total_ = nettotal.toFixed(0)
 
   let total_1 = total_/10
   let total_2 = Math.ceil(total_1)
+  let total_3 = total_2*10
+
+  
 
 
-  setTotal(total_2*10)
+
+  setTotal(total_3)
 }
 useEffect(()=>{
-  Calculation();
+  let hotel = hotelPrice
+  Calculation(hotel);
   // console.log('hotel', hotelPrice )
 }
-,[distance,hotelprice,visiting_fee,vehicleRate])
+,[distance,hotelprice,placeFee,vehicleRate])
 
   // map
   const [response, setResponse] = React.useState(null)
@@ -353,14 +433,39 @@ const Booknow = async() => {
 
 
 
+const calculateCenter = () => {
+  if (placesData.length === 0) {
+    return { lat: 7.677340477913782, lng: 80.7080078125}; // Default center if no places
+  }
+
+  const totalLat = placesData.reduce((sum, place) => sum + place.place_lat, 0);
+  const totalLng = placesData.reduce((sum, place) => sum + place.place_lng, 0);
+
+  const averageLat = totalLat / placesData.length;
+  const averageLng = totalLng / placesData.length;
+
+  return { lat: averageLat, lng: averageLng };
+};
 
 
 
 
 
 
+const settings = {
+  dots: false,
+  speed: 1900,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 2500,
+  arrows:false
 
 
+
+
+};
 
 
     return (
@@ -370,7 +475,7 @@ const Booknow = async() => {
          
           <div className='tourpreview-popup-form'>
             <label className='tourpreview-popup-form-label'>Number of Tourists :</label>
-            <input type='number' className='tourpreview-popup-form-input' onChange={(e)=>setPopPassneger(e.target.value)}/>
+            <input type='number' className='tourpreview-popup-form-input' onChange={(e)=>setPassenger(e.target.value)}/>
           </div>
           <div className='tourpreview-popup-btn-div'>
             <button className='tourpreview-popup-enter-btn' onClick={EnterHandler}>Enter</button>
@@ -387,8 +492,8 @@ const Booknow = async() => {
 
             <select className='tourpreview-popup-form-input' onChange={(e)=>setPopHotel(e.target.value)}>
               <option value=''>Select</option>
-              <option value='5 star'>5 start</option>
-            <option value='3 star/4 star'>3 star / 4 star</option>
+              <option value='5 star'>Category A</option>
+            <option value='3 star/4 star'>Category B</option>
             </select>
           </div>
           <div className='tourpreview-popup-btn-div'>
@@ -476,99 +581,18 @@ const Booknow = async() => {
 
         <div className='TourPreview-header-right'>
           <div className='TourPreview-header-right-carousel'>
-          <Carousel
-        containerProps={{
-          
-          style: {
-            width: "100%",
-           
-          }
-        }}
-        preventScrollOnSwipe
-        swipeTreshold={60}
-        activeSlideIndex={activeSlide}
-        // activeSlideProps={{
-        //   style: {
-        //     background: "blue"
-        //   }
-        // }}
-        onRequestChange={setActiveSlide}
-        forwardBtnProps={{
-          children: ">",
-          
-          style: {
-            width: 60,
-            height: 60,
-            minWidth: 60,
-            alignSelf: "center",
-            display:'none'
-          }
-        }}
-        backwardBtnProps={{
-          children: "<",
-          style: {
-            width: 60,
-            height: 60,
-            minWidth: 60,
-            alignSelf: "center",
-            display:'none'
-          }
-        }}
-        dotsNav={{
-          show: false,
-          itemBtnProps: {
-            style: {
-              height: 16,
-              width: 16,
-              borderRadius: "50%",
-              border: 0
-            }
-          },
-          activeItemBtnProps: {
-            style: {
-              height: 16,
-              width: 16,
-              borderRadius: "50%",
-              border: 0,
-              background: "black"
-            }
-          }
-        }}
-        
-        autoplay={true}
-        delay={1000}
-        itemsToShow={2}
-        speed={1600}
-        easing="ease-in-out"
-        // centerMode
-      >
-        {/* {Array.from({ length: 10 }).map((item, index) => (
-          <div
-            style={{
-              background: "yellow",
-              width: 300,
-              height: 300,
-              border: "30px solid white",
-              textAlign: "center",
-              lineHeight: "240px",
-              boxSizing: "border-box"
-            }}
-            key={index}
-          >
-            {index}
-            
-          </div>
-        ))} */}
-        
-        {places.length>0 ? places.map((place,index)=>{
+
+
+
+
+      <Slider {...settings}>
+      {places.length>0 ? places.map((place,index)=>{
               return(
                 <Carousel_tp key={index} place_id={place.place_id  }/>
-                // <p>{place.place_name  }</p>
               )
             }):null}
 
-     
-      </Carousel>
+      </Slider>
           </div>
 
         </div>
@@ -588,8 +612,8 @@ const Booknow = async() => {
         <div className='TourPreview-center-left' >
         <GoogleMap
               mapContainerClassName='map-container1'
-              center={{lat: 6.947248052781988, lng: 79.873046875}}
-              zoom={7}
+              center={calculateCenter()}
+              zoom={8}
                       >
 
               {placesData.length>0 ?placesData.map((place,index)=>{
@@ -597,14 +621,17 @@ const Booknow = async() => {
 <MarkerF
   key={index}
   position={{ lat: place.place_lat, lng: place.place_lng }}
+  
   icon={{
-    url: `data:image/svg+xml,${encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve"><defs></defs><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><path d="M 45 90 c -1.415 0 -2.725 -0.748 -3.444 -1.966 l -4.385 -7.417 C 28.167 65.396 19.664 51.02 16.759 45.189 c -2.112 -4.331 -3.175 -8.955 -3.175 -13.773 C 13.584 14.093 27.677 0 45 0 c 17.323 0 31.416 14.093 31.416 31.416 c 0 4.815 -1.063 9.438 -3.157 13.741 c -0.025 0.052 -0.053 0.104 -0.08 0.155 c -2.961 5.909 -11.41 20.193 -20.353 35.309 l -4.382 7.413 C 47.725 89.252 46.415 90 45 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(4,136,219); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" /><path d="M 45 45.678 c -8.474 0 -15.369 -6.894 -15.369 -15.368 S 36.526 14.941 45 14.941 c 8.474 0 15.368 6.895 15.368 15.369 S 53.474 45.678 45 45.678 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" /></g></svg>'
-    )}`,
-    // url: require('./../../../assets/icons/location.svg').default,
+    // url: `data:image/svg+xml,${encodeURIComponent(
+    //   '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve"><defs></defs><g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)"><path d="M 45 90 c -1.415 0 -2.725 -0.748 -3.444 -1.966 l -4.385 -7.417 C 28.167 65.396 19.664 51.02 16.759 45.189 c -2.112 -4.331 -3.175 -8.955 -3.175 -13.773 C 13.584 14.093 27.677 0 45 0 c 17.323 0 31.416 14.093 31.416 31.416 c 0 4.815 -1.063 9.438 -3.157 13.741 c -0.025 0.052 -0.053 0.104 -0.08 0.155 c -2.961 5.909 -11.41 20.193 -20.353 35.309 l -4.382 7.413 C 47.725 89.252 46.415 90 45 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(4,136,219); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" /><path d="M 45 45.678 c -8.474 0 -15.369 -6.894 -15.369 -15.368 S 36.526 14.941 45 14.941 c 8.474 0 15.368 6.895 15.368 15.369 S 53.474 45.678 45 45.678 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" /></g></svg>'
+    // )}`,
+    url: require('./../../../assets/icons/location.svg').default,
+    // url: 'http://localhost:8080/images/Home/heroimg/slider1.jpg',
     scaledSize: new window.google.maps.Size(50, 50),
     origin: new window.google.maps.Point(0, 0),
-    anchor: new window.google.maps.Point(0, 0),
+    anchor: new window.google.maps.Point(1, 1),
+    
     className: 'your-custom-class',
     }
   }

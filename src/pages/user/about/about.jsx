@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './about.css';
-
+import axios from 'axios';
 
 
 
@@ -15,6 +15,59 @@ import AboutTeamCarousel from '../../../components/about team carousel/aboutTeam
 import Socialmedia from '../../../components/social media/socialmedia';
 
 export default function About() {
+
+  const [about,setAbout] = useState('');
+  const [voiceofchairman,setVoiceofchairman] = useState('');
+  const [chairmanName,setChairmanName] = useState('');
+  const [chairmanImg,setChairmanImg] = useState(null);
+
+
+
+  const GetTeam = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/team/get`);
+      console.log(response.data);
+
+      // Extract CEO data
+      const ceoData = response.data.find(member => member.position.toLowerCase() === 'ceo');
+      if (ceoData) {
+        setChairmanName(ceoData.name);
+        setChairmanImg(ceoData.image);
+      }
+     
+
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
+
+  useEffect(() => {
+    GetTeam()
+  },[])
+
+  const GetAbout = async() => {
+    try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/description/about`);
+        setAbout(res.data[0].about)
+
+    } catch (error) {
+        
+    }
+}
+const GetChairman = async() => {
+  try {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/description/chairman`);
+      setVoiceofchairman(res.data[0].chairman)
+  } catch (error) {
+      
+  }
+}
+
+useEffect(() => {
+  GetAbout();
+  GetChairman();
+},[])
 
   const contact_us={
     backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
@@ -46,13 +99,7 @@ export default function About() {
           <div className='About-header-text-row-content'>
             <p className='About-header-text-row-content-travelWith'>Travel with</p>
             <p className='About-header-text-row-content-title'>Sri Lanka Travel Experts</p>
-            <p className='About-header-text-row-content-description'>Lorem ipsum dolor sit amet consectetur. In eget placerat auctor adipiscing
-              felis euismod massa mattis facilisis. Nisl in lacus pharetra cursus enim vitae ultrices odio iaculis. Ut posuere feugiat et pellentesque dui.
-              Nulla nunc aliquam duis a viverra at metus morbi. Eu urna arcu ipsum dignissim sit et et faucibus quam.
-              Dignissim semper ornare nisi purus ac risus mi. In sed in nisi varius sed ullamcorper lorem. Fames in vulputate faucibus pretium nulla
-              fringilla aliquam vulputate. Mauris eget nulla morbi aliquet malesuada donec magnis in nec. Malesuada nibh purus ut imperdiet at laoreet.
-              Curabitur commodo nunc et condimentum amet cursus at felis
-            </p>
+            <p className='About-header-text-row-content-description'>{about}</p>
           </div>
           <img className='About-header-text-row-img' src={World} />
         </div>
@@ -89,13 +136,14 @@ export default function About() {
         <div className='About-VoC-main-section'>
           <p className='About-VoC-main-section-title'>VOICE OF CHAIRMAN</p>
           <div className='About-VoC-main-section-row'>
-            <img className='About-VoC-main-section-row-image' src={ChairmanImage} />
+            
+
+            {chairmanImg ? <img className='About-VoC-main-section-row-image' src={`${process.env.REACT_APP_BACKEND_URL}/team/image/${chairmanImg}`} /> : 
+            <img className='About-VoC-main-section-row-image' src={ChairmanImage} />}
             <div className='About-VoC-main-section-row-description'>
-              <p className='About-VoC-main-section-row-description-msg'>Lorem ipsum dolor sit amet consectetur. Sem mattis diam diam sem interdum non. Dui ultrices in in nisi. Sem eu phasellus bibendum porttitor risus mattis massa tristique. Sagittis dui vitae lobortis nisl tincidunt lectus. Posuere velit donec ornare lectus amet vitae odio proin. Pellentesque enim id elit lacinia sodales dui sit dignissim lacus. Sed senectus ut purus at libero ipsum gravida. Porttitor mauris ut vitae nulla purus netus. Felis dictum morbi in purus nunc est proin tellus morbi.
-                Tempor facilisi nec dignissim pellentesque facilisi. Porttitor arcu commodo in libero auctor tincidunt. Integer cursus sem est enim orci maecenas justo lorem. Quis in ac lectus tempor consequat nunc non nulla egestas. Arcu ultricies proin vivamus donec diam consequat at diam. Dui neque eget urna velit mollis. In nunc adipiscing leo adipiscing. Rhoncus ultrices egestas id placerat urna faucibus vitae in egestas. Eget habitant egestas ut ornare nibh sed.
-              </p>
+              <p className='About-VoC-main-section-row-description-msg'>{voiceofchairman}</p>
               <div className='About-VoC-main-section-row-description-company'>
-                <p className='About-VoC-main-section-row-description-company-ceo'>Harsha Walisundra </p>
+                <p className='About-VoC-main-section-row-description-company-ceo'>{chairmanName}</p>
                 <p className='About-VoC-main-section-row-description-company-nc'>CEO, Sri Lanka Travel Experts (PVT) LTD</p>
               </div>
             </div>

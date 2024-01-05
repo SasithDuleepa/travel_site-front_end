@@ -8,6 +8,7 @@ export default function Sidebar() {
         <img src={Icon1} alt="" className='sidebar_logo'/>
       </div>
       <div className='sidebar-links-div'>
+      <a className={window.location.pathname==='/dashboad/team' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/team"}>Team</a>
       <a className={window.location.pathname==='/dashboad/request' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/request"}>Request</a>
       <a className={window.location.pathname==='/dashboad/tourbook' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/tourbook"}>Tour book</a> 
       <a className={window.location.pathname==='/dashboad/daytourbook' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/daytourbook"}>Day Tour book</a> 

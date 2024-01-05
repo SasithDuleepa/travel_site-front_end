@@ -100,6 +100,8 @@ const Submit =async()=>{
   formData.append('days', days);
   formData.append('dayData', JSON.stringify(dayData));
   try {
+
+
     const token = sessionStorage.getItem("token");
     const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/tour/addTourCategory`, formData, {
       headers: {
@@ -150,22 +152,22 @@ useEffect(()=>{
 },[])
 
 //set hotels
-const LuxuryHandler =(e) =>{
-  // console.log(e.target.value);
-  const newdata = [...dayData]
-  newdata[dayDataIndex].luxury = e.target.value
-  newdata[dayDataIndex].luxury_id = e.target.id
-  setDayData(newdata)
+const LuxuryHandler = (e) => {
+  console.log(e.target.options[e.target.selectedIndex].dataset.id);
+  const newdata = [...dayData];
+  newdata[dayDataIndex].luxury = e.target.value;
+  newdata[dayDataIndex].luxury_id = e.target.options[e.target.selectedIndex].dataset.id;
+  setDayData(newdata);
 }
 
-const SemiluxuryHandler = (e) =>{
-  // console.log(e);
-  const newdata = [...dayData]
-  newdata[dayDataIndex].semiluxury = e.target.value
-  newdata[dayDataIndex].semiluxury_id = e.target.id
-  setDayData(newdata)
-
+const SemiluxuryHandler = (e) => {
+  console.log(e.target.value);
+  const newdata = [...dayData];
+  newdata[dayDataIndex].semiluxury = e.target.value;
+  newdata[dayDataIndex].semiluxury_id = e.target.options[e.target.selectedIndex].dataset.id;
+  setDayData(newdata);
 }
+
 
 
 const PlaceDescription =(e,index)=>{
@@ -236,32 +238,22 @@ return (
         <div className='tour-places-hotel-div'>
           <div>
             <label>5 star hotel :</label>
-            <select onChange={(e)=>LuxuryHandler(e)} className='tour-places-hotel-select' value={dayData[dayDataIndex].luxury}>
-            <option>select hotel </option>
-              {luxaryHotels.map((hotel,index)=>{
-                return(
-                  
-                  <option key={index} id={hotel.hotel_id} value={hotel.hotel_name}>{hotel.hotel_name}</option>
-                )
-              
-              })}
-
-            </select>
+            <select onChange={(e) => LuxuryHandler(e)} className='tour-places-hotel-select' value={dayData[dayDataIndex].luxury}>
+  <option value="">Select hotel</option>
+  {luxaryHotels.map((hotel, index) => (
+    <option key={index} data-id={hotel.hotel_id} value={hotel.hotel_name}>{hotel.hotel_name}</option>
+  ))}
+</select>
 
           </div>
           <div>
             <label>3star/4star hotel :</label>
-            <select onChange={(e)=>SemiluxuryHandler(e)} className='tour-places-hotel-select' value={dayData[dayDataIndex].semiluxury}>
-            <option>select hotel </option>
-              {semiluxuryHotels.map((hotel,index)=>{
-                return(
-                  
-                  <option key={index} id={hotel.hotel_id} value={hotel.hotel_name}>{hotel.hotel_name}</option>
-                )
-              
-              })}
-
-            </select>
+            <select onChange={(e) => SemiluxuryHandler(e)} className='tour-places-hotel-select' value={dayData[dayDataIndex].semiluxury}>
+  <option value="">Select hotel</option>
+  {semiluxuryHotels.map((hotel, index) => (
+    <option key={index} data-id={hotel.hotel_id} value={hotel.hotel_name}>{hotel.hotel_name}</option>
+  ))}
+</select>
           </div>
         </div>
 
