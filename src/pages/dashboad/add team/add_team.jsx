@@ -21,7 +21,7 @@ export default function Add_team() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
       if(response.status === 200){
         window.alert("Member added successfully");
         window.location.reload();
@@ -39,7 +39,7 @@ export default function Add_team() {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/team/get`);
       setTeam(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -69,7 +69,7 @@ export default function Add_team() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
       if(response.status === 200){
         window.alert("Member updated successfully");
         window.location.reload();
@@ -84,10 +84,9 @@ export default function Add_team() {
   }
 
   const DeleteHandler = async (id) => {
-    console.log(id)
     try {
       const response = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/team/delete/${id}`);
-      console.log(response.data);
+      // console.log(response.data);
       if(response.status === 200){
         window.alert("Member deleted successfully");
         window.location.reload();

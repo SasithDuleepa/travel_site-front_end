@@ -9,6 +9,8 @@ export default function Sidebar() {
       </div>
       <div className='sidebar-links-div'>
       <a className={window.location.pathname==='/dashboad/team' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/team"}>Team</a>
+      <a className={window.location.pathname==='/dashboad/placeReport' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/placeReport"}>Place Report</a>
+      <a className={window.location.pathname==='/dashboad/hotel_report' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/hotel_report"}>Hotel Report</a>
       <a className={window.location.pathname==='/dashboad/request' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/request"}>Request</a>
       <a className={window.location.pathname==='/dashboad/tourbook' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/tourbook"}>Tour book</a> 
       <a className={window.location.pathname==='/dashboad/daytourbook' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/daytourbook"}>Day Tour book</a> 

@@ -18,6 +18,7 @@ import Vehicals from './pages/dashboad/vehicals/vehicals';
 import Agents from './pages/dashboad/agents/agents';
 import Images from './pages/dashboad/Images/images';
 import Rates from './pages/dashboad/rates/rates';
+import Hotel_report from './pages/dashboad/hotel report/hotel_report';
 
 import DayTour from './pages/dashboad/day tour/dayTour';
 import Tour from './pages/dashboad/tours/tours';
@@ -50,6 +51,7 @@ import TourPreview from './pages/user/tour preview/tourPreview';
 import Daytour_preview from './pages/user/daytour preview/daytour_preview';
 import TCPriview from './pages/user/tour category preview/tcPriview';
 import Places from './pages/user/all places/places';
+import PlaceReport from './pages/dashboad/place report/placeReport';
 
 
 
@@ -137,6 +139,8 @@ function App() {
           <Route exact path="/dashboad/daytourbook" element={<DayTourBook/>}/>
           <Route exact path="/dashboad/descriptions" element={<Descriptions/>}/>
           <Route exact path="/dashboad/team" element={<Team/>}/>
+          <Route exact path="/dashboad/hotel_report" element={<Hotel_report/>}/>
+          <Route exact path="/dashboad/placeReport" element={<PlaceReport/>}/>
               </Route>
 
           </Routes>

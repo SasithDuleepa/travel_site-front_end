@@ -4,17 +4,21 @@
   "private": true,
   "dependencies": {
     "@react-google-maps/api": "^2.19.2",
+    "@react-pdf/renderer": "^3.1.14",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "assert": "^2.1.0",
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
     "google": "^2.1.0",
     "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-background-video-player": "^1.1.8",
     "react-dom": "^18.2.0",
+    "react-pdf": "^7.6.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.0.0",
     "react-scripts": "5.0.1",
@@ -23,7 +27,6 @@
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
-  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

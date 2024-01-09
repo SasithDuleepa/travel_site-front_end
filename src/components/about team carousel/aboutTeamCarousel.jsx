@@ -19,8 +19,8 @@ export default function AboutTeamCarousel() {
   const GetTeam = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/team/get`);
-      setTeam(response.data);
-      console.log(response.data);
+      const filteredTeam = response.data.filter(member => member.position !== "ceo");
+      setTeam(filteredTeam);
     } catch (error) {
       console.error(error);
     }
@@ -98,7 +98,6 @@ export default function AboutTeamCarousel() {
 
 
 
-<AboutTeamCarouselCard img={Person} name='Udara Nilupul' designation='Assistant Manager'/>
       </Carousel>
     </div>
   )

@@ -1,0 +1,39 @@
+
+.hotel-report{
+    margin-left: 300px;
+}
+
+.hotel-report-sub-div{
+    margin-top: 10px;
+}
+
+
+
+.hotel-report-sub{
+    margin: 10px;
+    border: 1px solid black;
+    padding: 10px;
+}
+.hotel-report-sub-price-div{
+    display: flex;
+    justify-content: space-between;
+}
+.hotel-report-sub-price-div-p1{
+   
+    width: 200px;
+}
+.hotel-report-sub-price-div-p2{
+    width: 200px;
+}
+.hotel-report-sub-price-div-p3{
+    width: 200px;
+}
+
+.hotel-report-btn{
+    background-color: aquamarine;
+    padding: 10px 20px;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    color: red;
+}

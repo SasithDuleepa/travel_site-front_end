@@ -9,6 +9,7 @@ export default function Descriptions() {
     const [daytourpackages,setDaytourpackages] = useState('')
 
     const [voiceofchairman,setVoiceofchairman] = useState('')
+    const [popularPlaces, setPopularPlaces] = useState('')
 
 
     //about
@@ -130,6 +131,29 @@ export default function Descriptions() {
     }
 
 
+        //popular_places
+        const GetPopularPlaces = async() => {
+            try {
+                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/description/popular_places`);
+                setPopularPlaces(res.data[0].popular_places)
+            } catch (error) {
+                
+            }
+        }
+        const PopularPlacesUpdate = async(e) => {
+            e.preventDefault();
+            try {
+                const res = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/description/popular_places`,{
+                    popular_places:popularPlaces
+                });
+                window.alert('updated successfully')
+                GetPopularPlaces();
+            } catch (error) {
+                window.alert('error updating')
+            }
+        
+        }
+
 
 
 
@@ -139,6 +163,7 @@ export default function Descriptions() {
         GetTourPackages();
         GetDaytourPackages();
         GetChairman();
+        GetPopularPlaces();
     
     },[])
 
@@ -170,6 +195,13 @@ export default function Descriptions() {
             <h2 className='dashboad-description-1-h2'>daytour packages description</h2>
             <textarea   className='dashboad-description-1-input' value={daytourpackages} onChange={(e)=>setDaytourpackages(e.target.value)}/>
             <button  className='dashboad-description-btn' onClick={DaytourPackageUpdate}>Update</button>
+        </div>
+
+
+        <div  className='dashboad-description-1'>
+            <h2 className='dashboad-description-1-h2'>Popular Places description</h2>
+            <textarea   className='dashboad-description-1-input' value={popularPlaces} onChange={(e)=>setPopularPlaces(e.target.value)}/>
+            <button  className='dashboad-description-btn' onClick={PopularPlacesUpdate}>Update</button>
         </div>
 
 

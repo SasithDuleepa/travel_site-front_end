@@ -12,7 +12,7 @@ export default function Tours()  {
   const [coverImage, setCoverImage] = useState('');
   const [price, setPrice] = useState('');
   const[distance, setDistance] =useState('');
-  const[days,setDays] = useState('');
+  const[days,setDays] = useState(1);
 
 
 
@@ -34,12 +34,14 @@ const[searchData, setSearchData] = useState([])
 
 //add day
 const AddDay =()=>{
-
   const newData = [...dayData]
   newData.push({day:newData.length+1,startdescription:'',luxury:'',semiluxury:'',places:[]})
   setDayData(newData)
-
 }
+
+useEffect(()=>{
+  setDays(dayData.length)  
+},[dayData])
 
 
 //set data index

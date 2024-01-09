@@ -3,46 +3,62 @@ import Slider from 'react-slick';
 import './tourPreview.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
 import PlaceCard from '../../../components/place card/placeCard';
-import Carousel from "react-simply-carousel";
 import { GoogleMap, useLoadScript, MarkerF ,DirectionsRenderer, DirectionsService } from '@react-google-maps/api';
 
 import Carousel_tp from './carousel/carousel_tp';
 import Edite from '../../../assets/icons/edit.png';
-
-
 import Socialmedia from './../../../components/social media/socialmedia';
 
-import Plus from './../../../assets/icons/plus.png';
-import Minus from './../../../assets/icons/minus.png';
+let dayArray = [];
+const generateDayArray = (startDate, numDays) => {
+  
+  dayArray = [];
+  const startTimestamp = new Date(startDate).getTime();
+
+  for (let i = 0; i < numDays; i++) {
+    const currentDayTimestamp = startTimestamp + i * 24 * 60 * 60 * 1000;
+    const currentDay = new Date(currentDayTimestamp);
+    const formattedDay = currentDay.toISOString().split('T')[0];
+    dayArray.push(formattedDay);
+  }
+
+  return dayArray;
+};
 
 
 
 export default function TourPreview() {
-  const [activeSlide, setActiveSlide] = useState(0);
-
   const[tourRate,setTourRate] = useState(null)
 
+  const[days,setDays] = useState(0);
   
   const realToday = new Date();
   realToday.setDate(realToday.getDate() + 3);
   const today = realToday.toISOString().slice(0, 10);
 
 
+
+
   //pop up
-  const[pophotel,setPopHotel] = useState('3 star/4 star')
-  const[poppassenger,setPopPassneger] = useState(2)
+  const[pophotel,setPopHotel] = useState('3 star/4 star');
+  const[poppassenger,setPopPassneger] = useState(2);
+  const[popDate , setPopDate] = useState(today);
+
+  const[hotel,setHotel] = useState('3 star/4 star');
+  const[passenger,setPassenger] = useState(2);
+  const[startDay, setStartDay] = useState(today);
+
+
+
+
   const[popup0,setPopup0] = useState('hide')
   const[popup1,setPopup1] = useState('hide')
   const[popup2,setPopup2] = useState('hide')
-  const[popDate , setPopDate] = useState(today);
+  
 
-  const[startDay, setStartDay] = useState(today)
+  
   const[total,setTotal] = useState(0)
-  const[hotel,setHotel] = useState('3 star/4 star')
-  const[passenger,setPassenger] = useState(2)
-
   const[vehicleRate,setVehicleRate] = useState(0)
   const[distance,setDistance] = useState(0)
   const[hotelPrice,setHotelPrice] = useState(0)
@@ -86,17 +102,52 @@ export default function TourPreview() {
   const [expandclass,setExpandClass] = useState('close')
   const {tour}= useParams();
   const [expandedDay, setExpandedDay] = useState(0);
-
   const[activeIndex,setActiveIndex] = useState(0)
 
-//day - + 
-const [icon1,setIcon1] = useState(Plus)
-const [icon2,setIcon2] = useState(Plus)
-const [icon3,setIcon3] = useState(Plus)
-
- 
 
 
+    //get tour and tour dates
+    const GetTour = async() => {
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/tour/tour/${tour}`);
+        setTourData(res.data)
+        setCoverImg(res.data[0].cover_img)
+        setDays(res.data.length)
+        // console.log(res.data)
+        if(res.data.length>0){
+          setDistance(res.data[0].distance)
+  
+        }
+      } catch (error) {
+        console.error('Error fetching tour:', error);
+      }
+    };
+    const GetPlaces = async() => {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/places/${tour}`)
+      // console.log(res.data)
+      setPlaces(res.data)
+  
+      let placeData = res.data
+      if(placeData.length>0){
+        placeData.map((item,index)=>{
+          visiting_fee = visiting_fee + item.visiting_fee
+  
+          setPlaceFee(visiting_fee)
+          return visiting_fee
+          
+  
+          
+        })
+      }
+    }
+    
+    useEffect(() => {
+      const fetchData = async () => {
+        await GetTour();
+        await GetPlaces();
+      };
+      fetchData();
+    }, [tour]);
 
   //pop up
   const PopUpHandler =() =>{
@@ -110,101 +161,93 @@ const [icon3,setIcon3] = useState(Plus)
   const PopUpHandler2 =() =>{
     setPopup2('tourpreview-popup')
   }
-  const EnterHandler = () =>{
-console.log('popup hotel',pophotel)
 
-    setPassenger(passenger)
+
+  const EnterHandler = () =>{
     setHotel(pophotel)
+    setPassenger(poppassenger)
     setStartDay(popDate)
+
     setPopup1('hide')
     setPopup2('hide')
     setPopup0('hide')
-    GetVisitingFee()
-    Calculation(hotelPrice)
   }
   const CancelHandler = () =>{
     setPopup1('hide')
     setPopup2('hide')
     setPopup0('hide')
   }
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vehicles/${passenger}`);
-        // console.log(res.data);
-        setVehicleRate(res.data[0].rate);
 
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-  
-    fetchData(); 
-  
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/vehicles/${passenger}`);
+      // console.log(res.data);
+      setVehicleRate(res.data[0].rate);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
   }, [passenger]);
 
-  let hotelprice = 0;
 
-  const GetVisitingFee = async () => {
 
-    
-    
+
+//hotel fees
+  const GetHotelFee = async () => {
+    const startDate = startDay;
+    const numDays = days;
+    const dayArray = generateDayArray(startDate, numDays);
     if (TourData.length > 0) {
-      
-      
-      if (pophotel === '5 star') {
-        console.log('luxury hotel pricess called!!!',pophotel)
-        
-        try {
-          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/luxury/price/${tour}/${popDate}`);
-          if (res.data.length > 0) {
-            console.log(res.data);
-            hotelprice = 0;
-            res.data.map((item, index) => {
-              hotelprice = hotelprice + item.price;
-              setHotelPrice(hotelprice)
-
+      if (hotel === '5 star') {
+        console.log('luxury hotel prices called!!!');
+        if (dayArray.length > 0) {
+          try {
+            const promises = dayArray.map(async (date) => {
+              const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/luxury/price/${tour}/${date}`);
+              console.log('luxury hotel called')
+              if (res.data.length > 0) {
+                let hotelprice = res.data[0].price;
+                return hotelprice;
+              }
+              return 0; 
             });
-            
-            
+  
+            const hotelPrices = await Promise.all(promises);
+            const totalHotelPrice = hotelPrices.reduce((acc, price) => acc + price, 0);
+            setHotelPrice(totalHotelPrice);
+          } catch (error) {
+            console.error('Error fetching data:', error);
           }
-          
-        } catch (error) {
-          console.error('Error fetching data:', error);
         }
-      } else if (pophotel === '3 star/4 star') {
-        console.log('semi hotel pricess called!!!',pophotel)
-        try {
-          
-          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/semi/price/${tour}/${popDate}`);
-        
-          if (res.data.length > 0) {
-            console.log(res.data)
-            
-            hotelprice = 0;
-            res.data.map((item, index) => {
-
-                hotelprice = hotelprice + item.price;
-                console.log("hotel fee called !!!!",hotelprice)
-                setHotelPrice(hotelprice)
-                
-
+      } else if (hotel === '3 star/4 star') {
+        if (dayArray.length > 0) {
+          try {
+            const promises = dayArray.map(async (date) => {
+              const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hotels/semi/price/${tour}/${date}`);
+              console.log('semi hotel called')
+              if (res.data.length > 0) {
+                let hotelprice = res.data[0].price;
+                return hotelprice;
+              }
+              return 0; 
             });
-            
+            const hotelPrices = await Promise.all(promises);
+            const totalHotelPrice = hotelPrices.reduce((acc, price) => acc + price, 0);
+            setHotelPrice(totalHotelPrice);
+          } catch (error) {
+            console.error('Error fetching data:', error);
           }
-        } catch (error) {
-          console.error('Error fetching data:', error);
         }
       }
     }
-    
   };
+  
 useEffect(() => {
-  
-  
-  GetVisitingFee ();
-  // console.log('hotel fee api called!!!')
-}, [hotel,pophotel, popDate, TourData]);
+  GetHotelFee ();
+}, [startDay,hotel,TourData]);
 
 
 
@@ -214,52 +257,7 @@ const [placeFee,setPlaceFee] = useState(0)
 let visiting_fee = 0;
 
 
-  //get tour and tour dates
-  const GetTour = async() => {
-    try {
-      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/tour/tour/${tour}`);
-      setTourData(res.data)
-      setCoverImg(res.data[0].cover_img)
-      console.log(res.data)
-      if(res.data.length>0){
-        setDistance(res.data[0].distance)
 
-      }
-    } catch (error) {
-      console.error('Error fetching tour:', error);
-    }
-  };
-  const GetPlaces = async() => {
-    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/tour/places/${tour}`)
-    // console.log(res.data)
-    setPlaces(res.data)
-
-    let placeData = res.data
-    if(placeData.length>0){
-      placeData.map((item,index)=>{
-        visiting_fee = visiting_fee + item.visiting_fee
-
-        setPlaceFee(visiting_fee)
-        return visiting_fee
-        
-
-        
-      })
-    }
-  }
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      await GetTour();
-      await GetPlaces();
-    };
-
-    fetchData();
-
-    // Move setTotal here if necessary
-    // setTotal(defaultValue);
-
-  }, [tour]);
 
 
 
@@ -310,50 +308,45 @@ let visiting_fee = 0;
 
 
   //calculation
-const Calculation =(Hotel)=>{
+const Calculation =()=>{
   console.log('passengers', passenger )
   console.log('fee', placeFee )
   console.log('distance', distance )
   console.log('vehicle', vehicleRate )
-  console.log('hotel', Hotel )
+  console.log('hotel', hotelPrice )
   console.log('tour rate', tourRate )
+
+
+    
+
 
 
   //passenger count for hotel room
   let tot_passengers = passenger
   let passengers_1 = tot_passengers/2
-  console.log('num of couples', passengers_1)
+  // console.log('num of couples', passengers_1)
   let rooms = Math.ceil(passengers_1)
   console.log('num of rooms ', rooms)
  
+  let sub_total = hotelPrice*rooms + distance*vehicleRate  + placeFee;
+  let total = sub_total/passenger
 
   
-  let sub_total = Hotel*rooms + distance*vehicleRate  + placeFee;
-  let total = sub_total/passenger
   let nettotal = (100*total)/(100-tourRate)
 
-
-
-
-
   let total_ = nettotal.toFixed(0)
-
   let total_1 = total_/10
   let total_2 = Math.ceil(total_1)
   let total_3 = total_2*10
 
-  
-
-
-
   setTotal(total_3)
 }
 useEffect(()=>{
-  let hotel = hotelPrice
-  Calculation(hotel);
-  // console.log('hotel', hotelPrice )
+
+  Calculation();
+
 }
-,[distance,hotelprice,placeFee,vehicleRate])
+,[distance,hotelPrice,placeFee,vehicleRate,passenger])
 
   // map
   const [response, setResponse] = React.useState(null)
@@ -377,17 +370,6 @@ useEffect(()=>{
         }
       };
 
-      const Style = {
-        backgroundImage: `url(${process.env.REACT_APP_BACKEND_URL}/images/Tour/heroimg)`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        height: '424px',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      };
 
 
 // book now
@@ -475,7 +457,7 @@ const settings = {
          
           <div className='tourpreview-popup-form'>
             <label className='tourpreview-popup-form-label'>Number of Tourists :</label>
-            <input type='number' className='tourpreview-popup-form-input' onChange={(e)=>setPassenger(e.target.value)}/>
+            <input type='number' className='tourpreview-popup-form-input' onChange={(e)=>setPopPassneger(e.target.value)}/>
           </div>
           <div className='tourpreview-popup-btn-div'>
             <button className='tourpreview-popup-enter-btn' onClick={EnterHandler}>Enter</button>
