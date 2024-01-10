@@ -51,8 +51,8 @@
 
 
 .HomeDayTour-carousel-info-p1{
-    font-size: 30px;
-    font-weight: 500;
+    font-size: 32px;
+    font-weight: 600;
     text-transform: capitalize;
     margin-top: 20px;
     transition: 1s;
@@ -60,6 +60,7 @@
     max-width: 340px;
     overflow: hidden;
     text-decoration: none;
+    color: var(--blue1);
 }
 .HomeDayTour-carousel-info-p2{
     font-size: 16px;
@@ -67,10 +68,11 @@
     font-weight: 400;
     transition: 1s;
     /* background-color: rgb(0, 106, 255); */
-    height: 200px;
+    height: 260px;
     overflow: hidden;
     text-decoration: none;
     margin-top: -15px;
+    text-align: justify;
 }
 
 .HomeDayTour-info-div-1{
@@ -78,29 +80,67 @@
     flex-direction: column;
     margin-top: -20px;
 }
+.HomeDayTour-info-sub-div-3{
+    display: flex;
+    margin-bottom: 20px;
+    /* background-color: yellowgreen; */
+
+}
 .HomeDayTour-info-sub-div-1{
     display: flex;
     /* background-color: yellowgreen; */
 
 }
-.HomeDayTour-info-p1{
-    color: blue;
-    font-weight: 700;
-    line-height: 0px;
+.HomeDayTour-info-sub-div-2{
+    display: flex;
+    margin-top: 40px;
+    /* background-color: yellowgreen; */
 
+}
+.HomeDayTour-info-p1{
+    font-size: 25px;
+    font-weight: 400;
+    margin: 0px;
+    font-family: poppins;
+}
+.HomeDayTour-info-p2{
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0px;
+    font-family: poppins;
+}
+.HomeDayTour-info-p3{
+    font-size: 25px;
+    font-weight: 400;
+    margin: 0px;
+    font-family: poppins;
+    color: red;
+    font-weight: 600;
+}
+.HomeDayTour-info-p4{
+    font-size: 25px;
+    font-weight: 400;
+    margin: 0px;
+    font-family: poppins;
+    font-weight: 600;
 }
 
 .home-daytour-reacd-more{
-    position: absolute;
-    margin-top: 80px;
-    margin-left: -15px;
-    font-size: 15px;
+    margin-top: 40px;
+    margin-left: -330px;
+
+
+    font-size: 17px;
     font-weight: 500;
     background-color: orange;
-    padding: 10px 40px;
+    padding: 8px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 25px;
     color: black;
     text-decoration: none;
+    color: white;
 }
 
 

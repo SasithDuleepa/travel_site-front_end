@@ -17,12 +17,21 @@
 .tour-hero-img{
     width: 1200px;
     height: 424px;
+    background-size: cover;
 }
 .TourPreview-hero-title{
-    font-size: 60px;
-    font-weight: 600;
-    color: white;
+    font-size: 54px;
     font-family: Playfair Display;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.496);
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: -250px;
 }
 .TourPreview-hero-route-div{
@@ -63,11 +72,13 @@
 
     width: 1200px;
     justify-content: space-between;
-    margin: 15px auto 0px auto;
+    margin: 10px auto 10px auto;
+    /* background-color: yellowgreen; */
 }
 .TourPreview-header-left{
    
     width: 389px;
+    padding-top: 25px;
 
    
 }
@@ -90,6 +101,7 @@
 }
 .TourPreview-header-left-coupen{
     display: flex;
+    justify-content: space-between;
     align-items: center;
     
 }
@@ -109,20 +121,20 @@
     border-radius: 25px;
     color: rgb(0, 0, 0);
     font-size: 16px;
-    margin: 10px
+    
 }
 .TourPreview-header-left-line{
     border-bottom: 2px solid rgba(0, 0, 0, 0.245);
-    width: 98%;
-    margin: 5px auto;
-    margin-bottom: 25px;
+    width: 100%;
+
+
 }
 .TourPreview-header-book-btn{
     background-color:var(--orange);
     padding: 10px 30px;
     border-radius: 10px;
     position: absolute;
-    margin: 5px auto;
+    margin-top: 20px;
     border: none;
     color: white;
     font-size: 18px;
@@ -161,11 +173,8 @@
 
 .TourPreview-header-right{
     /* background-color: bisque; */
-    height: 320px;
-    width: 792px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        /* width: 792px; */
+        margin: 10px 0px 10px 0px;
 }
 .TourPreview-header-right-carousel{
     width: 776px;
@@ -246,16 +255,19 @@
 
 
 
-
 .TourPreview-center-line{
-    border-bottom: 2px solid rgba(99, 99, 99, 0.834);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.245);
     width: 1200px;
-    margin: 20px auto;
+    margin: 0px auto;
 }
 .TourPreview-center-description{
     text-align: center;
-    margin: 0px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
     width: 1200px;
+    text-align: justify;
+    font-size: 15px;
+    font-weight: 400;
+    /* background-color: yellowgreen; */
 }
 
 
@@ -264,15 +276,15 @@
 
 .TourPreview-center{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20px;
-    width: 100%;
-    height: 400px;
+    width: 1200px;
+    /* background-color: yellowgreen; */
 }
 .TourPreview-center-left{
     width: 550px;
-    height: 409px;
-    background-color: aqua;
+    height: 401px;
+    /* background-color: aqua; */
 }
 .TourPreview-center-right{
     width: 606px;
@@ -283,18 +295,22 @@
 }
 .TourPreview-center-right-day-main-p{
     font-size: 20px;
-    font-weight:400 ;
     font-family: poppins;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--blue1);
 }
 
 
 
 
 .TourPreview-center-right-day{
-    border-bottom: 2px solid rgba(49, 49, 49, 0.53);
-    
-
-}
+    border-bottom: 2px solid rgba(0, 0, 0, 0.245);
+    /* background-color: thistle; */
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    }
 
 
 
@@ -312,8 +328,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 50px;
+    padding-left: 0px;
     padding-right: 50px;
+    /* background-color: yellowgreen; */
 }
 .TourPreview-center-right-day-main-icon-0,
 .TourPreview-center-right-day-main-icon-1,
@@ -326,7 +343,7 @@
 .TourPreview-center-right-day-main-icon-8,
 .TourPreview-center-right-day-main-icon-9{
 
-    background-image: url(./../../../assets/icons/plus.png);
+    background-image: url(./../../../assets/icons/arrow-right.png);
     background-repeat: no-repeat;
     width: 25px;
     height: 25px;
@@ -365,10 +382,30 @@
 
 .TourPreview-expand-p1{
     font-size: 16px;
+  
 
 }
-.TourPreview-expand-place-p1{
+.TourPreview-center-right-day-description{
 
+    margin-top: -2px;
+    font-size: 15px;
+    margin-right: 10px;
+    text-align: justify;
+}
+.TourPreview-expand-place-p1{
+    
+    font-size: 15px;
+    margin-right: 10px;
+    text-align: justify;
+    color: var(--blue1);
+   
+}
+.TourPreview-expand-place-p1-b{
+    /* font-weight: 500; */
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: justify;
+    color: var(--blue1);
 }
 
 
@@ -385,21 +422,24 @@
 .TourPreview_bottom-div{
 
 }
+
 .TourPreview_bottom-btn-div{
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.245);
+    border-top: 2px solid rgba(0, 0, 0, 0.245);
     width: 1200px;
-    margin: 50px auto 20px auto;
+    height: 50px;
+    margin: 35px auto 17px auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    text-transform: uppercase;
 }
 .TourPreview_bottom-btn{
     background-color: rgb(0, 0, 102);
-    padding: 7px 15px;
+    padding: 7px 30px;
     border-radius: 25px;
     border: none;
-    margin: 10px auto;
+    margin: 5px auto;
     color: aliceblue;
 }
 .TourPreview_bottom-info-div{
@@ -413,17 +453,33 @@
 
 .TourPreview-bottom-1{
     display: flex;
-    height: 400px;
+    justify-content: space-between;
+    gap: 50px;
+    height: 385px;
+    margin-top: -10px;
+    padding-bottom: 10px;
 }
 .TourPreview-bottom-1-left{
     /* background-color: aquamarine; */
 
     width: 50%;
 }
+.TourPreview-bottom-1-left-title{
+    font-size: 15px;
+    font-weight: 600;
+}
 .TourPreview-bottom-1-right{
     /* background-color: rgb(68, 238, 181); */
 
     width: 50%;
+}
+.TourPreview-bottom-1-right-title{
+    font-size: 15px;
+    font-weight: 600;
+}
+.TourPreview-bottom-p1{
+    font-size: 15px;
+    margin: 7px auto;
 }
 
 
@@ -431,11 +487,11 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    height: 400px;
+    height: 385px;
 }
 .TourPreview-bottom-2-map{
     width:1200px;
-    height: 400px;
+    height: 378px;
     background-color: yellowgreen;
 }
 
@@ -443,13 +499,26 @@
 
 
 .TourPreview-bottom-3{
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    flex-wrap: wrap;
-    gap: 10px;
+
+
     width: 1200px;
     height: 400px;
+}
+.TourPreview-bottom-3-forward-arrow{
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    margin-top: -200px;
+    margin-left: -20px;
+    z-index: 1;
+}
+.TourPreview-bottom-3-backward-arrow{
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    margin-left: 1170px;
+    margin-top: 180px;
+    z-index: 1;
 }
 
 

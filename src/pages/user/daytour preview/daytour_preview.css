@@ -25,7 +25,7 @@
 }
 
 .daytour-preview-hero-title{
-    font-size: 60px;
+    font-size: 54px;
     font-family: Playfair Display;
     font-weight: 600;
     color: white;
@@ -73,6 +73,7 @@
     font-size: 15px;
     font-weight: 500;
     color: white;
+    
 }
 
 
@@ -84,10 +85,13 @@
     display: flex;
     justify-content: space-between;
     width: 1200px;
-    margin: 50px auto;
+    margin: 50px auto 10px auto;
+    /* background-color: yellowgreen; */
+    position:relative;
 }
 .daytour-preview-top-left{
-    /* background-color: aquamarine; */
+    /* background-color: aqua; */
+    width: 389px;
 
 
 
@@ -96,6 +100,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    
 
 }
 .daytour-preview-top-left-p1{
@@ -120,7 +125,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* background-color: aqua; */
+    /* background-color: rgb(255, 85, 0); */
     height: 50px;
 
 }
@@ -143,7 +148,7 @@
 .daytour-preview-top-left-code-p1{
     font-size: 20px;
     font-weight: 400;
-    color: orange;
+    color: rgb(253, 37, 37);
     font-family: poppins;
 }
 .daytour-preview-top-left-code-p2{
@@ -165,28 +170,30 @@
     font-size: 10px;
     font-weight: 400;
     font-family: poppins;
-    color: orange;
+    color: rgb(253, 37, 37);
 }
 .daytour-preview-top-left-line{
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.245);
     width: 100%;
 
-    margin-bottom: 40px;
+
 }
 .daytour-preview-top-left-book{
-    background-color: orange;
+    background-color:var(--orange);
     padding: 10px 25px;
     font-size: 20px;
     font-weight: 500;
     border-radius: 10px;
     border: none;
     color: white;
+    margin-top: 20px;
    
 }
 .daytour-preview-top-right{
    
     width: 792px;
-    height: 320px;
+    margin: auto 0px 5px 0px;
+       
 }
 .daytour-preview-top-right-img-div{
 
@@ -196,7 +203,7 @@
 
 }
 .daytour-preview-top-right-img{
-    width: 391px;
+    width: 392px;
     height: 300px;
     margin: 5px;
     display: flex;
@@ -210,14 +217,17 @@
 
 
 .daytour-center-line{
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.245);
     width: 1200px;
-    margin-top: -40px;
+
 }
 .daytour-center-info{
-    width: 80%;
-    text-align: center;
-    margin-top: -20px;
+    margin: 10px 0px 10px 0px;
+    width: 1200px;
+    text-align: justify;
+    font-size: 15px;
+    font-weight: 400;
+    /* background-color: yellowgreen; */
 }
 
 
@@ -230,7 +240,6 @@
     display: flex;
     justify-content: space-between;
     width: 1200px;
-    margin: 50px auto;
 }
 .daytour-preview-center-left{
     width: 550px;
@@ -247,28 +256,31 @@
     /* background-color: yellowgreen; */
     overflow-y: scroll;
     margin-left: 30px;
-
-
-    
-
 }
 .daytour-preview-center-right-place-div{
-
-
-    height: 24px;
+   height: 24px;
     /* background-color: blue; */
     margin-top: -19px;
-    
-
 }
 .daytour-preview-center-right-place-div-place-start{
     /* background-color: antiquewhite; */
     /* height: 10px; */
     text-align: justify;
     margin-right: 30px;
+    font-size: 15px;
+    
 }
 .daytour-preview-center-right-place-div-place{
     /* background-color: violet; */
+    font-size: 15px;
+    text-align: justify;
+    
+}
+.daytour-preview-center-right--place-b{
+    /* background-color: yellowgreen; */
+    text-transform: uppercase;
+    font-size: 14px;
+    color: var(--blue1);
 }
 .daytour-preview-center-right--place{
     text-align: justify;
@@ -292,21 +304,25 @@
 
 }
 .daytour-preview-bottom-btn-div{
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.245);
+    border-top: 2px solid rgba(0, 0, 0, 0.245);
     width: 1200px;
-    padding: 5px 10px;
+    height: 50px;
+    margin: 35px auto 17px auto;
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
+    align-items: center;
+    text-transform: uppercase;
 }
 .daytour-preview-bottom-btn-active{
-    background-color: rgb(7, 7, 98);
-    padding: 10px 30px;
+    background-color: rgb(0, 0, 102);
+    padding: 7px 30px;
     border-radius: 25px;
     color: aliceblue;
+    margin: 5px auto;
 }
 .daytour-preview-bottom-btn-deactive{
-    
+    margin: 5px auto;
     padding: 10px 30px;
     border-radius: 25px;
 }
@@ -319,38 +335,53 @@
 
 .daytour-preview-bottom-info-1{
     display: flex;
+    justify-content: space-between;
+    gap: 50px;
     margin-top: 35px;
     margin-bottom: 35px;
-    height: 378px;
+    height: 385px;
+    margin-top: -10px;
 }
 .daytour-preview-bottom-info-1-left{
     width: 50%;
 }
+.daytour-preview-bottom-info-1-left-title{
+    font-size: 15px;
+    font-weight: 600;
+}
 .daytour-preview-bottom-info-1-right{
-
+    width: 50%;
+}
+.daytour-preview-bottom-info-1-right-title{
+    font-size: 15px;
+    font-weight: 600;
+}
+.daytour-preview-bottom-info-p1{
+    font-size: 15px;
+    margin: 7px auto;
 }
 
 
 
 .daytour-preview-bottom-info-2{
     width: 100%;
-    height: 378px;
-    margin-top: 35px;
+    height: 385px;
+
     margin-bottom: 35px;
 
    
 }
 .daytour-preview-bottom-info-2-map{
-    width: 100%;
-    height: 100%;
+    width:1200px;
+    height: 378px;
 }
 .daytour-preview-bottom-info-3{
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
     gap: 8px;
-    margin: 35px auto 35px auto;
-    height: 378px;
+    margin: 10px auto 30px auto ;
+    height: 400px;
 }
 
 
@@ -429,44 +460,6 @@
 
 
 
-
-.ribbon {
-    --s: 30px; /* the ribbon size */
-    --d: 15px; /* the depth */
-    --c: 15px; /* the cutout part */
-    /* update one variable a time and you will understand what it does */
-    
-    padding: 0 calc(var(--s) + var(--d)) var(--d);
-    background-color:
-      conic-gradient(at left  var(--s) bottom var(--d),
-       #0000 25%,#0008 0 37.5%,#0004 0) 0   /50% no-repeat,
-      conic-gradient(at right var(--s) bottom var(--d),
-       #0004 62.5%,#0008 0 75%,#0000 0) 100%/50% no-repeat;
-    clip-path: polygon(0 var(--d), var(--s) var(--d),var(--s) 0,calc(100% - var(--s)) 0,calc(100% - var(--s)) var(--d),100% var(--d),calc(100% - var(--c)) calc(50% + var(--d)/2),100% 100%,calc(100% - var(--s) - var(--d)) 100%,calc(100% - var(--s) - var(--d)) calc(100% - var(--d)),calc(var(--s) + var(--d)) calc(100% - var(--d)),calc(var(--s) + var(--d)) 100%,0 100%,var(--c) calc(50% + var(--d)/2));
-    background-color: #CC333F; /* the main color */
-    
-    /* width: fit-content; you may need to use this in your code if the element is full width */
-
-
-    font-family: sans-serif;
-    color: #fff;
-    line-height: 1.8;
-    font-size: 16px;
-    text-align: center;
-    width: 100px;
-    position: absolute;
-    left: 30%;
-    rotate: 30deg;
-
-
-
-
-  font-family: 'Fredoka One', cursive;
-  fill:#992ac2;
-    
-  }
-  
-  
   
 
   

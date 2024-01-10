@@ -271,7 +271,7 @@ setTimeout(() => {
 
    let count = React.useRef(0);
 
-   const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7qsYXATZC1Wj57plqEUhy_U7yHJjmNLM"});
+   const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7kkl5NmkqNgHTrlXjdI9YNaJnnoLpBEA"});
    if (!isLoaded) return (
        <p>Loading...</p>
        )
@@ -527,22 +527,9 @@ const settings = {
             <p className='daytour-preview-top-left-p3'>$ {total }</p>
             <p className='daytour-preview-top-left-p2'>* per person</p>
           </div>
-          <h2 class="ribbon">{daytourDiscountRate}% off</h2>
-
-
-          {/* <svg width="200" height="200">
-      <defs>
-      
-        <path id="textPath" d="M10 80 Q 95 10 180 80" />
-      </defs>
-      <text>
-        
-        <textPath href="#textPath">Curved Text</textPath>
-      </text>
-    </svg> */}
-
-
           
+
+       
           
           <div className='daytour-preview-top-left-info'>
             <div className='daytour-preview-top-left-info-sub'>
@@ -593,7 +580,7 @@ const settings = {
       </div>
 
       <div className='daytour-center-line'></div>
-      <p className='daytour-center-info'>{data.length>0?data.description:null}</p>
+      <p className='daytour-center-info'>{data.length>0?data[0].description:null}</p>
 
       <div className='daytour-preview-center'>
         <div className='daytour-preview-center-left'>
@@ -632,7 +619,7 @@ const settings = {
             {places.length>0?places.map((place,index)=>{
               return(
                 <div key={index} className='daytour-preview-center-right-place-div-place'>
-                <p className='daytour-preview-center-right--place'><b>{place.place_name} - </b> {place.short_description
+                <p className='daytour-preview-center-right--place'><b className='daytour-preview-center-right--place-b'>{place.place_name} - </b> {place.short_description
 }</p>
 
                 <p  className='daytour-preview-center-right-place-description'>{place.description}</p>
@@ -656,23 +643,29 @@ const settings = {
 
           <div  className={class1}>
             <div className='daytour-preview-bottom-info-1-left'>
-              <p>Inclusions</p>
-              <ul>
-                <li>Private English Speaking driver for the entire Journey</li>
-                  <li>Fuel & local insurance for the vehicle</li>
-                  <li> All government taxes</li>
-              </ul>
+              <p className='daytour-preview-bottom-info-1-left-title'>The above cost includes:</p>
+              <ui>
+                <li className='daytour-preview-bottom-info-p1'>Package Price For Per Person with Minimum Two pax.</li>
+                <li className='daytour-preview-bottom-info-p1'>Accommodation on bed and breakfast will be offered on the basis hotel's options.</li>
+                <li className='daytour-preview-bottom-info-p1'>Private semi-luxury car/van (air-conditioned)</li>
+                <li className='daytour-preview-bottom-info-p1'>Private English Speaking driver for the entire Journey</li>
+                <li className='daytour-preview-bottom-info-p1'>Fuel & local insurance for the vehicle</li>
+                <li className='daytour-preview-bottom-info-p1'>All government taxes</li>
+                 
+              </ui>
             </div>
             <div className='daytour-preview-bottom-info-1-right'>
-              <p>Exclusions</p>
-              <ul>
-                <li>Meals not mentioned in the itinerary</li>
-                <li> Personal expenses are excluded.</li>
-                <li>Early check-in & Late check-out.</li>
-                <li> Camera & Video Permits</li>
-                <li> Travel insurance is excluded</li>
-                <li>There are no Air-tickets included in the tour package</li>
-              </ul>
+              <p className='daytour-preview-bottom-info-1-right-title'>The above cost does not include:</p>
+              <ui>
+              <li className='daytour-preview-bottom-info-p1'>This package excludes the sightseeing entrance charges (Unless Specified)</li>
+              <li className='daytour-preview-bottom-info-p1'>Meals not mentioned in the itinerary</li>
+              <li className='daytour-preview-bottom-info-p1'>Personal expenses are excluded.</li>
+              <li className='daytour-preview-bottom-info-p1'>Early check-in & Late check-out.</li>
+              <li className='daytour-preview-bottom-info-p1'>Camera & Video Permits</li>
+              <li className='daytour-preview-bottom-info-p1'>Guide/Driver tips</li>
+              <li className='daytour-preview-bottom-info-p1'>Travel insurance is excluded</li>
+              <li className='daytour-preview-bottom-info-p1'>There are no Air-tickets included in the tour package</li>
+              </ui>
             </div>
           </div>
           <div  className={class2}>

@@ -10,6 +10,9 @@ import Carousel_tp from './carousel/carousel_tp';
 import Edite from '../../../assets/icons/edit.png';
 import Socialmedia from './../../../components/social media/socialmedia';
 
+import LeftArrow from './../../../assets/icons/Left Arrow-blue.png';
+import RightArrow from './../../../assets/icons/Right Arrow-blue.png';
+
 let dayArray = [];
 const generateDayArray = (startDate, numDays) => {
   
@@ -352,7 +355,7 @@ useEffect(()=>{
   const [response, setResponse] = React.useState(null)
   const origin = 'colombo';
   let count = React.useRef(0);
-  const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7qsYXATZC1Wj57plqEUhy_U7yHJjmNLM"});
+  const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7kkl5NmkqNgHTrlXjdI9YNaJnnoLpBEA"});
   if (!isLoaded) return (
       <p>Loading...</p>
       )
@@ -431,7 +434,23 @@ const calculateCenter = () => {
 
 
 
+function SampleNextArrow(props) {
+  const {onClick } = props;
+  return (
 
+       <img alt="" onClick={onClick} src={RightArrow} className= "TourPreview-bottom-3-forward-arrow"/>
+    
+  );
+}
+
+function SamplePrevArrow(props) {
+  const {  onClick } = props;
+  return (
+
+      <img alt="" onClick={onClick} src={LeftArrow} className= "TourPreview-bottom-3-backward-arrow" />
+
+  );
+}
 
 
 const settings = {
@@ -443,12 +462,19 @@ const settings = {
   autoplay: true,
   autoplaySpeed: 2500,
   arrows:false
-
-
-
-
 };
-
+const settings2 = {
+  dots: false,
+  speed: 1900,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 2500,
+  // arrows:false
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />
+};
 
     return (
     <div className='TourPreview'>
@@ -532,7 +558,7 @@ const settings = {
               <a onClick={PopUpHandler0}><img src={Edite}/></a>
             </div>
           
-            
+           
             <div className='TourPreview-header-info'>
               <p>Hotel Category : </p>
               <p  >{hotel}</p>
@@ -548,7 +574,8 @@ const settings = {
           <a onClick={PopUpHandler2}><img src={Edite}/></a>
           </div>
           <div className='TourPreview-header-left-coupen'>
-            <p className='TourPreview-header-left-p couponcode-p'>Coupon Code : </p>
+            <p className='TourPreview-header-left-p couponcode-p'>Coupon Code </p>
+            <p className='TourPreview-header-left-p couponcode-p'>: </p>
             <input className='TourPreview-header-left-input'/>
             <button className='TourPreview-header-left-btn'>enter</button>
           </div>
@@ -641,11 +668,11 @@ const settings = {
                
             <div className={expandedDay === tourDate.tour_date_id && activeIndex === index? expandclass : 'close'}>
 
-              <p>{tourDate.start_description}</p>
+              <p className='TourPreview-center-right-day-description'>{tourDate.start_description}</p>
                   {placesData.map((place,Index)=>{
                 return(
                   <div>
-                    <p className='TourPreview-expand-place-p1'><b>{place.place_name}</b>{place.short_description}</p>
+                    <p className='TourPreview-expand-place-p1'><b className='TourPreview-expand-place-p1-b'>{place.place_name}</b> - {place.short_description}</p>
                     <p>{place.tour_place_description}</p>
 
                   </div>
@@ -675,19 +702,27 @@ const settings = {
           {btn1==='TourPreview_bottom-btn'?
            <div className='TourPreview-bottom-1'>
             <div className='TourPreview-bottom-1-left'>
-              <p>Inclusions</p>
+              <p className='TourPreview-bottom-1-left-title'>The above cost includes:</p>
               <ui>
-                <li>Private English Speaking driver for the entire Journey</li>
-                <li>Fuel & local insurance for the vehicle</li>
-                <li>All government taxes</li>
+                <li className='TourPreview-bottom-p1'>Package Price For Per Person with Minimum Two pax.</li>
+                <li className='TourPreview-bottom-p1'>Accommodation on bed and breakfast will be offered on the basis hotel's options.</li>
+                <li className='TourPreview-bottom-p1'>Private semi-luxury car/van (air-conditioned)</li>
+                <li className='TourPreview-bottom-p1'>Private English Speaking driver for the entire Journey</li>
+                <li className='TourPreview-bottom-p1'>Fuel & local insurance for the vehicle</li>
+                <li className='TourPreview-bottom-p1'>All government taxes</li>
               </ui>
             </div>
             <div className='TourPreview-bottom-1-right'>
-            <p>Exclusions</p>
+            <p className='TourPreview-bottom-1-right-title'>The above cost does not include:</p>
               <ui>
-                <li>Private English Speaking driver for the entire Journey</li>
-                <li>Fuel & local insurance for the vehicle</li>
-                <li>All government taxes</li>
+                <li className='TourPreview-bottom-p1'>This package excludes the sightseeing entrance charges (Unless Specified)</li>
+                <li className='TourPreview-bottom-p1'>Meals not mentioned in the itinerary</li>
+                <li className='TourPreview-bottom-p1'>Personal expenses are excluded.</li>
+                <li className='TourPreview-bottom-p1'>Early check-in & Late check-out.</li>
+                <li className='TourPreview-bottom-p1'>Camera & Video Permits</li>
+                <li className='TourPreview-bottom-p1'>Guide/Driver tips</li>
+                <li className='TourPreview-bottom-p1'>Travel insurance is excluded</li>
+                <li className='TourPreview-bottom-p1'>There are no Air-tickets included in the tour package</li>
               </ui>
             </div>
           </div> 
@@ -733,7 +768,11 @@ const settings = {
           :null}
           {btn3==='TourPreview_bottom-btn'?
           <div className='TourPreview-bottom-3'>
-            {places.length>0 ? places.map((place,index)=>{
+
+
+<Slider {...settings2}>
+          {places.length>0 ?
+            places.map((place,index)=>{
               return(
                 <PlaceCard key={index} id={place.place_id} place={place.place_name} 
                 img={place.card_img}
@@ -741,8 +780,12 @@ const settings = {
                 link={place.place_id}
                 />
               )
-              
-            }):null}
+            })
+              :null
+          }
+
+
+          </Slider>
             
             
 

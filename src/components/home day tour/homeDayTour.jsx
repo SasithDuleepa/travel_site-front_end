@@ -192,7 +192,7 @@ useEffect(()=>{
 
 
     const { isLoaded, loadError } = useLoadScript({
-      googleMapsApiKey: "AIzaSyA7qsYXATZC1Wj57plqEUhy_U7yHJjmNLM",
+      googleMapsApiKey: "AIzaSyA7kkl5NmkqNgHTrlXjdI9YNaJnnoLpBEA",
     });
     
     
@@ -229,59 +229,28 @@ useEffect(()=>{
 
 
           <div className={`HomeDayTour-info-div-1 ${isLoade ? 'start-animation' : ''}`} >
+          <div className='HomeDayTour-info-sub-div-3'>
+            <p className='HomeDayTour-info-p4'>Packages price : </p>
+            <p className='HomeDayTour-info-p4'> $ {packagePrice}</p>
+          </div>
+          <div className='HomeDayTour-info-sub-div-1'>
+            <p className='HomeDayTour-info-p2'>Number of Tourists : </p>
+            <p className='HomeDayTour-info-p2'>{passengers}</p>
+          </div>
+          <div className='HomeDayTour-info-sub-div-1'>
+            <p className='HomeDayTour-info-p2'>Tour Starts from : </p>
+            <p className='HomeDayTour-info-p2'>Colombo</p>
+          </div>
+          <div className='HomeDayTour-info-sub-div-2'>
+            <p className='HomeDayTour-info-p3'>Discounted price : </p>
+            <p className='HomeDayTour-info-p3'> $ {discountedPrice}</p>
+          </div>
           
-          <div className='HomeDayTour-info-sub-div-1'>
-            <p className='HomeDayTour-info-p1'>Number of Tourists : </p>
-            <p className='HomeDayTour-info-p1'>{passengers}</p>
-          </div>
-          <div className='HomeDayTour-info-sub-div-1'>
-            <p className='HomeDayTour-info-p1'>Tour Starts from : </p>
-            <p className='HomeDayTour-info-p1'>Colombo</p>
-          </div>
-          <div className='HomeDayTour-info-sub-div-1'>
-            <p className='HomeDayTour-info-p1'>Discounted price : </p>
-            <p className='HomeDayTour-info-p1'> $ {discountedPrice}</p>
-          </div>
-          <div className='HomeDayTour-info-sub-div-1'>
-            <p className='HomeDayTour-info-p1'>Packages price : </p>
-            <p className='HomeDayTour-info-p1'> $ {packagePrice}</p>
-          </div>
 
-          <>
-          {/* <div className='HomeDayTour-info-sub-div-1'>
-            <p className='HomeDayTour-info-p1'>vehicle price : </p>
-            <p className='HomeDayTour-info-p1'>{vehicleRate}</p>
-          </div>
-          <div className='HomeDayTour-info-sub-div-1'>
-            <p className='HomeDayTour-info-p1'>start distance : </p>
-            <p className='HomeDayTour-info-p1'>{startDistance}</p>
-          </div>
-          <div className='HomeDayTour-info-sub-div-1'>
-            <p className='HomeDayTour-info-p1'>discounte rate : </p>
-            <p className='HomeDayTour-info-p1'>{daytourDiscountRate}</p>
-          </div>
-          <div className='HomeDayTour-info-sub-div-1'>
-            <p className='HomeDayTour-info-p1'>tour rate : </p>
-            <p className='HomeDayTour-info-p1'>{daytourRate}</p>
-          </div>
-          <div className='HomeDayTour-info-sub-div-1'>
-            <p className='HomeDayTour-info-p1'>fees : </p>
-            <p className='HomeDayTour-info-p1'>{fees}</p>
-          </div>
-          <div className='HomeDayTour-info-sub-div-1'>
-            <p className='HomeDayTour-info-p1'>organizing : </p>
-            <p className='HomeDayTour-info-p1'>{oranizingCost}</p>
-          </div> */}
-          </>
           
           </div>
           
-             <div className='HomeDayTour-carousel-info-price-div'>
-             <p className={`HomeDayTour-carousel-price-p ${isLoade ? 'start-animation' : ''}`}>price :</p>
-              
-              <p className={`HomeDayTour-carousel-price ${isLoade ? 'start-animation' : ''}`}>$ {discountedPrice}</p>
-
-             </div>
+             
              <div className={`HomeDayTour-carousel- ${isLoade ? 'start-animation' : ''}`}>
                 {/* <a className='HomeDayTour-carousel-readmore'   href={`/daytour/${daytours[activeSlide_].day_tour_id}`}>Read more</a> */}
              </div>
