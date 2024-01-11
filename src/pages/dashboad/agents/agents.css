@@ -1,0 +1,133 @@
+
+.agent{
+    margin-left: 17%;
+    display: flex;
+
+}
+.agent-left{
+    width: 65%;
+    background-color: rgb(229, 229, 229);
+    height: fit-content;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 16px;
+}
+.agent-right{
+    width: 35%;
+    height: fit-content;
+    background-color: rgb(229, 229, 229);
+    margin: 5px 5px 5px 0px;
+    padding: 10px ;
+    border-radius: 16px;
+}
+
+
+.agent-left-title{
+    text-align: center;
+}
+.agent-left-search-div{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(160, 160, 160, 0.479);
+    border-radius: 20px;
+    padding: 20px 10px;
+}
+.agent-left-search-div-left{
+    width: 30%;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+    margin-right: 5px;
+}
+.agent-left-search-div-right{
+    width: 65%;
+}
+.agent-left-search-div-right-sub{
+    width: 97%;
+    height: 180px;
+    margin: 5px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(152, 152, 152, 0.493);
+}
+.agent-left-search-div-right-sub-user{
+    font-size: 14px;
+    font-weight: 500;
+    margin: 2px 0px;
+    &:hover{
+        color: rgb(62, 62, 62);
+    }
+}
+
+.agent-left-edit-div{
+    background-color: rgba(160, 160, 160, 0.479);
+    padding: 30px 60px;
+    margin-top: 20px;
+    border-radius: 20px;
+
+}
+.agent-left-edit-div-form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px auto;
+}
+.agent-left-edit-div-btn-div{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+.agent-left-edit-div-btn1{
+    background-color: var(--blue);
+    color: white;
+    padding: 10px 30px;
+    margin: 10px 5px 5px 5px;
+    border: none;
+    border-radius: 20px;
+}
+.agent-left-edit-div-btn2{
+    background-color: rgb(192, 9, 9);
+    color: white;
+    padding: 10px 30px;
+    margin: 10px 5px 5px 5px;
+    border: none;
+    border-radius: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+.agent-right-title{
+    text-align: center;
+}
+.agent-right-form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 5px 10px;
+    padding: 5px;
+}
+
+.agent-right-btn-div{
+    display: flex;
+    justify-content: center;
+}
+.agent-right-btn{
+    background-color: var(--blue);
+    color: white;
+    padding: 10px 30px;
+    margin: 10px 5px 5px 5px;
+    border: none;
+    border-radius: 20px;
+}

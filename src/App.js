@@ -31,6 +31,7 @@ import Descriptions from './pages/dashboad/descriptions/descriptions';
 import Team from './pages/dashboad/add team/add_team';
 
 import Login_  from './pages/dashboad/log in/login';
+import Promote_code from './pages/dashboad/promote code/promote_code';
 
 
 //user components
@@ -141,6 +142,7 @@ function App() {
           <Route exact path="/dashboad/team" element={<Team/>}/>
           <Route exact path="/dashboad/hotel_report" element={<Hotel_report/>}/>
           <Route exact path="/dashboad/placeReport" element={<PlaceReport/>}/>
+          <Route exact path="/dashboad/promote_code" element={<Promote_code/>}/>
               </Route>
 
           </Routes>
