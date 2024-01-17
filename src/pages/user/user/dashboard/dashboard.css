@@ -25,7 +25,7 @@
     font-weight: 400;
     font-family: poppins;
     border: none;
-    &&:hover{
+    &:hover{
         background-color: var(--blue);
         color: white;
         transition: .4s;
@@ -41,9 +41,9 @@
     width: 90%;
 }
 
-.profile-right-tours-div{
+/* .profile-right-tours-div{
     
-}
+} */
 
 
 
@@ -73,7 +73,7 @@
 .profile-right-tours-div-sub{
     margin: 10px 10px 10px 10px;
     display: flex;
-    justify-content: start;
+    justify-content: left;
     column-gap: 10px;
 
     flex-wrap: wrap;

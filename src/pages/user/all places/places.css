@@ -98,27 +98,58 @@
 }
 
 .Places-pagination{
-    /* background-color: aqua; */
+    background-color: rgba(0, 0, 0, 0.052);
+    max-width: 450px;
     display: flex;
     align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+    
 }
 .Places-pagination-btn{
     background-color: blue;
 }
 .Places-pagination-btn1{
-    /* background-color: rgb(255, 0, 81); */
-    font-size: 20px;
+    background-color: rgb(255, 0, 81);
+    font-size: 30px;
     border: none;
     background: transparent;
 }
 .Places-pagination-btn2{
-    font-weight: 700;
+    font-weight: 400;
+    font-size: 22px;
+
     margin: auto 5px;
+    background: transparent;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
-    background: transparent
+
+}
+.Places-pagination-p2{
+    font-weight: 400;
+    font-size: 22px;
+
+    margin: auto 7px 6px 7px;
+    border: 1px solid black;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
 }
 .Places-pagination-btn3{
-    font-size: 20px;
+    font-size: 30px;
     border: none;
     background: transparent;
+    /* background-color: rgb(0, 255, 17); */
+}
+.Places-pagination-more{
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 3px;
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import './tourcard.css';
 
-import Image from './../../../../assets/9\ arch\ 1.png';
 export default function TourCard(props) {
   return (
     <div className='Tour-card'>

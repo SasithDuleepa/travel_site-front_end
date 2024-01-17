@@ -37,6 +37,34 @@ export default function Hotel_report() {
 
           border: '1px solid #333',
         },
+
+
+        table: { 
+          display: "table", 
+          width: "auto", 
+          borderStyle: "solid", 
+          borderWidth: 1, 
+          borderRightWidth: 1, 
+          borderBottomWidth: 1 ,
+          margin:5,
+
+        }, 
+        tableRow: { 
+          margin: "auto", 
+          flexDirection: "row" 
+        }, 
+        tableCol: { 
+          width: "25%", 
+          borderStyle: "solid", 
+          borderWidth: 1, 
+          // borderLeftWidth: 0, 
+          // borderTopWidth: 0 
+        }, 
+        tableCell: { 
+          margin: "auto", 
+          marginTop: 5, 
+          fontSize: 10 
+        }
       });
 
     const getHotels = async () => {
@@ -90,19 +118,41 @@ export default function Hotel_report() {
                 <Text style={styles.header}>Hotels Report</Text>
                 {hotels.map((hotel) => (
                   <View key={hotel.hotel_id} style={styles.hotel}>
-                    <Text>Hotel ID: {hotel.hotel_id}</Text>
                     <Text>Hotel Name: {hotel.hotel_name}</Text>
-                    <Text>Hotel Lang: {hotel.hotel_lang}</Text>
-                    <Text>Hotel Lat: {hotel.hotel_lat}</Text>
-                    <Text>Hotel Category: {hotel.hotel_category}</Text>
                     <Text>Price List:</Text>
-                    {hotel.hotel_prices.map((price, index) => (
-                      <View key={index} style={styles.price}>
-                        <Text>Start Date: {price.start_date}</Text>
-                        <Text>End Date: {price.end_date}</Text>
-                        <Text>Price: {price.price}</Text>
-                      </View>
+
+
+                                     
+                      <View >
+                        <View style={styles.tableRow}>
+                          <View style={styles.tableCol}>
+                            <Text style={styles.tableCell}>Start Date</Text>
+                          </View>
+                          <View style={styles.tableCol}>
+                            <Text style={styles.tableCell}>End Date</Text>
+                          </View>
+                          <View style={styles.tableCol}>
+                            <Text style={styles.tableCell}>Price</Text>
+                          </View>
+                        </View>
+                        {hotel.hotel_prices.map((price, index) => (
+                        <View style={styles.tableRow}>
+                          <View style={styles.tableCol}>
+                            <Text style={styles.tableCell}>{price.start_date}</Text>
+                          </View>
+                          <View style={styles.tableCol}>
+                            <Text style={styles.tableCell}>{price.end_date}</Text>
+                          </View>
+                          <View style={styles.tableCol}>
+                            <Text style={styles.tableCell}>{price.price}</Text>
+                          </View>
+                        
+                        </View>
+                      
                     ))}
+
+                    </View>
+                    
                   </View>
                 ))}
               </View>

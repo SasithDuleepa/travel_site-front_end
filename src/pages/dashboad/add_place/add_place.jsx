@@ -41,7 +41,7 @@ const removeFile =(index)=> (e) => {
   
 };
     // map
-    const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7qsYXATZC1Wj57plqEUhy_U7yHJjmNLM"});
+    const {isLoaded} = useLoadScript({googleMapsApiKey: `${process.env.REACT_APP_MAP_API}`});
     if (!isLoaded) return (
         <p>Loading...</p>
         )
@@ -90,7 +90,7 @@ const removeFile =(index)=> (e) => {
                 'Authorization': `${token}`,
               },
             });
-            // console.log(res.status);
+            console.log(res.data);
             if (res.status === 200) {
               window.alert("Place added successfully");
               setData({

@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './card.css';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 
 export default function Card(props) {
-    const {tour}= useParams();
-
   return (
     <div className='tc-card'>
       <img className='tc-card-img' src={props.image} alt="" />

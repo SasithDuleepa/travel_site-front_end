@@ -192,7 +192,7 @@ useEffect(()=>{
 
 
     const { isLoaded, loadError } = useLoadScript({
-      googleMapsApiKey: "AIzaSyA7kkl5NmkqNgHTrlXjdI9YNaJnnoLpBEA",
+      googleMapsApiKey: `${process.env.REACT_APP_MAP_API}`,
     });
     
     

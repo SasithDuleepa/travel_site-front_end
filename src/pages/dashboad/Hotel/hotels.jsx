@@ -91,7 +91,7 @@ export default function Hotels() {
         },
       })
       if (res.status === 200) {
-        window.alert("Place added successfully");
+        window.alert("Hotel added successfully");
               }
     } catch (error) {
       if(error.response.status === 401){
@@ -102,7 +102,7 @@ export default function Hotels() {
       }else if(error.response.status === 500){
         window.alert("Internal server error");
       }else{
-        window.alert("Error adding place");
+        window.alert("Hotel adding place");
       }
     }
   }

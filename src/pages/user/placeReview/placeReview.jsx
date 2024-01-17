@@ -32,7 +32,7 @@ export default function PlaceReview() {
 
 
       // map
-    const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7qsYXATZC1Wj57plqEUhy_U7yHJjmNLM"});
+    const {isLoaded} = useLoadScript({googleMapsApiKey: `${process.env.REACT_APP_MAP_API}`});
    
    
 

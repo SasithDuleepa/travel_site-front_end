@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 
 import './dashboard.css'
 
 import Alltours from './alltours/alltours';
 import Tours from './tours/tours';
 import Daytours from './day tours/daytours';
-import  axios  from 'axios';
+
 
 export default function Dashboard_() {
     //button
@@ -29,33 +29,12 @@ export default function Dashboard_() {
       setDaytourbtn(true);
     }
 
-    //get day tours
-    const [daytours,setDaytours]= useState([]);
-    const getDaytours = async () => {
-      let user = sessionStorage.getItem('id');
-      if(user){
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/book/pendingDayTours/${user}`);
-        console.log(res.data)
-        setDaytours(res.data);
-      }
-    }
-
-    //get tours
-    const [tours,setTours]= useState([]);
-    const getTours = async () => {
-      let user = sessionStorage.getItem('id');
-      if(user){
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/book/pendingTours/${user}`);
-        console.log(res.data)
-        setTours(res.data);
-      }
-    }
 
 
-    useEffect(()=>{
-      getDaytours()
-      getTours()
-    },[] )
+
+
+
+
   return (
     <div>
         <div className='profile-dashboard-line-1'></div>

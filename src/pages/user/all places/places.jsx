@@ -11,14 +11,45 @@ export default function Places() {
     const [currentPage, setCurrentPage] = useState(1);
     const [placesPerPage] = useState(8);
     
-    const GetPlaces = async()=>{
+    // const GetPlaces = async()=>{
+    //     try {
+    //         const res = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/all_prioritized`)
+    //         // const res = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/all`)
+    //         // console.log(res.data.data)
+    //         // setPlaces(res.data.data)
+
+    //         let Data = res.data.data;
+    //         let num = 0;
+    //         while(num<5){
+    //             const res = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/all_prioritized`)
+    //             const data = [...places]
+    //             data.push(res.data.data[0]);
+    //             console.log(data)
+    //             setPlaces(data)
+    //             num++;
+    //         }
+    //         console.log(places)
+            
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+    const GetPlaces = async () => {
         try {
-            const res = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/all_prioritized`)
-            // const res = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/all`)
-            // console.log(res.data.data)
-            setPlaces(res.data.data)
+            let num = 0;
+            const data = [];
+
+            // Fetch data until you have a total of 40 items
+            while (num < 90) {
+                const res = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/places/all_prioritized`);
+                data.push(res.data.data[0]);
+                num++;
+            }
+
+            // Set the entire data array to the places state
+            setPlaces(data);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
     useEffect(()=>{
@@ -59,21 +90,18 @@ export default function Places() {
             );
         }
 
-
-
         // Display up to 5 page buttons, centered around the current page
         for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
             pageButtons.push(
                 <button key={i} className={`Places-pagination-btn2 ${i === currentPage ? 'active' : ''}`} onClick={() => paginate(i)}>
                     {i}
-                    
                 </button>
             );
         }
 
         // Show ellipses if there are more than 5 pages
         if (totalPages > 5 && currentPage + 2 < totalPages) {
-            pageButtons.push(<span key="ellipsis">...</span>);
+            pageButtons.push(<span key="ellipsis" className='Places-pagination-more'>...</span>);
         }
 
          // Show last page button
@@ -84,6 +112,21 @@ export default function Places() {
                 </button>
             );
         }
+
+
+        if(currentPage === 1){
+            pageButtons.splice(1, 0, <span key="current" className='Places-pagination-p2'>{currentPage}</span>);
+        }
+        if(currentPage === 2){
+            pageButtons.splice(2, 0, <span key="current" className='Places-pagination-p2'>{currentPage}</span>);
+        }
+        if(currentPage === 3){
+            pageButtons.splice(3, 0, <span key="current" className='Places-pagination-p2'>{currentPage}</span>);
+        }
+        if(currentPage >3){
+            pageButtons.splice(3, 0, <span key="current" className='Places-pagination-p2'>{currentPage}</span>);
+        }
+
 
         return pageButtons;
     };

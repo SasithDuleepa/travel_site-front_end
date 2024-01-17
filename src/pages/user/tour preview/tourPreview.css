@@ -95,6 +95,12 @@
     font-weight: 400;
     font-family: poppins;
 }
+.TourPreview-header-left-p-cut{
+    font-size: 20px;
+    font-weight: 400;
+    font-family: poppins;
+    text-decoration: line-through;
+}
 .TourPreview-header-left-p-sub{
     font-size: 10px;
     font-weight: 400;
@@ -123,6 +129,74 @@
     font-size: 16px;
     
 }
+
+
+.TourPreview-header-left-new-price{
+    /* background-color: aqua; */
+    height: 20px;
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    transition: 1s;
+
+    animation: discountshow .4s ease-in ;
+}
+.TourPreview-header-left-new-price-hide{
+    /* background-color: aqua; */
+    height: 20px;
+    align-items: center;
+    display: none;
+    gap: 15px;
+    margin-bottom: 15px;
+    transition: 1s;
+    
+
+    animation: discounthide .4s ease-in ;
+}
+/* keyframes*/
+@keyframes discountshow {
+    0% {
+        opacity: 0; 
+   }
+    100% {
+        opacity: 1;
+   }
+}
+@keyframes discounthide {
+    0% {
+        opacity: 1; 
+   }
+    100% {
+        opacity: 0;
+   }
+}
+
+
+
+.TourPreview-header-left-p1{
+    font-size: 20px;
+    font-weight: 400;
+    color: rgb(253, 37, 37);
+    font-family: poppins;
+}
+.TourPreview-header-left-p1-hide{
+    display: none;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgb(253, 37, 37);
+    font-family: poppins;
+}
+.TourPreview-header-left-p2{
+    font-size: 10px;
+    font-weight: 400;
+    font-family: poppins;
+    color: rgb(253, 37, 37);
+}
+
+
+
+
 .TourPreview-header-left-line{
     border-bottom: 2px solid rgba(0, 0, 0, 0.245);
     width: 100%;
@@ -134,7 +208,7 @@
     padding: 10px 30px;
     border-radius: 10px;
     position: absolute;
-    margin-top: 20px;
+    margin: 15px 20px 20px 0px;
     border: none;
     color: white;
     font-size: 18px;
@@ -503,6 +577,13 @@
 
     width: 1200px;
     height: 400px;
+}
+.TourPreview-bottom-3-container{
+    display: flex;
+    width: 1200px;
+    justify-content: left;
+    align-items: center;
+    gap: 5px;
 }
 .TourPreview-bottom-3-forward-arrow{
     position: absolute;

@@ -12,7 +12,7 @@ export default function Tours() {
 
 
   let { page } = useParams();
-  const[Page,SetPage] = useState('')
+
   const [dayTour, setDayTour] = useState([]);
   const [tourCategory, setTourCategory] = useState([])
 
@@ -64,22 +64,22 @@ export default function Tours() {
       GetTourCategory()
       setTourcatergoryBTN('Tour_button-active')
       setDaytourBTN('Tour_button')
-      SetPage("Tour Packages")
+
       setPageTitle('Tour Packages')
 
     }else if(page === 'daytour'){
       GetDayTours()
       setDaytourBTN('Tour_button-active')
       setTourcatergoryBTN('Tour_button')
-      SetPage('Day Tours')
+
       setPageTitle("Day Tour Packages")
     }else{
-      SetPage('nopage')
+
     }
     
     GetTourPackages();
     GetDaytourPackages();
-  },[])
+  },[page])
 
 
 

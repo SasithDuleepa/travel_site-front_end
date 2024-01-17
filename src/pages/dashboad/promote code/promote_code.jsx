@@ -11,12 +11,17 @@ export default function Promote_code() {
     const[discount,setDiscount] = useState(0);
     const[expDate,setExpDate] = useState('');
 
+    const[codeId,setCodeId] = useState('');
+    const[editeName,setEditeName] = useState('');
+    const[editeCode,setEditeCode] = useState('');
+    const[editeDiscount,setEditeDiscount] = useState(0);
+    const[editeExpDate,setEditeExpDate] = useState('');
+
       //search
   const AgentSearchHandler= async(e) =>{
     if(e.target.value !== ""){
       try {
         const res =await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/agents/search/${e.target.value}`);
-        console.log(res.data);
         setAgent(res.data.data);
       } catch (error) {
         
@@ -24,7 +29,6 @@ export default function Promote_code() {
     }else{
       try {
         const res =await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/agents`);
-        console.log(res.data);
         setAgent(res.data);
       } catch (error) {
         
@@ -34,7 +38,6 @@ export default function Promote_code() {
   }
 
   const AgentSelectHandler =async(id,name) =>{
-    console.log(id,name)
     setUserId(id);
     setUserName(name);
   }
@@ -68,11 +71,139 @@ export default function Promote_code() {
         discount: discount,
         exp_date: expDate
       })
-      console.log(res.status);
+      if(res.status === 200){
+        alert("Promote Code Created Successfully");
+        setUserId("");
+        setUserName("");
+        setCode("");
+        setDiscount(0);
+        setExpDate('');
+
+
+        getAllCodes();
+      }
     } catch (error) {
       if(error.response.status === 401){
         sessionStorage.clear();
-        window.location.href = "/login";
+        window.alert("You are not authorized to perform this action");
+      }else if(error.response.status === 400){
+        window.alert("All fields are required");
+      }else if(error.response.status === 409){
+        window.alert("Place with the same name already exists");
+      }else if(error.response.status === 500){
+        window.alert("Internal server error");
+      }else{
+        window.alert("Error Adding Promote Code");
+      }
+    }
+  }
+
+
+
+  //all codes
+  const [allCodes, setAllCodes] = useState([]);
+  const getAllCodes = async () => {
+    try {
+      const response = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/promote/all_code`);
+      setAllCodes(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getAllCodes();
+  }
+  , [])
+  //codesearch
+  const CodeSearchHandler = async(e) =>{
+    if(e.target.value !== ""){
+      try {
+        const res =await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/promote/search/${e.target.value}`);
+        setAllCodes(res.data);
+      } catch (error) {
+        
+      }
+    }else{
+      try {
+        const res =await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/promote/all_code`);
+        setAllCodes(res.data);
+      } catch (error) {
+        
+      }
+    }
+    
+  }
+
+  //get code data
+  const getCodeData = async (code) => {
+    try {
+      const response = await Axios.get(`${process.env.REACT_APP_BACKEND_URL}/promote/code_data/${code}`);
+      setEditeName(response.data[0].fname);
+      setEditeCode(response.data[0].promote_code);
+      setEditeDiscount(response.data[0].promote_code_discount);
+      setEditeExpDate(response.data[0].promote_code_exp);
+      setCodeId(response.data[0].idpromote_code_id);
+    } catch (error) {
+      
+    }
+  }
+  //update
+  const UpdateHandler = async() =>{
+    try {
+      const res = await Axios.put(`${process.env.REACT_APP_BACKEND_URL}/promote/update_code/${codeId}`, {
+        code: editeCode,
+        discount: editeDiscount,
+        exp_date: editeExpDate
+      })
+
+      if(res.status === 200){
+        alert("Promote Code Updated Successfully");
+        setEditeName("");
+        setEditeCode("");
+        setEditeDiscount(0);
+        setEditeExpDate('');
+
+        getAllCodes();
+      }
+
+    } catch (error) {
+      if(error.response.status === 401){
+        sessionStorage.clear();
+        window.alert("You are not authorized to perform this action");
+      }else if(error.response.status === 400){
+        window.alert("All fields are required");
+      }else if(error.response.status === 500){
+        window.alert("Internal server error");
+      }else{
+        window.alert("Error Updating Promote Code");
+      }
+    }
+  }
+
+  //delete
+  const DeleteHandler = async() =>{
+    try {
+      const res = await Axios.delete(`${process.env.REACT_APP_BACKEND_URL}/promote/delete_code/${codeId}`);
+
+      if(res.status === 200){
+        alert("Promote Code Deleted Successfully");
+        setEditeName("");
+        setEditeCode("");
+        setEditeDiscount(0);
+        setEditeExpDate('');
+
+        getAllCodes();
+      }
+    } catch (error) {
+      if(error.response.status === 401){
+        sessionStorage.clear();
+        window.alert("You are not authorized to perform this action");
+      }else if(error.response.status === 400){
+        window.alert("All fields are required");
+      }else if(error.response.status === 500){
+        window.alert("Internal server error");
+      }else{
+        window.alert("Error deleting Promote Code");
       }
     }
   }
@@ -83,39 +214,41 @@ export default function Promote_code() {
             <h2 className='promote-code-left-title'>Promote Code</h2>
             <div className='promote-code-left-search'>
                 <div className='promote-code-left-search-left'>
-                    <label>search : </label><input />
+                    <label>search Promote Code: </label><input onChange={(e)=>CodeSearchHandler(e)}/>
                 </div>
                 <div className='promote-code-left-search-right'>
                     <div className='promote-code-left-search-right-sub'>
-                            <a className='promote-code-left-search-right-code'>iyuyiu iyi b </a>
-                            <a className='promote-code-left-search-right-code'>iyuyiu iyi b </a>
-                            <a className='promote-code-left-search-right-code'>iyuyiu iyi b </a>
-                            <a className='promote-code-left-search-right-code'>iyuyiu iyi b </a>
-                            <a className='promote-code-left-search-right-code'>iyuyiu iyi b </a>
-                            <a className='promote-code-left-search-right-code'>iyuyiu iyi b </a>
-                            <a className='promote-code-left-search-right-code'>iyuyiu iyi b </a>
-                            <a className='promote-code-left-search-right-code'>iyuyiu iyi b </a>
-                            <a className='promote-code-left-search-right-code'>iyuyiu iyi b </a>
-                            <a className='promote-code-left-search-right-code'>iyuyiu iyi b </a>
+                            {allCodes.length > 0 ? allCodes.map((code,index) =>{
+                                return(
+                                    <button  key={index} className='promote-code-left-search-right-code' onClick={()=>getCodeData(code.promote_code)}>{code.promote_code}</button>
+                                )
+                            
+                            }
+                            ):null}
+
                     </div>
                 </div>
             </div>
             <div className='promote-code-left-edit'>
                 <div className='promote-code-left-edit-form'>
                     <label>user name  :</label>
-                    <input  disabled/>
+                    <input  disabled value={editeName} onChange={(e)=>setEditeName(e.target.value)}/>
+                </div>
+                <div className='promote-code-left-edit-form'>
+                    <label>promot code  :</label>
+                    <input  disabled value={editeCode} onChange={(e)=>setEditeCode(e.target.value)}/>
                 </div>
                 <div className='promote-code-left-edit-form'>
                     <label>discount rate : </label>
-                    <input />
+                    <input value={editeDiscount} onChange={(e)=>setEditeDiscount(e.target.value)}/>
                 </div>
                 <div className='promote-code-left-edit-form'>
                     <label>exp date  :  </label>
-                    <input />
+                    <input value={editeExpDate} onChange={(e)=>setEditeExpDate(e.target.value)}/>
                 </div>
                 <div className='promote-code-left-edit-btn-div'>
-                    <button className='promote-code-left-edit-btn1'>update</button>
-                    <button className='promote-code-left-edit-btn2'>delete</button>
+                    <button className='promote-code-left-edit-btn1' onClick={UpdateHandler}>update</button>
+                    <button className='promote-code-left-edit-btn2' onClick={DeleteHandler}>delete</button>
                 </div>
             </div>
         </div>
@@ -128,7 +261,7 @@ export default function Promote_code() {
                 <div className='promote-code-right-search-results-div'>
                 {agent.length > 0 ? agent.map((agent,index) =>{
               return(
-                <a key={index} className='promote-code-right-search-results' onClick={()=>AgentSelectHandler(agent.user_id,agent.fname)}>{agent.fname}</a>
+                <button key={index} className='promote-code-right-search-results' onClick={()=>AgentSelectHandler(agent.user_id,agent.fname)}>{agent.fname}</button>
               )
  
                 

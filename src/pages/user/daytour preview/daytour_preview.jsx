@@ -271,7 +271,7 @@ setTimeout(() => {
 
    let count = React.useRef(0);
 
-   const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7kkl5NmkqNgHTrlXjdI9YNaJnnoLpBEA"});
+   const {isLoaded} = useLoadScript({googleMapsApiKey: `${process.env.REACT_APP_MAP_API}`});
    if (!isLoaded) return (
        <p>Loading...</p>
        )
@@ -525,6 +525,7 @@ const settings = {
             <p className='daytour-preview-top-left-p1'>Package Price :</p>
             {/* <p className='daytour-preview-top-left-p3'>$</p> */}
             <p className='daytour-preview-top-left-p3'>$ {total }</p>
+            
             <p className='daytour-preview-top-left-p2'>* per person</p>
           </div>
           

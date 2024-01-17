@@ -32,7 +32,11 @@ const generateDayArray = (startDate, numDays) => {
 
 
 export default function TourPreview() {
-  const[tourRate,setTourRate] = useState(null)
+  const[tourRate,setTourRate] = useState(null);
+
+  const[code, setCode] = useState('');
+  const[codeDiscount, setCodeDiscount] = useState(0);
+  const[discountPrice , setDiscountPrice] = useState(false);
 
   const[days,setDays] = useState(0);
   
@@ -196,6 +200,31 @@ export default function TourPreview() {
   }, [passenger]);
 
 
+  //get code discount
+  const GetCodeDiscount = async() =>{
+    if(code === ''){
+      window.alert("please enter promote code")
+    }
+    else{
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/promote/discount/${code}`)
+      console.log(res.data)
+  
+        setCodeDiscount(res.data)
+        if(res.data !== 0 ){
+          setDiscountPrice(true)
+        }else{
+          setDiscountPrice(null)
+        }
+    }
+
+
+
+  
+  
+  }
+
+
+
 
 
 //hotel fees
@@ -318,6 +347,7 @@ const Calculation =()=>{
   console.log('vehicle', vehicleRate )
   console.log('hotel', hotelPrice )
   console.log('tour rate', tourRate )
+  console.log('code discount' , codeDiscount)
 
 
     
@@ -342,20 +372,24 @@ const Calculation =()=>{
   let total_2 = Math.ceil(total_1)
   let total_3 = total_2*10
 
-  setTotal(total_3)
+  //if code entered
+  let total_4 = total_3 *codeDiscount/100 ;
+  let total_5 = total_3-total_4
+
+  setTotal(total_5)
 }
 useEffect(()=>{
 
   Calculation();
 
 }
-,[distance,hotelPrice,placeFee,vehicleRate,passenger])
+,[distance,hotelPrice,placeFee,vehicleRate,passenger,codeDiscount])
 
   // map
   const [response, setResponse] = React.useState(null)
   const origin = 'colombo';
   let count = React.useRef(0);
-  const {isLoaded} = useLoadScript({googleMapsApiKey: "AIzaSyA7kkl5NmkqNgHTrlXjdI9YNaJnnoLpBEA"});
+  const {isLoaded} = useLoadScript({googleMapsApiKey: `${process.env.REACT_APP_MAP_API}`});
   if (!isLoaded) return (
       <p>Loading...</p>
       )
@@ -389,6 +423,9 @@ const Booknow = async() => {
             hotel_type:hotel,
             passengers:passenger,
             start_date:startDay,
+            promote_code:code,
+            promote_code_discount:codeDiscount,
+
             booked_date:new Date().toISOString().slice(0, 10)
             
         }
@@ -466,7 +503,7 @@ const settings = {
 const settings2 = {
   dots: false,
   speed: 1900,
-  slidesToShow: 4,
+  slidesToShow: 3,
   slidesToScroll: 1,
   infinite: true,
   autoplay: true,
@@ -499,9 +536,8 @@ const settings2 = {
             <label className='tourpreview-popup-form-label'>Hotel Category :</label>
 
             <select className='tourpreview-popup-form-input' onChange={(e)=>setPopHotel(e.target.value)}>
-              <option value=''>Select</option>
+              <option value='3 star/4 star'>Category B</option>
               <option value='5 star'>Category A</option>
-            <option value='3 star/4 star'>Category B</option>
             </select>
           </div>
           <div className='tourpreview-popup-btn-div'>
@@ -548,38 +584,57 @@ const settings2 = {
           <div className='TourPreview-header-left-1'>
             <p className='TourPreview-header-left-p'>Package Price :</p>
             <p className='TourPreview-header-left-p' >$</p>
-            <p className='TourPreview-header-left-p' > {total}</p>
-            <p className='TourPreview-header-left-p-sub'>* per person</p>
+            <p className={codeDiscount === 0 ? 'TourPreview-header-left-p' :'TourPreview-header-left-p-cut' }> {total}</p>
+            
+           <p className='TourPreview-header-left-p-sub'>* per person</p>
           </div>
 
           <div className='TourPreview-header-info'>
-              <p >Number of Tourists : </p>
+              <p >Number of Tourists</p>
+              <p>:</p>
               <p >{passenger}</p>
               <a onClick={PopUpHandler0}><img src={Edite}/></a>
             </div>
-          
            
             <div className='TourPreview-header-info'>
-              <p>Hotel Category : </p>
-              <p  >{hotel}</p>
+              <p>Hotel Category</p>
+              <p>:</p>
+              <p>{hotel==='3 star/4 star' ? 'Category B' : 'Category A'}</p>
               <a onClick={PopUpHandler}><img src={Edite}/></a>
             </div>           
-            
-        
-
 
           <div className='TourPreview-header-info'>
-          <p >Tour Start Date : </p>
+          <p >Tour Start Date</p>
+          <p>:</p>
           <p> {startDay}</p>
           <a onClick={PopUpHandler2}><img src={Edite}/></a>
           </div>
+
+
           <div className='TourPreview-header-left-coupen'>
             <p className='TourPreview-header-left-p couponcode-p'>Coupon Code </p>
             <p className='TourPreview-header-left-p couponcode-p'>: </p>
-            <input className='TourPreview-header-left-input'/>
-            <button className='TourPreview-header-left-btn'>enter</button>
+            <input className='TourPreview-header-left-input' onChange={(e)=>setCode(e.target.value)}/>
+            <button className='TourPreview-header-left-btn' onClick={GetCodeDiscount}>enter</button>
           </div>
-          <div className='TourPreview-header-left-line'></div>
+
+          <div className={codeDiscount === 0 ? "TourPreview-header-left-new-price-hide" : "TourPreview-header-left-new-price"} >
+
+          
+          {/* <div className= "TourPreview-header-left-new-price" > */}
+            <p className='TourPreview-header-left-p1'>Discounted price</p>
+          <p className='TourPreview-header-left-p1'>:</p>
+          <p className='TourPreview-header-left-p1'>$</p>
+          <p className='TourPreview-header-left-p1'>34</p>
+          <p className='TourPreview-header-left-p2'>* per person</p>
+        </div>
+
+           
+
+          
+          <div className='TourPreview-header-left-line'>
+
+          </div>
           
           <button onClick={Booknow} className='TourPreview-header-book-btn'>Book Now</button>
         </div>
@@ -769,23 +824,42 @@ const settings2 = {
           {btn3==='TourPreview_bottom-btn'?
           <div className='TourPreview-bottom-3'>
 
+            {places.length>4 ? 
+            <Slider {...settings2}>
+            {places.length>0 ?
+              places.map((place,index)=>{
+                return(
+                  <PlaceCard key={index} id={place.place_id} place={place.place_name} 
+                  img={place.card_img}
+                  short={place.short_description}
+                  link={place.place_id}
+                  />
+                )
+              })
+                :null
+            }
+  
+  
+            </Slider>
+            :
+            <div className='TourPreview-bottom-3-container'>
+              {places.length>0 ?
+              places.map((place,index)=>{
+                return(
+                  <PlaceCard key={index} id={place.place_id} place={place.place_name} 
+                  img={place.card_img}
+                  short={place.short_description}
+                  link={place.place_id}
+                  />
+                )
+              })
+                :null
+            }
+            </div>
+            }
 
-<Slider {...settings2}>
-          {places.length>0 ?
-            places.map((place,index)=>{
-              return(
-                <PlaceCard key={index} id={place.place_id} place={place.place_name} 
-                img={place.card_img}
-                short={place.short_description}
-                link={place.place_id}
-                />
-              )
-            })
-              :null
-          }
 
 
-          </Slider>
             
             
 

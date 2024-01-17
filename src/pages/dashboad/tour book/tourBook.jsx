@@ -59,6 +59,8 @@ export default function TourBook() {
     { header: 'passengers', key: 'passengers' },
     { header: 'start_day', key: 'start_day' },
     { header: 'booked_date', key: 'booked_date' },
+    {header:'promote_code',key:'promote_code'},
+    {header:'promote_code_discount',key:'promote_code_discount'},
   ];
   
   const data = filteredRequests.map((request) => {  
@@ -72,6 +74,8 @@ export default function TourBook() {
       passengers: request.passengers,
       start_day: request.start_day,
       booked_date: request.booked_date,
+      promote_code: request.promote_code,
+      promote_code_discount: request.promote_code_discount,
     };
   
   }
@@ -164,6 +168,8 @@ export default function TourBook() {
               <th>passengers</th>
               <th>start_day</th>
               <th>booked_date</th>
+              <th>promote code</th>
+              <th>promote code discount</th>
             </tr>
           </thead>
 
@@ -180,6 +186,8 @@ export default function TourBook() {
                   <td>{request.passengers}</td>
                   <td>{request.start_day}</td>
                   <td>{request.booked_date}</td>
+                  <td>{request.promote_code}</td>
+                  <td>{request.promote_code_discount}</td>
                 </tr>
               ))
             ) : (
