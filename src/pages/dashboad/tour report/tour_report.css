@@ -1,0 +1,50 @@
+
+.tour-report{
+    margin-left: 17%
+}
+
+.tour-report-search-div{
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+}
+
+.tour-report-select-div{
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+}
+.tour-report-results-div{
+    width: 300px;
+    height: 150px;
+    background-color: antiquewhite;
+    overflow-y: scroll;
+}
+
+
+.tour-report-tour-div{
+    background-color: burlywood;
+    padding: 10px;
+    margin: 10px;
+}
+.tour-report-tour-report{
+    background-color: yellowgreen;
+    padding: 5px;
+}
+
+.tour-report-tour-report-coverimg{
+    width: 600px;
+    height: 300px;
+}
+
+.tour-report-tour-report-day-div{
+    background-color: aquamarine
+}
+
+.tour-report-tour-report-place-div{
+    background-color: violet;
+}
+.tour-report-tour-report-place-img{
+    width: 400px;
+    height: 150px;
+}

@@ -36,7 +36,9 @@ export default function Sidebar() {
 
       <a className={window.location.pathname==='/dashboad/images' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/images"}>Images</a>
 
+      <a className={window.location.pathname==='/dashboad/tourReport' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/tourReport"}>Tour Report</a>
       <a className={window.location.pathname==='/dashboad/placeReport' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/placeReport"}>Place Report</a>
+      <a className={window.location.pathname==='/dashboad/agentCodeBook' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/agentCodeBook"}>Agent-Code book</a>
       <a className={window.location.pathname==='/dashboad/hotel_report' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/hotel_report"}>Hotel Report</a>
       <a className={window.location.pathname==='/dashboad/request' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/request"}>Request</a>
       <a className={window.location.pathname==='/dashboad/tourbook' ? "sidebar-links-active":"sidebar-links"} href={"/dashboad/tourbook"}>Tour book</a> 

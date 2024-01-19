@@ -107,13 +107,22 @@ export default function Register() {
                     email:email,
                     password:password
                 }
-                const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/add`, data)
-                console.log(res.data.status);
-                if(res.data.status===200){
-                    alert('success')
-                    window.location.href = '/login';
-                
+                try {
+                    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/add`, data)
+                    console.log(res.data);
+                    if(res.status===200){
+                        alert('success')
+                        window.location.href = `/otp/${fName}/${password}/${email}`;
+                    
+                    }
+                    
+                } catch (error) {
+                    if(error.response.status === 500){
+                        window.alert("Internal server error");
+                    }
                 }
+                
+                
             }
 
         }

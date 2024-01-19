@@ -32,6 +32,9 @@ import Team from './pages/dashboad/add team/add_team';
 
 import Login_  from './pages/dashboad/log in/login';
 import Promote_code from './pages/dashboad/promote code/promote_code';
+import AgentCodeBook from './pages/dashboad/agent code book/agentCodeBook';
+
+import TourReport from './pages/dashboad/tour report/tour_report';
 
 
 //user components
@@ -53,6 +56,7 @@ import Daytour_preview from './pages/user/daytour preview/daytour_preview';
 import TCPriview from './pages/user/tour category preview/tcPriview';
 import Places from './pages/user/all places/places';
 import PlaceReport from './pages/dashboad/place report/placeReport';
+import Otp from './pages/user/otp/otp';
 
 
 
@@ -103,6 +107,7 @@ function App() {
                   <Route exact path="/daytour/:id" element={<Daytour_preview/>}/>
                   <Route exact path="/popular_destination" element={<Popular/>} />
                   <Route exact path="/places" element={<Places/>}/>
+                  <Route exact path="/otp/:name/:pwd/:mail" element={<Otp/>}/>
 
 
 
@@ -143,6 +148,8 @@ function App() {
           <Route exact path="/dashboad/hotel_report" element={<Hotel_report/>}/>
           <Route exact path="/dashboad/placeReport" element={<PlaceReport/>}/>
           <Route exact path="/dashboad/promote_code" element={<Promote_code/>}/>
+          <Route exact path="/dashboad/agentCodeBook" element={<AgentCodeBook/>}/>
+          <Route exact path="/dashboad/tourReport" element={<TourReport/>}/>
               </Route>
 
           </Routes>
