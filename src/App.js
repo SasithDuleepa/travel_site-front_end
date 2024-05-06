@@ -25,7 +25,7 @@ import Tour from './pages/dashboad/tours/tours';
 import PlaceCategory from './pages/dashboad/place_category/placeCategory';
 import PopularDestinations from './pages/dashboad/popular destinations/popularDestinations';
 import Request from './pages/dashboad/request/request';
-import Carousel1 from './components/carousel/carousel1';
+
 
 import Descriptions from './pages/dashboad/descriptions/descriptions';
 import Team from './pages/dashboad/add team/add_team';

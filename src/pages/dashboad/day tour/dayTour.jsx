@@ -105,7 +105,7 @@ const Add = async() =>{
       });
       console.log(res.data)
       if (res.status === 200) {
-        alert("category added successfully");
+        alert("day tour added successfully");
         setDescription('')
         setDistance('')
         setImage('')

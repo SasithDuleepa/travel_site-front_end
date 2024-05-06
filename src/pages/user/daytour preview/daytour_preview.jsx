@@ -71,7 +71,7 @@ const [coverImg, setCoverImg] = useState('')
   const GetDaytourRates =async ()=>{
     try {
           const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/data/daytour`);
-          console.log(res.data);
+          // console.log(res.data);
           
           if(res.data.length>0){
             setDaytourRate(res.data[0].daytour_rate)
@@ -100,7 +100,7 @@ const [coverImg, setCoverImg] = useState('')
   const GetData =async ()=>{
     try {
           const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/daytour/${id}`);
-          console.log(res.data);
+          // console.log(res.data);
           
           if(res.data.length>0){
             setData(res.data);
@@ -162,7 +162,7 @@ const getPlaces = async () => {
   try {
     if (data.length > 0) {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/daytour/places/${data[0].day_tour_id}`);
-      // console.log(res.data);
+      // console.log("places",res.data);
       setPlaces(res.data);
 
       let totalFees = 0;
@@ -196,7 +196,7 @@ useEffect(()=>{
   // console.log('fees' , fees)
   // console.log('startDistance' , startDistance)
   // console.log('daytour rate' , daytourRate)
-  console.log('daytour discount rate' , daytourDiscountRate)
+  // console.log('daytour discount rate' , daytourDiscountRate)
 
     let sub_total = fees + startDistance*2*vehicle + oranizingCost
     // console.log(sub_total)
@@ -261,7 +261,7 @@ useEffect(()=>{
 setTimeout(() => {
       setMapKey((prevKey) => prevKey + 1);
     }, 1000);
-    console.log('origin')
+    // console.log('origin')
 
   }, [origin]);
   
@@ -277,9 +277,9 @@ setTimeout(() => {
        )
  
        const directionsCallback = (res) => {
-        console.log( 'direction call back origin' , origin)
-        console.log( 'direction call back' , res)
-        console.log('count =' , count)
+        // console.log( 'direction call back origin' , origin)
+        // console.log( 'direction call back' , res)
+        // console.log('count =' , count)
         
         
 
@@ -289,13 +289,13 @@ setTimeout(() => {
            if (res.status === 'OK') {
              count.current += 1;
 
-              console.log( 'direction call back called!!!!!' )
+      
               setResponse(res);
 
              
            } else {
              count.current = 0;
-             console.log('res: ', res);
+            //  console.log('res: ', res);
            }
          } else{
            count.current = 0;
@@ -307,7 +307,7 @@ setTimeout(() => {
        const distanceCallback =(response) =>{
         if (response && response.rows && response.rows.length > 0) {
           const distanceValue = response.rows[0].elements[0].distance.value;
-          console.log('Distance:', distanceValue/1000);
+          // console.log('Distance:', distanceValue/1000);
           setStartDistance(distanceValue/1000)
           // Update your state or perform any other actions with the distance information
         } else {
@@ -351,17 +351,20 @@ const ButtonHandler = (btn)=>() =>{
 
 
 const calculateCenter = () => {
-  if (places.length === 0) {
-    return { lat: places[0].place_lat, lng: places[0].place_lng}; // Default center if no places
-  }
-
-  const totalLat = places.reduce((sum, place) => sum + place.place_lat, 0);
+  if (places.length === 0){
+    return { lat: 0, lng: 0}; // Default center if no places
+  }else if(places.length > 0){
+    const totalLat = places.reduce((sum, place) => sum + place.place_lat, 0);
   const totalLng = places.reduce((sum, place) => sum + place.place_lng, 0);
 
   const averageLat = totalLat / places.length;
   const averageLng = totalLng / places.length;
 
   return { lat: averageLat, lng: averageLng };
+
+  }
+
+  
 };
 
 
@@ -388,7 +391,7 @@ const Booknow = async() => {
           },
           withCredentials: true,
         });
-      console.log(res);
+      // console.log(res);
       if(res.status === 200){
         window.alert("success!!");
       }
@@ -420,10 +423,6 @@ const settings = {
   autoplay: true,
   autoplaySpeed: 2500,
   arrows:false
-
-
-
-
 };
 
 
@@ -434,44 +433,40 @@ const settings = {
         <div className='day-tour-popup-1-main'>
           <div className='day-tour-popup-1-main-form'>
             <label  className='day-tour-popup-1-main-form-label'>Tour starts from :</label>            
-            <select  className='day-tour-popup-1-main-form-input' onChange={(e)=>setPopUpOrigin(e.target.value)} value={popUpOrigin}>
-    
-            <option value={'Ahungalla'}>Ahungalla</option>
-<option value={'Akurala'}>Akurala</option>
-<option value={'Aluthgama'}>Aluthgama</option>
-<option value={'Ambalangoda'}>Ambalangoda</option>
-<option value={'Balapitiya'}>Balapitiya</option>
-<option value={'Beruwala'}>Beruwala</option>
-<option value={'Bentota'}>Bentota</option>
-<option value={'Boossa'}>Boossa</option>
-<option value={'Colombo'}>Colombo</option>
-<option value={'Dehiwala'}>Dehiwala</option>
-<option value={'Galle'}>Galle</option>
-<option value={'Hikkaduwa'}>Hikkaduwa</option>
-<option value={'Induruwa'}>Induruwa</option>
-<option value={'Ja-Ela'}>Ja-Ela</option>
-<option value={'Kalutara'}>Kalutara</option>
-<option value={'Koggala'}>Koggala</option>
-<option value={'Kosgoda'}>Kosgoda</option>
-<option value={'Madampagama'}>Madampagama</option>
-<option value={'Maggona'}>Maggona</option>
-<option value={'Matara'}>Matara</option>
-<option value={'Mirissa'}>Mirissa</option>
-<option value={'Moratuwa'}>Moratuwa</option>
-<option value={'Mount-Lavinia'}>Mount Lavinia</option>
-<option value={'Negombo'}>Negombo</option>
-<option value={'Panadura'}>Panadura</option>
-<option value={'Payagala'}>Payagala</option>
-<option value={'Polhena'}>Polhena</option>
-<option value={'Rathgama'}>Rathgama</option>
-<option value={'Talpe'}>Talpe</option>
-<option value={'Unawatuna'}>Unawatuna</option>
-<option value={'Wadduwa'}>Wadduwa</option>
-<option value={'Wattala'}>Wattala</option>
-<option value={'Weligama'}>Weligama</option>
-
-
-
+            <select  className='day-tour-popup-1-main-form-input' onChange={(e)=>setPopUpOrigin(e.target.value)} value={popUpOrigin}>    
+              <option value={'Ahungalla'}>Ahungalla</option>
+              <option value={'Akurala'}>Akurala</option>
+              <option value={'Aluthgama'}>Aluthgama</option>
+              <option value={'Ambalangoda'}>Ambalangoda</option>
+              <option value={'Balapitiya'}>Balapitiya</option>
+              <option value={'Beruwala'}>Beruwala</option>
+              <option value={'Bentota'}>Bentota</option>
+              <option value={'Boossa'}>Boossa</option>
+              <option value={'Colombo'}>Colombo</option>
+              <option value={'Dehiwala'}>Dehiwala</option>
+              <option value={'Galle'}>Galle</option>
+              <option value={'Hikkaduwa'}>Hikkaduwa</option>
+              <option value={'Induruwa'}>Induruwa</option>
+              <option value={'Ja-Ela'}>Ja-Ela</option>
+              <option value={'Kalutara'}>Kalutara</option>
+              <option value={'Koggala'}>Koggala</option>
+              <option value={'Kosgoda'}>Kosgoda</option>
+              <option value={'Madampagama'}>Madampagama</option>
+              <option value={'Maggona'}>Maggona</option>
+              <option value={'Matara'}>Matara</option>
+              <option value={'Mirissa'}>Mirissa</option>
+              <option value={'Moratuwa'}>Moratuwa</option>
+              <option value={'Mount-Lavinia'}>Mount Lavinia</option>
+              <option value={'Negombo'}>Negombo</option>
+              <option value={'Panadura'}>Panadura</option>
+              <option value={'Payagala'}>Payagala</option>
+              <option value={'Polhena'}>Polhena</option>
+              <option value={'Rathgama'}>Rathgama</option>
+              <option value={'Talpe'}>Talpe</option>
+              <option value={'Unawatuna'}>Unawatuna</option>
+              <option value={'Wadduwa'}>Wadduwa</option>
+              <option value={'Wattala'}>Wattala</option>
+              <option value={'Weligama'}>Weligama</option>
             </select>
           </div>
           <div className='day-tour-popup-1-main-button-div'>
@@ -563,8 +558,8 @@ const settings = {
       <Slider {...settings}>
       {imageId.length>0 ? imageId.map((img,index)=>{
               return(
-                <div className='daytour-preview-top-right-img-div'>
-                  <img key={index} className='daytour-preview-top-right-img'  src={img!==undefined?`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${img}`:null} />
+                <div key={index} className='daytour-preview-top-right-img-div'>
+                  <img  className='daytour-preview-top-right-img'  src={img!==undefined?`${process.env.REACT_APP_BACKEND_URL}/places/placeimg?file=${img}`:null} />
 
                 </div>
 
@@ -592,22 +587,12 @@ const settings = {
         center={calculateCenter()}
         zoom={9}
         >
-  {places.length > 0
+  {places.length > 0 && places[0].place_lat && places[0].place_lng
     ? places.map((place, index) => (
         <MarkerF key={index} position={{ lat: place.place_lat, lng: place.place_lng }} />
       ))
-    : null}
-
-
-
-
-
-
-
-
-
-
-
+    : <MarkerF position={{ lat: 6.9284, lng: 79.8466 }} />}
+ 
 
 </GoogleMap>
         </div>
@@ -645,7 +630,7 @@ const settings = {
           <div  className={class1}>
             <div className='daytour-preview-bottom-info-1-left'>
               <p className='daytour-preview-bottom-info-1-left-title'>The above cost includes:</p>
-              <ui>
+              <ul>
                 <li className='daytour-preview-bottom-info-p1'>Package Price For Per Person with Minimum Two pax.</li>
                 <li className='daytour-preview-bottom-info-p1'>Accommodation on bed and breakfast will be offered on the basis hotel's options.</li>
                 <li className='daytour-preview-bottom-info-p1'>Private semi-luxury car/van (air-conditioned)</li>
@@ -653,11 +638,11 @@ const settings = {
                 <li className='daytour-preview-bottom-info-p1'>Fuel & local insurance for the vehicle</li>
                 <li className='daytour-preview-bottom-info-p1'>All government taxes</li>
                  
-              </ui>
+              </ul>
             </div>
             <div className='daytour-preview-bottom-info-1-right'>
               <p className='daytour-preview-bottom-info-1-right-title'>The above cost does not include:</p>
-              <ui>
+              <ul>
               <li className='daytour-preview-bottom-info-p1'>This package excludes the sightseeing entrance charges (Unless Specified)</li>
               <li className='daytour-preview-bottom-info-p1'>Meals not mentioned in the itinerary</li>
               <li className='daytour-preview-bottom-info-p1'>Personal expenses are excluded.</li>
@@ -666,7 +651,7 @@ const settings = {
               <li className='daytour-preview-bottom-info-p1'>Guide/Driver tips</li>
               <li className='daytour-preview-bottom-info-p1'>Travel insurance is excluded</li>
               <li className='daytour-preview-bottom-info-p1'>There are no Air-tickets included in the tour package</li>
-              </ui>
+              </ul>
             </div>
           </div>
           <div  className={class2}>
@@ -680,10 +665,12 @@ const settings = {
 
   <DirectionsService
     options={{
-      destination: places.length > 0
+      destination: places.length > 0 
         ? { location: { lat: places[0].place_lat, lng: places[0].place_lng }
        }
-        : null,
+        :
+        { location: { lat: 6.9284, lng: 79.8466 }}
+        ,
       waypoints: [ ],
       origin:origin,
       travelMode: 'DRIVING',
@@ -699,11 +686,9 @@ const settings = {
 <DistanceMatrixService
     options={{
       destinations: [
-        places.length > 0
-          ?
-           { location: { lat: places[0].place_lat, lng: places[0].place_lng } }
-          : { location: 'Colombo' },
-      ],
+        places.length > 0 ? { location: { lat: places[0].place_lat, lng: places[0].place_lng } }
+         : { location: { lat: 6.9284, lng: 79.8466 }}
+         ],
       origins:[origin] ,
       travelMode: 'DRIVING',
     }}

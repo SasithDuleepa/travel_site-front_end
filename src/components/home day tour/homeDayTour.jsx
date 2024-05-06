@@ -3,8 +3,6 @@ import './homeDayTour.css';
 import axios from 'axios';
 import { useState } from 'react';
 import Carousel from "react-simply-carousel";
-import Arrow from './../../assets/icons/arrow-right.png';
-import Sinharaja from './../../assets/Sinharaja.png'
 import { GoogleMap, useLoadScript, MarkerF, DirectionsRenderer, DirectionsService ,DistanceMatrixService} from '@react-google-maps/api';
 
 import LeftArrow from './../../assets/icons/Left Arrow.svg';

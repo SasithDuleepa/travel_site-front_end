@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './placeCard.css';
-import Img from './../../../assets/Galle Fort.png';
-import axios from 'axios';
+
 
 
 
